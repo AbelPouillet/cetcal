@@ -7,7 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.qstprod.contro
 $datas = formLieuDistController::fetchUniqueAllTypeLieu();
 $sousTypes = formLieuDistController::fetchAllTypeLieu();
 ?>
-<!--TEST-->
+
 <div class="row justify-content-lg-center">
     <div class="col-lg-6">
 
