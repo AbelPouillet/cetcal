@@ -4,8 +4,8 @@
       <div class="col-sm">
         <p class="cet-p"></p>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item cet-footer-li">Nous sommes une association <b>Loi 1901</b></li>
-          <li class="list-group-item cet-footer-li">À Castillon-la-Bataille : une épicerie bio coopérative, un café associatif, un espace de création et de travail partagé.</li>
+          <li class="list-group-item cet-footer-li">Nous sommes une <b>Organisation à but non lucratif</b></li>
+          <li class="list-group-item cet-footer-li">À Castillon une épicerie bio coopérative, un café associatif, un espace de création et de travail partagé.</li>
           <li class="list-group-item cet-footer-li">Page de l'association : <a href="http://castillonnaisentransition.org/" 
             class="cet-p" target="_blank">http://castillonnaisentransition.org/</a></li>
           <li class="list-group-item cet-footer-li">Contact : <small class="cet-email-tag"><email>contact@castillonnaisentransition.org</email></small></li>
@@ -13,17 +13,8 @@
             class="cet-p" target="_blank">Nous sommes actifs sur Facebook !</a></li>
           <li class="list-group-item cet-footer-li cet-p">
             Nos partenaires :
-            <br><br>
-            <img src="/res/content/partenaires/logo_region.jpg" height="80">
-            <img src="/res/content/partenaires/logo_gironde.jpg" height="80">
-            <img src="/res/content/partenaires/logo_FSE.jpg" height="80">
-            <br>
-            <a href="https://www.viaterroirs.com/" target="_blank">
-              <img src="./res/content/icons/viaterroirs.png" height="80">
-            </a>
-            <a href="http://www.bonpour1tour.com/" style="text-decoration: none;" target="_blank">
-              <img src="/res/content/icons/bonpour1tour/bp1t.jpg" height="80"> bonpour1tour
-            </a>
+            <br><br><img src="/res/content/Logo-UE-FEDER-web.jpg" height="60" alt="">
+            <img src="/res/content/logo_region-aquitaine.jpg" height="60" alt="">
           </li>
         </ul>
       </div>

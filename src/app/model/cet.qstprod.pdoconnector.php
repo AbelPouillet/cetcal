@@ -1,4 +1,5 @@
 <?php
+use PDO; 
 
 /**
  * Connecteur pdo.
@@ -11,7 +12,7 @@ class CETCALPDOConnector {
   private $DNS_prod;
   private $LOG_prod;
   private $PWD_prod;
-  private $production = true;
+  private $production = false;
 
   function __construct() 
   {
@@ -19,8 +20,8 @@ class CETCALPDOConnector {
     $this->LOG = 'root';
     $this->PWD = 'root';
     $this->DNS_prod = 'mysql:host=;port=;dbname=;charset=utf8';
-    $this->LOG_prod = 'thomas';
-    $this->PWD_prod = 'thomas';
+    $this->LOG_prod = '';
+    $this->PWD_prod = '';
   }
 
   function getPdoConnexion() 

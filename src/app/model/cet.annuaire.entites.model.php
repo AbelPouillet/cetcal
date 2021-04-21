@@ -39,7 +39,6 @@ class CETCALEntitesModel extends CETCALModel
         $infoscmd = $data[8];
         $jourh = $data[9];
         $specificite = $data[10];
-        $type = $data[11];
 
         if ($this->exists($denomination)) 
         {
@@ -60,7 +59,6 @@ class CETCALEntitesModel extends CETCALModel
           $stmt->bindParam(":pInfoCommande", $infoscmd, PDO::PARAM_STR);
           $stmt->bindParam(":pJourHoraire", $jourh, PDO::PARAM_STR);
           $stmt->bindParam(":pSpecificite", $specificite, PDO::PARAM_STR);
-          $stmt->bindParam(":pType", $type, PDO::PARAM_STR);
           $stmt->execute();    
         } 
       }
@@ -92,7 +90,8 @@ class CETCALEntitesModel extends CETCALModel
         $activite = "marche du castillonnais";
         $infoscmd = "";
         $specificite = "";
-        $type = "marche";
+
+        //echo '<p>'.$denomination.', '.$adrlit.', '.$jourh.'</p>';
 
         if ($this->exists($denomination)) 
         {
@@ -108,7 +107,6 @@ class CETCALEntitesModel extends CETCALModel
           $stmt->bindParam(":pInfoCommande", $infoscmd, PDO::PARAM_STR);
           $stmt->bindParam(":pJourHoraire", $jourh, PDO::PARAM_STR);
           $stmt->bindParam(":pSpecificite", $specificite, PDO::PARAM_STR);
-          $stmt->bindParam(":pType", $type, PDO::PARAM_STR);
           $stmt->execute();    
         }
       }
@@ -119,107 +117,19 @@ class CETCALEntitesModel extends CETCALModel
     }  
   }
 
-  public function insertEntite($data) 
+  private function exists($denomination)
   {
-    try 
-    {
-      $qLib = $this->getQuerylib();
-      $stmt = $this->getCnxdb()->prepare($qLib::INSERT_INTO_CETCAL_ENTITES);
-
-      $stmt->bindParam(":pDenomination", $data['denomination'], PDO::PARAM_STR);
-      $stmt->bindParam(":pTerritoire", $data['territoire'], PDO::PARAM_STR);
-      $stmt->bindParam(":pActivite", $data['activite'], PDO::PARAM_STR);
-      $stmt->bindParam(":pAdrliterale", $data['adr'], PDO::PARAM_STR);
-      $stmt->bindParam(":pTels", $data['tel'], PDO::PARAM_STR);
-      $stmt->bindParam(":pContactPersonne", $data['personne'], PDO::PARAM_STR);
-      $stmt->bindParam(":pEmail", $data['email'], PDO::PARAM_STR);
-      $stmt->bindParam(":pUrlwww", $data['urlwww'], PDO::PARAM_STR);
-      $stmt->bindParam(":pInfoCommande", $data['infoscmd'], PDO::PARAM_STR);
-      $stmt->bindParam(":pJourHoraire", $data['jourh'], PDO::PARAM_STR);
-      $stmt->bindParam(":pSpecificite", $data['specificite'], PDO::PARAM_STR);
-      $stmt->bindParam(":pType", $data['type'], PDO::PARAM_STR);
-      $stmt->execute();    
-    }
-    catch (Exception $e)
-    {
-      var_dump($e);
-    }
-  }
-
-  public function updateEntite($data) 
-  {
-    try 
-    {
-      $qLib = $this->getQuerylib();
-      $stmt = $this->getCnxdb()->prepare($qLib::UPDATE_ENTITE_BY_PK);
-
-      $stmt->bindParam(":pDenomination", $data['denomination'], PDO::PARAM_STR);
-      $stmt->bindParam(":pTerritoire", $data['territoire'], PDO::PARAM_STR);
-      $stmt->bindParam(":pActivite", $data['activite'], PDO::PARAM_STR);
-      $stmt->bindParam(":pAdrliterale", $data['adr'], PDO::PARAM_STR);
-      $stmt->bindParam(":pTels", $data['tel'], PDO::PARAM_STR);
-      $stmt->bindParam(":pContactPersonne", $data['personne'], PDO::PARAM_STR);
-      $stmt->bindParam(":pEmail", $data['email'], PDO::PARAM_STR);
-      $stmt->bindParam(":pUrlwww", $data['urlwww'], PDO::PARAM_STR);
-      $stmt->bindParam(":pInfoCommande", $data['infoscmd'], PDO::PARAM_STR);
-      $stmt->bindParam(":pJourHoraire", $data['jourh'], PDO::PARAM_STR);
-      $stmt->bindParam(":pSpecificite", $data['specificite'], PDO::PARAM_STR);
-      $stmt->bindParam(":pType", $data['type'], PDO::PARAM_STR);
-      $stmt->bindParam(":pPk", $data['admin-pk-entite'], PDO::PARAM_INT);
-      $stmt->execute();    
-    }
-    catch (Exception $e)
-    {
-      var_dump($e);
-    }
-  }  
-
-  public function deleteEntite($data) 
-  {
-    try 
-    {
-      $qLib = $this->getQuerylib();
-      $stmt = $this->getCnxdb()->prepare($qLib::DELETE_LOGIQUE_ENTITE_BY_PK);
-      $stmt->bindParam(":pPk", $data['admin-pk-entite'], PDO::PARAM_INT);
-      $stmt->execute();    
-    }
-    catch (Exception $e)
-    {
-      var_dump($e);
-    }
-  }
-
-  public function selectAllDataToDTOArray()
-  {
-    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.annuaire.entite.dto.php');
-    $dataDto = array();
     $qLib = $this->getQuerylib();
-    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_CETCAL_ENTITE);
-    $stmt->execute();
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_PK_CETCAL_ENTITE_BY_DENOMINATION);
+    $stmt->execute(['pDenomination' => $denomination]);
     $data = $stmt->fetchAll();
 
     foreach ($data as $row) 
     {
-      $dto = new AnnuaireEntiteDTO($row['denomination'], $row['territoire'], $row['activite'],
-        $row['adresse'], $row['tels'], $row['personne'], $row['email'], $row['urlwww'], $row['infoscmd'],
-        $row['jourhoraire'], $row['specificites'], $row['type'], $row['etat']);
-
-      $dto->setPk($row['pk_entite']);
-      array_push($dataDto, $dto);
+      if (isset($row['denomination']) && 
+        strcmp($row['denomination'], $denomination) === 0) return true;
     }
-
-    return $dataDto;
-  }
-
-  public function selectAllByType($type)
-  {
-    $qLib = $this->getQuerylib();
-    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_CETCAL_ENTITE_BY_TYPE);
-    $stmt->bindParam(":pType", $type, PDO::PARAM_STR);
-    $stmt->execute();
-    $data = $stmt->fetchAll();
-
-    return $data;
+    return false;
   }
 
   public function selectAllIsMarche()
@@ -250,47 +160,6 @@ class CETCALEntitesModel extends CETCALModel
     $data = $stmt->fetchAll();
 
     return $data;
-  }
-
-  public function selectByPk($pk) 
-  {
-    $qLib = $this->getQuerylib();
-    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_CETCAL_ENTITE_BY_PK);
-    $stmt->bindParam(":pPk_entite", $pk, PDO::PARAM_INT);
-    $stmt->execute();
-    $data = $stmt->fetch(PDO::FETCH_ASSOC); 
-    return $data;
-  }
-  /*
-   * Retourne tous les types de marchés une fois
-   */
-  public function selectTypes()
-  {
-      $qLib = $this->getQuerylib();
-      $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_TYPES_LIEU);
-      $stmt->execute();
-      $data = $stmt->fetchAll(PDO::FETCH_OBJ);
-      return $data;
-
-  }
-
-  /*
-   * Méthodes privées :
-   */
-
-  private function exists($denomination)
-  {
-    $qLib = $this->getQuerylib();
-    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_PK_CETCAL_ENTITE_BY_DENOMINATION);
-    $stmt->execute(['pDenomination' => $denomination]);
-    $data = $stmt->fetchAll();
-
-    foreach ($data as $row) 
-    {
-      if (isset($row['denomination']) && 
-        strcmp($row['denomination'], $denomination) === 0) return true;
-    }
-    return false;
   }
 
 }

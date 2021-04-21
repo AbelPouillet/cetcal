@@ -12,14 +12,11 @@ try
   $s_tfixe = $dataProcessor->processHttpFormData($_POST['qstprod-numbtel-fix']);
   $s_tport = $dataProcessor->processHttpFormData($_POST['qstprod-numbtel-port']);
 
-  if ($nav == 'valider')
-  {
-    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.identifiantcet.php');
-    $idHelper = new IdentifiantCETHelper();
-    $cetcal_session_id = (isset($_POST['cetcal_session_id']) && !empty($_POST['cetcal_session_id']) && strlen($_POST['cetcal_session_id']) > 0) ? $dataProcessor->processHttpFormData($_POST['cetcal_session_id']) : hash('sha1', $idHelper->generateRandomString().$idHelper->generateRandomString().$idHelper->generateRandomString());
-    session_id($cetcal_session_id);
-    session_start();
-  }
+  require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.identifiantcet.php');
+  $idHelper = new IdentifiantCETHelper();
+  $cetcal_session_id = (isset($_POST['cetcal_session_id']) && !empty($_POST['cetcal_session_id']) && strlen($_POST['cetcal_session_id']) > 0) ? $dataProcessor->processHttpFormData($_POST['cetcal_session_id']) : hash('sha1', $idHelper->generateRandomString().$idHelper->generateRandomString().$idHelper->generateRandomString());
+  session_id($cetcal_session_id);
+  session_start();
 
   // Prepare navigation :
   if ($nav != 'valider' && $nav != 'retour')
@@ -79,20 +76,14 @@ try
       $form_sondage_difficultes, $form_sondage, $form_cagette, "identifiantcet",
       $form_nombre_postes, $form_nombre_saisonniers, $form_nombre_heuressemaine);
     $_SESSION['signupgen.form'] = serialize($dtoQstGeneralesProd);
-
-    $_SESSION['signupgen.form.post'] = $_POST;
-    session_write_close();
-
-    // Apply navigation :
-    header('Location: /?statut='.$statut.'&sitkn='.$cetcal_session_id);
   }
-  else
-  {
-    // Apply navigation :
-    header('Location: /');
-  }
+
+  $_SESSION['signupgen.form.post'] = $_POST;
+  session_write_close();
   /* **************************************************************************** */
 
+  // Apply navigation :
+  header('Location: /?statut='.$statut.'&sitkn='.$cetcal_session_id);
   exit;
 }
 catch (Exception $e)

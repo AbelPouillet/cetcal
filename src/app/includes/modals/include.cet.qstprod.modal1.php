@@ -9,8 +9,6 @@
       </div>
       <div class="modal-body">
         <p id="modal-questionaire-paragraphe"></p>
-        <p id="modal-questionaire-paragraphe-bis"></p>
-        <p id="modal-questionaire-paragraphe-ter"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success btn-sm" id="modal-questionaire-btn-primary" data-dismiss="modal"></button>

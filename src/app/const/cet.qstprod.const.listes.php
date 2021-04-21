@@ -35,7 +35,6 @@ Class CetQstprodConstListes
   public $consomateurs_paiements = NULL;
   public $consomateurs_drive_jours = NULL;
   public $marches_jours = NULL;
-  public $styles_mapbox = NULL;
 
   function __construct($fileReader) 
   {
@@ -69,7 +68,6 @@ Class CetQstprodConstListes
     $this->consomateurs_drive_jours = $fileReader->readWithKV('cet.qstprod.liste.jourssemaine');
     $this->marches_jours = $fileReader->readWithKV('cet.qstprod.liste.jourssemaine');
     $this->produits_v4_poissons = $fileReader->readWithKV('cet.qstprod.liste.produits.v4.poissons', true);
-    $this->styles_mapbox = $fileReader->read('cet.annuaire.liste.styles.mapbox');
   }
   
 }

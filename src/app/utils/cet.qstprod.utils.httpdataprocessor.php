@@ -50,17 +50,4 @@ Class HTTPDataProcessor
     }
   }
 
-  /**
-   * Dans les cas de choix multiples avec au moins une saisie obligatoire, utiliser cette fonction.
-   * Vérifie qu'un tableau n'est pas vide et si non-vide, vérifie que les données contenues sont elles aussi non vides.
-   */
-  public function checkArrayPopulated($array_data) 
-  {
-    if (!isset($array_data) || count($array_data) <= 0) throw new Exception("CETCAL.HTTPDataProcessor : Des donnees obligatoires sont manquantes.");
-    $c = count($array_data);
-    $c_check = 0;
-    foreach ($array_data as $entry) if (isset($entry) && !empty($entry) && strlen($entry) > 1) ++$c_check;
-    if ($c !== $c_check) throw new Exception("CETCAL.HTTPDataProcessor : Des donnees obligatoires sont manquantes.");  
-  }
-
 }

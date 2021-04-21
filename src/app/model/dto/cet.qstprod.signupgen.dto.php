@@ -42,14 +42,6 @@ Class QstProdGeneraleDTO
   public $sondageNombrePostes;
   public $sondageNombreSaisonniers;
   public $sondageNombreHeuresSemaine;
-  public $adrfermeLtrl;
-  public $prodInscrit;
-  public $produitsLtrl;
-  public $marchesLtrl;
-  public $lieuxLtrl;
-  public $infosLtrl;
-  public $urlMultiplesLtrl;
-  public $fournisseurcet;
 
   function __construct(
     $pNom = "", $pPrenom = "", $pEmail = "", 
@@ -110,10 +102,7 @@ Class QstProdGeneraleDTO
     $pAdrCommune = "", $pAdrCodePostal = "", 
     $pAdrComplementAdr = "", $pPageFB = "", $pPageIG = "", 
     $pPageTwitter = "", $pPUrlWeb = "", $pUrlBoutiqueWww = "",
-    $pGroupeCagette = "", $pIndentifiant_cet = "", 
-    $pAdrfermeLtrl = "", $pProdInscrit = "", $pProduitsLtrl = "", 
-    $pMarchesLtrl = "", $pLieuxLtrl = "", $pInfosLtrl = "", $pUrlMultiplesLtrl = "",
-    $pFournisseurCET = "")
+    $pGroupeCagette = "")
   {
       $this->nom = $pNom;
       $this->prenom = $pPrenom;
@@ -133,24 +122,7 @@ Class QstProdGeneraleDTO
       $this->siteWebUrl = $pPUrlWeb;
       $this->boutiqueEnLigneUrl = $pUrlBoutiqueWww;
       $this->groupeCagette = $pGroupeCagette;
-      $this->identifiant_cet = $pIndentifiant_cet;
-      $this->adrfermeLtrl = $pAdrfermeLtrl;
-      $this->prodInscrit = $pProdInscrit;
-      $this->produitsLtrl = $pProduitsLtrl;
-      $this->marchesLtrl = $pMarchesLtrl;
-      $this->lieuxLtrl = $pLieuxLtrl;
-      $this->infosLtrl = $pInfosLtrl;
-      $this->urlMultiplesLtrl = $pUrlMultiplesLtrl;
-      $this->fournisseurcet = $pFournisseurCET;
   }
-
-  public function setTypeDeProduction($types) {
-    $this->typeDeProduction = $types;
-  }
-
-  public function setTypeDeProductionAutre($typeAutre) {
-    $this->typeDeProductionAutre = $typeAutre;
-  }  
 
   public function setLatLng($pLat = NULL, $pLng = NULL)
   {

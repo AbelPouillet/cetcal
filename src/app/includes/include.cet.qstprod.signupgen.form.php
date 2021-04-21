@@ -182,7 +182,7 @@ $currentForm = (isset($_SESSION['signupgen.form']) && isset($_SESSION['signupgen
       <div class="row cet-qstprod-btnnav">
         <div class="col text-center">
           <button class="btn btn-info" type="submit" onmousedown="$('#qstprod-signupgen-nav').val('retour');"
-            id="btn-signupgen-form-retour">Annuler et retour à l'accueil</button>
+            id="btn-signupgen-form-retour">Annuler et retour accueil</button>
           <button class="btn btn-info" type="submit" id="btn-signupgen-form-valider" onmousedown="$('#qstprod-signupgen-nav').val('valider');"><?= CetQstprodConstLibelles::form_valider; ?></button>
         </div>
       </div>

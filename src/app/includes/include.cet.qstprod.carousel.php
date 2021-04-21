@@ -7,11 +7,9 @@
     </div>
     <div class="carousel-item active">
       <div class="container h-100">
-        <div class="fb-page" 
-          data-tabs="timeline,events,messages"
-          data-href="https://www.facebook.com/castillonnaisentransition/"
-          data-width="2400" 
-          data-hide-cover="false"></div>
+        <div class="row h-100 justify-content-center align-items-center">
+          <div class="fb-page" data-href="https://www.facebook.com/castillonnaisentransition/" data-tabs="timeline" data-width="800" data-height="260" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/castillonnaisentransition/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/castillonnaisentransition/">Castillonnais en transition - Le Tiers Lieu</a></blockquote></div>
+        </div>
       </div>
     </div>
     <div class="carousel-item">

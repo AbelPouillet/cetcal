@@ -8,5 +8,4 @@ Class CetQstprodConstLibelles
   const form_valider = "Valider ces informations";
   const form_retour = "Page précédente";
   const modal_compris = "J'ai compris";
-  const en_cas_de_doute = "En cas de doute sur une action, veuillez nous contacter.";
 }

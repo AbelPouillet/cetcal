@@ -33,34 +33,6 @@ Class CETQstprodMailUtils
     $this->mail->setFrom('annuaire@castillonnaisentransition.org', 'CETCAL - Annuaire des producteurs de notre région');
   }
 
-  public function sendSignupUser($mailFileHTML, $mailFilePlain, $emailTo, $mailSubject, $fileReader, 
-    $dataFilePrefix)
-  {
-    $htmlContent = $fileReader->readAsStringForMails($dataFilePrefix.$mailFileHTML);
-    $plainContent = $fileReader->readAsStringForMails($dataFilePrefix.$mailFilePlain);
-
-    try 
-    {
-      $this->mail->addAddress($emailTo);
-      $this->mail->addReplyTo('annuaire@castillonnaisentransition.org', 'CETCAL contact');
-      $this->mail->isHTML(true);
-      $this->mail->Subject = $mailSubject;
-      $this->mail->Body = $htmlContent;
-      $this->mail->AltBody = $plainContent;
-      $this->mail->send();
-      $this->mail->ClearAllRecipients();
-      $this->mail->ClearCCs();
-      $this->mail->ClearBCCs();
-    }
-    catch (Exception $e) 
-    {
-      array_push($this->err_list, "Erreur envoi Email unitaire: {$this->mail->ErrorInfo}");
-      error_log("Erreur appel ->send() pour envoi Email unitaire: ".$e->getMessage());
-    }
-
-    return;
-  }
-
   public function sendSignup($mailFileHTML, $mailFilePlain, $emailTo, $mailSubject, $fileReader, 
     $dataFilePrefix, $idcetwww)
   {
@@ -85,41 +57,9 @@ Class CETQstprodMailUtils
     catch (Exception $e) 
     {
       array_push($this->err_list, "Erreur envoi Email unitaire: {$this->mail->ErrorInfo}");
-      error_log("Erreur appel ->send() pour envoi Email unitaire: ".$e->getMessage());
     }
 
     return;
-  }
-
-  public function sendRenouvellementMDP($mailFileHTML, $mailFilePlain, $emailTo, $mailSubject, 
-    $fileReader, $dataFilePrefix, $mdp_tmp)
-  {
-    $htmlContent = $fileReader->readAsStringForMails($dataFilePrefix.$mailFileHTML);
-    $htmlContent = str_replace('[idcetwww]', $mdp_tmp, $htmlContent);
-    $plainContent = $fileReader->readAsStringForMails($dataFilePrefix.$mailFilePlain);
-    $plainContent = str_replace('[idcetwww]', $mdp_tmp, $plainContent);
-
-    try 
-    {
-      $this->mail->addAddress($emailTo);
-      $this->mail->addReplyTo('annuaire@castillonnaisentransition.org', 'CETCAL contact');
-      $this->mail->isHTML(true);
-      $this->mail->Subject = $mailSubject;
-      $this->mail->Body = $htmlContent;
-      $this->mail->AltBody = $plainContent;
-      $this->mail->send();
-      $this->mail->ClearAllRecipients();
-      $this->mail->ClearCCs();
-      $this->mail->ClearBCCs();
-    }
-    catch (Exception $e)
-    {
-      array_push($this->err_list, "Erreur envoi Email unitaire: {$this->mail->ErrorInfo}");
-      error_log("Erreur appel ->send() pour envoi Email unitaire: ".$e->getMessage());
-      return false;
-    }
-
-    return true;
   }
 
   public function send($mailFileHTML, $mailFilePlain, $mailListFile, $mailSubjectFile, $fileReader, $dataFilePrefix)
@@ -129,8 +69,8 @@ Class CETQstprodMailUtils
     $mailList = $fileReader->readForMails($dataFilePrefix.$mailListFile);
     $mailSubject = $fileReader->readAsStringForMails($dataFilePrefix.$mailSubjectFile);
 
-    try {
-    
+    try 
+    {
       foreach ($mailList as $adrmail)
       {
         try 

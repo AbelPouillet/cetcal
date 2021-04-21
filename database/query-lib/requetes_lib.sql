@@ -41,12 +41,3 @@ and reponse = 'manque de temps';
 select count(DISTINCT fk_producteur_sondage) from cetcal_sondage
 where clef_question='s001' 
 and reponse = 'manque de temps';
-
-#####################################################################
-# Produits pour un nom de famille de producteur
-#####################################################################
-select prd.nom, prd.prenom, prd.pk_producteur, p.nom, p.description 
- from cetcal_producteur prd, cetcal_produit p, producteur_join_produits j 
-	where prd.pk_producteur=j.fk_producteur_join 
-  	 and j.fk_produits_join=p.pk_produit 
-  	  and prd.pk_producteur=(select pk_producteur from cetcal_producteur where nom='clisson');

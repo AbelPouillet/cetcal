@@ -10,13 +10,13 @@
       <div class="modal-body">
         <p class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_debut; ?></p>
         <ul>
-          <li class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_priorite_1; ?> <a href="#" onmousedown="$('.notre-projet-ul-li').show('slow');"> ... lire d'avantage</a></li>
-          <li class="cet-qstprod-label-text notre-projet-ul-li" style="display: none;"><?= CetQstprodConstTextes::notre_projet_priorite_2; ?></li>
-          <li class="cet-qstprod-label-text notre-projet-ul-li" style="display: none;"><?= CetQstprodConstTextes::notre_projet_priorite_3; ?></li>
-          <li class="cet-qstprod-label-text notre-projet-ul-li" style="display: none;"><?= CetQstprodConstTextes::notre_projet_priorite_4; ?>
+          <li class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_priorite_1; ?></li>
+          <li class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_priorite_2; ?></li>
+          <li class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_priorite_3; ?></li>
+          <li class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_priorite_4; ?>
             <ul>
-              <li class="cet-qstprod-label-text notre-projet-ul-li" style="display: none;"><?= CetQstprodConstTextes::notre_projet_priorite_4_a; ?></li>
-              <li class="cet-qstprod-label-text notre-projet-ul-li" style="display: none;"><?= CetQstprodConstTextes::notre_projet_priorite_4_b; ?></li>
+              <li class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_priorite_4_a; ?></li>
+              <li class="cet-qstprod-label-text"><?= CetQstprodConstTextes::notre_projet_priorite_4_b; ?></li>
             </ul>
           </li>
         </ul>

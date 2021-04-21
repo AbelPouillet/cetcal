@@ -329,7 +329,7 @@ $currentForm = isset($_SESSION['signupprods.form.post']) ? $_SESSION['signupprod
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="<?= implode(';', $poisson); ?>" id="qstprod-produit-poisson-<?= $counter; ?>" 
             name="qstprod-produits-poissons[]"
-            <?= isset($currentForm['qstprod-produits-poissons']) && in_array(implode(';', $poisson), $currentForm['qstprod-produits-poissons']) ? 
+            <?= isset($currentForm['qstprod-produits-poisson']) && in_array(implode(';', $poisson), $currentForm['qstprod-produits-poisson']) ? 
               'checked="checked"' : $neant; ?>>
           <label class="form-check-label cet-qstprod-label-text" for="qstprod-produit-poisson-<?= $counter; ?>"><?= $poisson[1]; ?></label>
         </div>

@@ -4,7 +4,7 @@ $dataProcessor = new HTTPDataProcessor();
 $filtre = isset($_GET['q']) ? $dataProcessor->processHttpFormData($_GET['q']) : false; 
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.controller.marches.castillonnais.php');
 $ctrl = new MarchesCastillonnaisController();
-$data = !$filtre ? $ctrl->init('marche') : $ctrl->loadQuery($filtre, 'marche');
+$data = !$filtre ? $ctrl->init() : $ctrl->loadQuery($filtre);
 $resultNull = is_array($data) && count($data) === 0;
 $counter = 0;
 ?>
@@ -13,9 +13,7 @@ $counter = 0;
   <div class="col-md-6">
     <p class="form-text text-muted">Filtrer/Rechercher des Marchés par mot clé (commune, code postal, mot clé...) :</p>
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Rechercher par mot clé, commune, code postal..." 
-        aria-label="Recherche par mot clé" id="cet-annuaire-recherche-filtre" name="cet-annuaire-recherche-filtre"
-        value="<?= $filtre !== false ? $filtre : ''; ?>">
+      <input type="text" class="form-control" placeholder="Rechercher par mot clé, commune, code postal..." aria-label="Recherche par mot clé" id="cet-annuaire-recherche-filtre" name="cet-annuaire-recherche-filtre">
       <div class="input-group-append">
         <a class="btn btn-outline-success" id="cet-annuaire-recherche-filtrer"
           href="/?statut=marches.castillonnais&anr=true&q=">
