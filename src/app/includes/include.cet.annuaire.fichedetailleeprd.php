@@ -1,14 +1,13 @@
 <?php
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.annuaire.controller.fichedetaillee.producteur.php');
-$pk = $_GET['pkPrd'];
+$pk = $_GET['pkprd'];
 $controller = new CETCALAnnuaireFicheDetailleController();
 $data = $controller->fetchProducteurByPk($pk);
 $lieux = $controller->fetchLieuByPkProducteur($pk);
 $produits = $controller->fetchProduitByPkProducteur($pk);
-$ProductsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
-
+$productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 ?>
+
 <div class="container hero--container pt-5">
     <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">Fonctionnalité en cours de réalisation</h4>
@@ -49,7 +48,7 @@ $ProductsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 
             <div class="pl-5 mt-3 categorie--producteur mt-5">
 
-                <?php foreach ($ProductsCategories as $categorie): ?>
+                <?php foreach ($productsCategories as $categorie): ?>
                     <span class="badge badge-pill badge-primary"><?= $categorie->categorie ?></span>
                 <?php endforeach;?>
             </div>
