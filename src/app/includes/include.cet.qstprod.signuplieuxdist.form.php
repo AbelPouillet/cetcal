@@ -35,7 +35,6 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
       </div>
 
       <div class="form-group mb-3 qstprod--soustype d-none">
-        <input type="text" class="span1" id="item_code" value="" />
         <label class="cet-input-label">
           <small class="cet-qstprod-label-text">Précisez votre choix</small>
         </label>
