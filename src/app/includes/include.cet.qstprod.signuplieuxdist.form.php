@@ -91,33 +91,34 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           <div class="marche--list"></div>
           <div class="btn btn-warning mt-3 clear--marches">supprimer les lieux de distribution</div>
       </div>
+    </div> <!-- end container -->
 
-    </div> 
+    <!--DEBUT FORM POST-->
+    <form id="signuplieuxdist.form" class="form" method="post"
+      action="/src/app/controller/cet.qstprod.controller.signuplieuxdist.form.php">      
+      <!-- boutons de control -->
+      <div class="row cet-qstprod-btnnav">
+        <div class="col text-center">
+          <button class="btn cet-navbar-btn" type="submit" 
+            onmousedown="$('#qstprod-signuplieuxdist-nav').val('retour');" 
+            id="btn-signuplieuxdist.form-retour"><?= CetQstprodConstLibelles::form_retour; ?></button>
+          <button class="btn cet-navbar-btn" type="submit" 
+            onmousedown="$('#qstprod-signuplieuxdist-nav').val('valider');"
+            id="btn-signuplieuxdist.form-valider"><?= CetQstprodConstLibelles::form_valider; ?></button>
+        </div>
+      </div>
+      <div id="data" style="display: none;"></div>    
+      <input type="text" name="cetcal_session_id" id="cetcal_session_id" 
+        value="<?= $cetcal_session_id; ?>" hidden="hidden">
+      <input type="text" name="qstprod-signuplieuxdist-json" id="qstprod-signuplieuxdist-json"
+        value="" hidden="hidden">
+      <input type="text" name="qstprod-signuplieuxdist-nav" id="qstprod-signuplieuxdist-nav" 
+        value="unset" hidden="hidden">
+    </form>
+    <!--FIN FORM POST-->
+
   </div><!-- fin col -->
 </div><!-- fin row -->
-<!--DEBUT FORM POST-->
-<form id="signuplieuxdist.form" class="form" method="post"
-      action="/src/app/controller/cet.qstprod.controller.signuplieuxdist.form.php">      
-  <!-- boutons de control -->
-  <div class="row cet-qstprod-btnnav">
-    <div class="col text-center">
-      <button class="btn cet-navbar-btn" type="submit" 
-        onmousedown="$('#qstprod-signuplieuxdist-nav').val('retour');" 
-        id="btn-signuplieuxdist.form-retour"><?= CetQstprodConstLibelles::form_retour; ?></button>
-      <button class="btn cet-navbar-btn" type="submit" 
-        onmousedown="$('#qstprod-signuplieuxdist-nav').val('valider');"
-        id="btn-signuplieuxdist.form-valider"><?= CetQstprodConstLibelles::form_valider; ?></button>
-    </div>
-  </div>
-  <div id="data" style="display: none;"></div>    
-  <input type="text" name="cetcal_session_id" id="cetcal_session_id" 
-    value="<?= $cetcal_session_id; ?>" hidden="hidden">
-    <input type="text" name="qstprod-signuplieuxdist-json" id="qstprod-signuplieuxdist-json"
-           value="" hidden="hidden">
-  <input type="text" name="qstprod-signuplieuxdist-nav" id="qstprod-signuplieuxdist-nav" 
-    value="unset" hidden="hidden">
-</form>
-<!--FIN FORM POST-->
 
 <script src="/src/scripts/js/cetcal/cetcal.signuplieuxdist.js"></script>
 <script src="/src/scripts/js/typeahead.0.11.1.min.js" ></script>
