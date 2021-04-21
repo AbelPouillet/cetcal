@@ -64,7 +64,6 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
                             <input type="text" class="form-control ml-5 adresse--marche--prod" 
                               id="nv-marche-lieuxdist-adr"  placeholder="Adresse du marché" >
                             <input type="text" id="timeInput" data-time-format="H:i:s" />
-                            <button class="btn btn-info btn--new--marche--prod mt-2 ml-5">Ajouter ce marché</button>
                         </div>
                     </div>
                 </div>
