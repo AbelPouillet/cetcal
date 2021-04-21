@@ -31,7 +31,6 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
                 <div id="the-basics" class="qstprod--marchebox d-none mt-3">
                 </div>
 
-                <input type="text" class="span1" id="item_code" value="" />
                 <div class="qstprod--soustype d-none">
                   <label class="cet-input-label" name="qstlieudist-1-1"><small class="cet-qstprod-label-text">Précisez votre choix</small></label>
                   <select class="form-control select--sous--type" name="qstlieudist-1-1">

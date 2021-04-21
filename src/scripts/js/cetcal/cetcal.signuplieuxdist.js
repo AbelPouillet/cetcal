@@ -371,25 +371,26 @@ function ajaxCall(action) {
       data: {'action': action},
       dataType: 'JSON',
       success: function(response) {
-
-        marches = response;
-        bondObjs = {};
-        bondNames = [];
-
+      // Début si réseau de vente en circuit court
         if (action === "Reseau de vente en circuit court") {
-          console.log(response);
           clear(selectSousType);
           const initOpt = document.createElement("option");
           initOpt.value ="0";
           initOpt.text = "--- Choississez un mode de distribution ---";
           selectSousType.add(initOpt, selectSousType.options[0]);
-
           const test = response.map((item) => `<option value="${item.id}">${item.sous_type}</option>`).join(' ');
           selectSousType.insertAdjacentHTML('beforeend', test);
+        // fin si
+        //Début si amap
+        } else if (action === "amap" || "marché") {
+          console.log(response);
 
-        } else if (action === "amap") {
-
-          const amapArray = response.map(({ denomination }) => denomination );
+          let engine = new Bloodhound({
+            local: response,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace("denomination")
+          });
+          engine.initialize();
 
           var substringMatcher = function(strs) {
             return function findMatches(q, cb) {
@@ -407,18 +408,51 @@ function ajaxCall(action) {
               cb(matches);
             };
           };
+if (action === "amap") {
+  console.log(action)
+  $('#amap .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'engine',
+        display: function(item){
+          return item.denomination
+        },
+        source: engine.ttAdapter(),
+      });
 
-          $('#amap .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-          },
-          {
-            name: 'amapArray',
-            source: substringMatcher(amapArray)
-          });
+  $('#amap').on('typeahead:selected', function (e, datum) {
+    console.log(datum);
+    postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
+  });
+}
+else if ( action === "Marché") {
+  console.log(action)
 
-        } else if (action === "Marché") {
+  $('#the-basics .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'engine',
+        display: function(item){
+          return item.denomination
+        },
+        source: engine.ttAdapter(),
+      });
+
+  $('#the-basics').on('typeahead:selected', function (e, datum) {
+    postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
+  });
+          }
+
+
+
+        // fin si
+        } /*else if (action === "Marché") {
 
           var engine = new Bloodhound({
             local: response,
@@ -463,7 +497,7 @@ function ajaxCall(action) {
             postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
           });
 
-        } // END action === marché.
+        } // END action === marché.*/
       } // END Ajax success.
     }); // END Ajax.
   }); // END document.ready.
