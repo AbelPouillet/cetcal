@@ -132,5 +132,5 @@ class CETCALQueryLibrary
      */
 
     const SELECT_ALL_DENOMINATION_MARCHE = "SELECT pk_entite, adresse,  denomination FROM cetcal.cetcal_entite WHERE type = 'marche';";
-    const SELECT_ALL_DENOMINATION_AMAP = "SELECT denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
+    const SELECT_ALL_DENOMINATION_AMAP = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
 }

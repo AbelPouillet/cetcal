@@ -32,7 +32,7 @@ const boutonValider = document.getElementById('btn-signuplieuxdist.form-valider'
   // bouton nav retour
 const boutonRetour = document.querySelector('#btn-signuplieuxdist.form-retour');
 
-let marches;
+ let marches;
  let postObjet;
  let inputMarche;
  let precisions_texte = '';
@@ -62,6 +62,7 @@ let value ="";
 let amapFlag = false;
 let precisionsFlag = false;
 let sousTypeFlag = false;
+let checkboxFlag = false;
 
 /* *********EVENT LISTENERS ************/
 selectElement.addEventListener('change', (event)=> {
@@ -147,12 +148,18 @@ selectSousType.addEventListener('change', (e) => {
 checkboxMarche.addEventListener('click', (e) => {
   if (checkboxMarche.checked == true) {
     newMarcheProd.classList.remove('d-none');
+    allMarcheBox.classList.add('d-none');
+    checkboxFlag = true;
   } else {
     newMarcheProd.classList.add('d-none');
+    allMarcheBox.classList.remove('d-none');
+    checkboxFlag = false;
+
+
   }
 });
 
-btnNewMarcheProd.addEventListener('click', (e) => {
+/*btnNewMarcheProd.addEventListener('click', (e) => {
 
   e.preventDefault();
   const addItem = marcheInputProd.value;
@@ -171,26 +178,32 @@ btnNewMarcheProd.addEventListener('click', (e) => {
   adresseMarcheProd.value = '';
   displayAlert("Marché ajouté", "success");
 
-});
+});*/
 
 // Ajout marché objet datum
 addCircuit.addEventListener('click', () => {
-  
-  if (postObjet === undefined) {
+  if (postObjet === undefined && checkboxFlag === false) {
     displayAlert("Aucun le lieux de distribution sélectionné.", "danger");
     return;
-  } else {
+  }
+
+  else if ( postObjet === undefined && checkboxFlag === true) {
+    postObjet = new PostObj();
+    console.log("toto");
     postObjet.precs = textAreaProd.value;
     // Seulement si case cochée "nouveau marché non connu".
-    if (checkboxMarche.checked) {
+    if (checkboxFlag === true) {
       // nv-marche-lieuxdist-nom
       postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
       // nv-marche-lieuxdist-adr
       postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
       // timeInput
       postObjet.heure_deb = $('#timeInput').val();
+      console.log(postO);
     }
   }
+
+
 
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
@@ -321,47 +334,6 @@ function dataToPost(){
 
 }
 
-/* Fonctions anonymes : */
-$(function() {
-
-  var bondObjs = {};
-  var bondNames = [];
-
-  $(".typeahead").typeahead({
-    source: function(query, process) {
-      //get the data to populate the typeahead (plus an id value)
-      $.ajax({
-        url: 'src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php',
-        cache: false,
-        success: function(data) {
-          //reset these containers every time the user searches
-          //because we're potentially getting entirely different results from the api
-          bondObjs = {};
-          bondNames = [];
-
-          //Using underscore.js for a functional approach at looping over the returned data.
-          _.each( data, function(item, ix, list) {
-              //add the label to the display array
-              bondNames.push( item.denomination );
-              //also store a hashmap so that when bootstrap gives us the selected
-              //name we can map that back to an id value
-              bondObjs[ item.name ] = item.pk_entite;
-            });
-
-          //send the array of results to bootstrap for display
-          process( bondNames );
-        }
-      });
-    },
-    updater: function(selectedName) {
-      //save the id value into the hidden field
-      $("#bondId").val(bondObjs[selectedName]);
-      //return the string you want to go into the textbox (the name)
-      return selectedName;
-    }
-  });
-});
-
 function ajaxCall(action) {
 
   $(document).ready(function() {
@@ -371,25 +343,26 @@ function ajaxCall(action) {
       data: {'action': action},
       dataType: 'JSON',
       success: function(response) {
-
-        marches = response;
-        bondObjs = {};
-        bondNames = [];
-
+      // Début si réseau de vente en circuit court
         if (action === "Reseau de vente en circuit court") {
-          console.log(response);
           clear(selectSousType);
           const initOpt = document.createElement("option");
           initOpt.value ="0";
           initOpt.text = "--- Choississez un mode de distribution ---";
           selectSousType.add(initOpt, selectSousType.options[0]);
-
           const test = response.map((item) => `<option value="${item.id}">${item.sous_type}</option>`).join(' ');
           selectSousType.insertAdjacentHTML('beforeend', test);
+        // fin si
+        //Début si amap
+        } else if (action === "amap" || "marché") {
+          console.log(response);
 
-        } else if (action === "amap") {
-
-          const amapArray = response.map(({ denomination }) => denomination );
+          let engine = new Bloodhound({
+            local: response,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace("denomination")
+          });
+          engine.initialize();
 
           var substringMatcher = function(strs) {
             return function findMatches(q, cb) {
@@ -407,63 +380,49 @@ function ajaxCall(action) {
               cb(matches);
             };
           };
+if (action === "amap") {
+  console.log(action)
+  $('#amap .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'engine',
+        display: function(item){
+          return item.denomination
+        },
+        source: engine.ttAdapter(),
+      });
 
-          $('#amap .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-          },
-          {
-            name: 'amapArray',
-            source: substringMatcher(amapArray)
-          });
+  $('#amap').on('typeahead:selected', function (e, datum) {
+    console.log(datum);
+    postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
+  });
+}
+else if ( action === "Marché") {
+  console.log(action)
 
-        } else if (action === "Marché") {
+  $('#the-basics .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'engine',
+        display: function(item){
+          return item.denomination
+        },
+        source: engine.ttAdapter(),
+      });
 
-          var engine = new Bloodhound({
-            local: response,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace("denomination")
-          });
-          engine.initialize();
+  $('#the-basics').on('typeahead:selected', function (e, datum) {
+    postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
+  });
+      }
 
-          var substringMatcher = function(strs) {
-            return function findMatches(q, cb) {
-              var matches, substringRegex;
-              // an array that will be populated with substring matches
-              matches = [];
-              // regex used to determine if a string contains the substring `q`
-              substrRegex = new RegExp(q, 'i');
-              // iterate through the pool of strings and for any string that
-              // contains the substring `q`, add it to the `matches` array
-              $.each(strs, function(i, str) {
-                if (substrRegex.test(str)) {
-                  matches.push(str);
-                }
-              });
-
-              cb(matches);
-            };
-          };
-
-          $('#the-basics .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-          },
-          {
-            name: 'engine',
-            display: function(item){
-              return item.denomination
-            },
-            source: engine.ttAdapter(),
-          });
-
-          $('#the-basics').on('typeahead:selected', function (e, datum) {
-            postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
-          });
-
-        } // END action === marché.
+        // fin si
+        }
       } // END Ajax success.
     }); // END Ajax.
   }); // END document.ready.
