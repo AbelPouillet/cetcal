@@ -1,7 +1,8 @@
 <div class="row justify-content-lg-center" id="cetcal-cnx-done">
   <div class="col-lg-9">
 
-    <div class="alert alert-light cet-bloc" role="alert" style="color: rgb(50,70,50);">   
+    <div class="alert alert-light cet-bloc" role="alert" style="color: rgb(50,70,50);"
+      id="espace-prd-header-area">   
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_UTSR_REUSSIE): ?>
         <h4 class="alert-heading">Votre espace <?= $libelle_client_type; ?> - bienvenu.</h4>
       <?php endif; ?>
@@ -35,7 +36,9 @@
       <?php endif; ?>
 
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE): ?>
-        <div class="alert alert-light" role="alert" style="color: rgb(50,70,50); background-color: rgba(255,255,255, 0.2);">   
+        <div class="alert alert-light" role="alert" 
+          style="color: rgb(50,70,50); background-color: rgba(255,255,255, 0.2);"
+          id="espace-prd-mdif-global-container">   
           <!-- //////////////////////////////////////////////////////// -->
           <form action="/src/app/controller/cet.qstprod.controller.demande.update.php" method="post"
             id="espace-prd-demande-update-qstprod-form">
@@ -51,11 +54,11 @@
             <button id="espace-prd-demande-update-qstprod-form-button-submit" type="submit" hidden="hidden"></button>
             <br>
             <br>
-            <p class="cet-a-type-link" id="espace-prd-modifier-mdp" onmousedown="$('#data-mdp-espace-producteur-container').toggle('slow');">
+            <p class="cet-a-type-link" id="espace-prd-modifier-mdp">
               <i class="fas fa-key"></i>&#160;&#160;Modifier mon mot de passe de connection au téléservice.
             </p>
-            <p id="espace-prd-modifier-mdp-outcome" style="display: none;"></p>
             <div id="data-mdp-espace-producteur-container" style="display: none;">
+              <p id="espace-prd-modifier-mdp-outcome" style="display: none;"></p>
               <div class="form-group mb-3">
                 <label class="cet-input-label"><small class="cet-qstprod-label-text">Veuillez saisir votre ancien mot de passe :</small></label>
                 <input class="form-control is-invalid" 
@@ -77,17 +80,23 @@
                   type="password" placeholder="Confirmer votre nouveau mot de passe" maxlength="30" 
                   style="max-width: 512px;">
               </div>
-              <div style="max-width: 512px; margin-bottom: 64px;">
-                <button class="btn btn-success cet-navbar-btn-small" type="button" 
+              <div style="max-width: 514px; margin-bottom: 64px;">
+                <button class="btn cet-navbar-btn cet-navbar-btn-small" type="button" 
                   id="espace-prd-modifier-mdp-envoyer" 
                   data="<?= $usrpk; ?>" sitkn="<?= $sitkn; ?>" usridf="<?= $usr_identifiant; ?>"
                   style="float: right;">
-                  <i class="far fa-check-circle"></i>&#160;&#160;Valider votre nouveau mot de passe
+                  Valider votre nouveau mot de passe
                 </button>
-                <button class="btn btn-success cet-navbar-btn-small" type="button" 
-                  onmousedown="$('#data-mdp-espace-producteur-container').toggle('slow');"
+                <button class="btn cet-navbar-btn cet-navbar-btn-small" type="button" 
+                  onmousedown="$('#data-mdp-espace-producteur-container').toggle('slow'); focusContainers();"
                   style="float: right;">
                   Annuler
+                </button>
+              </div>
+              <div class="row justify-content-end">
+                <button class="btn btn-success cet-navbar-btn-small" type="button" 
+                  onmousedown="$('#data-mdp-espace-producteur-container').toggle('slow'); focusContainers();">
+                  <i class="far fa-check-circle"></i>&#160;&#160;J'ai fini avec la modification de mon mot de passe
                 </button>
               </div>
             </div>
@@ -97,7 +106,9 @@
       <?php endif; ?>
 
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE): ?>
-        <div class="alert alert-light" role="alert" style="color: rgb(50,70,50); background-color: rgba(255,255,255, 0.2); !important;">   
+        <div class="alert alert-light" role="alert" 
+          style="color: rgb(50,70,50); background-color: rgba(255,255,255, 0.2); !important;"
+          id="espace-prd-mdif-geoloc-container">   
           <!-- //////////////////////////////////////////////////////// -->
           <form action="/src/app/controller/cet.qstprod.controller.demande.update.php" method="post">
             <input type="text" name="annuaire-update-prd-sitkn" value="<?= $sitkn; ?>" hidden="hidden">
@@ -143,12 +154,21 @@
               <?php include $PHP_INCLUDES_PATH.'aide-en-ligne/include.cet.qstprod.aide.en.ligne.geoloc.php'; ?>
               <p class="cet-a-type-link" id="data-geoloc-espace-producteur-set-auto"
                 data="<?= $usrpk; ?>" sitkn="<?= $sitkn; ?>" usridf="<?= $usr_identifiant; ?>">
-                <i class="fas fa-exclamation-triangle"></i>&#160;&#160;<b>Je ne souhaite pas gérer ma géolocalisation manuellement, </b> utiliser mon <b>adresse postale</b> pour me géolocaliser.
+                <i class="fas fa-exclamation-triangle"></i>&#160;
+                  <?php if (strcmp($data_carto['update_man'], 'true') === 0): ?>
+                    <span style="color: #6C3012 !important;">
+                      Actuellement, vous données de géolocalisation sont gérées manuellement et votre <b>localisation sur la carte n'est pas basée sur votre adresse postale</b>. Si vous souhaitez repasser sur une gestion automatique basée sur votre adresse, cliquer ci-dessous.
+                    </span>
+                    <br>
+                  <?php endif; ?>
+                <b>Je ne souhaite pas gérer ma géolocalisation manuellement, </b> utiliser mon <b>adresse postale</b> pour me géolocaliser sur la carte.
               </p>
-              <button class="btn btn-success cet-navbar-btn-small" type="button"
-                id="data-geoloc-espace-producteur-latlng-ok">
-                <i class="far fa-check-circle"></i>&#160;&#160;Mes données de géolocalisation sont correctes
-              </button>
+              <div class="row justify-content-end">
+                <button class="btn btn-success cet-navbar-btn-small" type="button"
+                  id="data-geoloc-espace-producteur-latlng-ok">
+                  <i class="far fa-check-circle"></i>&#160;&#160;J'ai fini avec la gestion de ma géolocalisation
+                </button>
+              </div>
             </div>
           </form>
           <!-- //////////////////////////////////////////////////////// -->
@@ -156,7 +176,9 @@
       <?php endif; ?>
 
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE): ?>
-        <div class="alert alert-light" role="alert" style="background-color: rgba(255,255,255, 0.2); !important;">   
+        <div class="alert alert-light" role="alert" 
+          style="background-color: rgba(255,255,255, 0.2); !important;"
+          id="espace-prd-mdif-medias-container">   
           <!-- //////////////////////////////////////////////////////// -->
           <link rel="stylesheet" href="/src/scripts/js/dropzone-5.7.0/dist/dropzone.css">
           <p>
@@ -223,9 +245,12 @@
                 </form>
               </div>            
             </div>
-            <button class="btn btn-success cet-navbar-btn-small" type="button" onmousedown="$('#data-media-espace-producteur-container').hide('slow');" style="margin-top: 12px;">
-              <i class="far fa-check-circle"></i>&#160;&#160;J'ai fini avec la gestion d'images
-            </button>
+            <div class="row justify-content-end">
+              <button class="btn btn-success cet-navbar-btn-small" type="button" onmousedown="$('#data-media-espace-producteur-container').hide('slow'); focusContainers();"
+                style="margin-top: 16px;">
+                <i class="far fa-check-circle"></i>&#160;&#160;J'ai fini avec la gestion d'images
+              </button>
+            </div>
           </div>
           <!-- //////////////////////////////////////////////////////// -->
         </div>

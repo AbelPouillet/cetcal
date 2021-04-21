@@ -114,6 +114,14 @@ class AnnuaireController
     return $data; 
   }
 
+  public function getDonneesCartographie($pk)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.cartographie.model.php');
+    $model = new CETCALCartographieModel();
+    $data = $model->getLatLng($pk);
+    return $data; 
+  }
+
   public function fetchDonneeProducteur($pk, $field)
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');

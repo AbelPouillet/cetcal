@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.annuaire.controller.php');
 $ctrl = new AnnuaireController();
+$data_carto = NULL;
 ?>
 <?php if (isset($cnx) && (intval($cnx) === CetConnectionConst::CONNECTION_UTSR_REUSSIE || 
           intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE)): ?>
@@ -12,7 +13,11 @@ $ctrl = new AnnuaireController();
     $cnxmessage = (isset($_GET['cnxmsg'])) ? $dataProcessor->processHttpFormData($_GET['cnxmsg']) : false;
 
     $libelle_client_type = '';
-    if (isset($client_type) && strcmp($client_type, 'prd') === 0) $libelle_client_type = 'Producteur.e';
+    if (isset($client_type) && strcmp($client_type, 'prd') === 0) 
+    {
+      $libelle_client_type = 'Producteur.e';
+      $data_carto = $ctrl->getDonneesCartographie($usrpk);
+    }
     if (isset($client_type) && strcmp($client_type, 'usr') === 0) $libelle_client_type = 'utilisateur(trice)';
 
     /**
