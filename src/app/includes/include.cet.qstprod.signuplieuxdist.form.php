@@ -108,6 +108,8 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           <div id="data" style="display: none;"></div>    
           <input type="text" name="cetcal_session_id" id="cetcal_session_id" 
             value="<?= $cetcal_session_id; ?>" hidden="hidden">
+            <input type="text" name="qstprod-signuplieuxdist-json" id="qstprod-signuplieuxdist-json"
+                   value="" hidden="hidden">
           <input type="text" name="qstprod-signuplieuxdist-nav" id="qstprod-signuplieuxdist-nav" 
             value="unset" hidden="hidden">
         </form>

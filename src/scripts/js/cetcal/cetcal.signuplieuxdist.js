@@ -25,7 +25,14 @@
  const addLieu = document.querySelector('.addLieu');
  const addCircuit = document.querySelector('.addCircuit');
  const dataPost = document.querySelector('#data');
- let marches;
+ //input post json
+ const postJson = document.querySelector('#qstprod-signuplieuxdist-json');
+  // bouton nav continuer
+const boutonValider = document.getElementById('btn-signuplieuxdist.form-valider');
+  // bouton nav retour
+const boutonRetour = document.querySelector('#btn-signuplieuxdist.form-retour');
+
+let marches;
  let postObjet;
  let inputMarche;
  let precisions_texte = '';
@@ -202,6 +209,13 @@ addCircuit.addEventListener('click', () => {
   console.log(postO);
 });
 
+// validation des données post Json
+console.log(boutonValider);
+boutonValider.addEventListener('click', (e) => {
+  e.preventDefault();
+  dataToPost();
+});
+
 // Limitation textarea :
 textAreaProd.addEventListener("input", event => {
 
@@ -297,6 +311,14 @@ function pkPresent(pk_ent) {
 // vérifie si la dénomination est présent : 
 function denominationPresente(nom) {
   return postO.some(entite => entite.denomination === nom);
+}
+
+// envoie l'objet à poster dans l'input
+
+function dataToPost(){
+  postJson.value = JSON.stringify(postO);
+  console.log(postJson.value);
+
 }
 
 /* Fonctions anonymes : */
