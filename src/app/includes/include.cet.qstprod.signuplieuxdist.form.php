@@ -100,10 +100,10 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
       <div class="row cet-qstprod-btnnav">
         <div class="col text-center">
           <button class="btn cet-navbar-btn" type="submit" 
-            onmousedown="dataToPost(); $('#qstprod-signuplieuxdist-nav').val('retour');" 
+            onmousedown="$('#qstprod-signuplieuxdist-nav').val('retour');"
             id="btn-signuplieuxdist.form-retour"><?= CetQstprodConstLibelles::form_retour; ?></button>
           <button class="btn cet-navbar-btn" type="submit" 
-            onmousedown="dataToPost(); $('#qstprod-signuplieuxdist-nav').val('valider');"
+            onmousedown="$('#qstprod-signuplieuxdist-nav').val('valider');"
             id="btn-signuplieuxdist.form-valider"><?= CetQstprodConstLibelles::form_valider; ?></button>
         </div>
       </div>
