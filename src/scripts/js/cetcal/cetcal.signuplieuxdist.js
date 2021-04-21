@@ -182,12 +182,11 @@ checkboxMarche.addEventListener('click', (e) => {
 
 // Ajout marché objet datum
 addCircuit.addEventListener('click', () => {
-  if (postObjet === undefined && checkboxFlag === false) {
+
+  if (checkboxFlag === false) {
     displayAlert("Aucun le lieux de distribution sélectionné.", "danger");
     return;
-  }
-
-  else if ( postObjet === undefined && checkboxFlag === true) {
+  } else if (postObjet === undefined && checkboxFlag === true) {
     postObjet = new PostObj();
     console.log("toto");
     postObjet.precs = textAreaProd.value;
@@ -202,8 +201,6 @@ addCircuit.addEventListener('click', () => {
       console.log(postO);
     }
   }
-
-
 
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
@@ -220,13 +217,6 @@ addCircuit.addEventListener('click', () => {
   }
 
   console.log(postO);
-});
-
-// validation des données post Json
-console.log(boutonValider);
-boutonValider.addEventListener('click', (e) => {
-  e.preventDefault();
-  dataToPost();
 });
 
 // Limitation textarea :
@@ -331,7 +321,6 @@ function denominationPresente(nom) {
 function dataToPost(){
   postJson.value = JSON.stringify(postO);
   console.log(postJson.value);
-
 }
 
 function ajaxCall(action) {
