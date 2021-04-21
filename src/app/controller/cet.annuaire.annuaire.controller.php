@@ -74,11 +74,10 @@ class AnnuaireController
   }
 
   /**
-   * Lecture données producteur.
+   * Lecture données producteur. Producteurs inscrits/préinscrits et actifs.
    */
   public function fetchAllFrontEndDTOArray()
   {
-    $res = [];
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
     $model = new QSTPRODProducteurModel();
     $data = $model->fetchAllListing();
@@ -96,12 +95,43 @@ class AnnuaireController
     return $data;
   }
 
+  /**
+   * Lecture données recettes.
+   */
+  public function fetchRecettes() 
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.recette.model.php');
+    $model = new CETCALRecetteModel();
+    $data = $model->selectAll();
+    return $data;
+  }
+
   public function getCommunes()
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.communes.model.php');
     $model = new CETCALCommunesModel();
     $data = $model->selectAll();
     return $data; 
+  }
+
+  public function fetchDonneeProducteur($pk, $field)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
+    $model = new QSTPRODProducteurModel();
+    $data = $model->findProducteurByPk($pk);
+    return $data[$field];
+  }
+
+  /**
+   * Lié auth, admins, utilisateurs, producteur.
+   */
+
+  public function getAdminBySessionId($id_session)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.cetcal.administrateur.model.php');
+    $model = new CETCALAdminModel();
+    $data = $model->getAdministrateurBySessionId($id_session);
+    return $data;
   }
 
 }

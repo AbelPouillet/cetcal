@@ -29,6 +29,7 @@ Class QstProdGeneraleDTO
   public $siteWebUrl;
   public $boutiqueEnLigneUrl;
   public $organismeCertificateurBIO;
+  public $niveauCertifAB;
   public $typeDeProduction;
   public $typeDeProductionAutre;
   public $surfaceHectTerres;
@@ -50,6 +51,7 @@ Class QstProdGeneraleDTO
   public $infosLtrl;
   public $urlMultiplesLtrl;
   public $fournisseurcet;
+  public $categorie;
 
   function __construct(
     $pNom = "", $pPrenom = "", $pEmail = "", 
@@ -63,7 +65,8 @@ Class QstProdGeneraleDTO
     $pSurfaceHTerres = 0, $pSurfaceHSerre = 0, $pNbrTetesBetail = 0, 
     $pHectolitresParAn = 0, $pSondageDifficultes = "", $pSondage = "", 
     $pGroupeCagette = "", $pIdentifiant_cet= "", $pSondageNbrPostes = "", 
-    $pSondageNbrSaisonniers = "", $pSondageNbrHeuresSemaine = "")
+    $pSondageNbrSaisonniers = "", $pSondageNbrHeuresSemaine = "",
+    $pNiveauCertifAB = "", $pCategorie = "")
   {
       $this->nom = $pNom;
       $this->prenom = $pPrenom;
@@ -85,6 +88,7 @@ Class QstProdGeneraleDTO
       $this->siteWebUrl = $pPUrlWeb;
       $this->boutiqueEnLigneUrl = $pUrlBoutiqueWww;
       $this->organismeCertificateurBIO = $pOrgCertifBIO;
+      $this->niveauCertifAB = $pNiveauCertifAB;
       $this->typeDeProduction = $pTypeProd;
       $this->typeDeProductionAutre = $pTypeProductionAutre;
       $this->surfaceHectTerres = $pSurfaceHTerres;
@@ -98,6 +102,7 @@ Class QstProdGeneraleDTO
       $this->sondageNombrePostes = $pSondageNbrPostes;
       $this->sondageNombreSaisonniers = $pSondageNbrSaisonniers;
       $this->sondageNombreHeuresSemaine = $pSondageNbrHeuresSemaine;
+      $this->categorie = $pCategorie;
   }
 
   /**
@@ -113,7 +118,7 @@ Class QstProdGeneraleDTO
     $pGroupeCagette = "", $pIndentifiant_cet = "", 
     $pAdrfermeLtrl = "", $pProdInscrit = "", $pProduitsLtrl = "", 
     $pMarchesLtrl = "", $pLieuxLtrl = "", $pInfosLtrl = "", $pUrlMultiplesLtrl = "",
-    $pFournisseurCET = "")
+    $pFournisseurCET = "", $pCategorie = "")
   {
       $this->nom = $pNom;
       $this->prenom = $pPrenom;
@@ -142,6 +147,7 @@ Class QstProdGeneraleDTO
       $this->infosLtrl = $pInfosLtrl;
       $this->urlMultiplesLtrl = $pUrlMultiplesLtrl;
       $this->fournisseurcet = $pFournisseurCET;
+      $this->categorie = $pCategorie;
   }
 
   public function setTypeDeProduction($types) {

@@ -7,8 +7,17 @@ require_once('cet.qstprod.querylibrary.php');
  */
 class QSTPRODInformationsModel extends CETCALModel 
 {
+
+  public function gestionEnvoiQstprod($pPK, $pBesoinsDto, $contextMdifGlobal, $pk_mdif)
+  {
+    $this->createInformations($contextMdifGlobal ? $pk_mdif : $pPK, $pBesoinsDto);
+  }
+
+  /* *************************************************************************************************
+   * fonctions privées.
+   */
   
-  public function createInformations($pPK, $pBesoinsDto) 
+  private function createInformations($pPK, $pBesoinsDto) 
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signupbesoins.dto.php');
     $dtoBesoins = new QstBesoinsDTO();

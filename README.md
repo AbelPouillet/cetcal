@@ -1,3 +1,4 @@
+# CETCAL Phase 2 : 2021
 # About the cetcal project: 
 Local Food Chains (or CAL - Circuits Alimentaire Locaux in French): Castillonnais-en-transition volunteering-organisation is made up of committed Girondins and Perigordians. We work to help the development of local organic farming and the food chains behind them. Our priorities are:
 

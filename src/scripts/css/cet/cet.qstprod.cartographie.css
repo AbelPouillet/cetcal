@@ -2,7 +2,8 @@
 	border-radius: 4px;
 }
 .leaflet-popup-tip, .leaflet-popup-content-wrapper { 
-	background-color: #ffff8d !important; 
+	background-color: white !important; 
+  /*opacity: 0.9;*/
 	font-family: 'Signika', sans-serif;
 	padding-right: 16px !important;
 }
@@ -14,11 +15,20 @@
 }
 .cet-ann-crt-popuptext-marches {
 	font-family: 'Courgette', cursive;
-    color:  #007E33 !important;
-    font-size: 16px;
+  color:  #007E33 !important;
+  font-size: 16px;
 	font-weight: bold;
 }
 .cet-ann-crt-head-text { margin-top: 8px !important; }
+img.mini-fiche-logo-ferme {
+  display: inline-block;
+  float: right;
+  padding: 6px;
+  height: 128px;
+  margin-right: -18px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+}
 #cet-annuaire-crt-mini-fiche-producteur-container {
 	border-radius: 4px;
 	background-color: white !important; 
@@ -81,4 +91,39 @@ div.tt-suggestion:hover {
 	margin-right: 0px !important;
 	float: right;
 	font-style: italic;
+}
+
+/**
+ * Marker cluster
+ */
+.marker-cluster-small {
+  background-color: rgba(255, 191, 4, 0.8) !important;
+  font-family: 'Signika', sans-serif !important;
+  font-size: 16px !important;
+}
+.marker-cluster-small div {
+  background-color: rgba(255, 191, 4, 0.8) !important;
+  font-family: 'Signika', sans-serif !important;
+  font-size: 16px !important;
+}
+.marker-cluster-medium {
+  background-color: rgba(255, 191, 4, 0.8) !important;
+  font-family: 'Signika', sans-serif !important;
+  font-size: 16px !important;
+}
+.marker-cluster-medium div {
+  background-color: rgba(255, 191, 4, 0.8) !important;
+  font-family: 'Signika', sans-serif !important;
+  font-size: 16px !important;
+}
+
+.marker-cluster-large {
+  background-color: rgba(255, 191, 4, 0.8) !important;
+  font-family: 'Signika', sans-serif !important;
+  font-size: 16px !important;
+}
+.marker-cluster-large div {
+  background-color: rgba(255, 191, 4, 0.8) !important;
+  font-family: 'Signika', sans-serif !important;
+  font-size: 16px !important;
 }

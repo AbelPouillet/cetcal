@@ -37,10 +37,18 @@ $data = (isset($_GET['q'])) ?
 						<div class="input-group mb-3">
 					  	<input type="text" class="form-control" placeholder="Entrer un critère de recherche: nom, commune, type de production, code postal..." aria-label="Entrer un critère de recherche" id="cet-annuaire-recherche-filtre" name="cet-annuaire-recherche-filtre" value="<?= !$filtre ? '' : $filtre; ?>" />			  
 				    	<div class="input-group-append">
-				    		<a class="btn btn-outline-success" type="button" id="cet-annuaire-recherche-filtrer" href="/?statut=listing.producteurs&anr=true&q=">Rechercher <i class="fa fa-search" aria-hidden="true"></i></a>
+				    		<a class="btn" type="button" id="cet-annuaire-recherche-filtrer" 
+                  href="/?statut=listing.producteurs&anr=true&q="
+                  style="color: white !important; font-family: 'Signika' !important; background-color: #DD4215 !important;">
+                  Rechercher <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
 				    	</div>
 				    	<div class="input-group-append">
-				    		<a class="btn btn-outline-success" type="button" href="/?statut=listing.producteurs&anr=true">Supprimer le critère de recherche</a>
+				    		<a class="btn" type="button" 
+                  href="/?statut=listing.producteurs&anr=true"
+                  style="color: white !important; font-family: 'Signika' !important; background-color: #DD4215 !important;">
+                  Supprimer le critère de recherche
+                </a>
 				    	</div>
 				    </div>
 				  </div>

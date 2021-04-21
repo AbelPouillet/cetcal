@@ -1,5 +1,5 @@
 <div id="cet-admin-1-accordion">
-  <div class="card cet-accordion-admin">
+  <div class="card cet-accordion-admin cet-bloc">
   	<div class="card-header" id="cet-admin-1-heading">
   	  <label class="cet-formgroup-container-label"><small class="form-text">
   	  	Cette section vous aidera à administrer les marchés, les Associations, lieux de distribution, AMAPs etc.
@@ -17,10 +17,10 @@
     </div>
 
     <!-- Bloc collasable -->
-    <div id="cet-admin-1" class="collapse" aria-labelledby="cet-admin-1-heading" data-parent="#cet-admin-1-accordion">
+    <div id="cet-admin-1" class="collapse cet-bloc" aria-labelledby="cet-admin-1-heading" data-parent="#cet-admin-1-accordion">
       
       <!-- Formulaire d'ajout de marché -->
-      <div class="card-body cet-accordion-admin-critique">
+      <div class="card-body cet-accordion-admin-critique cet-bloc">
         <form class="form" id="admin-entite-form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
           <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="">
@@ -73,81 +73,70 @@
           </div>
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Type d'entité sélectionné :</small></label>
-            <!--<select class="form-control" value="" name="entite-entite-type" id="entite-entite-type">
-              <option></option>
-              <option></option>
-              <option></option>
-            </select>-->
             <input class="form-control" name="entite-entite-type" type="text" value="" maxlength="256">
           </div>
           <!-- END contenu du formulaire -->
-          <a class="btn btn-warning" id="btn-admin-ajout-entite" 
+          <a class="btn cet-navbar-btn" id="btn-admin-ajout-entite" 
             style="float: right; margin-right: 4px;">
             Ajouter
           </a>
-          <a class="btn btn-warning" id="btn-admin-modifier-entite" 
+          <a class="btn cet-navbar-btn" id="btn-admin-modifier-entite" 
             style="float: right; margin-right: 4px; display: none;">
             Modifier
           </a>
-          <a class="btn btn-warning" id="btn-admin-delete-entite" 
+          <a class="btn cet-navbar-btn" id="btn-admin-delete-entite" 
             style="float: right; margin-right: 4px; display: none;">
             Supprimer
           </a>
-          <a class="btn btn-warning" id="btn-admin-annuler-entite" 
+          <a class="btn cet-navbar-btn" id="btn-admin-annuler-entite" 
             style="float: right; margin-right: 4px; display: none;">
             Annuler
           </a>
         </form>
         <!-- END Card Formulaire d'ajout de marché -->
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/src/app/includes/administration/include.cet.administration.media.entite.php'; ?>
       </div>  
-
+      <hr>
       <!-- Listing des entités pour mises à jour -->
       <div class="card-body">
-        <!-- Start Formulaire -->
-        <form class="form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php" method="post">
-          <!-- le premier input hidden déffini l'action, en dure. -->
-          <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="">
-          <?php
-            require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/admin/cet.annuaire.controlleur.administration.entites.php');
-            $ctrl = new AdminEntitesCastillonnaisController();
-            $data_entites = $ctrl->selectAll();
-          ?>
-
-          <table class="table table-striped cetcal-admin-table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Dénomination</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Activité</th>
+        <?php
+          require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/admin/cet.annuaire.controlleur.administration.entites.php');
+          $ctrl = new AdminEntitesCastillonnaisController();
+          $data_entites = $ctrl->selectAll();
+        ?>
+        <table class="table table-striped cetcal-admin-table cet-table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Dénomination</th>
+              <th scope="col">Adresse</th>
+              <th scope="col">Activité</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($data_entites as $data): ?>
+              <tr class="admin-entite-administrer">
+                <td class="pk cetcal-admin-table-td" scope="row">
+                  <?=$data['pk_entite'];?>
+                </td>
+                <td class="cetcal-admin-table-td">
+                  <?=$data['denomination'];?>
+                </td>
+                <td class="cetcal-admin-table-td">
+                  <?=$data['adresse'];?> 
+                </td>
+                <td class="cetcal-admin-table-td">
+                  <?=$data['activite'];?> 
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($data_entites as $data): ?>
-                <tr class="admin-entite-administrer">
-                  <td class="pk cetcal-admin-table-td" scope="row">
-                    <?=$data['pk_entite'];?>
-                  </td>
-                  <td class="cetcal-admin-table-td">
-                    <?=$data['denomination'];?>
-                  </td>
-                  <td class="cetcal-admin-table-td">
-                    <?=$data['adresse'];?> 
-                  </td>
-                  <td class="cetcal-admin-table-td">
-                    <?=$data['activite'];?> 
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-        </form>
-        <!-- End Formulaire -->
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
       <!-- END Listing des entités pour mises à jour -->
 
     </div>
-    <!-- ENDa Bloc collasable -->
+    <!-- END Bloc collasable -->
 
   </div>
 </div>

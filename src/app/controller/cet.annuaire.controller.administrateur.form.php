@@ -19,27 +19,27 @@ try
   
   if ($authentification === true) 
   {
-      /*
-       * Si auth réusiie alors, générer un ID de session custom. 
-       * Démarrer la session avec pour clé l'ID généré. Puis, 
-       * sauvegarder le formulaire de loggin dans la session.
-       * Si tout en ordre et pas d'exception levée alors naviguer ve, $login_administrateurrs 
-       * /includes/administration/* 
-       */ 
+    /*
+     * Si auth réussie alors, générer un ID de session custom. 
+     * Démarrer la session avec pour clé l'ID généré. Puis, 
+     * sauvegarder le formulaire de loggin dans la session.
+     * Si tout en ordre et pas d'exception levée alors naviguer ve, $login_administrateurrs 
+     * /includes/administration/* 
+     */ 
 
-      require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.identifiantcet.php');
-      $idHelper = new IdentifiantCETHelper();
-      $cetcal_session_id = (isset($_POST['cetcal_session_id']) && !empty($_POST['cetcal_session_id']) && strlen($_POST['cetcal_session_id']) > 0) ? $dataProcessor->processHttpFormData($_POST['cetcal_session_id']) : hash('sha1', $idHelper->generateRandomString().$idHelper->generateRandomString().$idHelper->generateRandomString());
-      session_id($cetcal_session_id);
-      session_start();
-      session_write_close();
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.identifiantcet.php');
+    $idHelper = new IdentifiantCETHelper();
+    $cetcal_session_id = (isset($_POST['cetcal_session_id']) && !empty($_POST['cetcal_session_id']) && strlen($_POST['cetcal_session_id']) > 0) ? $dataProcessor->processHttpFormData($_POST['cetcal_session_id']) : hash('sha1', $idHelper->generateRandomString().$idHelper->generateRandomString().$idHelper->generateRandomString());
+    session_id($cetcal_session_id);
+    session_start();
+    session_write_close();
 
-      // Mettre à jour cetcal.cetca.administration.
-      $authModel->setTempSessionId($cetcal_session_id, $login_administrateur);
+    // Mettre à jour cetcal.cetca.administration.
+    $authModel->setTempSessionId($cetcal_session_id, $login_administrateur);
 
-      // Apply navigation :
-      header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id);
-      exit();
+    // Apply navigation :
+    header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id);
+    exit();
   } 
   else 
   {
@@ -49,6 +49,7 @@ try
 }
 catch (Exception $e) 
 {
-  header('Location: /src/app/controller/cet.qstprod.controller.generique.erreure.php/?err=erruer-authetification -administrateur');
+  error_log('[CONTROLLER ADMIN FORM] '.$e->getMessage());
+  header('Location: /src/app/controller/cet.qstprod.controller.generique.erreure.php/?err=err-authetification-administrateur');
   exit();
 }

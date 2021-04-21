@@ -40,5 +40,23 @@ class MarchesCastillonnaisController extends AnnuaireController
       $data = $model->selectTypes();
       return $data;
   }
+
+
+    public function selectAllMarche()
+    {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.entites.model.php');
+        $model = new CETCALEntitesModel();
+        $data = $model->selectAllIsMarche();
+        return $data;
+    }
+
+    public function nomDesMarches()
+    {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.entites.model.php');
+        $model = new CETCALEntitesModel();
+        $data = $model->getAllmarcheDenomination();
+        return $data;
+
+    }
   
 }

@@ -1,6 +1,6 @@
-<div class="row justify-content-lg-center" id="cet-qstprod_seconnecter" style="display: none;">
+<div class="row justify-content-lg-center" id="cet-qstprod_seconnecter" style="display: none; margin-bottom: 36px;">
   <div class="col-lg-9"> 
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success cet-bloc" role="alert">
       <form action="/src/app/controller/cet.qstprod.controller.login.form.php" method="post"
         style="margin-bottom: 18px;">
         <div class="row">
@@ -16,24 +16,25 @@
             <a href="#" onmousedown="$('#login-nav').val('prd'); $('#cet-qstprod_seconnecter').find('form').submit();"> - Producteur, je souhaite m'inscrire et être référencé.</a>
             
             <div id="zone-oubli-login" style="display: none; margin-bottom: 12px;">
-              <small class="form-text text-muted" style="margin-left: 6px; margin-top: 6px;">Si vous avez effectué votre inscription avec votre adresse email, une solution vous sera envoyée.<b>Si vous êtes producteur et vous n'avez renseigné aucune information de contact (email, ou n° de téléphone mobil) alors l'équipe de cetcal prendra rapidement contact avec vous.</b> Dans ce cas, <b>veuillez cocher la case, <u>je suis producteur référencé et souhaite être contacté.</u></b> et renseigner votre adresse email <b>ainsi que votre numéro</b> de téléphone.</small>
+              <small class="form-text text-muted" style="margin-left: 6px; margin-top: 6px;">Si vous avez effectué votre inscription avec votre adresse email, une solution vous sera envoyée.<b>Si vous êtes producteur.e et vous n'avez renseigné aucune information de contact (email, ou n° de téléphone mobil) alors l'équipe de cetcal prendra rapidement contact avec vous.</b> Dans ce cas, <b>veuillez cocher la case, <u>je suis producteur.e référencé et souhaite être contacté.</u></b> et renseigner votre adresse email <b>ainsi que votre numéro</b> de téléphone.</small>
               <br>
               <div class="input-group mb-3">
                 <input class="form-control" name="login-oublie-email" id="login-oublie-email" type="text" placeholder="Entrez votre adresse email" aria-label="">
               </div>
-              <!--
-              <div class="input-group mb-3">
-                <input class="form-control" name="login-oublie-telport" id="login-oublie-telport" type="text" placeholder="Entrez votre numéro de téléphone portable" aria-label="">
+              <div class="input-group mb-3" id="login-oublie-telport-container" style="display: none;">
+                <input class="form-control" name="login-oublie-telport" id="login-oublie-telport" 
+                  type="text" maxlength="10" minlength="10" 
+                  placeholder="Entrez votre numéro de téléphone fixe ou portable" aria-label="">
               </div>
-              -->
               <div class="form-check">
                 <input class="form-check-input" name="login-oublie-jesuisproducteur" 
-                  id="login-oublie-jesuisproducteur" type="checkbox" value="jesuisproducteur">
+                  id="login-oublie-jesuisproducteur" type="checkbox" value="jesuisproducteur"
+                  onchange="if ($(this).is(':checked')) { $('#login-oublie-telport-container').show('slow'); } else { $('#login-oublie-telport-container').hide('slow'); }">
                 <label class="form-check-label" for="login-oublie-jesuisproducteur">
-                  je suis producteur BIO référencé dans l'annuaire cetcal et je souhaite être contacté.
+                  je suis producteur.e BIO référencé dans l'annuaire cetcal et je souhaite être contacté.
                 </label>
               </div>
-              <button class="btn btn-warning btn-block" type="submit" 
+              <button class="btn btn-block cet-navbar-btn" type="submit" 
                 style="margin-top: 8px; font-family: 'Courgette', cursive;"
                 onmousedown="$('#login-nav').val('obl');"><i class="fas fa-sign-in-alt"></i>&#160;&#160;&#160;Envoyer ma demande</button>
             </div>
@@ -49,7 +50,7 @@
               <input class="form-control" name="login-motdepasse" id="login-motdepasse" 
                 type="password" placeholder="Mot de passe" aria-label="Mot de passe">
             </div>
-            <button class="btn btn-info btn-block" type="submit" 
+            <button class="btn btn-block cet-navbar-btn" type="submit" 
               style="margin-top: 8px; font-family: 'Courgette', cursive;"
               onmousedown="$('#login-nav').val('cnx');"><i class="fas fa-sign-in-alt"></i>&#160;&#160;&#160;Se connecter</button>
           </div>

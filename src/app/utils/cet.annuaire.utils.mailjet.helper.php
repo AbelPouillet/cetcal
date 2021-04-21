@@ -26,6 +26,30 @@ Class CETMailjetHelper
       $plainContent = str_replace($key, $value, $plainContent);
     }
 
+    $success = $this->callApi($mailTo, $mailSubject, $htmlContent, $plainContent);
+
+    return true;
+  }
+
+  public function send_paramsMultiples($mailFileHTML, $mailFilePlain, $mailTo, $mailSubject, $fileReader, $dataFilePrefix, $params = false)
+  {
+    $htmlContent = $fileReader->readAsStringForMails($dataFilePrefix.$mailFileHTML);
+    $plainContent = $fileReader->readAsStringForMails($dataFilePrefix.$mailFilePlain);
+    
+    if ($params !== false) 
+    {
+      foreach ($params as $key => $value) 
+      {
+        $htmlContent = str_replace($key, $value, $htmlContent);
+        $plainContent = str_replace($key, $value, $plainContent);
+      }
+    }
+
+    $success = $this->callApi($mailTo, $mailSubject, $htmlContent, $plainContent);
+  }
+
+  private function callApi($mailTo, $mailSubject, $htmlContent, $plainContent)
+  {
     try 
     {
 
@@ -56,7 +80,7 @@ Class CETMailjetHelper
       ];
 
       $response = $mj->post(Resources::$Email, ['body' => $body]);
-      $response->success() && var_dump($response->getData());
+      //$response->success() && var_dump($response->getData());
 
       return true;
     } 

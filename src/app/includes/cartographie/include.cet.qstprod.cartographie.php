@@ -1,25 +1,25 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.cartographie.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/media/cet.qstprod.controller.media.php');
+$types_entites = isset($_GET['typent']) ? $dataProcessor->processHttpFormData($_GET['typent']) : "";
+$filtrer = strlen($types_entites) > 0;
 $controller = new CETCALCartographieController();
+$media_controller = new MediaController();
 $data = $controller->fetchDataCartographie($SELECT_PRD_NON_INSCRITS);
-$entites_data = $controller->fetchDataCartographieEntite();
-
+$entites_data = $controller->fetchDataCartographieEntite($filtrer, $types_entites);
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/admin/cet.qstprod.admin.cartographie.loader.php');
 $loader = new CETCALCartographieLoader();
 $loader->loadCommunes();
 ?>
-
 <div id="cet-annuaire-crt-main-anchor"></div>
-<?php include $PHP_INCLUDES_PATH.'areas/include.cet.annuaire.gestion.carte.php'; ?>
-<div class="cet-module row justify-content-lg-center">
-  <div id="cet-annuaire-crt-controls-container" class="col-lg-9">
-    <p class="cet-p-dark" style="margin-bottom: 0px; margin-left: 4px;">
-      Producteur.e.s BIO et marchés (à 40km et + autour de Castillon)<br><small><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Si votre commune ne vous est pas proposée dans la recherche, veuillez rechercher une commune à proximité.</small>
-      <?php if ($CLIENT_CARTO_AVANCEE) include $PHP_INCLUDES_PATH.'cartographie/include.cet.annuaire.params.cartographie.php'; ?>
+<div class="cet-module row justify-content-lg-center" style="color: #6C3012 !important; margin-bottom: 8px !important;">
+  <div id="cet-annuaire-crt-controls-container" class="col-lg-12">
+    <p class="cet-p" style="margin-bottom: 4px; margin-top: -12px;">
+      Producteur.e.s BIO, Viticulteurs BIO, marchés, AMAP's et lieux de distribution BIO (à 40km et + autour de Castillon) <b><?= count($data) + count($entites_data); ?> éléments cartographiés</b>.<br><small><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Si votre commune ne vous est pas proposée dans la recherche, veuillez rechercher une commune à proximité.</small>
     </p>
-    <div class="input-group mb-3" style="margin-bottom: 6px !important;">
+    <div class="input-group mb-6" style="margin-bottom: 6px !important;">
       <div class="input-group-prepend">
-        <p class="input-group-text cet-p-dark" id="crt-search-libelle"></p>
+        <p class="input-group-text" id="crt-search-libelle" style="font-family: 'Signika' !important; color: #6C3012 !important;"></p>
       </div>
       <div id="cet-annuaire-recherche-communes-conatiner">
         <input type="text" class="form-control typeahead" placeholder="" aria-label="" 
@@ -27,20 +27,19 @@ $loader->loadCommunes();
           style="border-radius: 0px !important;">
       </div>
       <div class="input-group-append">
-        <button class="btn btn-outline-success" id="valider-recherche-commune-cartographie" 
+        <button class="btn" id="valider-recherche-commune-cartographie" 
+          style="color: white !important; font-family: 'Signika' !important; background-color: #DD4215 !important;" 
           type="button">Valider
         </button>
       </div>
     </div>
+    <?php if ($CLIENT_CARTO_AVANCEE) include $PHP_INCLUDES_PATH.'cartographie/include.cet.annuaire.params.cartographie.php'; ?>
   </div>
 </div>
-<div id="cet-annuaire-crt-main-container" class="cet-module row justify-content-lg-center" 
-  style="margin-bottom: 20px;">
-  <div id="cet-annuaire-crt-bootstrap-wrapper" class="col-lg-9">
-    <div id="cet-annuaire-crt-main"></div>
-  </div>
-  <div id="cet-annuaire-crt-mini-fiche-producteur-container" class="col-lg-3" style="display: none;">
-    <div id="cet-annuaire-crt-mini-fiche-producteur"></div>
+<div id="cet-annuaire-crt-main-container" class="cet-module row" 
+  style="margin-bottom: 16px; width: 100% !important; margin-left: 0px !important; margin-right: 0px !important;">
+  <div id="cet-annuaire-crt-bootstrap-wrapper" class="col-lg-12" style="width: 100% !important; margin-left: 0px !important; margin-right: 0px !important; padding-right: 0px !important; padding-left: 0px !important;">
+    <div id="cet-annuaire-crt-main" style="border-radius: 0px !important;"></div>
   </div>
 </div>
 
@@ -49,6 +48,7 @@ $loader->loadCommunes();
     <?php foreach ($data as $prdDto): ?>
       <producteur>
         <pk><?= $prdDto->getPk(); ?></pk>
+        <categorie><?= $prdDto->categorie; ?></categorie>
         <nom><?= $prdDto->nom; ?></nom>
         <prenom><?= $prdDto->prenom; ?></prenom>
         <email><?= $prdDto->email; ?></email>
@@ -76,6 +76,7 @@ $loader->loadCommunes();
         <lieuxltrl><?= str_replace([","], ', ', $prdDto->lieuxLtrl); ?></lieuxltrl>
         <infosltrl><?= $prdDto->infosLtrl; ?></infosltrl>
         <fournisseurcet><?= $prdDto->fournisseurcet; ?></fournisseurcet>
+        <logoferme><?= $media_controller->selectSrcLogoFemreProducteur($prdDto->getPk()); ?></logoferme>
       </producteur>
     <?php endforeach; ?>
   </producteurs>
@@ -84,7 +85,9 @@ $loader->loadCommunes();
 <div id="cetcal.entite.xml" hidden="hidden">
   <entites hidden="hidden">
     <?php foreach ($entites_data as $entiteDto): ?>
-      <?php if(strcmp($entiteDto->type, "marche") !== 0) continue; ?>
+      <?php if(strcmp($entiteDto->type, "marche") !== 0 && 
+               strcmp($entiteDto->type, "mbio") !== 0 &&
+               strcmp($entiteDto->type, "amap") !== 0) continue; ?>
       <entite>
         <pk><?= $entiteDto->getPk(); ?></pk>
         <type><?= $entiteDto->type; ?></type>
@@ -96,7 +99,10 @@ $loader->loadCommunes();
     <?php endforeach; ?>
   </entites>
 </div>
+<?php include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.gestion.cartographie.php'; ?>
 <script src="/src/scripts/js/leaflet-markercluster/leaflet.markercluster.js"></script>
 <script src="/src/scripts/js/leaflet-markercluster/leaflet.markercluster-src.js"></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet'/>
 <script src="/src/scripts/js/typeahead.0.11.1.min.js"></script>
 <script src="/src/scripts/js/cetcal/cetcal.cartographie.min.js"></script>

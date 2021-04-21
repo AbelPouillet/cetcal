@@ -1,4 +1,8 @@
 <?php 
+$neant = '';
+$opinions = isset($_SESSION['signuprecap.opinions']) ? $_SESSION['signuprecap.opinions'] : "";
+$cntxmdf = isset($_SESSION['CONTEXTE_MODIF-GLOBAL']) ? $_SESSION['CONTEXTE_MODIF-GLOBAL'] : false;
+$pkprd = isset($_SESSION['CONTEXTE_MODIF-PKPRD']) ? $_SESSION['CONTEXTE_MODIF-PKPRD'] : "";
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signupgen.dto.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signupprods.dto.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signuplieuxdist.dto.php');
@@ -19,17 +23,18 @@ $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
 <!-- -------------------------------------- -->
 <div class="row justify-content-lg-center">
   <div class="col-lg-6">
-    <label class="cet-formgroup-container-label">
-      <small class="form-text">Récapitulatif de vos informations générales :</small>
-    </label>
     <label>
       <small class="form-text text-muted" style="color: rgb(70, 80, 40) !important;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
         <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
       </small>
     </label>
+    <br>
+    <label class="cet-formgroup-container-label">
+      <small class="form-text">Récapitulatif de vos informations générales :</small>
+    </label>
     <div class="cet-formgroup-container">
       <div class="d-flex justify-content-center">
-        <table class="table table-borderless">
+        <table class="table table-borderless cet-table">
           <tbody>
             <tr>
               <td><span class="text-muted">Nom, prénom : </span><?= $infogenerales->nom; ?> <?= $infogenerales->prenom; ?></td>
@@ -127,7 +132,7 @@ $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
     <label class="cet-formgroup-container-label"><small class="form-text">Récapitulatif de vos points de vente / distribution :</small></label>
     <div class="cet-formgroup-container">
       <div class="d-flex justify-content-center">
-        <table class="table table-borderless">
+        <table class="table table-borderless cet-table">
           <tbody>
             <tr>
               <td><span class="text-muted">Vos lieux de Distribution / Vente : </span>
@@ -165,7 +170,7 @@ $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
     <label class="cet-formgroup-container-label"><small class="form-text">Récapitulatif de vos produits :</small></label>
     <div class="cet-formgroup-container">
       <div class="d-flex justify-content-center">
-        <table class="table table-borderless">
+        <table class="table table-borderless cet-table">
           <tbody>
             <tr>
               <td>
@@ -196,18 +201,18 @@ $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
       <div class="form-group mb-3">
         <label class="cet-input-label"><small class="cet-qstprod-label-text">Vos idées, remarques :</small></label>   
         <textarea class="form-control" id="qstprod-opinions-producteur" name="qstprod-opinions-producteur"
-          placeholder="votre avis nous intéresse..." form="signuprecap.form.declaratif" value=""
-          maxlength="512"></textarea>
+          placeholder="votre avis nous intéresse..." form="signuprecap.form.declaratif" 
+          value="" maxlength="512"><?= $cntxmdf ? $opinions : $neant; ?></textarea>
       </div>
       <label>
-        <small class="form-text cet-qstprod-label-text">Souhaitez-vous valider votre inscription et envoyer votre questionnaire ? Si oui, merci de déclarer vos informations :</small>
+        <small class="form-text cet-qstprod-label-text">Souhaitez-vous valider <?= $cntxmdf ? 'vos modifications' : 'votre inscription'; ?> et envoyer votre questionnaire ? Si oui, merci de déclarer vos informations :</small>
       </label>
       <div class="input-group mb-3">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="qstprod-declaration-valide" 
             name="qstprod-declaration-valide" value="oui"
             checked="false">
-          <label class="form-check-label" for="qstprod-question-reseaux-participation-oui">Oui, je déclare que les informations renseignées sont exactes et vérifiées.</label>
+          <label class="form-check-label">Oui, je déclare que les informations renseignées sont exactes et vérifiées.</label>
         </div>
       </div>
     </div>
@@ -220,16 +225,22 @@ $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
 
       <div class="row cet-qstprod-btnnav">
         <div class="col text-center">
-          <button class="btn btn-info" type="submit" 
+          <button class="btn cet-navbar-btn" type="submit" 
             onmousedown="$('#qstprod-signuprecap-nav').val('retour');"
             id="btn-signuprecap.form-retour"><?= CetQstprodConstLibelles::form_retour; ?></button>
-          <button class="btn btn-info" type="submit" id="btn-signuprecap-form-valider"
-            onmousedown="$('#qstprod-signuprecap-nav').val('valider');">Valider votre inscription</button>
+          <button class="btn cet-navbar-btn" type="submit" id="btn-signuprecap-form-valider"
+            onmousedown="$('#qstprod-signuprecap-nav').val('valider');">Valider <?= $cntxmdf ? 'vos modifications' : 'votre inscription'; ?></button>
         </div>
       </div>
 
       <input type="text" name="cetcal_session_id" id="cetcal_session_id" value="<?= $cetcal_session_id; ?>" hidden="hidden">
       <input type="text" name="qstprod-signuprecap-nav" id="qstprod-signuprecap-nav" value="unset" hidden="hidden">
+      <input type="text" name="qstprod-signuprecap-cntx" id="qstprod-signuprecap-cntx" 
+        value="<?= $cntxmdf ? 'mdif' : 'insc'; ?>" hidden="hidden">
+      <input type="text" name="qstprod-signuprecap-pkprd" id="qstprod-signuprecap-pkprd" 
+        value="<?= $pkprd ?>" hidden="hidden">
+      <input type="text" name="qstprod-signuprecap-email" id="qstprod-signuprecap-email"
+        value="<?= $infogenerales->email; ?>" hidden="hidden">  
     </form>
   </div>
 </div>

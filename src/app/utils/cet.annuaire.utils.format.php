@@ -34,7 +34,7 @@ Class FormatUtils
     $datetime = getdate();
     return FormatUtils::WEEK_DAY_FR[$datetime['wday'] - 1]
       .' '.$datetime['mday']
-      .' '.FormatUtils::MONTH_FR[$datetime['mon']]
+      .' '.FormatUtils::MONTH_FR[$datetime['mon'] - 1]
       .' '.$datetime['year']
       .' à '.$this->appendCharIf($datetime['hours'], 1, '0')
       .'h'.$this->appendCharIf($datetime['minutes'], 1, '0');
@@ -51,6 +51,11 @@ Class FormatUtils
     $data = explode('µ', $libelle);
     foreach ($data as $info) if (!empty($info) && strlen($info) > 2) $res .= trim($info).', ';
     return substr($res, 0, strlen($res) - 2);
+  }
+
+  public function separatorToComaSpace($separator, $text)
+  {
+    return str_replace($separator, ', ', $text);
   }
 
   public function formatDenominationUpperCases($libelle) 

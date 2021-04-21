@@ -29,7 +29,9 @@ try
   $besoinsDto = new QstBesoinsDTO($form_solidarites, $form_solidarite_autre, $form_participer,
     $form_besoins, $form_besoin_autre, $form_reflexions, $form_reflexion_autre);
   $_SESSION['signupbesoins.form'] = serialize($besoinsDto);
+
   $_SESSION['signupbesoins.form.post'] = $_POST;
+  $_SESSION['CONTEXTE_MODIF-signupbesoins'] = false;
   session_write_close();
   /* *****************************************************************************/
 

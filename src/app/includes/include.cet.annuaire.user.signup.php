@@ -24,16 +24,15 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
       <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">L'email <b><?= $email_user ?></b> est déjà utilisé.</h4>
         <p>
-          L'email renseigné est déjà présent dans notre liste d'inscrits et est associé à compte existant.<br>Veuillez renouveller l'inscription avec une autre adresse email ou abandonner l'inscription.<br>
+          L'email renseigné est déjà présent dans notre liste d'inscrits et est associé à compte existant.<br>Veuillez renouveller l'inscription avec une autre adresse de messagerie.<br>
           <a href="./">Retourner à l'accueil.</a>
         </p>
         <hr>
-        <label><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?>
+        <label>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
             <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </label>
-        <p class="mb-0"><?= CetQstprodConstLibelles::en_cas_de_doute; ?></p>
       </div>
     </div>
   </div>
@@ -58,7 +57,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
 <?php elseif (!isset($_GET['usrs'])): ?>
   <div class="row justify-content-lg-center">
     <div class="col-lg-6">
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-success cet-bloc" role="alert">
         <p><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?></p>
         <hr>
         <label>
@@ -72,7 +71,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
 <?php endif; ?>
 
 <?php if (!isset($_GET['usrs'])): ?>
-  <div class="row justify-content-lg-center" id="annuaire-user-signup-form-container" style="display: none;">
+  <div class="row justify-content-lg-center" id="annuaire-user-signup-form-container">
     <div class="col-lg-6">
       <form id="annuaire-user-signup-form" class="form" method="post" 
         action="/src/app/controller/cet.annuaire.controller.user.signup.form.php">
@@ -83,9 +82,9 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Ou souhaitez-vous consommer BIO, local ?<br><b>Si votre commune ne figure pas dans la liste, merci de sélectionner une commune à proximité.</b><br>Choississez votre commune :</small></label>
             <select class="form-control" id="annuaire-user-signup-commune" name="annuaire-user-signup-commune">
-              <?php foreach ($communes as $commune): ?>
+              <?php //foreach ($communes as $commune): ?>
                 <option value="<?= $commune['id'] ?>"><?= $commune['libelle'] ?></option>
-              <?php endforeach; ?>
+              <?php //endforeach; ?>
               <option value="0" selected="selected">-- Villes, Communes --</option>
             </select>
           </div>
@@ -187,8 +186,8 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
 
         <div class="row">
           <div class="col text-center">
-            <a class="btn btn-info" id="btn-user-signup-form-retour" href="./">Annuler</a>
-            <button class="btn btn-info" type="submit" id="btn-user-signup-form-valider" 
+            <a class="btn cet-navbar-btn" id="btn-user-signup-form-retour" href="./">Annuler</a>
+            <button class="btn cet-navbar-btn" type="submit" id="btn-user-signup-form-valider" 
               onmousedown="$('#annuaire-user-signup-nav').val('valider');">Valider l'inscription</button>
           </div>
         </div>
@@ -203,5 +202,4 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
 <script src="/src/scripts/js/cetcal/cetcal.min.signup.user.js"></script>
 <script type="text/javascript">
   $('#cet-qstprod_intro').show();
-  $(document).ready(function() { $('#annuaire-user-signup-form-container').show('slow'); });
 </script>

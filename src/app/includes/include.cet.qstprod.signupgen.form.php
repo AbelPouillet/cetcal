@@ -1,6 +1,13 @@
 <?php
 $neant = '';
-$currentForm = (isset($_SESSION['signupgen.form']) && isset($_SESSION['signupgen.form.post'])) ? $_SESSION['signupgen.form.post'] : array();
+$input_email_val = '';
+$input_emailconf_val = '';
+$currentForm = isset($_SESSION['signupgen.form.post']) ? $_SESSION['signupgen.form.post'] : array();
+$cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signupgen']) ? $_SESSION['CONTEXTE_MODIF-signupgen'] : false;
+$cntxmdf_global = isset($_SESSION['CONTEXTE_MODIF-GLOBAL']) ? $_SESSION['CONTEXTE_MODIF-GLOBAL'] : false;
+$email_used = (isset($_GET['err']) && strcmp($dataProcessor->processHttpFormData($_GET['err']), 'eused') === 0);
+$used_email_value = isset($_GET['uemail']) ? $dataProcessor->processHttpFormData($_GET['uemail']) : "";
+$pkprd = isset($_SESSION['CONTEXTE_MODIF-PKPRD']) ? $_SESSION['CONTEXTE_MODIF-PKPRD'] : "";
 ?>
 <!-- singup general informations html form -->
 <div class="row justify-content-lg-center">
@@ -26,9 +33,22 @@ $currentForm = (isset($_SESSION['signupgen.form']) && isset($_SESSION['signupgen
             maxlength="30">
         </div>
         <div class="form-group mb-3">
-          <label class="cet-input-label"><small class="cet-qstprod-label-text">Adresse e-mail :</small></label>
+          <?php if ($email_used): ?>
+            <?php $input_email_val = $used_email_value; ?>
+            <?php $input_emailconf_val = $used_email_value; ?>
+            <label class="cet-input-label">
+              <small class="cet-qstprod-label-text" style="color: red !important;">
+                <b>L'adresse e-mail renseignée est déjà associée à un compte producteur.e, veuillez en saisir une autre :</b>
+              </small>
+            </label>
+          <?php elseif ($email_used === false): ?>
+            <?php $input_email_val = isset($currentForm['qstprod-email']) ? $currentForm['qstprod-email'] : $neant; ?>
+            <?php $input_emailconf_val = isset($currentForm['qstprod-email-conf']) ? $currentForm['qstprod-email-conf'] : $neant; ?>
+            <label class="cet-input-label"><small class="cet-qstprod-label-text">Adresse e-mail :</small></label>
+          <?php endif; ?>
           <input class="form-control" id="qstprod-email" name="qstprod-email" type="text" placeholder="Adresse e-mail"
-            value="<?= isset($currentForm['qstprod-email']) ? $currentForm['qstprod-email'] : $neant; ?>"
+            onblur="checkValidEmail(60, 'qstprod-email');"
+            value="<?= $input_email_val; ?>"
             maxlength="60">
         </div>
         <div class="form-group mb-3">
@@ -36,23 +56,25 @@ $currentForm = (isset($_SESSION['signupgen.form']) && isset($_SESSION['signupgen
           <input class="form-control" id="qstprod-email-conf" name="qstprod-email-conf" type="text" 
             placeholder="Confirmation adresse e-mail" 
             onblur="checkValidEmailConfirmation(60, 'qstprod-email', this.id);"
-            value="<?= isset($currentForm['qstprod-email-conf']) ? $currentForm['qstprod-email-conf'] : $neant; ?>"
+            value="<?= $input_emailconf_val; ?>"
             maxlength="60">
         </div>
-        <div class="form-group mb-3">
-          <label class="cet-input-label"><small class="cet-qstprod-label-text">Mot de passe de connexion à l'annuaire (8 caractères minimum) :</small></label>
-          <input class="form-control is-invalid" id="qstprod-mdp" name="qstprod-mdp" type="password" 
-            placeholder="Mot de passe de connexion à l'annuaire"
-            onblur="checkFormInputMin(30, 8, this.id);"
-            maxlength="30">
-        </div>
-        <div class="form-group mb-3">
-          <label class="cet-input-label"><small class="cet-qstprod-label-text">Confirmer votre mot de passe :</small></label>
-          <input class="form-control is-invalid" id="qstprod-mdpconf" name="qstprod-mdpconf" 
-            type="password" placeholder="Confirmer votre mot de passe"
-            onblur="checkMotsDePasse(30, 8, 'qstprod-mdp', this.id);"
-            maxlength="30">
-        </div>
+        <?php if ($cntxmdf === false && $cntxmdf_global === false): ?> 
+          <div class="form-group mb-3">
+            <label class="cet-input-label"><small class="cet-qstprod-label-text">Mot de passe de connexion à l'annuaire (8 caractères minimum) :</small></label>
+            <input class="form-control is-invalid" id="qstprod-mdp" name="qstprod-mdp" type="password" 
+              placeholder="Mot de passe de connexion à l'annuaire"
+              onblur="checkFormInputMin(30, 8, this.id);"
+              maxlength="30">
+          </div>
+          <div class="form-group mb-3">
+            <label class="cet-input-label"><small class="cet-qstprod-label-text">Confirmer votre mot de passe :</small></label>
+            <input class="form-control is-invalid" id="qstprod-mdpconf" name="qstprod-mdpconf" 
+              type="password" placeholder="Confirmer votre mot de passe"
+              onblur="checkMotsDePasse(30, 8, 'qstprod-mdp', this.id);"
+              maxlength="30">
+          </div>
+        <?php endif; ?>
         <div class="form-group mb-3">
           <label class="cet-input-label"><small class="cet-qstprod-label-text">N° de téléphone fixe :</small></label>
           <input class="form-control" id="qstprod-numbtel-fix" name="qstprod-numbtel-fix" type="text" 
@@ -67,6 +89,55 @@ $currentForm = (isset($_SESSION['signupgen.form']) && isset($_SESSION['signupgen
         </div>
       </div>
       
+      <label class="cet-formgroup-container-label" for="qstprod-nomferme"><small class="form-text">Veuillez renseigner les informations liées à la certification AB :</small></label>
+      <div class="cet-formgroup-container">
+        <div class="input-group mb-3">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input qstprod-bio-certifs-ab" type="radio" value="1" 
+              id="qstprod-bio-certifs-cab" name="qstprod-bio-certifs-ab"
+              <?= isset($currentForm['qstprod-bio-certifs-ab']) && 
+                strcmp($currentForm['qstprod-bio-certifs-ab'], '1') === 0 ? 'checked="checked"' : $neant; ?>> 
+            <label class="form-check-label cet-qstprod-label-text" 
+              for="qstprod-bio-certifs-cab"><img src="/res/content/icons/logos-verts-europe-ab.png" height="30" alt="">&#160;&#160;Je déclare être <b>certifié Agriculture-Biologique</b>.</label>
+            <br>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input qstprod-bio-certifs-ab" type="radio" value="2" 
+              id="qstprod-bio-certifs-conversion" name="qstprod-bio-certifs-ab"
+              <?= isset($currentForm['qstprod-bio-certifs-ab']) && 
+                strcmp($currentForm['qstprod-bio-certifs-ab'], '2') === 0 ? 'checked="checked"' : $neant; ?>> 
+            <label class="form-check-label cet-qstprod-label-text" 
+              for="qstprod-bio-certifs-conversion">Je suis <b>en cours de certification AB</b> (années C1 ou C2). Pas encore certifié AB.</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input qstprod-bio-certifs-ab" type="radio" value="3" 
+              id="qstprod-bio-certifs-ytendant" name="qstprod-bio-certifs-ab"
+              <?= isset($currentForm['qstprod-bio-certifs-ab']) && 
+                strcmp($currentForm['qstprod-bio-certifs-ab'], '3') === 0 ? 'checked="checked"' : $neant; ?>>
+            <label class="form-check-label cet-qstprod-label-text" 
+              for="qstprod-bio-certifs-ytendant">Je pratique une <b>agriculture éthique sans produits phyto-sanitaires chimiques</b>, cependant je ne possède pas de certification AB.</label>
+          </div>
+          <!--<div class="form-check form-check-inline">
+            <input class="form-check-input qstprod-bio-certifs-ab" type="radio" value="4" 
+              id="qstprod-bio-certifs-nonab" name="qstprod-bio-certifs-ab"
+              <?= isset($currentForm['qstprod-bio-certifs-ab']) && 
+                strcmp($currentForm['qstprod-bio-certifs-ab'], '4') === 0 ? 'checked="checked"' : $neant; ?>>  
+            <label class="form-check-label cet-qstprod-label-text" 
+              for="qstprod-bio-certifs-nonab">Non certifié AB.</label>
+          </div>-->
+        </div>
+        <div class="form-group mb-3">
+          <label class="cet-input-label"><small class="cet-qstprod-label-text"><img src="/res/content/icons/logos-verts-europe-ab.png" height="30" alt="">&#160;&#160;Si vous êtes certifiés AB, veuillez nous indiquer votre organisme de certificationation :</small></label>
+          <select class="form-control" id="qstprod-bio-certifs-ab-org" name="qstprod-bio-certifs-ab-org">
+            <option value="0" selected="selected">-- Aucun organisme de certification AB sélectionné --</option>
+            <?php foreach ($listes_arrays->orgs_certif_bio as $org): ?>
+              <option value="<?= $org; ?>" <?= isset($currentForm['qstprod-bio-certifs-ab-org']) && 
+                strcmp($currentForm['qstprod-bio-certifs-ab-org'], $org) === 0 ? 'selected="selected"' : $neant; ?>><?= $org; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+      </div>
+
       <label class="cet-formgroup-container-label" for="qstprod-nomferme"><small class="form-text">Renseignez vos informations d'adresse d'exploitation :</small></label>
       <div class="cet-formgroup-container">
         <div class="form-group mb-3">
@@ -142,10 +213,14 @@ $currentForm = (isset($_SESSION['signupgen.form']) && isset($_SESSION['signupgen
         <?php endforeach; ?>
         <div class="form-group mb-3">
           <label class="cet-input-label"><small class="cet-qstprod-label-text">Si autre, merci de préciser :</small></label>   
-          <input class="form-control" id="qstprod-activite-production-autre" name="qstprod-activite-production-autre" type="text" 
-            placeholder="Quelle autre activité de production ?"
-            value="<?= isset($currentForm['qstprod-activite-production-autre']) ? $currentForm['qstprod-activite-production-autre'] : $neant; ?>"
-            maxlength="45">
+          <input class="form-control" id="qstprod-activite-production-autre" name="qstprod-activite-production-autre" type="text" maxlength="45"
+            placeholder="Quelle autre activité de production ?"            
+            <?php if ($cntxmdf): ?> 
+              value="<?= $formHelper->getSaisieAutreSiExiste($currentForm['qstprod-besoins-activites'], $listes_arrays->activites); ?>"
+            <?php else: ?>
+              value="<?= isset($currentForm['qstprod-activite-production-autre']) ? $currentForm['qstprod-activite-production-autre'] : $neant; ?>"
+            <?php endif; ?>
+          >
         </div>
         <br>
         <div class="form-group mb-3">
@@ -181,14 +256,19 @@ $currentForm = (isset($_SESSION['signupgen.form']) && isset($_SESSION['signupgen
 
       <div class="row cet-qstprod-btnnav">
         <div class="col text-center">
-          <button class="btn btn-info" type="submit" onmousedown="$('#qstprod-signupgen-nav').val('retour');"
+          <button class="btn cet-navbar-btn" type="submit" onmousedown="$('#qstprod-signupgen-nav').val('retour');"
             id="btn-signupgen-form-retour">Annuler et retour à l'accueil</button>
-          <button class="btn btn-info" type="submit" id="btn-signupgen-form-valider" onmousedown="$('#qstprod-signupgen-nav').val('valider');"><?= CetQstprodConstLibelles::form_valider; ?></button>
+          <button class="btn cet-navbar-btn" type="submit" id="btn-signupgen-form-valider" onmousedown="$('#qstprod-signupgen-nav').val('valider');"><?= CetQstprodConstLibelles::form_valider; ?></button>
         </div>
       </div>
 
       <input type="text" name="cetcal_session_id" id="cetcal_session_id" value="<?= $cetcal_session_id; ?>" hidden="hidden">
-      <input type="text" name="qstprod-signupgen-nav" id="qstprod-signupgen-nav" value="unset" hidden="hidden">
+      <input type="text" name="qstprod-signupgen-nav" id="qstprod-signupgen-nav" 
+        value="unset" hidden="hidden">
+      <input type="text" name="qstprod-signupgen-cntx" id="qstprod-signupgen-cntx" 
+        value="<?= $cntxmdf ? 'mdif' : 'insc'; ?>" hidden="hidden">
+      <input type="text" name="qstprod-signupgen-pkprd" id="qstprod-signupgen-pkprd" 
+        value="<?= $pkprd; ?>" hidden="hidden">
     </form>
   </div>
 </div>

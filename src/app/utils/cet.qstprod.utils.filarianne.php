@@ -27,7 +27,7 @@ Class CetQstProdFilArianneHelper
     {
       if (strcmp($statut, $k) == 0) 
       {
-        CetQstProdFilArianneHelper::$result .= " <span class=\"badge badge-success\" style=\"margin-bottom: 4px; font-size: 14px; font-weight: normal; padding: 6px;\">".CetQstProdFilArianneHelper::$prefix.$v."</span>";
+        CetQstProdFilArianneHelper::$result .= " <span class=\"badge\" style=\"color: white !important; background-color: #DD4215 !important; margin-bottom: 4px; font-size: 14px; font-weight: normal; padding: 6px;\">".CetQstProdFilArianneHelper::$prefix.$v."</span>";
       }
       else
       {

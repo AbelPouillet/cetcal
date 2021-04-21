@@ -6,19 +6,40 @@ $nav = $dataProcessor->processHttpFormData($_POST['qstprod-signupgen-nav']);
 
 try
 {
-  if ($nav == 'valider') $dataProcessor->checkNonNullData(array($_POST['qstprod-mdp'], $_POST['qstprod-mdpconf'], $_POST['qstprod-commune'], $_POST['qstprod-cp']));
-
   $s_email = $dataProcessor->processHttpFormData($_POST['qstprod-email']);
   $s_tfixe = $dataProcessor->processHttpFormData($_POST['qstprod-numbtel-fix']);
   $s_tport = $dataProcessor->processHttpFormData($_POST['qstprod-numbtel-port']);
+  $pk_producteur = $dataProcessor->processHttpFormData($_POST['qstprod-signupgen-pkprd']);
+  $context = $dataProcessor->processHttpFormData($_POST['qstprod-signupgen-cntx']);
 
   if ($nav == 'valider')
-  {
+  {    
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.identifiantcet.php');
     $idHelper = new IdentifiantCETHelper();
     $cetcal_session_id = (isset($_POST['cetcal_session_id']) && !empty($_POST['cetcal_session_id']) && strlen($_POST['cetcal_session_id']) > 0) ? $dataProcessor->processHttpFormData($_POST['cetcal_session_id']) : hash('sha1', $idHelper->generateRandomString().$idHelper->generateRandomString().$idHelper->generateRandomString());
     session_id($cetcal_session_id);
     session_start();
+    $dataProcessor->checkNonNullData(
+      (isset($_SESSION['CONTEXTE_MODIF-GLOBAL']) && $_SESSION['CONTEXTE_MODIF-GLOBAL'] == true) ? 
+        array($_POST['qstprod-commune'], $_POST['qstprod-cp']) : 
+          array($_POST['qstprod-mdp'], $_POST['qstprod-mdpconf'], $_POST['qstprod-commune'], $_POST['qstprod-cp']));
+    
+    /**
+     * Garde fou : si l'email est déjà existant en base de donnée et associé à un compte 
+     * producteur (inscrit ou préinscrit) alors lancement d'exception et signaler.
+     */
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/exceptions/cet.email.deja.present.exception.php');
+    $model = new QSTPRODProducteurModel();
+    $context_mdif_global = isset($_SESSION['CONTEXTE_MODIF-GLOBAL']) && $_SESSION['CONTEXTE_MODIF-GLOBAL'] == true ? true : false;
+    error_log('[CONTROL SIGNUPGEN] verification unicite email='.$s_email.' pk='.$pk_producteur.' cntx='.$context.' cntx_global='.$context_mdif_global);
+    if (($context_mdif_global === false && $model->emailExists($s_email) !== 0) ||
+        ($context_mdif_global === true && $model->emailExistsSurAutrePk($s_email, $pk_producteur) !== 0)) 
+    {
+      $statut = 'signupgen.form';
+      throw new EmailDejaExistantException('Un compte producteur est deja associe a l\'adresse email '.
+        $s_email.' renseigne. Votre demande ne peut aboutir.');
+    }
   }
 
   // Prepare navigation :
@@ -68,19 +89,23 @@ try
     $form_nombre_heuressemaine = $dataProcessor->processHttpFormData($_POST['qstprod-nbrheuressemaine']);
     $form_cagette = $dataProcessor->processHttpFormData($_POST['qstprod-cagette']);
 
+    $form_certif_ab = $dataProcessor->processHttpFormData($_POST['qstprod-bio-certifs-ab']);
+    $form_certif_org = $dataProcessor->processHttpFormData($_POST['qstprod-bio-certifs-ab-org']);
+
     // Construct new DTO object :
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signupgen.dto.php');
     $dtoQstGeneralesProd = new QstProdGeneraleDTO($form_obl_nom, $form_obl_prenom,
       $form_obl_email, $form_obl_mdp_hash,
       $form_telfix, $form_telport, $form_obl_nomferme, $form_obl_siret, $form_adr_numvoie, $form_adr_rue,
       $form_adr_lieudit, $form_adr_commune, $form_adr_cp, $form_adr_cmpladr, $form_pagefb, $form_pageig,
-      $form_pagetwitter, $form_siteweb, $form_boutiquewww, "" /* org certif bio deprecated */,
+      $form_pagetwitter, $form_siteweb, $form_boutiquewww, $form_certif_org,
       $form_typeprod, $form_typeprod_autre, $form_surfacepc, $form_surfaceserre, $form_nbrtetes, $form_hectolitresparan,
       $form_sondage_difficultes, $form_sondage, $form_cagette, "identifiantcet",
-      $form_nombre_postes, $form_nombre_saisonniers, $form_nombre_heuressemaine);
+      $form_nombre_postes, $form_nombre_saisonniers, $form_nombre_heuressemaine, $form_certif_ab);
     $_SESSION['signupgen.form'] = serialize($dtoQstGeneralesProd);
 
     $_SESSION['signupgen.form.post'] = $_POST;
+    $_SESSION['CONTEXTE_MODIF-signupgen'] = false;
     session_write_close();
 
     // Apply navigation :
@@ -95,8 +120,16 @@ try
 
   exit;
 }
+catch (EmailDejaExistantException $eDEe) 
+{
+  error_log('[CONTROL SIGNUPGEN EmailDejaExistantException] '.$eDEe->getMessage());
+  session_write_close();
+  header('Location: /?statut='.$statut.'&err=eused&uemail='.$s_email.'&sitkn='.$cetcal_session_id);
+  exit();
+}
 catch (Exception $e)
 {
+  error_log('[CONTROL SIGNUPGEN Exception] '.$e->getMessage());
   session_write_close();
   header('Location: /src/app/controller/cet.qstprod.controller.generique.erreure.php/?err='.$e->getMessage());
   exit;

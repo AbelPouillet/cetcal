@@ -15,17 +15,29 @@ class CETCALModel
    * SQL query library.
    */
   private $querylib;
+
+  /**
+   * Advanced lookup SQL query library.
+   */
+  private $lookupsQuerylib;
+
+  /**
+   * SQL transactions library.
+   */
+  private $transactionlib;
   
   function __construct() 
   {
     $this->setConnection();
     require_once('cet.qstprod.querylibrary.php');
+    require_once('cet.qstprod.querytransactionlibrary.php');
+    require_once('cet.annuaire.querylibrary.advanced.php');
+
     $this->querylib = new CETCALQueryLibrary();
+    $this->transactionlib = new CETCALTransactionsLibrary();
+    $this->lookupsQuerylib = new CETCALAdvancedQueryLibrary();
   }
 
-  /*
-   * 
-   */
   private function setConnection() 
   {
     require_once('cet.qstprod.pdoconnector.php');
@@ -38,9 +50,6 @@ class CETCALModel
     $this->cnxdb = null;
   }
 
-  /*
-   *
-   */
   public function getCnxdb() 
   {
     return $this->cnxdb;
@@ -49,6 +58,16 @@ class CETCALModel
   public function getQueryLib()
   {
     return $this->querylib;
+  }
+
+  public function getTransacLib()
+  {
+    return $this->transactionlib;
+  }
+
+  public function getLookupsLib()
+  {
+    return $this->lookupsQuerylib;
   }
 
   function getClientIP() 

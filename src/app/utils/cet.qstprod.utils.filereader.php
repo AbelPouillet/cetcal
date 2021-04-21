@@ -24,6 +24,18 @@ Class FileReaderUtils
     }
   }
 
+  public function readFromCannonicalPath($cannonicalPath)
+  {
+    if (file_exists($cannonicalPath))
+    {
+      $this->temp = array();
+      $file = fopen($cannonicalPath, "r");
+      while(!feof($file)) array_push($this->temp, trim(fgets($file)));
+      fclose($file);
+      return $this->temp;
+    }
+  }
+
   public function readWithKV($fileName, $pSortAlphabetique = false)
   {
     if (file_exists($this->doc_root.$this->PHP_FILES_PATH.$fileName))
@@ -94,6 +106,14 @@ Class FileReaderUtils
       fclose($file);
       return $this->temp;
     }
+  }
+
+  public function listFiles($dir)
+  {
+    $files = array_diff(scandir($dir), array('.', '..'));
+    $tmp = array();
+    foreach ($files as $file) array_push($tmp, $dir.'/'.$file);
+    return $tmp;
   }
 
   /** **********************************************************************************

@@ -8,7 +8,59 @@ require_once('cet.qstprod.querylibrary.php');
 class QSTPRODSondageProducteurModel extends CETCALModel 
 {
   
-  public function createSondages($pPK, $pInfoGeneralesDto) 
+  public function gestionEnvoiQstprod($pPK, $pInfoGeneralesDto, $contextMdifGlobal, $pk_mdif)
+  {
+    $this->createSondages($contextMdifGlobal ? $pk_mdif : $pPK, $pInfoGeneralesDto);
+  }
+
+  /**
+   * Utilise this fetchSondage.
+   * Pour chaque entrée, reconstruire la valeur nécessaire au formalaire signupgen.form.php
+   */
+  public function fetchSondageKVAsString($pk)
+  {
+    $data = $this->fetchSondage($pk);
+    $res = array();
+    foreach ($data as $kv) array_push($res, $kv['clef_question'].';'.$kv['reponse']);
+
+    return $res;
+  }
+
+  /**
+   * La param $data = array retourné par this fetchSondage.
+   * Si une clé réponse est présente dans l'array clé/valeure à l'index i alors
+   * la valeur (index clé/valeur 1) est retounée. 
+   */ 
+  public function getReponseParClef($data, $clef)
+  {
+    foreach ($data as $values) 
+    {
+      $kv = explode(';', $values);
+      if (strcmp($kv[0], $clef) === 0) return ''.$kv[1];
+    }
+    return '';
+  }
+
+  /**
+   * Retourne un array des entrées cetcal_sondage pour une
+   * Clé étrangère (primaire producteur) de producteur.
+   */
+  public function fetchSondage($pk)
+  {
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_CETCAL_PRODUCTEUR_SONDAGE_BY_PK);
+    $stmt->bindParam(":pPk_producteur", $pk, PDO::PARAM_INT);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+
+    return $data;
+  }
+
+  /* *************************************************************************************************
+   * fonctions privées.
+   */
+  
+  private function createSondages($pPK, $pInfoGeneralesDto) 
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signupgen.dto.php');
     $dtoinfos = new QstProdGeneraleDTO();

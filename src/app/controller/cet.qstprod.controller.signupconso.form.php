@@ -37,6 +37,7 @@ try
   $_SESSION['signupconso.form'] = serialize($consoDto);
 
   $_SESSION['signupconso.form.post'] = $_POST;
+  $_SESSION['CONTEXTE_MODIF-signupconso'] = false;
   session_write_close();
   /* *****************************************************************************/
 

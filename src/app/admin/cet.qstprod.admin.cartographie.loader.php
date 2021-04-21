@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7;
 class CETCALCartographieLoader
 {
   
-  const TYPES_ENTITES_A_CARTOGRAPHIER = ['marche'];
+  const TYPES_ENTITES_A_CARTOGRAPHIER = ['marche', 'mbio', 'amap'];
 
   function __construct() {}
 
@@ -28,6 +28,7 @@ class CETCALCartographieLoader
       if ($model->existsEntite($entiteDto->getPk()))
       {
         $latLng = $model->getLatLngEntite($entiteDto->getPk());
+        if (strcmp($latLng[0], 'ERROR') === 0 || strcmp($latLng[0], 'ERROR') === 0) continue;
         $entiteDto->setLatLng($latLng['cetcal_prd_lat'], $latLng['cetcal_prd_lng']);
       }
       else
@@ -35,7 +36,7 @@ class CETCALCartographieLoader
         try
         {
           $client = new Client();
-          $response = $client->get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$entiteDto->adresse.'.json?limit=1&country=FR&access_token=pk.eyJ1IjoiY2V0Y2FsIiwiYSI6ImNrYzllZ2ZyczEzeTAyd3BoYjBiMTJ2bzMifQ.QdHZsjNjHQ_LQbMOGfbceQ', 
+          $response = $client->get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$entiteDto->adresse.'.json?limit=1&country=FR&access_token=pk.eyJ1IjoiY2V0Y2FsbWFwYm94IiwiYSI6ImNrbTBiOXN4czNsM3oyb253dzhqNnptMG0ifQ.IW-3RkU6unL_6pAry6tLbg', 
             ['synchronous' => true]);
           $latLng = $this->forwardGeocoderMapbox(json_decode($response->getBody()->getContents()));
           $model->insertEntite($latLng, $entiteDto->getPk());
@@ -43,7 +44,8 @@ class CETCALCartographieLoader
         }
         catch (Exception $e)
         {
-          error_log("CETCAL.CETCALCartographieLoader: error loading geocodes for pk_entite=".$entiteDto->getPk(), 0);
+          $model->insertEntite(['ERROR', 'ERROR'], $entiteDto->getPk());
+          error_log("[CETCAL.CETCALCartographieLoader] error loading geocodes for pk_entite=".$entiteDto->getPk()." error=".$e->getMessage(), 0);
         }
       }
     }
@@ -88,7 +90,7 @@ class CETCALCartographieLoader
       }
       catch (Exception $e)
       {
-        error_log("CETCAL.CETCALCartographieLoader: error loading geocodes for commune=".$row['libelle']."... .. ... .. .".$e->getMessage());
+        error_log("[CETCAL.CETCALCartographieLoader] error loading geocodes for commune=".$row['libelle']."... .. ... .. .".$e->getMessage());
       }
     }
 
@@ -109,6 +111,7 @@ class CETCALCartographieLoader
       if ($model->exists($prdDto->getPk()))
       {
         $latLng = $model->getLatLng($prdDto->getPk());
+        if (strcmp($latLng[0], 'ERROR') === 0 || strcmp($latLng[0], 'ERROR') === 0) continue;
         $prdDto->setLatLng($latLng['cetcal_prd_lat'], $latLng['cetcal_prd_lng']);
       }
       else
@@ -123,15 +126,17 @@ class CETCALCartographieLoader
           error_log("[CETCALCartographieLoader] adresse producteur definie pour geoloc(pk=".$prdDto->getPk().")=".$adr);
           if (empty($adr) || strlen($adr) <= 5) continue;
           $client = new Client();
-          $response = $client->get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$adr.'.json?limit=1&country=FR&access_token=pk.eyJ1IjoiY2V0Y2FsIiwiYSI6ImNrYzllZ2ZyczEzeTAyd3BoYjBiMTJ2bzMifQ.QdHZsjNjHQ_LQbMOGfbceQ', 
+          $response = $client->get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$adr.'.json?limit=1&country=FR&access_token=pk.eyJ1IjoiY2V0Y2FsbWFwYm94IiwiYSI6ImNrbTBiOXN4czNsM3oyb253dzhqNnptMG0ifQ.IW-3RkU6unL_6pAry6tLbg', 
             ['synchronous' => true]);
           $latLng = $this->forwardGeocoderMapbox(json_decode($response->getBody()->getContents()));
           $model->insert($latLng, $prdDto->getPk());
           $prdDto->setLatLng($latLng[0], $latLng[1]);
-        }
+        } 
         catch (Exception $e)
         {
-          error_log("CETCAL.CETCALCartographieLoader: error loading geocodes for pk_producteur=".$prdDto->getPk(), 0);
+          error_log("[CETCAL.CETCALCartographieLoader] error loading geocodes for pk_producteur=".$prdDto->getPk()." error=".$e->getMessage(), 0);
+          $model->insert(['ERROR', 'ERROR'], $prdDto->getPk());
+          $prdDto->setLatLng($latLng[0], $latLng[1]);
         }
       }
     }

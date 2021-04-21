@@ -14,10 +14,12 @@ input.copier-element-presse-papier-input[disabled="disabled"] { background-color
   box-shadow: 0 0px 12px -6px #222;
 }
 .navbar a.cet-p, a.dropdown-item { 
-  font-family: 'Courgette', cursive; 
+  font-family: 'Courgette' !important;
   color: #DD4215 !important; 
 }
+a.cet-p { color: #DD4215 !important; font-family: 'Signika' !important; }
 .navbar a.cet-p:hover, .cet-footer a.cet-p:hover { color: #DD4215 !important; }
+li.cet-footer-li { background-color: white !important; }
 .cet-footer { 
   border-top: 1px solid lightgrey !important; 
   background-color: rgb(252,255,255) !important;
@@ -30,15 +32,31 @@ input.copier-element-presse-papier-input[disabled="disabled"] { background-color
   color: #6C3012 !important; 
   font-family: 'Signika', sans-serif;
 } 
-.navbar a.cet-navbar-btn { font-family: 'Courgette', cursive; color: white !important; font-size: 18px; }
-.navbar a.cet-navbar-btn-small, button.cet-navbar-btn-small { 
-  font-family: 'Courgette', cursive;
+.cet-bloc {
+  background-color: #CAE3EE !important;
+  font-family: 'Signika', sans-serif;
+color: #6C3012 !important;
+}
+a.cet-navbar-btn, button.cet-navbar-btn { 
+  font-family: 'Signika' !important;
+  color: white !important; 
+  font-size: 18px; 
+  background-color: #DD4215 !important;
+}
+a.cet-navbar-btn-small, button.cet-navbar-btn-small { 
+  font-family: 'Signika' !important;
   color: white !important; 
   font-size: 16px;
   margin-right: 4px;
   margin-bottom: 8px;
 }
-.cet-footer a.cet-p, small.cet-email-tag { font-family: 'Courgette', cursive; color: #DD4215 !important; }
+span.cet-prepend-span {
+  font-family: 'Signika' !important;
+  font-size: 16px !important;
+  margin-bottom: 8px;
+}
+.cet-footer a.cet-p, small.cet-email-tag { font-family: 'Signika' !important,
+ cursive; color: white !important; }
 button.margin-80-infeq-700 { margin-top: 80px !important; }
 /** END style Fanny ********************/
 /***************************************/
@@ -62,17 +80,47 @@ div.mandatory-cbx-group {
 .cet-carte-info .card-header { font-family: 'Courgette', cursive; font-weight: bold; color: #DD4215 !important; }
 span.cet-r-q { background-color: yellow !important; font-style: italic; }
 div.row { margin-left: 0px !important; margin-right: 0px !important; }
-.cet-formgroup-container { background-color: rgb(250, 250, 250); border: 1px solid lightgrey; border-radius: 4px; padding: 16px; margin-bottom: 20px; }
-.cet-accordion { background-color: rgb(250, 250, 250); border: 1px solid lightgrey; border-radius: 4px; margin-bottom: 20px; }
+.cet-formgroup-container { 
+  background-color: #CAE3EE !important;
+font-family: 'Signika', sans-serif;
+color: #6C3012 !important;
+border: 1px solid lightgrey; border-radius: 4px; padding: 16px; margin-bottom: 20px;
+/*background-color: rgb(250, 250, 250); border: 1px solid lightgrey; border-radius: 4px; padding: 16px; margin-bottom: 20px;*/
+}
+.list-group-item {
+  background-color: #CAE3EE !important;
+}
+label { font-family: 'Signika', sans-serif;
+color: #6C3012 !important; }
+.cet-table * { font-family: 'Signika', sans-serif;
+color: #6C3012 !important; }
+.cet-fil-arianne * { font-family: 'Signika', sans-serif;
+color: #6C3012 !important; }
+.cet-accordion { 
+  /*background-color: rgb(250, 250, 250);*/
+  background-color: #CAE3EE !important;
+font-family: 'Signika', sans-serif;
+color: #6C3012 !important; border: 1px solid lightgrey; border-radius: 4px; margin-bottom: 20px; }
 .cet-formgroup-inner-container { background-color: rgb(255, 255, 255) !important; }
 /** libellés de block : **/
-label.cet-formgroup-container-label { color: rgb(30, 40, 30); font-size: 18px; }
+label.cet-formgroup-container-label { 
+  /*color: rgb(30, 40, 30); font-size: 18px; */
+  font-family: 'Signika', sans-serif;
+color: #6C3012 !important;font-size: 18px;
+}
+
 button.cet-recherche-produit-element-btn { margin-left: 2px; }
-.cet-qstprod-label-text { color: rgb(70, 80, 40); }
-.cet-input-label { margin-left: 8px; }
+.cet-qstprod-label-text { 
+/*color: rgb(70, 80, 40);*/
+font-family: 'Signika', sans-serif;
+color: #6C3012 !important }
+.cet-input-label { 
+  font-family: 'Signika', sans-serif;
+color: #6C3012 !important;margin-left: 8px; }
 .cet-idcetwww-char { margin-bottom: 4px; font-size: 26px; font-weight: normal; padding: 6px; }
 .cet-qstprod-btnnav { margin-top: 20px; }
-.cet-accordion-icon { color: #5cb85c; float: right; font-size:28px; margin-left: 12px; }
+.cet-accordion-icon { 
+  color: #5cb85c; float: right; font-size:28px; margin-left: 12px; }
 .cet-accordion-icon:hover { color: #28a745; }
 .cet-accordion-badge { 
   background-color: #5cb85c; font-size: 16px; font-weight: lighter; padding: 6px; 
@@ -111,10 +159,12 @@ label { margin-left: 4px !important; }
 .cet-footer p:last-child {
   margin-bottom: 0;
 }
-p.cet-p, a.cet-p { color: rgb(34, 139, 34) !important; }
-span.cet-span { color: gray !important; padding-left: 12px; }
-a.cet-p:hover { color: rgb(34, 100, 34) !important; }
+p.cet-p, a.cet-p { color: #6C3012 !important; }
+span.cet-span { color: #6C3012 !important; padding-left: 12px; }
+/*a.cet-p:hover { color: rgb(34, 100, 34) !important; }*/
 span.cet-span-link { color: rgb(2, 117, 216); }
+p.cet-a-type-link { color: rgb(2, 117, 216); }
+p.cet-a-type-link:hover { cursor: pointer; }
 span.cet-span-link:hover { cursor: pointer; }
 p.cet-p-link:hover { cursor: pointer; }
 span.cet-qstprod-produit-type { 
@@ -214,7 +264,7 @@ tr.cetcal-producteur-listing-head-tr th {
 }
 td.prd-listing-nom-ferme {
   font-family: 'Courgette', cursive;
-  color: green !important;
+  color: #DD4215 !important;
   font-weight: lighter !important;
   text-align: center;
   vertical-align: middle;
@@ -230,8 +280,8 @@ span.prd-listing-mat-prd {
 /***********************************************************************************************
  * block, producteur.e.s derniers inscrits */
 span.prd-a-lhonneur-denomination {
-  font-family: 'Courgette', cursive;
-  color: #DD4215 !important;
+/*  font-family: 'Courgette', cursive;
+  color: #DD4215 !important;*/
   font-weight: lighter !important;
   font-size: 18px;
   padding-left: 8px;
@@ -242,7 +292,64 @@ span.prd-a-lhonneur-denomination {
 }
 span.prd-a-lhonneur-denomination:hover {
   cursor: pointer;
-  background-color: rgba(247,255,0,0.8);
+  background-color: #DD4215;
+  color: white;
   border-radius: 5px;
 }
 /***********************************************************************************************/
+div.cetcal-recette-header:hover {
+  cursor: pointer !important;
+}
+table.cetcal-table-producteurs-recette td {
+  padding: 0px !important;
+}
+table#cetcal-admin-producteurs td {
+  padding: 0px !important; 
+  padding-left: 3px !important;
+}
+table#cetcal-admin-producteurs th {
+  padding: 0px !important; 
+  padding-left: 3px !important;
+  text-align: left;;
+}
+
+/******** ESPACE PRODUCTEUR ***************************************/
+div#espace-prd-media-listing {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+button.espace-prd-media-element-btn {
+  border: 1px solid lightgrey;
+  margin: 16px;
+}
+span.espace-prd-media-element-delete-btn {
+  float: right; margin-right: -6px;
+}
+span.espace-prd-media-element-desc {
+  float: left;
+  margin-left: -8px;
+}
+.custom-file-label::after {
+  content: "..." !important;
+}
+form.cet-file-upload-dropzone {
+  background-color: white;
+  border: 1px dashed rgb(30,40,30);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: inherit;
+}
+div.dz-preview.dz-image-preview {
+  background-color: inherit !important;
+}
+div.cet-file-upload-dropzone-bloc {
+  padding: 0px !important;
+  color: rgb(30,40,30) !important;
+}
+div.dz-message {
+  margin: 0px !important;
+  text-align: left !important;
+}
+/******************************************************************/

@@ -8,9 +8,11 @@ $data = $controller->fetchProducteursDerniersInscrit(5);
 <!-- login & signup html forms -->
 <div class="cet-module row justify-content-lg-center" style="margin-bottom: 6px;">
   <div class="col-lg-9">
-    <div class="alert alert-light cet-borderless-alert" role="alert" style="color: rgb(50,70,50);">
-      <h4 class="alert-heading"><i class="far fa-thumbs-up fa-2x" style="color: #28a745; margin-bottom: -6px !important;"></i> Les derniers Producteur.e.s inscrits à ce jour :</h4>     
-      <table>
+    <div class="alert alert-light cet-bloc cet-borderless-alert" role="alert" style="background-color: white !important;">    
+      <table class="table bordered-table">
+        <tr>
+          <td colspan="2" style="border-top: none !important;"><h4 class="alert-heading"><i class="far fa-thumbs-up fa-2x" style="color: #17a2b8;"></i> Les derniers Producteur.e.s inscrits à ce jour :</h4></td>
+        </tr>
         <?php foreach ($data as $prdDto): ?>
           <?php 
             $adr = $prdDto->prodInscrit === 'false' ? $prdDto->adrfermeLtrl : 
@@ -18,13 +20,13 @@ $data = $controller->fetchProducteursDerniersInscrit(5);
               $prdDto->adrCommune.' '.$prdDto->adrCodePostal.' '.$prdDto->adrComplementAdr);
           ?>
           <tr class="prd-a-lhonneur-row">
-            <td>
+            <td class="w-25">
               <span class="prd-a-lhonneur-denomination" onmousedown="cartographieFlyTo('<?= $prdDto->getLatLng(); ?>','/');">
                 <?= html_entity_decode($utils->formatDenominationUpperCases(trim($prdDto->nomferme))); ?>                   
               </span>
             </td>
             <!--<td><i class="fas fa-directions fa-2x" style="color: #DD4215 !important;"></i></td>-->
-            <td>
+            <td class="w-75">
               &#160;<?= trim($adr); ?>, (<?= $utils->formatTypesProduction($prdDto->typeDeProduction); ?>).
             </td>
           </tr>

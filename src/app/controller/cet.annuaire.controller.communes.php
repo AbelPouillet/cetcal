@@ -1,5 +1,5 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.communes.model.php');
 $model = new CETCALCommunesModel();
-$data = $model->selectAllGeolocSet();
+$data = $model->selectAllGeolocSetByCodeDept(["33", "24"]);
 echo json_encode($data);

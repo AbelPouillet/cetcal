@@ -82,6 +82,7 @@ try
   $_SESSION['signupprods.form'] = serialize($dtoProdProduits);
 
   $_SESSION['signupprods.form.post'] = $_POST;
+  $_SESSION['CONTEXTE_MODIF-signupprods'] = false;
   session_write_close();
   /* *****************************************************************************/
 

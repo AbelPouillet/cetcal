@@ -1,8 +1,8 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.qstprod.const.textes.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signupbesoins.dto.php');
 $neant = '';
 $currentForm = isset($_SESSION['signupbesoins.form.post']) ? $_SESSION['signupbesoins.form.post'] : array();
+$cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signupbesoins']) ? $_SESSION['CONTEXTE_MODIF-signupbesoins'] : false;
 ?>
 <!-- singup besoins html form -->
 <div class="row justify-content-lg-center">
@@ -34,9 +34,13 @@ $currentForm = isset($_SESSION['signupbesoins.form.post']) ? $_SESSION['signupbe
         <div class="form-group mb-3">
           <label class="cet-input-label"><small class="cet-qstprod-label-text">Si autre, merci de préciser :</small></label>   
           <input class="form-control" id="qstprod-solprod-autre" name="qstprod-solprod-autre" type="text" 
-            placeholder="Autre ? Merci de préciser"
-            value="<?= isset($currentForm['qstprod-solprod-autre']) ? $currentForm['qstprod-solprod-autre'] : $neant; ?>"
-            maxlength="128">
+            placeholder="Autre ? Merci de préciser" maxlength="128"
+            <?php if ($cntxmdf): ?> 
+              value="<?= $formHelper->getSaisieAutreSiExiste($currentForm['qstprod-besoins-solsprods'], $listes_arrays->solidaires_producteurs); ?>"
+            <?php else: ?>
+              value="<?= isset($currentForm['qstprod-solprod-autre']) ? $currentForm['qstprod-solprod-autre'] : $neant; ?>"
+            <?php endif; ?>
+          >
         </div>
 
         <br>
@@ -46,12 +50,16 @@ $currentForm = isset($_SESSION['signupbesoins.form.post']) ? $_SESSION['signupbe
         <div class="input-group mb-3">
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="qstprod-question-reseaux-participation-oui" 
-              name="qstprod-question-reseaux-participation" value="oui" checked="checked">
+              name="qstprod-question-reseaux-participation" value="oui" 
+              <?= isset($currentForm['qstprod-question-reseaux-participation']) && strcmp($currentForm['qstprod-question-reseaux-participation'], 'oui') === 0 ? 
+              'checked="checked"' : $neant; ?>>
             <label class="form-check-label" for="qstprod-question-reseaux-participation-oui">Oui, je souhaite participer à ce type d'actions</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="qstprod-question-reseaux-participation-non" 
-              name="qstprod-question-reseaux-participation" value="non">
+              name="qstprod-question-reseaux-participation" value="non"
+              <?= isset($currentForm['qstprod-question-reseaux-participation']) && strcmp($currentForm['qstprod-question-reseaux-participation'], 'non') === 0 ? 
+              'checked="checked"' : $neant; ?>>
             <label class="form-check-label" for="qstprod-question-reseaux-participation-non">Non merci</label>
           </div>
         </div>
@@ -72,9 +80,13 @@ $currentForm = isset($_SESSION['signupbesoins.form.post']) ? $_SESSION['signupbe
         <div class="form-group mb-3">
           <label class="cet-input-label"><small class="cet-qstprod-label-text">Si autre, merci de préciser :</small></label>   
           <input class="form-control" id="qstprod-action-autre" name="qstprod-action-autre" type="text" 
-            placeholder="Autre ? Merci de préciser"
-            value="<?= isset($currentForm['qstprod-action-autre']) ? $currentForm['qstprod-action-autre'] : $neant; ?>"
-            maxlength="128">
+            placeholder="Autre ? Merci de préciser" maxlength="128"
+            <?php if ($cntxmdf): ?> 
+              value="<?= $formHelper->getSaisieAutreSiExiste($currentForm['qstprod-besoins-actions'], $listes_arrays->solidaires_actions); ?>"
+            <?php else: ?>
+              value="<?= isset($currentForm['qstprod-action-autre']) ? $currentForm['qstprod-action-autre'] : $neant; ?>"
+            <?php endif; ?>
+          >
         </div>
       </div>
     
@@ -99,9 +111,13 @@ $currentForm = isset($_SESSION['signupbesoins.form.post']) ? $_SESSION['signupbe
         <div class="form-group mb-3">
           <label class="cet-input-label"><small class="cet-qstprod-label-text">Si autre, merci de préciser :</small></label>   
           <input class="form-control" id="qstprod-grouperes-autre" name="qstprod-grouperes-autre" type="text" 
-            placeholder="Autre ? Merci de préciser"
-            value="<?= isset($currentForm['qstprod-grouperes-autre']) ? $currentForm['qstprod-grouperes-autre'] : $neant; ?>"
-            maxlength="128">
+            placeholder="Autre ? Merci de préciser" maxlength="128"
+            <?php if ($cntxmdf): ?> 
+              value="<?= $formHelper->getSaisieAutreSiExiste($currentForm['qstprod-besoins-groupesres'], $listes_arrays->solidaires_groupe_resilience); ?>"
+            <?php else: ?>
+              value="<?= isset($currentForm['qstprod-grouperes-autre']) ? $currentForm['qstprod-grouperes-autre'] : $neant; ?>"
+            <?php endif; ?>
+          >
         </div>
       </div>
       <!-- ------------------------ -->
@@ -110,9 +126,9 @@ $currentForm = isset($_SESSION['signupbesoins.form.post']) ? $_SESSION['signupbe
 
       <div class="row cet-qstprod-btnnav">
         <div class="col text-center">
-          <button class="btn btn-info" type="submit" onmousedown="$('#qstprod-signupbesoins-nav').val('retour');"
+          <button class="btn cet-navbar-btn" type="submit" onmousedown="$('#qstprod-signupbesoins-nav').val('retour');"
             id="btn-signupbesoins.form-retour"><?= CetQstprodConstLibelles::form_retour; ?></button>
-          <button class="btn btn-info" type="submit" onmousedown="$('#qstprod-signupbesoins-nav').val('valider');"
+          <button class="btn cet-navbar-btn" type="submit" onmousedown="$('#qstprod-signupbesoins-nav').val('valider');"
             id="btn-signupbesoins.form-valider"><?= CetQstprodConstLibelles::form_valider; ?></button>
         </div>
       </div>

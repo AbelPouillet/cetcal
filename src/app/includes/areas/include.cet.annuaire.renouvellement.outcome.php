@@ -7,7 +7,7 @@
           intval($obl) === CetConnectionConst::RENOUVELLEMENT_MDP_PRD_OK)): ?>
   <div class="row justify-content-lg-center" id="cetcal-obl-done">
     <div class="col-lg-9">
-      <div class="alert alert-success" role="alert">
+      <div class="alert cet-bloc" role="alert">
         <h4 class="alert-heading">Demande traitée avec succès.</h4>
         <p>Un mot de passe vient de vous être envoyé par email à l'adresse <b><?= $usr_identifiant; ?></b></p>
         <hr>
@@ -23,14 +23,14 @@
               intval($obl) !== CetConnectionConst::RENOUVELLEMENT_MDP_UTSR_OK): ?>
   <div class="row justify-content-lg-center" id="cetcal-obl-not-done">
     <div class="col-lg-9">
-      <div class="alert alert-warning" role="alert">
+      <div class="alert cet-bloc" role="alert">
         <h4 class="alert-heading">Les informations renseignées ne permettent pas de traiter votre demande.</h4>
         <p>Votre email est inconnu. Demande de renouvellement de mot de passe refusée pour l'adresse <b><?= $usr_identifiant; ?></b></p>
         <ul>
           <li>
             Vous êtes <b>Producteur.e</b> et vous souhaitez bénéficier d'un soutient informatique (aide informatique ou à l'inscription et au référencement, autre) ? Cliquer ci-dessous :
             <br>
-            <a href="#" class="btn btn-info" style="font-family: Courgette; margin-top: 10px;">Je suis Producteur et souhaite être aidé dans mes démarches</a>
+            <a href="#" class="btn cet-navbar-btn" style="font-family: Courgette; margin-top: 10px;">Je suis Producteur et souhaite être aidé dans mes démarches</a>
           </li>
         </ul>
         <hr>
@@ -50,3 +50,4 @@
     //$('#cetcal-obl-not-done').hide('slow');
   }, 1000 * 5);
 </script>
+<div style="margin-top: 36px;"></div>

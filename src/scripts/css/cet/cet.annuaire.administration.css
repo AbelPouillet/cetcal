@@ -24,3 +24,48 @@ td.cetcal-admin-table-td {
 	white-space: normal !important; 
   	word-wrap: break-word;  
 }
+
+td.admin-producteur-wordbreakable {
+  word-break: break-all;
+}
+
+/******** ESPACE MEDIA ENTITES ***************************************/
+div#espace-entite-media-listing {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+button.entite-media-element-btn {
+  border: 1px solid lightgrey;
+  margin: 16px;
+}
+span.entite-media-element-delete-btn {
+  float: right; margin-right: -6px;
+}
+span.entite-media-element-desc {
+  float: left;
+  margin-left: -8px;
+}
+.custom-file-label::after {
+  content: "..." !important;
+}
+form.cet-file-upload-dropzone {
+  background-color: white;
+  border: 1px dashed rgb(30,40,30);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: inherit;
+}
+div.dz-preview.dz-image-preview {
+  background-color: inherit !important;
+}
+div.cet-file-upload-dropzone-bloc {
+  padding: 0px !important;
+  color: rgb(30,40,30) !important;
+}
+div.dz-message {
+  margin: 0px !important;
+  text-align: left !important;
+}
+/******************************************************************/

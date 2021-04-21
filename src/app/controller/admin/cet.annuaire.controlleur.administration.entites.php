@@ -49,7 +49,7 @@ class AdminEntitesCastillonnaisController extends AnnuaireController
     }
     catch (Exception $e) 
     {
-      var_dump($e);
+      error_log($e->getMessage());
       return false;
     }
 
@@ -95,10 +95,19 @@ class AdminEntitesCastillonnaisController extends AnnuaireController
       require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.entites.model.php');
       $model = new CETCALEntitesModel();
       $model->updateEntite($data);
+
+      /**
+       * Si update n'a pas levée d'exception alors, vider la carto pour cette entite
+       * afin de prendre en charge de manière transparente un changement d'adresse (si
+       * changement d'adresse avéré ou non >> dans tous les cas).
+       */
+      require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.cartographie.model.php');
+      $model = new CETCALCartographieModel();
+      $model->deleteEntite($data['admin-pk-entite']);
     }
     catch (Exception $e) 
     {
-      var_dump($e);
+      error_log($e->getMessage());
       return false;
     }
 
@@ -122,7 +131,7 @@ class AdminEntitesCastillonnaisController extends AnnuaireController
     }
     catch (Exception $e) 
     {
-      var_dump($e);
+      error_log($e->getMessage());
       return false;
     }
 
@@ -139,7 +148,7 @@ class AdminEntitesCastillonnaisController extends AnnuaireController
     }
     catch (Exception $e) 
     {
-      var_dump($e);
+      error_log($e->getMessage());
     }
     return false;
   }
@@ -154,7 +163,7 @@ class AdminEntitesCastillonnaisController extends AnnuaireController
     }
     catch (Exception $e) 
     {
-      var_dump($e);
+      error_log($e->getMessage());
     }
     return false;
   }

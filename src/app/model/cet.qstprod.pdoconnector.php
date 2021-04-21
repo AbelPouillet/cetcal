@@ -11,16 +11,16 @@ class CETCALPDOConnector {
   private $DNS_prod;
   private $LOG_prod;
   private $PWD_prod;
-  private $production = true;
+  private $production = false;
 
   function __construct() 
   {
     $this->DNS = 'mysql:host=127.0.0.1;dbname=cetcal;charset=utf8';
-    $this->LOG = 'root';
+    $this->LOG = 'paul';
     $this->PWD = 'root';
     $this->DNS_prod = 'mysql:host=;port=;dbname=;charset=utf8';
-    $this->LOG_prod = 'thomas';
-    $this->PWD_prod = 'thomas';
+    $this->LOG_prod = '';
+    $this->PWD_prod = '';
   }
 
   function getPdoConnexion() 

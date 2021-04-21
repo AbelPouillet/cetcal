@@ -8,14 +8,23 @@ require_once('cet.qstprod.querylibrary.php');
 class QSTPRODProduitsModel extends CETCALModel 
 {
   
-  public function createProduits($pPK, $pProduitsDto) 
+  public function gestionEnvoiQstprod($pPK, $pProduitsDto, $contextMdifGlobal, $pk_mdif)
+  {
+    $this->createProduits($contextMdifGlobal ? $pk_mdif : $pPK, $pProduitsDto);
+  }
+
+  /* *************************************************************************************************
+   * fonctions privées.
+   */
+
+  private function createProduits($pPK, $pProduitsDto) 
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signupprods.dto.php');
     $dtoproduits = new QstProduitDTO();
     $dtoproduits = unserialize($pProduitsDto);
     $pks_produits = array();
     
-    if (isset($dtoproduits->legumeAutre) && strlen($dtoproduits->legumeAutre) > 0) array_push($dtoproduits->legumes, "/;".$dtoproduits->legumeAutre);
+    if (isset($dtoproduits->legumeAutre) && strlen($dtoproduits->legumeAutre) > 0) array_push($dtoproduits->legumes, "pl01;".$dtoproduits->legumeAutre);
     $cat = "legume";
     foreach ($dtoproduits->legumes as $legume) 
     {
@@ -23,12 +32,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->viandeAutre) && strlen($dtoproduits->viandeAutre) > 0) array_push($dtoproduits->viandes, "/;".$dtoproduits->viandeAutre);
+    if (isset($dtoproduits->viandeAutre) && strlen($dtoproduits->viandeAutre) > 0) array_push($dtoproduits->viandes, "pv01;".$dtoproduits->viandeAutre);
     $cat = "viande";
     foreach ($dtoproduits->viandes as $viande) 
     {
@@ -36,12 +46,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->laitierAutre) && strlen($dtoproduits->laitierAutre) > 0) array_push($dtoproduits->laitiers, "/;".$dtoproduits->laitierAutre);
+    if (isset($dtoproduits->laitierAutre) && strlen($dtoproduits->laitierAutre) > 0) array_push($dtoproduits->laitiers, "pla1;".$dtoproduits->laitierAutre);
     $cat = "laitier";
     foreach ($dtoproduits->laitiers as $laitier) 
     {
@@ -49,12 +60,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->rucheAutre) && strlen($dtoproduits->rucheAutre) > 0) array_push($dtoproduits->ruches, "/;".$dtoproduits->rucheAutre);
+    if (isset($dtoproduits->rucheAutre) && strlen($dtoproduits->rucheAutre) > 0) array_push($dtoproduits->ruches, "pr01;".$dtoproduits->rucheAutre);
     $cat = "ruche";
     foreach ($dtoproduits->ruches as $ruche) 
     {
@@ -62,12 +74,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->fruitAutre) && strlen($dtoproduits->fruitAutre) > 0) array_push($dtoproduits->fruits, "/;".$dtoproduits->fruitAutre);
+    if (isset($dtoproduits->fruitAutre) && strlen($dtoproduits->fruitAutre) > 0) array_push($dtoproduits->fruits, "pf01;".$dtoproduits->fruitAutre);
     $cat = "fruit";
     foreach ($dtoproduits->fruits as $fruit) 
     {
@@ -75,12 +88,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->champignonAutre) && strlen($dtoproduits->champignonAutre) > 0) array_push($dtoproduits->champignons, "/;".$dtoproduits->champignonAutre);
+    if (isset($dtoproduits->champignonAutre) && strlen($dtoproduits->champignonAutre) > 0) array_push($dtoproduits->champignons, "pc01;".$dtoproduits->champignonAutre);
     $cat = "champignon";
     foreach ($dtoproduits->champignons as $champignon) 
     {
@@ -88,12 +102,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->poissonAutre) && strlen($dtoproduits->poissonAutre) > 0) array_push($dtoproduits->poissons, "/;".$dtoproduits->poissonAutre);
+    if (isset($dtoproduits->poissonAutre) && strlen($dtoproduits->poissonAutre) > 0) array_push($dtoproduits->poissons, "ppc1;".$dtoproduits->poissonAutre);
     $cat = "poisson";
     foreach ($dtoproduits->poissons as $poisson) 
     {
@@ -101,12 +116,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->planteAutre) && strlen($dtoproduits->planteAutre) > 0) array_push($dtoproduits->plantes, "/;".$dtoproduits->planteAutre);
+    if (isset($dtoproduits->planteAutre) && strlen($dtoproduits->planteAutre) > 0) array_push($dtoproduits->plantes, "pp01;".$dtoproduits->planteAutre);
     $cat = "plante";
     foreach ($dtoproduits->plantes as $plante) 
     {
@@ -114,12 +130,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->semenceAutre) && strlen($dtoproduits->semenceAutre) > 0) array_push($dtoproduits->semences, "/;".$dtoproduits->semenceAutre);
+    if (isset($dtoproduits->semenceAutre) && strlen($dtoproduits->semenceAutre) > 0) array_push($dtoproduits->semences, "ps01;".$dtoproduits->semenceAutre);
     $cat = "semence";
     foreach ($dtoproduits->semences as $semence) 
     {
@@ -127,12 +144,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->transformeAutre) && strlen($dtoproduits->transformeAutre) > 0) array_push($dtoproduits->transformes, "/;".$dtoproduits->transformeAutre);
+    if (isset($dtoproduits->transformeAutre) && strlen($dtoproduits->transformeAutre) > 0) array_push($dtoproduits->transformes, "pt01;".$dtoproduits->transformeAutre);
     $cat = "transforme";
     foreach ($dtoproduits->transformes as $transforme) 
     {
@@ -140,12 +158,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->cerealeAutre) && strlen($dtoproduits->cerealeAutre) > 0) array_push($dtoproduits->cereales, "/;".$dtoproduits->cerealeAutre);
+    if (isset($dtoproduits->cerealeAutre) && strlen($dtoproduits->cerealeAutre) > 0) array_push($dtoproduits->cereales, "pcr1;".$dtoproduits->cerealeAutre);
     $cat = "cereal";
     foreach ($dtoproduits->cereales as $cereale) 
     {
@@ -153,12 +172,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->hygieneAutre) && strlen($dtoproduits->hygieneAutre) > 0) array_push($dtoproduits->hygienes, "/;".$dtoproduits->hygieneAutre);
+    if (isset($dtoproduits->hygieneAutre) && strlen($dtoproduits->hygieneAutre) > 0) array_push($dtoproduits->hygienes, "phy1;".$dtoproduits->hygieneAutre);
     $cat = "hygiene";
     foreach ($dtoproduits->hygienes as $hygiene) 
     {
@@ -166,12 +186,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->entretienAutre) && strlen($dtoproduits->entretienAutre) > 0) array_push($dtoproduits->entretiens, "/;".$dtoproduits->entretienAutre);
+    if (isset($dtoproduits->entretienAutre) && strlen($dtoproduits->entretienAutre) > 0) array_push($dtoproduits->entretiens, "pnt1;".$dtoproduits->entretienAutre);
     $cat = "entretien";
     foreach ($dtoproduits->entretiens as $entretien) 
     {
@@ -179,12 +200,13 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
     }
 
-    if (isset($dtoproduits->nourritureAnimauxAutre) && strlen($dtoproduits->nourritureAnimauxAutre) > 0) array_push($dtoproduits->nourritureAnimaux, "/;".$dtoproduits->nourritureAnimauxAutre);
+    if (isset($dtoproduits->nourritureAnimauxAutre) && strlen($dtoproduits->nourritureAnimauxAutre) > 0) array_push($dtoproduits->nourritureAnimaux, "pna1;".$dtoproduits->nourritureAnimauxAutre);
     $cat = "nourriture animaux";
     foreach ($dtoproduits->nourritureAnimaux as $naniamux) 
     {
@@ -192,6 +214,21 @@ class QSTPRODProduitsModel extends CETCALModel
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
+      $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
+      $stmt->execute();
+      array_push($pks_produits, $this->getCnxdb()->lastInsertId());
+    }
+
+    if (isset($dtoproduits->boissonAutre) && strlen($dtoproduits->boissonAutre) > 0) array_push($dtoproduits->boissons, "pb01;".$dtoproduits->boissonAutre);
+    $cat = "boisson";
+    foreach ($dtoproduits->boissons as $boisson) 
+    {
+      $data = explode(";", $boisson);
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
+      $stmt->bindParam(":pNom", $data[1], PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $data[0], PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());
@@ -200,9 +237,11 @@ class QSTPRODProduitsModel extends CETCALModel
     $cat = "autre";
     if (isset($dtoproduits->autreProduitInconnu) && strlen($dtoproduits->autreProduitInconnu) > 0) 
     {
+      $autreAutreClef = 'aap1';
       $qLib = $this->getQuerylib();
       $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUIT);
       $stmt->bindParam(":pNom", $dtoproduits->autreProduitInconnu, PDO::PARAM_STR);
+      $stmt->bindParam(":pClef", $autreAutreClef, PDO::PARAM_STR);
       $stmt->bindParam(":pCategorie", $cat, PDO::PARAM_STR);
       $stmt->execute();
       array_push($pks_produits, $this->getCnxdb()->lastInsertId());

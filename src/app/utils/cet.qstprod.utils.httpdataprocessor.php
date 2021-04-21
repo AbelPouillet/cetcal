@@ -18,8 +18,7 @@ Class HTTPDataProcessor
   {
     if (!isset($data)) array_push($this->errors, 
       "CETCAL.HTTPDataProcessor : Le champ /// est obligatoire et n'est pas renseigné.");
-    else return htmlspecialchars(filter_var(
-          $data, FILTER_SANITIZE_STRING));
+    else return $data;
       /*htmlentities(htmlspecialchars(
         filter_var(
           $data, FILTER_SANITIZE_STRING), 
@@ -62,5 +61,23 @@ Class HTTPDataProcessor
     foreach ($array_data as $entry) if (isset($entry) && !empty($entry) && strlen($entry) > 1) ++$c_check;
     if ($c !== $c_check) throw new Exception("CETCAL.HTTPDataProcessor : Des donnees obligatoires sont manquantes.");  
   }
+
+    /**
+     * Converts accentuated characters (àéïöû etc.)
+     * to their ASCII equivalent (aeiou etc.)
+     *
+     * @param  string $str
+     * @param  string $charset
+     * @return string
+     */
+    function accent2ascii(string $str, string $charset = 'utf-8'): string
+    {
+        $str = htmlentities($str, ENT_NOQUOTES, $charset);
+        $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+        $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
+        $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+
+        return $str;
+    }
 
 }

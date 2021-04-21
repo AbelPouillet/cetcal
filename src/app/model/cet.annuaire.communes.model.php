@@ -23,7 +23,7 @@ class CETCALCommunesModel extends CETCALModel
     }
     catch (Exception $e)
     {
-      error_log(var_dump($e));
+      error_log($e);
     }
   }  
 
@@ -56,6 +56,30 @@ class CETCALCommunesModel extends CETCALModel
     $data = $stmt->fetchAll();
 
     return $data;
+  }
+
+  public function selectAllGeolocSetByCodeDept($values_code_dept)
+  {
+    try 
+    {
+      $in = '';
+      foreach ($values_code_dept as $codedept) $in .= '\''.$codedept.'\', ';
+      $in = substr($in, 0, strlen($in) - 2);
+      error_log("SQL COMMUNES DEPT = [".$in."]");
+
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare(
+          str_replace("[codes_dept]", $in, $qLib::SELECT_ALL_CETCAL_COMMUNES_GEOLOC_SET_BY_CODEDEPT)
+        );
+      $stmt->execute();
+      $data = $stmt->fetchAll();
+
+      return $data;
+    } 
+    catch (Exception $e) 
+    {
+      error_log("[CETCAL Communes MODEL] ".$e->getMessage()); 
+    }
   }
 
   public function hasGeolocData($id)

@@ -54,12 +54,15 @@ try
 
   require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.communes.model.php');
   require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.user.model.php');
+  require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
   $communes_mdl = new CETCALCommunesModel();
   $commune_libelle = $communes_mdl->getLibelleCommuneByPK($form_commune);
   $mdl = new CETCALUserModel();
+  $mdl_producteur = new QSTPRODProducteurModel();
 
   $exists = $mdl->existsByEmail(trim($form_email));
-  if (!$exists) 
+  $email_prd_exists = $mdl_producteur->emailExists(trim($form_email));
+  if (!$exists && $email_prd_exists === 0) 
   {
   	$user = $mdl->insert($form_email, $form_user, $form_mdp_hash, $form_telport, $commune_libelle, 
   		$_SERVER['REMOTE_ADDR'], $form_commune, $form_infos, $form_achat, $form_hebdo);

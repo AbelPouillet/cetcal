@@ -37,7 +37,7 @@ Class LoginController extends AnnuaireController
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.user.model.php');
     $mdl = new QSTPRODProducteurModel();
     $mdl_user = new CETCALUserModel();
-    $producteur = $mdl->fetchProducteurInscritByEmailOrIdWWWCET($login);
+    $producteur = $mdl->fetchProducteurByEmailOrIdWWWCET($login);
     $user = $mdl_user->fetchUserByEmail($login);
     
     if ($logedin === false)
@@ -87,12 +87,13 @@ Class LoginController extends AnnuaireController
     /**
      * Cas 1 : utilisateur.
      * Cas 2 : producteur inscrit.
+     * Cas 3 : producteur pré-inscrit avec email renseigné.
      */
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.user.model.php');
     $mdl = new QSTPRODProducteurModel();
     $mdl_user = new CETCALUserModel();
-    $producteur = $mdl->fetchProducteurInscritByEmailOrIdWWWCET($login);
+    $producteur = $mdl->fetchProducteurByEmailOrIdWWWCET($login);
     $user = $mdl_user->fetchUserByEmail($login);
 
     if ($found === false)

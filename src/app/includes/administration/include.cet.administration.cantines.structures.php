@@ -1,5 +1,5 @@
 <div id="cet-admin-2-accordion">
-  <div class="card cet-accordion-admin">
+  <div class="card cet-accordion-admin cet-bloc">
   	<div class="card-header" id="cet-admin-2-heading">
   	  <label class="cet-formgroup-container-label"><small class="form-text">
   	  	Cette section vous aidera à administrer les cantines et structures.

@@ -67,7 +67,7 @@ class CETCALEntitesModel extends CETCALModel
     }
     catch (Exception $e)
     {
-      var_dump($e);
+      error_log($e->getMessage());
     }
   }
 
@@ -114,7 +114,7 @@ class CETCALEntitesModel extends CETCALModel
       }
       catch (Exception $e)
       {
-        var_dump($e);
+        error_log($e->getMessage());
       }  
     }  
   }
@@ -142,7 +142,7 @@ class CETCALEntitesModel extends CETCALModel
     }
     catch (Exception $e)
     {
-      var_dump($e);
+      error_log($e->getMessage());
     }
   }
 
@@ -170,7 +170,7 @@ class CETCALEntitesModel extends CETCALModel
     }
     catch (Exception $e)
     {
-      var_dump($e);
+      error_log($e->getMessage());
     }
   }  
 
@@ -185,7 +185,7 @@ class CETCALEntitesModel extends CETCALModel
     }
     catch (Exception $e)
     {
-      var_dump($e);
+      error_log($e->getMessage());
     }
   }
 
@@ -214,8 +214,10 @@ class CETCALEntitesModel extends CETCALModel
   public function selectAllByType($type)
   {
     $qLib = $this->getQuerylib();
-    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_CETCAL_ENTITE_BY_TYPE);
-    $stmt->bindParam(":pType", $type, PDO::PARAM_STR);
+    $stmt = $this->getCnxdb()->prepare(strlen($type) <= 0 ? 
+      $qLib::SELECT_ALL_CETCAL_ENTITE : 
+      $qLib::SELECT_ALL_CETCAL_ENTITE_BY_TYPE);
+    if (strlen($type) > 0) $stmt->bindParam(":pType", $type, PDO::PARAM_STR);
     $stmt->execute();
     $data = $stmt->fetchAll();
 

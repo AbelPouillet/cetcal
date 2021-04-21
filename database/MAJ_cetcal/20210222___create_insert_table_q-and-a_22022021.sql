@@ -28,7 +28,6 @@ INSERT INTO cetcal_referentiel_question (clef_question, question) VALUES
 ('s025','vous aimeriez produire plus ?'),
 ('s026','vous aimeriez être plus proche de vos valeurs ?'),
 ('s027','votre organisation est-elle optimum?'),
---------------------------------------------------
 ('sl02','Si oui, lesquelles vous semblent répondre à un de vos besoins ? (plusieurs choix possibles)'),
 ('sl01','Participez vous à un réseau de solidarité entre producteurs ?'),
 ('sc01',''),

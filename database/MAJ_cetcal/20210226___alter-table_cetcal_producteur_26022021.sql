@@ -32,8 +32,7 @@ alter table cetcal_producteur add column fournisseur_cet varchar(5) default 'fal
 /**************************************************************************************************/
 
 -- SCRIPT intégration OK pour passafe prod.
-update cetcal.cetcal_producteur set fournisseur_cet='true' where pk_producteur IN (
-  select pk_producteur from cetcal_producteur where nom_ferme IN (
+update cetcal.cetcal_producteur set fournisseur_cet='true' where nom_ferme IN (
   "Fournil &quot;LEVAIN SUR 20&quot;",
   "Savonnerie En Douce Heure",
   "ukkola celia",
@@ -50,4 +49,4 @@ update cetcal.cetcal_producteur set fournisseur_cet='true' where pk_producteur I
   "Soumagnac Claude",
   "JACQUEMENT CHRISTIAN",
   "DUCLOS Didier et Virginie",
-  "La grange aux champignons"));
+  "La grange aux champignons");

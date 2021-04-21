@@ -37,12 +37,14 @@ $SELECT_PRD_NON_INSCRITS = true;
 // Si true, dialog de geoloc utilisateur s'affiche à l'entrée de l'app. Sinon rien ne se passe.
 $CLIENT_CARTO_GEOLOCALISE = true;
 // Cartographie paramétrable et filtres/recherche détaillée.
-$CLIENT_CARTO_AVANCEE = false;
+$CLIENT_CARTO_AVANCEE = true;
 // Permettre ou non le login / signup
-$OPEN_LOGIN_SIGNUP = false;
+$OPEN_LOGIN_SIGNUP = true;
 
 include $PHP_CONST_PATH.'cet.qstprod.const.listes.php';
 require_once($PHP_UTILS_PATH.'cet.qstprod.utils.httpdataprocessor.php');
+require_once($PHP_UTILS_PATH.'cet.qstprod.html.form.helper.php');
+$formHelper = new HtmlFormHelper();
 $dataProcessor = new HTTPDataProcessor();
 include $PHP_UTILS_PATH.'cet.qstprod.utils.filereader.php';
 $listes_arrays = new CetQstprodConstListes(new FileReaderUtils($DOC_ROOT));
@@ -51,9 +53,12 @@ $listes_arrays = new CetQstprodConstListes(new FileReaderUtils($DOC_ROOT));
  * Etats post connection utilisateurs ou producteurs.
  * Utilisé pour libellés de connections et affichages entres autres.
  */
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.annuaire.const.login.php');
 $cnx = (isset($_GET['cnx']) && !empty($_GET['cnx']) && is_numeric($_GET['cnx'])) ? $dataProcessor->processHttpFormData($_GET['cnx']) : false;
 $obl = (isset($_GET['obl']) && !empty($_GET['obl']) && is_numeric($_GET['obl'])) ? $dataProcessor->processHttpFormData($_GET['obl']) : false;
-$cnx_done = (is_numeric($cnx) && (intval($cnx) === 0 || intval($cnx) === 10));
+$cnx_done = (is_numeric($cnx) && (
+  intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE || 
+  intval($cnx) === CetConnectionConst::CONNECTION_UTSR_REUSSIE));
 /**************************************************************************** */
 
 /**
@@ -62,4 +67,5 @@ $cnx_done = (is_numeric($cnx) && (intval($cnx) === 0 || intval($cnx) === 10));
 include $PHP_CONST_PATH.'cet.qstprod.const.textes.php';
 include $PHP_CONST_PATH.'cet.qstprod.const.libelles.php';
 include $PHP_UTILS_PATH.'cet.qstprod.utils.filarianne.php';
+include $PHP_UTILS_PATH.'cet.qstprod.utils.navbar.helper.php';
 ?>

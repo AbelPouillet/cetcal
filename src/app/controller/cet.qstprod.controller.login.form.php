@@ -24,8 +24,18 @@ $param_clitype = '';
 if (strcmp($nav, 'obl') === 0)
 {
   $email = $dataProcessor->processHttpFormData($_POST['login-oublie-email']);
-  //$telp = $dataProcessor->processHttpFormData($_POST['login-oublie-telport']);
-  $prdAContacter = isset($_POST['login-oublie-jesuisproducteur']) ? 'true' : 'false';
+  $telp = $dataProcessor->processHttpFormData($_POST['login-oublie-telport']);
+  $jesuisproducteur = isset($_POST['login-oublie-jesuisproducteur']) && strcmp($dataProcessor->processHttpFormData($_POST['login-oublie-jesuisproducteur']), 'jesuisproducteur') === 0 ? true : false;
+
+  /**
+   * cas de demande de contact producteur pour le dépatouiller. Redirection en passant email
+   * et numéro de téléphone portable prérempli.
+   */
+  if ($jesuisproducteur) 
+  {
+    header('Location: /?statut=contact.form&anr=true&em='.trim($email).'&ntp='.trim($telp).'&demande=jesuisproducteur'); 
+    exit();
+  }
 
   try
   {
@@ -81,14 +91,17 @@ if (strcmp($nav, 'obl') === 0)
         'cet.user.renouvellement.plain.mail.content', trim($email), $mailSubject, 
         new FileReaderUtils($_SERVER['DOCUMENT_ROOT']), 'renouvellement/', '[idcetwww]', $mdp_tmp);
 
+      error_log('[CONTROL LOGIN] mail envoye pour nouveau mdp pour email='.$email.' etat='.$reset_done);
       if ($reset_done) 
       {
         if (intval($outcome) === CetConnectionConst::RENOUVELLEMENT_MDP_UTSR_OK) 
         {
+          error_log('[CONTROL LOGIN] update nouveau mdp pour utilisateur email='.$email);
           $user_model->updateMdpByEmail(trim($email), $mdp_tmp);
         }
         else if (intval($outcome) === CetConnectionConst::RENOUVELLEMENT_MDP_PRD_OK) 
         {
+          error_log('[CONTROL LOGIN] update nouveau mdp pour producteur email='.$email);
           $producteur_model->updateMdpByEmail(trim($email), $mdp_tmp);
         }
       }
@@ -126,7 +139,7 @@ else if (strcmp($nav, 'cnx') === 0)
   }
   catch (Exception $e)
   {
-    error_log($lIe->getMessage()); 
+    error_log($e->getMessage()); 
     $outcome = CetConnectionConst::HTTP_FORBIDDEN;
   }
   finally
@@ -147,6 +160,7 @@ else if (strcmp($nav, 'cnx') === 0)
         $user_ip = $user_model->getClientIP();
         $user_model->setTempSessionId($cetcal_session_id, $user_ip, $user_pk);
         $param_clitype = '&clitype=usr';
+        $param_usrpk = '&usrpk='.$user_pk;
       }
       else if (intval($outcome) === CetConnectionConst::CONNECTION_PRD_REUSSIE) 
       {
@@ -154,12 +168,13 @@ else if (strcmp($nav, 'cnx') === 0)
         $productuer_ip = $producteur_model->getClientIP();
         $producteur_model->setTempSessionId($cetcal_session_id, $productuer_ip, $producteur_pk);
         $param_clitype = '&clitype=prd';
+        $param_usrpk = '&usrpk='.$producteur_pk;
       }   
 
       $param_get_sitkn = '&sitkn='.$cetcal_session_id;
     }
 
-    header('Location: /?'.$nav.'='.$outcome.'&usridf='.$email.$param_clitype.$param_get_sitkn); 
+    header('Location: /?'.$nav.'='.$outcome.$param_usrpk.'&usridf='.$email.$param_clitype.$param_get_sitkn); 
     exit();
   }
 }
