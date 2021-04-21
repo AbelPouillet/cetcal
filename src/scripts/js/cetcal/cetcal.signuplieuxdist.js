@@ -42,10 +42,11 @@ const boutonRetour = document.querySelector('#btn-signuplieuxdist.form-retour');
  *
  */
 const PostObj = class {
-  constructor(denomination, type, pk_entite, precesions, dateLieux, heureDeb, heureFin) {
+  constructor(denomination, type, pk_entite, newMarche , precesions, dateLieux, heureDeb, heureFin) {
     this.denomination = denomination;
     this.type = type;
     this.pk_entite = pk_entite;
+    this.newMarche = newMarche;
     this.precs = precesions;
     this.date = dateLieux;
     this.heure_deb = heureDeb;
@@ -179,6 +180,7 @@ checkboxMarche.addEventListener('click', (e) => {
   displayAlert("Marché ajouté", "success");
 
 });*/
+
 
 // Ajout marché objet datum
 addCircuit.addEventListener('click', () => {
@@ -331,6 +333,12 @@ function denominationPresente(nom) {
 function dataToPost(){
   postJson.value = JSON.stringify(postO);
   console.log(postJson.value);
+
+}
+// vérifie si le form est rempli
+function checkForm() {
+
+
 
 }
 
