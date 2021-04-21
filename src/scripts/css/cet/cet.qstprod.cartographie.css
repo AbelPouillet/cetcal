@@ -1,0 +1,84 @@
+#cet-annuaire-crt-main { 
+	border-radius: 4px;
+}
+.leaflet-popup-tip, .leaflet-popup-content-wrapper { 
+	background-color: #ffff8d !important; 
+	font-family: 'Signika', sans-serif;
+	padding-right: 16px !important;
+}
+.cet-ann-crt-popuptext, .cet-ann-crt-head-text { 
+	font-family: 'Signika', sans-serif;
+	color: #DD4215 !important; 
+	font-size: 16px;
+	font-weight: bold;
+}
+.cet-ann-crt-popuptext-marches {
+	font-family: 'Courgette', cursive;
+    color:  #007E33 !important;
+    font-size: 16px;
+	font-weight: bold;
+}
+.cet-ann-crt-head-text { margin-top: 8px !important; }
+#cet-annuaire-crt-mini-fiche-producteur-container {
+	border-radius: 4px;
+	background-color: white !important; 
+  	color: #6C3012 !important; 
+  	font-family: 'Signika', sans-serif;
+}
+#cet-annuaire-crt-mini-fiche-producteur-libelle {
+	margin-top: 8px;
+}
+#cet-annuaire-crt-mini-fiche-producteur {
+	margin-top: 8px;
+	margin-left: 2px;
+}
+#cet-annuaire-crt-main-container {  }
+#cet-ann-crt-ctrl-a-id {
+	display: block;
+	background-color: white !important;
+	border: 1px solid rgb(160, 160, 160);
+	border-radius: 3px;
+	padding: 4px;
+	height: 40px !important;
+	width: 40px !important;
+	/*-webkit-box-shadow: 6px 6px 11px -4px rgba(92,92,92,1);
+	-moz-box-shadow: 6px 6px 11px -4px rgba(92,92,92,1);
+	box-shadow: 6px 6px 11px -4px rgba(92,92,92,1);*/
+}
+.cet-an-crt-btn { 
+	/* bouton de carton popup. Btn vers page producteur */
+	color: white !important;
+	background-color: #DD4215 !important; 
+	border: 1px solid #DD4215 !important;
+}
+.cet-an-crt-btn:hover {
+	text-decoration: underline !important;
+}
+.cet-crt-icon { margin-top: 6px; margin-right: 6px; }
+.cet-crt-link { color: #007E33 !important; }
+
+div.tt-menu { 
+  background-color: white !important; 
+  z-index: 10000 !important; 
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  margin-top: 2px !important;
+  color: rgb(50, 70, 50);
+  padding-top: 4px;
+}
+div.tt-suggestion, div.tt-selectable { 
+  background-color: white !important; 
+  z-index: 10000 !important; 
+  padding: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+div.tt-suggestion:hover {
+	background-color: lightyellow !important;
+	cursor: pointer;
+}
+#crt-search-parametres {
+	margin-right: 0px !important;
+	float: right;
+	font-style: italic;
+}

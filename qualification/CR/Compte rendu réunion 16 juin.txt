@@ -1,0 +1,42 @@
+Compte rendu réunion 16 juin :
+[présence : Elizabeth,Catherine, Céline, Antoinette, Pascal, Duy Minh (par téléphone), Thomas.]
+
+L'annuaire devra vivre dans la durée. Cela est problématique car nécessite un soin particulier difficile à mettre à oeuvre sans un ou des acteurs investis sur le sujet.
+Possibilité de Service Civic pour répondre à ce besoin (?).
+
+Il faudra lister les CDC et structures (lieux, ephad, groupes scoaires) dans notre rayon d'action de 40 kilometres. Ce sujet est hors périmètre concernant les activités de Céline et Thomas.
+
+Sujet marché (nocturne) organisé par CET : mobiliser les producteurs 1 fois par mois pour le marché nocturne. Marché à prévoir sur la place devant les locaux de CET.
+faut il mettre en place un marché dès maintenant ou attendre la fin de la période estivale ? >> il faut voir ça avec les producteurs. 
+
+Listing des associations dans notre champ d'action : Une bonne idée serait de créer un événement pour fédérer tout le monde. En réponse à cela >> Céline : Il est prévu, le 30 juin (à la ferme des gardes), que toutes ces associations soit présentes : il nous faut y participer.
+
+Tous : OK pour le 30 juin. La réunion de suivi projet CAL est décalé au lundi 29 pour libérer le mardi 30 juin (et permettre le déplacement à la Femre Des Gardes).
+
+Antoinnette : est-ce que le RDV avec Breillat (maire de Castillon) est prévu ?
+Tous : non.
+Antoinnete & Elizabeth & Pascal : il faut plannifier ce RDV. Rapidement.
+
+[STOP prise de notes pour compte rendu car présentation powerpoint "Suivi projet" Thomas.]
+...
+[Fin présentation - Reprise notes pour CR]
+
+/!\ Au vu des nombreuses évolutions demandées sur le questionnaire v4, il est convenu de décaler la miseen production et démarrage phase Terrain. Nouvelle échéance >> Jeudi 25 juin (pour le questionnaire producteurs). Soit +2 jours pour gérer les nombreuses demandes d'ajout de questions. Dernière repasse à la prochaine réunion projet.
+
+Le questionnaire sera d'abord déployé dans un contexte de saisie seule (ne pas ouvrir la fonctionnalité de modification en ligne des données). Un communiqué par mail+autres sera envoyé aux producteurs lorsque le contexte "mise à jour en ligne des données" sera ouverte et déployé en production.
+
+Fanny va travailler avec Thomas sur le design : code couleurs, charte graphique, ressources à utiliser (images, logos). Techniquement les impacts seront mineurs sur le code si le cadre de ce travail est respecté. Car, le projet utilise le Framework Bootstrap 4 pour le css et le javascript de surface (éléments html animés / pré-mise en forme). Le framework JQuery est utilisé pour le JavaScript.
+
+/!\ Concernant le PDF v4 : nous allons maintenir ce document le temps de prendre en charge quelques retours. Il ne sera plus mis à jour très prochainement : le site web sera la référence et deviendra (malheureusement) le support d'échanges MO/ME.
+
+Pour la communication auprès du public du projet annuaire : mails (Pascal signal : +1000 signataire!). 
+Mais aussi, partenariats publics : MSA chambre agriculture (prendre RDV avec la chambre d'agriculture).
+/!\ Ne pas oublier les centres de formation, MFR, centres de certifications ect. Il faudra communiquer avec eux /!\
+L'objectif de la "communication lancement annuaire" est de faire vivre le site web annuaire et gagner en utilité via un traffic/utilisation minimum de nos livrables Web.
+
+Thomas et Céline (si dispo) seront au local CET ce vendredi pour montrer le questionnaire et récolter des conseils/critiques/remarques. /!\ Notifier et demander aux producteurs si ils sont d'accord pour donner 10/15 minutes de leurs temps. Mettre cela en place avec Sabrina.
+
+[sujets d'importance majeure, et revue de ces sujets durant la réunion] :
+- Le tableau des engagements de CET et des livrables incontournables (partenariat/financement Région oblige). /!\ Toujours se référer (et y revenir souvent) au document de synthèse d'Elizabeth - ce document, sous forme de tableau, liste les livrables et leurs critères de validation.
+- La phase de test doit obligatoirement passer par l'écrit /!\ Pas de prise en charge de retours si le correctif n'est pas indiqué sur le Framavox "Retours v4".
+

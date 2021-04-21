@@ -1,0 +1,25 @@
+LES TYPOS
+
+Signika https://fonts.google.com/specimen/Signika
+
+Courgette https://fonts.google.com/specimen/Courgette
+
+code pour integration des typos :
+
+<style><link href="https://fonts.googleapis.com/css2?family=Courgette&family=Signika:wght@400;700&display=swap" rel="stylesheet"></style>
+
+code css
+
+font-family: 'Courgette', cursive;
+
+font-family: 'Signika', sans-serif;
+
+LES COULEURS
+
+bleu: #7DBBD6
+
+bleu clair: #CAE3EE
+
+orange: #DD4215
+
+marron: #6C3012

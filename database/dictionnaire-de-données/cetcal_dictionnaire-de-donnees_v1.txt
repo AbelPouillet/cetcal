@@ -1,0 +1,68 @@
+###################################################
+# Dictionnaire de données CETCAL. V1.
+# VARCHAR(12) = type (peux contenir chifres et lettres) + longueur maximale de la donnée = 12 caractères.
+###################################################
+# données aux niveau producteur :
+nom VARCHAR(30)
+prenom VARCHAR(30)
+email VARCHAR(60)
+email_bu VARCHAR(60)
+mdpsha VARCHAR(512)
+telfixe VARCHAR(14)
+telport VARCHAR(14)
+nom_ferme VARCHAR(60)
+siret VARCHAR(14)
+adrferme_numvoie VARCHAR(12)
+adrferme_rue VARCHAR(128)
+adrferme_lieudit VARCHAR(60)
+adrferme_commune VARCHAR(45)
+adrferme_cp VARCHAR(12)
+adrferme_compladr VARCHAR(60)
+pageurl_fb VARCHAR(60)
+pageurl_ig VARCHAR(60)
+pageurl_twitter VARCHAR(60)
+url_web VARCHAR(128)
+url_boutique VARCHAR(128)
+orgcertifbio VARCHAR(30)
+surfacehectterres VARCHAR(64)
+surfacesousserre VARCHAR(64)
+tetes_betail VARCHAR(64)
+hl_par_an VARCHAR(64)
+groupe_cagette VARCHAR(60)
+identifiant_cet VARCHAR(20)
+###################################################
+# données produit : 
+nom VARCHAR(256)
+quantite_uni VARCHAR(64)
+quantite_mesure VARCHAR(64)
+categorie VARCHAR(45)
+description VARCHAR(45)
+###################################################
+# donées lieu : 
+nom VARCHAR(256)
+adresse_literale VARCHAR(256)
+jour_producteur VARCHAR(256)
+jour_collecte_conso VARCHAR(256)
+###################################################
+# données informatives (dans une logique de question/réponse) :
+clef_information VARCHAR(4)
+val_information VARCHAR(128)
+information VARCHAR(256)
+###################################################
+# données sondage (dans une logique de question/réponse) :
+clef_question
+val_question VARCHAR(45)
+reponse VARCHAR(256)
+###################################################
+# données type de production :
+clef_type_production VARCHAR(4)
+val_type_production VARCHAR(128)
+###################################################
+# données spécificités producteur :
+clef_specificite VARCHAR(4)
+val_specificite VARCHAR(128)
+###################################################
+# données mode de consomation :
+clef_mode_conso VARCHAR(4)
+val_mode_conso VARCHAR(128)
+###################################################
