@@ -30,6 +30,7 @@ else if (isset($_POST) && $_POST['action'] === 'amap')
 }
 else
 {
+  // TODO : formaliser un contenu dans le JSON dans ce cas :
   echo json_encode('{}'); 
 }
 
