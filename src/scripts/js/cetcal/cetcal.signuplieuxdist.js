@@ -2,44 +2,40 @@
  * @author 
  *  FROM SIGNUP LIEUX DIST
  */
-
- /* ***** SELECT ITEMS **********/
- const allMarcheBox = document.getElementById('the-basics');
- const selectElement = document.querySelector('.select--lieudist');
- const sousTypeSelect = document.querySelector('.qstprod--soustype');
- const recapMarche = document.querySelector('.qstprod--recap');
- const list = document.querySelector('.marche--list');
- const alert = document.querySelector('.top--alert');
- const clearMarche = document.querySelector('.clear--marches');
- const checkboxMarche = document.querySelector('.checkbox--new--marche');
- const newMarcheBox = document.querySelector('.unfinded--marche')
- const newMarcheProd = document.querySelector('.new--marche');
- const btnNewMarcheProd = document.querySelector('.btn--new--marche--prod');
- const marcheInputProd = document.querySelector('.marche--prod');
- const selectSousType = document.querySelector('.select--sous--type');
- const amapTypeahead = document.querySelector('.amap--typeahead');
- const adresseMarcheProd = document.querySelector('.adresse--marche--prod');
- const precisionsProd = document.querySelector('.qstprod--precisions');
- const textAreaProd = document.querySelector("textarea");
- const limitTextAlert = document.querySelector('.limit--text--alert');
- const addLieu = document.querySelector('.addLieu');
- const addCircuit = document.querySelector('.addCircuit');
- const dataPost = document.querySelector('#data');
- //input post json
- const postJson = document.querySelector('#qstprod-signuplieuxdist-json');
-  // bouton nav continuer
+/* ***** SELECT ITEMS **********/
+const allMarcheBox = document.getElementById('the-basics');
+const selectElement = document.querySelector('.select--lieudist');
+const sousTypeSelect = document.querySelector('.qstprod--soustype');
+const list = document.querySelector('.lieux--list');
+const clearLieuxRecap = document.querySelector('.clear--lieux');
+const checkboxMarche = document.querySelector('.checkbox--new--marche');
+const newMarcheBox = document.querySelector('.unfinded--marche')
+const newMarcheProd = document.querySelector('.new--marche');
+const btnNewMarcheProd = document.querySelector('.btn--new--marche--prod');
+const marcheInputProd = document.querySelector('.marche--prod');
+const selectSousType = document.querySelector('.select--sous--type');
+const amapTypeahead = document.querySelector('.amap--typeahead');
+const adresseMarcheProd = document.querySelector('.adresse--marche--prod');
+const precisionsProd = document.querySelector('.qstprod--precisions');
+const textAreaProd = document.querySelector("textarea");
+const limitTextAlert = document.querySelector('.limit--text--alert');
+const addLieu = document.querySelector('.addLieu');
+const addCircuit = document.querySelector('.addCircuit');
+const dataPost = document.querySelector('#data');
+// input post json :
+const postJson = document.querySelector('#qstprod-signuplieuxdist-json');
+// bouton nav continuer :
 const boutonValider = document.getElementById('btn-signuplieuxdist.form-valider');
-  // bouton nav retour
+// bouton nav retour :
 const boutonRetour = document.querySelector('#btn-signuplieuxdist.form-retour');
 
- let marches;
- let postObjet;
- let inputMarche;
- let precisions_texte = '';
-
+let marches;
+let postObjet;
+let inputMarche;
+let precisions_texte = '';
 
 /**
- *
+ * Définition de la structure de données pour lieux de distributions (tous cas confondus).
  */
 const PostObj = class {
   constructor(denomination, type, pk_entite, crea_marche, precesions, dateLieux, heureDeb, heureFin) {
@@ -54,7 +50,10 @@ const PostObj = class {
   }
 }
 
-let postO = [];
+/**
+ * DTO JSON pour tous les lieux ajoutés.
+ */
+let postO = { lieux: [] };
 
 // edit option, Flags :
 let editElement;
@@ -65,7 +64,9 @@ let precisionsFlag = false;
 let sousTypeFlag = false;
 let checkboxFlag = false;
 
-/* *********EVENT LISTENERS ************/
+/** *****************************************************************************************
+ * EVENT LISTENERS 
+ */
 selectElement.addEventListener('change', (event)=> {
   value = selectElement.options[selectElement.selectedIndex].text;
 
@@ -114,18 +115,9 @@ selectElement.addEventListener('change', (event)=> {
     clear(allMarcheBox);
     precisionsFlag = true;
     precisionsProd.classList.remove('d-none');
+    ajaxCall(value);
   }
 
-});
-
-clearMarche.addEventListener('click', (e) => {
-
-  const marchesASupprimer = document.querySelectorAll('.marche-item');
-  if (marchesASupprimer.length > 0) {
-    marchesASupprimer.forEach(function(marche){
-      list.removeChild(marche)
-    });
-  }
 });
 
 selectSousType.addEventListener('change', (e) => {
@@ -158,38 +150,18 @@ checkboxMarche.addEventListener('change', (event) => {
   }
 });
 
-/*btnNewMarcheProd.addEventListener('click', (e) => {
-
-  e.preventDefault();
-  const addItem = marcheInputProd.value;
-  console.log(addItem);
-  const element = document.createElement("div");
-  const classItems = ["d-flex", "marche-item"]
-  element.classList.add(...classItems);
-  element.innerHTML = `<p>${addItem}</p>
-  <div class="btn-container ml-5">
-  <button type="button" class="delete-btn">
-  <i class="fas fa-trash"></i>
-  </button>
-  </div>`
-  list.appendChild(element);
-  marcheInputProd.value = '';
-  adresseMarcheProd.value = '';
-  displayAlert("Marché ajouté", "success");
-
-});*/
-
 // Event : Ajout des lieux.
 addCircuit.addEventListener('mousedown', () => {
 
   if (checkboxFlag === false && (postObjet === undefined || postObjet.denomination === undefined)) {
-    displayAlert("Aucun le lieux de distribution renseigné.", "danger");
+    console.log("Aucun le lieux de distribution renseigné.", "danger");
     return;
   } 
 
   if (checkboxFlag === true) {
     postObjet = new PostObj();
     postObjet.crea_marche = true;
+    postObjet.type = 'Marché';
     postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
     postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
     postObjet.heure_deb = $('#timeInput').val();
@@ -202,7 +174,7 @@ addCircuit.addEventListener('mousedown', () => {
 
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
-    postO.push(postObjet);
+    postO.lieux.push(postObjet);
 
     /**
      * Suite à push OK : 
@@ -210,27 +182,20 @@ addCircuit.addEventListener('mousedown', () => {
      * 1 - Mise à jour du récapitulatif : 
      * 2 - tout ré-initialiser.
      */
-    $('#qstprod-signuplieuxdist-json').val(JSON.stringify(postO));
-    console.log($('#qstprod-signuplieuxdist-json').val());
+    $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
+    console.log(JSON.parse(decodeURIComponent($('#qstprod-signuplieuxdist-json').val())));
 
     postObjet = undefined;
-    // finalement ré-initialiser le formulaire.
+    // finalement ré-initialiser le formulaire et reconstruire le récap.
     clearInputs();
+    buildRecapLieux();
 
   } else {
-    displayAlert("Le lieux de distribution " + postObjet.denomination 
+    console.log("Le lieux de distribution " + postObjet.denomination 
       + " est déjà sélectionné dans votre liste.", "danger");
   }
 
 });
-
-function clearInputs() {
-  $('#nv-marche-lieuxdist-nom').val('');
-  $('#nv-marche-lieuxdist-adr').val('');
-  $('#timeInput').val('');
-  textAreaProd.value = '';
-  $('input.typeahead').val('');
-}
 
 // Limitation textarea :
 textAreaProd.addEventListener("input", event => {
@@ -249,25 +214,37 @@ textAreaProd.addEventListener("input", event => {
   precisions_texte = target.value;
 });
 
-/* **********FUNCTIONS**************/
+/** *****************************************************************************************
+ * FUNCTIONS
+ */
+function clearInputs() {
+  $('#nv-marche-lieuxdist-nom').val('');
+  $('#nv-marche-lieuxdist-adr').val('');
+  $('#timeInput').val('');
+  textAreaProd.value = '';
+  $('input.typeahead').val('');
+}
 
 function showMarche(event) {
   let action = "Marché";
   const element = document.createElement('input');
   element.type = "text";
   element.classList.add('typeahead');
+  element.classList.add('form-control');
+  element.classList.add('lieux-dist-recherche-typeahead');
+  element.setAttribute('placeholder', 'Rechercher votre marché ...');
   let newEl = allMarcheBox.appendChild(element);
-  document.body.insertAdjacentHTML('beforeend', newEl );
+  document.body.insertAdjacentHTML('beforeend', newEl);
   inputMarche = document.querySelector('.typeahead');
   ajaxCall(action);
 }
 
 function showAmap() {
-
   const element = document.createElement('input');
   element.type = "text";
-  const classTypeAhead = ["typeahead", "tt-input"]
+  const classTypeAhead = ["typeahead", "tt-input", "form-control", "lieux-dist-recherche-typeahead"];
   element.classList.add(...classTypeAhead);
+  element.setAttribute('placeholder', 'Rechercher votre AMAP ...');
   let newEl = amapTypeahead.appendChild(element);
   document.body.insertAdjacentHTML('beforeend', newEl);
   inputMarche = document.querySelector('.typeahead');
@@ -283,7 +260,7 @@ function hideNewMarche(){
   checkboxMarche.checked = false;
 }
 
-function clear(divToClear){
+function clear(divToClear) {
   while (divToClear.firstChild) divToClear.removeChild(divToClear.firstChild);
 }
 
@@ -291,56 +268,64 @@ function showCircuitCout() {
   sousTypeSelect.classList.remove("d-none");
 }
 
-//supprimer un marché de la liste
-function deleteItem(e){
-  const element = e.currentTarget.parentElement.parentElement;
-  const removeItem = element.firstChild.innerHTML;
-  list.removeChild(element);
-  displayAlert("Marché supprimé", "danger");
-  postO = postO.filter(item => item.nom !== removeItem);
-}
-
 // display alert
 function displayAlert(text, action) {
-  alert.textContent = text;
-  alert.classList.add(`alert-${action}`);
-    // remove alert
-    setTimeout(function () {
-      alert.textContent = "";
-      alert.classList.remove(`alert-${action}`);
-    }, 2000);
-  }
+  
+}
 
 // vérifie si pk est présente : 
 function pkPresent(pk_ent) {
-  return postO.some(entite => entite.pk_entite === pk_ent);
+  return pk_ent !== undefined && postO.lieux.some(entite => entite.pk_entite === pk_ent);
 }
 
 // vérifie si la dénomination est présent : 
 function denominationPresente(nom) {
-  return postO.some(entite => entite.denomination === nom);
+  if (nom === 'TODO') return false;
+  return postO.lieux.some(entite => entite.denomination === nom);
 }
 
-// envoie l'objet à poster dans l'input
-
-function dataToPost(){
-  postJson.value = JSON.stringify(postO);
-  console.log(postJson.value);
+function buildRecapLieux() {
+  var html_thead = '<thead>' 
+    + '<tr><th scope="col">Type</th>' 
+    + '<th scope="col">Nom</th>'
+    + '<th scope="col">Date</th>'
+    + '<th scope="col">Heure de début</th>' 
+    + '<th scope="col">Heure de fin</th>'
+    + '<th scope="col">Vos précisions</th></tr>'
+    + '</thead>'
+  var html_table = '';
+  for (var i = 0; i < postO.lieux.length; i++) {
+    html_table += '<tr><td><i>' + emptyIfNullOrUndefined(postO.lieux[i].type) + '</i></td>'
+      + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].denomination) + '</td>'
+      + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].date) + '</td>'
+      + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].heure_deb) + '</td>'
+      + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].heure_fin) + '</td>'
+      + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].precs) + '</td>'
+      + '</tr>';
+  }
+  html_table = '<table class="table table-sm" id="lieux-dist-table-recap-lieux">' 
+    + html_thead 
+    + '<tbody>' 
+    + html_table + '</tbody></table>';
+  $('#lieux-dist-recap-liste').empty();
+  $('#lieux-dist-recap-liste').append(html_table);
+  $('#lieux-dist-recap-avant-envoi').show('slow');
 }
-// vérifie si le form est rempli
-function checkForm() {
 
-
-
+function emptyIfNullOrUndefined(data) {
+  return data === undefined || data === 'undefined' || data == 'null' || data === null || data === 'TODO' ? '' : data;
 }
 
+/** *****************************************************************************************
+ * AJAXs.
+ */
 function ajaxCall(action) {
 
   $(document).ready(function() {
 
     $.ajax({ url: 'src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php',
       type: 'POST',
-      data: {'action': action},
+      data: {'action': action },
       dataType: 'JSON',
       success: function(response) {
       // Début si réseau de vente en circuit court
@@ -381,7 +366,7 @@ function ajaxCall(action) {
             };
           };
 if (action === "amap") {
-  console.log(action)
+
   $('#amap .typeahead').typeahead({
         hint: true,
         highlight: true,
@@ -400,7 +385,6 @@ if (action === "amap") {
   });
 }
 else if ( action === "Marché") {
-  console.log(action)
 
   $('#the-basics .typeahead').typeahead({
         hint: true,
@@ -415,19 +399,37 @@ else if ( action === "Marché") {
         source: engine.ttAdapter(),
       });
 
+
   $('#the-basics').on('typeahead:selected', function (e, datum) {
     postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
   });
+      } else {
+        postObjet = new PostObj('TODO', action, null, null, null, null, null);   
+        console.log(postObjet);
       }
+
 
         // fin si
         }
-      } // END Ajax success.
+      }, // END Ajax success.
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
     }); // END Ajax.
   }); // END document.ready.
 } // END fonction ajaxCall.
 
-/**
- * TIMEPICKER
+/** *****************************************************************************************
+ * On DOM ready et inits libs.
  */
- $(function() { $('#timeInput').timepicker(); });
+/** TIMEPICKER */
+$(function() { $('#timeInput').timepicker(); });
+/** persistance des lieux sélectionnés */
+$(document).ready(function() {
+  try { 
+    postO = JSON.parse(decodeURIComponent($('#qstprod-signuplieuxdist-json').val())); 
+    buildRecapLieux();
+  } catch (error) { 
+    console.log(error); 
+  }
+});

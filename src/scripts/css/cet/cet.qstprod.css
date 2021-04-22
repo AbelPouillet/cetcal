@@ -353,3 +353,16 @@ div.dz-message {
   text-align: left !important;
 }
 /******************************************************************/
+
+/** LIEUX DE DISTRIBUTION **********************************************/
+table#lieux-dist-table-recap-lieux td, th {
+  border: 1px solid #6C3012  !important;
+}
+table#lieux-dist-table-recap-lieux th {
+  text-align: center;
+}
+table#lieux-dist-table-recap-lieux {
+  background-color: rgba(252,255,255, 0.3);
+  color: #6C3012 !important;
+}
+/***********************************************************************/

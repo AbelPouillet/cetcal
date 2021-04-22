@@ -18,9 +18,15 @@ try
   /* *****************************************************************************/
   /* HTTP POST : var setup : *****************************************************/
   // POST form logic - dans l'ordre du formulaire HTML :
+  /**
+   * Exemple de JSON reçu :
+   * [{"denomination":"Marché de Targon","type":"Marché","pk_entite":"99","crea_marche":false,"precs":"hhklkjlkj","date":null,"heure_deb":null},
+   {"denomination":"oipoiopi","crea_marche":true,"precs":"qsdfghjkl","heure_deb":"00:00:00","adr":"iopipoipoi"}]
+   */
+  // utiliser urldecode() pour décrypter le JSON à parser.
   $form_json_data = $dataProcessor->processHttpFormArrayData($_POST['qstprod-signuplieuxdist-definis']);
-  $_SESSION['signuplieuxdist.form.post'] = $_POST;
 
+  $_SESSION['signuplieuxdist.form.post'] = $_POST;
   session_write_close();
   /* *****************************************************************************/
 

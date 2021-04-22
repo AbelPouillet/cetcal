@@ -1,7 +1,6 @@
 <?php
 $neant = "";
 $currentForm = isset($_SESSION['signuplieuxdist.form.post']) ? $_SESSION['signuplieuxdist.form.post'] : $neant;
-//var_dump($currentForm);
 $cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signupprods']) ? $_SESSION['CONTEXTE_MODIF-signupprods'] : false;
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.qstprod.controller.signuplieuxdist.php');
 $datas = formLieuDistController::fetchUniqueAllTypeLieu();
@@ -23,15 +22,16 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
     <div class="cet-formgroup-container">
 
       <div class="form-group mb-3">
-          <label class="cet-input-label"><small class="cet-qstprod-label-text">Si autre, merci de préciser :</small></label>
+          <label class="cet-input-label"><small class="cet-qstprod-label-text">Veuillez sélectionner le type de lieux de distribution :</small></label>
           <select class="form-control select--lieudist">
               <option class="" value=""> Choississez un type de lieu de distribution</option>
               <?php foreach ($datas as $data): ?>
                   <option value="<?=$data->id?>"><?= ucfirst($data->type) ?></option>
               <?php endforeach;?>
           </select>
-          <div id="the-basics" class="qstprod--marchebox d-none mt-3">
-          </div>
+      </div>
+      <div class="form-group mb-3">
+        <div id="the-basics" class="qstprod--marchebox d-none"></div>
       </div>
 
       <div class="form-group mb-3 qstprod--soustype d-none">
@@ -41,6 +41,8 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
         <select class="form-control select--sous--type" name="qstlieudist-1-1">
             <option value="0">Default select</option>
         </select>
+      </div>
+      <div class="form-group mb-3">
         <div id="amap" class="amap--typeahead mt-5 d-none"></div>
       </div>
 
@@ -82,12 +84,13 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
         </div>
       </div>
 
-      <p class="top--alert"></p>
-      <div class="alert alert-success mt-5" role="alert">
-          <p class="qstprod--recap">Récapitulatif de vos lieux de distributions :</p>
-          <hr>
-          <div class="marche--list"></div>
-          <div class="btn btn-warning mt-3 clear--marches">supprimer les lieux de distribution</div>
+      <div id="lieux-dist-recap-avant-envoi" style="display: none;">
+        <p class="qstprod--recap" style="margin-bottom: -12px;"><small>Récapitulatif de vos lieux de distributions :</small></p>
+        <hr>
+        <div class="lieux--list" id="lieux-dist-recap-liste"></div>
+        <button class="btn cet-navbar-btn cet-navbar-btn-small clear--lieux">
+          supprimer les lieux de distribution
+        </button>
       </div>
 
     </div> <!-- end container -->
@@ -110,7 +113,9 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
       <input type="text" name="cetcal_session_id" id="cetcal_session_id" 
         value="<?= $cetcal_session_id; ?>" hidden="hidden">
       <input type="text" name="qstprod-signuplieuxdist-json" id="qstprod-signuplieuxdist-json"
-        value="" hidden="hidden">
+        value="<?= isset($currentForm['qstprod-signuplieuxdist-json']) ? $currentForm['qstprod-signuplieuxdist-json'] : $neant; ?>" 
+        hidden="hidden">
+
       <input type="text" name="qstprod-signuplieuxdist-nav" id="qstprod-signuplieuxdist-nav" 
         value="unset" hidden="hidden">
     </form>
