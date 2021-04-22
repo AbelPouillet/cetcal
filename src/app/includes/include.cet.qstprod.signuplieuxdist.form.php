@@ -71,7 +71,6 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           <input class="form-control" type="text" id="timeInput" name="timeInput" data-time-format="H:i:s" 
             style="max-width: 256px;" />
         </div>
-        <button class="btn btn--new--marche--prod cet-navbar-btn cet-navbar-btn-small">Ajouter ce marché</button>
       </div>
 
       <div class="form-group mb-3 qstprod--precisions d-none" style="margin-top: 12px;">

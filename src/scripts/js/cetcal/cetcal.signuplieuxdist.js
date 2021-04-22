@@ -42,11 +42,11 @@ const boutonRetour = document.querySelector('#btn-signuplieuxdist.form-retour');
  *
  */
 const PostObj = class {
-  constructor(denomination, type, pk_entite, newMarche , precesions, dateLieux, heureDeb, heureFin) {
+  constructor(denomination, type, pk_entite, crea_marche, precesions, dateLieux, heureDeb, heureFin) {
     this.denomination = denomination;
     this.type = type;
     this.pk_entite = pk_entite;
-    this.newMarche = newMarche;
+    this.crea_marche = crea_marche;
     this.precs = precesions;
     this.date = dateLieux;
     this.heure_deb = heureDeb;
@@ -146,8 +146,8 @@ selectSousType.addEventListener('change', (e) => {
   }
 });
 
-checkboxMarche.addEventListener('click', (e) => {
-  if (checkboxMarche.checked == true) {
+checkboxMarche.addEventListener('change', (event) => {
+  if (checkboxMarche.checked) {
     newMarcheProd.classList.remove('d-none');
     allMarcheBox.classList.add('d-none');
     checkboxFlag = true;
@@ -155,8 +155,6 @@ checkboxMarche.addEventListener('click', (e) => {
     newMarcheProd.classList.add('d-none');
     allMarcheBox.classList.remove('d-none');
     checkboxFlag = false;
-
-
   }
 });
 
@@ -181,45 +179,58 @@ checkboxMarche.addEventListener('click', (e) => {
 
 });*/
 
+// Event : Ajout des lieux.
+addCircuit.addEventListener('mousedown', () => {
 
-// Ajout marché objet datum
-addCircuit.addEventListener('click', () => {
-
-  if (checkboxFlag === false) {
-    displayAlert("Aucun le lieux de distribution sélectionné.", "danger");
+  if (checkboxFlag === false && (postObjet === undefined || postObjet.denomination === undefined)) {
+    displayAlert("Aucun le lieux de distribution renseigné.", "danger");
     return;
-  } else if (postObjet === undefined && checkboxFlag === true) {
+  } 
+
+  if (checkboxFlag === true) {
     postObjet = new PostObj();
-    console.log("toto");
-    postObjet.precs = textAreaProd.value;
-    // Seulement si case cochée "nouveau marché non connu".
-    if (checkboxFlag === true) {
-      // nv-marche-lieuxdist-nom
-      postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
-      // nv-marche-lieuxdist-adr
-      postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
-      // timeInput
-      postObjet.heure_deb = $('#timeInput').val();
-      console.log(postO);
-    }
+    postObjet.crea_marche = true;
+    postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
+    postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
+    postObjet.heure_deb = $('#timeInput').val();
+  } else {
+    postObjet.crea_marche = false;
   }
+
+  // dans tous les cas :
+  postObjet.precs = textAreaProd.value;
 
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
     postO.push(postObjet);
+
     /**
      * Suite à push OK : 
+     * 0 - mise à jour du JSON en cas de validation / POST de la page : FAIT.
      * 1 - Mise à jour du récapitulatif : 
      * 2 - tout ré-initialiser.
      */
+    $('#qstprod-signuplieuxdist-json').val(JSON.stringify(postO));
+    console.log($('#qstprod-signuplieuxdist-json').val());
+
+    postObjet = undefined;
+    // finalement ré-initialiser le formulaire.
+    clearInputs();
 
   } else {
     displayAlert("Le lieux de distribution " + postObjet.denomination 
       + " est déjà sélectionné dans votre liste.", "danger");
   }
 
-  console.log(postO);
 });
+
+function clearInputs() {
+  $('#nv-marche-lieuxdist-nom').val('');
+  $('#nv-marche-lieuxdist-adr').val('');
+  $('#timeInput').val('');
+  textAreaProd.value = '';
+  $('input.typeahead').val('');
+}
 
 // Limitation textarea :
 textAreaProd.addEventListener("input", event => {
@@ -258,15 +269,7 @@ function showAmap() {
   const classTypeAhead = ["typeahead", "tt-input"]
   element.classList.add(...classTypeAhead);
   let newEl = amapTypeahead.appendChild(element);
-  document.body.insertAdjacentHTML('beforeend', newEl );
-
-  const button = document.createElement('button');
-  const classesButton = ["btn", "btn-info", "btnAjoutAmap", "ml-5"]
-  button.classList.add(...classesButton);
-  button.textContent ='Ajouter une amap';
-  let newButton = amapTypeahead.appendChild(button);
-  document.body.insertAdjacentHTML('beforeend', newButton);
-  const boutonAjoutMarche = document.querySelector('.btnAjoutAmap');
+  document.body.insertAdjacentHTML('beforeend', newEl);
   inputMarche = document.querySelector('.typeahead');
 }
 
@@ -393,7 +396,6 @@ if (action === "amap") {
       });
 
   $('#amap').on('typeahead:selected', function (e, datum) {
-    console.log(datum);
     postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
   });
 }
