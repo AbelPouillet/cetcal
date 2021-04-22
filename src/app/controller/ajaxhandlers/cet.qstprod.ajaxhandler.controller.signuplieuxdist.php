@@ -17,7 +17,7 @@ else if (isset($_POST) && $_POST['action'] === 'Reseau de vente en circuit court
   $ctrl = new QSTPRODLieuModel();
   $req = strtolower($_POST['action']);
   $data = $ctrl->findOneTypeLieu($req);
-  error_log('action=Reseau de vente en circuit court json='.json_encode($data));
+  
   echo json_encode($data);
 }
 else if (isset($_POST) && $_POST['action'] === 'amap') 
