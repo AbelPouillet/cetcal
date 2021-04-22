@@ -38,15 +38,18 @@ let precisions_texte = '';
  * Définition de la structure de données pour lieux de distributions (tous cas confondus).
  */
 const PostObj = class {
-  constructor(denomination, type, pk_entite, crea_marche, precesions, dateLieux, heureDeb, heureFin) {
+  constructor(denomination, type, sous_type, pk_entite, crea_marche, precesions, dateLieux, 
+    heureDeb, heureFin, jour) {
     this.denomination = denomination;
     this.type = type;
+    this.sous_type = sous_type;
     this.pk_entite = pk_entite;
     this.crea_marche = crea_marche;
     this.precs = precesions;
     this.date = dateLieux;
     this.heure_deb = heureDeb;
     this.heure_fin = heureFin;
+    this.jour = jour;
   }
 }
 
@@ -135,7 +138,9 @@ selectSousType.addEventListener('change', (e) => {
     clear(amapTypeahead);
     precisionsProd.classList.remove('d-none');
     sousTypeFlag = true;
+    postObjet = new PostObj('TODO', value, req, null, false, null, null, null, null, null);
   }
+
 });
 
 checkboxMarche.addEventListener('change', (event) => {
@@ -164,7 +169,10 @@ addCircuit.addEventListener('mousedown', () => {
     postObjet.type = 'Marché';
     postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
     postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
-    postObjet.heure_deb = $('#timeInput').val();
+    postObjet.heure_deb = $('#timeInput-heure-deb').val();
+    postObjet.heure_fin = $('#timeInput-heure-fin').val();
+    postObjet.date = $('#timeInput-date').val();
+    postObjet.jour = $('#timeInput-jour').val();
   } else {
     postObjet.crea_marche = false;
   }
@@ -220,9 +228,15 @@ textAreaProd.addEventListener("input", event => {
 function clearInputs() {
   $('#nv-marche-lieuxdist-nom').val('');
   $('#nv-marche-lieuxdist-adr').val('');
-  $('#timeInput').val('');
+  $('#timeInput-heure-deb').val('');
+  $('#timeInput-heure-fin').val('');
+  $('#timeInput-date').val('');
   textAreaProd.value = '';
   $('input.typeahead').val('');
+  checkboxMarche.checked = false;
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("change", false, true);
+  checkboxMarche.dispatchEvent(evt);
 }
 
 function showMarche(event) {
@@ -275,7 +289,8 @@ function displayAlert(text, action) {
 
 // vérifie si pk est présente : 
 function pkPresent(pk_ent) {
-  return pk_ent !== undefined && postO.lieux.some(entite => entite.pk_entite === pk_ent);
+  return (pk_ent !== undefined && pk_ent !== null && pk_ent !== '') && 
+    postO.lieux.some(entite => entite.pk_entite === pk_ent);
 }
 
 // vérifie si la dénomination est présent : 
@@ -289,15 +304,17 @@ function buildRecapLieux() {
     + '<tr><th scope="col">Type</th>' 
     + '<th scope="col">Nom</th>'
     + '<th scope="col">Date</th>'
+    + '<th scope="col">Jour</th>'
     + '<th scope="col">Heure de début</th>' 
     + '<th scope="col">Heure de fin</th>'
     + '<th scope="col">Vos précisions</th></tr>'
     + '</thead>'
   var html_table = '';
   for (var i = 0; i < postO.lieux.length; i++) {
-    html_table += '<tr><td><i>' + emptyIfNullOrUndefined(postO.lieux[i].type) + '</i></td>'
+    html_table += '<tr><td><i>' + emptyIfNullOrUndefined(getTypeOuSousType(postO.lieux[i].type, postO.lieux[i].sous_type)) + '</i></td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].denomination) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].date) + '</td>'
+      + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].jour) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].heure_deb) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].heure_fin) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].precs) + '</td>'
@@ -314,6 +331,10 @@ function buildRecapLieux() {
 
 function emptyIfNullOrUndefined(data) {
   return data === undefined || data === 'undefined' || data == 'null' || data === null || data === 'TODO' ? '' : data;
+}
+
+function getTypeOuSousType(type, sousType) {
+  return (sousType !== undefined && sousType !== null && sousType !== '') ? sousType : type;
 }
 
 /** *****************************************************************************************
@@ -381,7 +402,7 @@ if (action === "amap") {
       });
 
   $('#amap').on('typeahead:selected', function (e, datum) {
-    postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
+    postObjet = new PostObj(datum.denomination, action, value, datum.pk_entite, null, null, null, null, null, null);
   });
 }
 else if ( action === "Marché") {
@@ -401,18 +422,18 @@ else if ( action === "Marché") {
 
 
   $('#the-basics').on('typeahead:selected', function (e, datum) {
-    postObjet = new PostObj(datum.denomination, value, datum.pk_entite, null, null, null, null);
+    postObjet = new PostObj(datum.denomination, action, null, datum.pk_entite, null, null, null, null, null, null);
   });
       } else {
-        postObjet = new PostObj('TODO', action, null, null, null, null, null);   
+        postObjet = new PostObj('TODO', action, null, null, null, null, null, null, null, null);   
         console.log(postObjet);
       }
-
 
         // fin si
         }
       }, // END Ajax success.
     error: function(jqXHR, textStatus, errorThrown) {
+        console.log('err ajax' + response);
         console.log(textStatus, errorThrown);
       }
     }); // END Ajax.
@@ -423,7 +444,27 @@ else if ( action === "Marché") {
  * On DOM ready et inits libs.
  */
 /** TIMEPICKER */
-$(function() { $('#timeInput').timepicker(); });
+$(function() { $('#timeInput-heure-deb').timepicker({
+    timeFormat: 'HH:mm',
+    minTime: '03:00:00',
+    maxHour: 20,
+    startTime: new Date(0,0,0,7,0,0),
+    interval: 30
+  }); 
+});
+$(function() { $('#timeInput-heure-fin').timepicker({
+    timeFormat: 'HH:mm',
+    minTime: '03:00:00',
+    maxHour: 20,
+    startTime: new Date(0,0,0,13,0,0),
+    interval: 30
+  }); 
+});
+$(function() { $('[data-toggle="datepicker"]').datepicker({
+  autoHide: true,
+  language: 'FR',
+  format: 'dd/mm/yyyy'
+}); });
 /** persistance des lieux sélectionnés */
 $(document).ready(function() {
   try { 
