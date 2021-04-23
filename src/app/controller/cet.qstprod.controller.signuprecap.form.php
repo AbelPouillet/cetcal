@@ -25,7 +25,7 @@ try
      */
     require_once($DOC_ROOT.'/src/app/exceptions/cet.email.deja.present.exception.php');
     require_once($PATH_MODEL_DTO.'cet.qstprod.producteurs.model.php');
-    require_once($PATH_MODEL_DTO . 'cet.qstprod.lieuxdist.model.legacy.php');
+    require_once($PATH_MODEL_DTO.'cet.qstprod.lieuxdist.model.php');
     require_once($PATH_MODEL_DTO.'cet.qstprod.produits.model.php');
     require_once($PATH_MODEL_DTO.'cet.qstprod.questionnaire.sondage.producteur.model.php');
     require_once($PATH_MODEL_DTO.'cet.qstprod.informations.model.php');
@@ -62,10 +62,9 @@ try
       isset($_SESSION['signupconso.form']) ? $_SESSION['signupconso.form'] : NULL,
       $form_opinions, $context_mdif_global, $pk_producteur);
     $email_producteur = $data['ev'];
-    $model = new QSTPRODLieuxModel();
+    $model = new QSTPRODLieuModel();
     $model->gestionEnvoiQstprod($data['pk'], 
       isset($_SESSION['signuplieuxdist.form']) ? $_SESSION['signuplieuxdist.form'] : NULL,
-      isset($_SESSION['signupconso.form']) ? $_SESSION['signupconso.form'] : NULL,
       $context_mdif_global, $pk_producteur);
     $model = new QSTPRODProduitsModel();
     $model->gestionEnvoiQstprod($data['pk'], isset($_SESSION['signupprods.form']) ? $_SESSION['signupprods.form'] : NULL, 
