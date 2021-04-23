@@ -120,17 +120,17 @@ class CETCALQueryLibrary
   const SELECT_MARCHE_LIKE = "SELECT * FROM cetcal.cetcal_entite WHERE denomination LIKE CONCAT ('%', :pDenomination, '%') AND type = 'marche';";
   const INSERT_CETCAL_PRODUCTEUR_LIEU_DE_DISTRIBUTION = "INSERT INTO cetcal.cetcal_producteurs_lieux_distribution (fk_producteur, fk_entite) VALUES (:pFk_producteur, :pFk_entite);";
 
-    /**
-     * Queries formulaire lieux de vente et de distribution producteur
-     */
+  /**
+   * Queries formulaire lieux de vente et de distribution producteur
+   */
+  const SELECT_ALL_SOUS_TYPE_LIEU_BY_TYPE = "SELECT sous_type FROM cetcal.cetcal_type_lieu WHERE type=:pType AND sous_type != 'NULL';";
+  const SELECT_ALL_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu;";
+  const SELECT_ONE_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu WHERE type = :pType;";
 
-    const SELECT_ALL_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu;";
-    const SELECT_ONE_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu WHERE type = :pType;";
+  /**
+   * Queries pour le fomulaire d'inscription - Lieux distribution
+   */
+  const SELECT_ALL_DENOMINATION_MARCHE = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'marche';";
+  const SELECT_ALL_DENOMINATION_AMAP = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
 
-    /**
-     * Queries pour le fomulaire d'inscription - Lieux distribution
-     */
-
-    const SELECT_ALL_DENOMINATION_MARCHE = "SELECT pk_entite, adresse,  denomination FROM cetcal.cetcal_entite WHERE type = 'marche';";
-    const SELECT_ALL_DENOMINATION_AMAP = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
 }

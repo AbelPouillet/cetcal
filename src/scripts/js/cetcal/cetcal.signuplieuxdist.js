@@ -73,6 +73,14 @@ let checkboxFlag = false;
 selectElement.addEventListener('change', (event)=> {
   value = selectElement.options[selectElement.selectedIndex].text;
 
+  if (selectElement.options[selectElement.selectedIndex].value === 'NULL') {
+    clearInputs();
+    clear(amapTypeahead);
+    clear(allMarcheBox);
+    postObjet = undefined;
+    return;
+  }
+
   if (value === 'Marché') {
 
     if (addLieu != null) {
@@ -216,7 +224,7 @@ textAreaProd.addEventListener("input", event => {
   } else if (currentLength > 0) {
     limitTextAlert.textContent = `${maxLength - currentLength} caractères restants`;
   } else {
-    limitTextAlert.textContent = "";
+    limitTextAlert.textContent = "Aucune saisie pour le moment.";
   }
 
   precisions_texte = target.value;
@@ -234,12 +242,20 @@ function clearInputs() {
   textAreaProd.value = '';
   $('input.typeahead').val('');
   checkboxMarche.checked = false;
+  $('.unfinded--marche').hide();
+  precisionsProd.classList.add('d-none');
+  sousTypeSelect.classList.add('d-none');
+  clear(amapTypeahead);
+  selectElement.options[0].selected = 'selected';
+  clear(allMarcheBox);
+
   var evt = document.createEvent("HTMLEvents");
   evt.initEvent("change", false, true);
   checkboxMarche.dispatchEvent(evt);
 }
 
 function showMarche(event) {
+  $('.unfinded--marche').show();
   let action = "Marché";
   const element = document.createElement('input');
   element.type = "text";
@@ -334,7 +350,7 @@ function emptyIfNullOrUndefined(data) {
 }
 
 function getTypeOuSousType(type, sousType) {
-  return (sousType !== undefined && sousType !== null && sousType !== '') ? sousType : type;
+  return (sousType !== undefined && sousType !== null && sousType !== '') ? type + ' (' + sousType + ')' : type;
 }
 
 /** *****************************************************************************************
@@ -342,6 +358,7 @@ function getTypeOuSousType(type, sousType) {
  */
 function ajaxCall(action) {
 
+  if (action === undefined) return;
   $(document).ready(function() {
 
     $.ajax({ url: 'src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php',
@@ -350,18 +367,18 @@ function ajaxCall(action) {
       dataType: 'JSON',
       success: function(response) {
       // Début si réseau de vente en circuit court
+      
         if (action === "Reseau de vente en circuit court") {
           clear(selectSousType);
           const initOpt = document.createElement("option");
           initOpt.value ="0";
-          initOpt.text = "--- Choississez un mode de distribution ---";
+          initOpt.text = "-- Choississez un mode de distribution --";
           selectSousType.add(initOpt, selectSousType.options[0]);
           const test = response.map((item) => `<option value="${item.id}">${item.sous_type}</option>`).join(' ');
           selectSousType.insertAdjacentHTML('beforeend', test);
         // fin si
         //Début si amap
-        } else if (action === "amap" || "marché") {
-          console.log(response);
+        } else if (action === "amap" || action === "Marché") {
 
           let engine = new Bloodhound({
             local: response,
@@ -424,12 +441,25 @@ else if ( action === "Marché") {
   $('#the-basics').on('typeahead:selected', function (e, datum) {
     postObjet = new PostObj(datum.denomination, action, null, datum.pk_entite, null, null, null, null, null, null);
   });
-      } else {
+      } else if (action !== 'Reseau de vente en circuit court') {
         postObjet = new PostObj('TODO', action, null, null, null, null, null, null, null, null);   
         console.log(postObjet);
       }
 
         // fin si
+        } else {
+          clear(selectSousType);
+          var initOpt = document.createElement("option");
+          initOpt.value ="0";
+          initOpt.text = "-- Préciser votre choix --";
+          selectSousType.add(initOpt, selectSousType.options[0]);
+          for (var i = 0; i < response.length; i++) {
+            initOpt = document.createElement("option");
+            initOpt.value = response[i].sous_type;
+            initOpt.text = response[i].sous_type;
+            selectSousType.add(initOpt, selectSousType.options[i + 1]);
+          }
+          showCircuitCout();
         }
       }, // END Ajax success.
     error: function(jqXHR, textStatus, errorThrown) {
@@ -471,6 +501,6 @@ $(document).ready(function() {
     postO = JSON.parse(decodeURIComponent($('#qstprod-signuplieuxdist-json').val())); 
     buildRecapLieux();
   } catch (error) { 
-    console.log(error); 
+    postO = { lieux: [] };
   }
 });

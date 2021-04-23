@@ -16,14 +16,31 @@ class QSTPRODLieuModel extends CETCALModel
     $this->createLieu($contextMdifGlobal ? $pk_mdif : $pPK, $pLieuDto);
   }
 
+  public function getSousTypesSiNonNULL($type)
+  {
+    try 
+    {
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_SOUS_TYPE_LIEU_BY_TYPE);
+      $stmt->bindParam(":pType", $type, PDO::PARAM_STR);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+      return $data;
+    }
+    catch (Exception $e)
+    {
+      error_log($e->getMessage());
+    }
+  }
+
   /**
    * fonctions publiques
    */
-  public static function allLieuDist()
+  public function allLieuDist()
   {
-    $model = new CETCALModel();
-    $qLib = $model->getQuerylib();
-    $stmt = $model->getCnxdb()->prepare($qLib::SELECT_ALL_TYPE_LIEU);
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_TYPE_LIEU);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -46,7 +63,7 @@ class QSTPRODLieuModel extends CETCALModel
    * @param string $type
    * @return array
    */
-  public function findOneTypeLieu(string $type)
+  public function findOneTypeLieu($type)
   {
     $qLib = $this->getQuerylib();
     $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ONE_TYPE_LIEU);
@@ -59,9 +76,8 @@ class QSTPRODLieuModel extends CETCALModel
 
   public function getAllMarcheDenomination()
   {
-    $model = new CETCALModel();
-    $qLib = $model->getQuerylib();
-    $stmt = $model->getCnxdb()->prepare($qLib::SELECT_ALL_DENOMINATION_MARCHE);
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_DENOMINATION_MARCHE);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -71,9 +87,8 @@ class QSTPRODLieuModel extends CETCALModel
 
   public function getAllAmapDenomination()
   {
-    $model = new CETCALModel();
-    $qLib = $model->getQuerylib();
-    $stmt = $model->getCnxdb()->prepare($qLib::SELECT_ALL_DENOMINATION_AMAP);
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_DENOMINATION_AMAP);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_OBJ);
 

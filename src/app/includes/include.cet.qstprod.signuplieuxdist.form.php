@@ -24,7 +24,7 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
       <div class="form-group mb-3">
           <label class="cet-input-label"><small class="cet-qstprod-label-text">Veuillez sélectionner le type de lieux de distribution :</small></label>
           <select class="form-control select--lieudist">
-              <option class="" value=""> Choississez un type de lieu de distribution</option>
+              <option value="NULL">Choississez un type de lieu de distribution</option>
               <?php foreach ($datas as $data): ?>
                   <option value="<?=$data->id?>"><?= ucfirst($data->type) ?></option>
               <?php endforeach;?>
@@ -101,7 +101,6 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           <input data-toggle="datepicker" class="form-control" type="text" 
             id="timeInput-date" name="timeInput-date"
             style="max-width: 256px;">
-          <!--<textarea data-toggle="datepicker"></textarea>-->
           <div data-toggle="datepicker"></div>
         </div>
       </div>
@@ -109,7 +108,10 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
       <div class="form-group mb-3 qstprod--precisions d-none" style="margin-top: 12px;">
         <label for="qstprod--precisions--prod" name="qstlieudist-4"><i class="fas fa-question-circle"></i>&#160;&#160;Précisions liée à votre présence sur ce lieu de distribution :</label>
         <textarea class="form-control" name="qstlieudist-4" id="qstprod--precisions--prod" maxlength="256" rows="3"></textarea>
-        <p class="limit--text--alert"></p>
+        <p class="limit--text--alert" 
+          style="margin-left: 4px; margin-top: 2px; font-size: 14px;">
+          Aucune saisie pour le moment.
+        </p>
         <div class="d-flex justify-content-end">
           <button class="btn cet-navbar-btn cet-navbar-btn-small addCircuit">Ajouter ce lieu de distribution</button>
         </div>

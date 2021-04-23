@@ -117,14 +117,6 @@ $pkprd = isset($_SESSION['CONTEXTE_MODIF-PKPRD']) ? $_SESSION['CONTEXTE_MODIF-PK
             <label class="form-check-label cet-qstprod-label-text" 
               for="qstprod-bio-certifs-ytendant">Je pratique une <b>agriculture éthique sans produits phyto-sanitaires chimiques</b>, cependant je ne possède pas de certification AB.</label>
           </div>
-          <!--<div class="form-check form-check-inline">
-            <input class="form-check-input qstprod-bio-certifs-ab" type="radio" value="4" 
-              id="qstprod-bio-certifs-nonab" name="qstprod-bio-certifs-ab"
-              <?= isset($currentForm['qstprod-bio-certifs-ab']) && 
-                strcmp($currentForm['qstprod-bio-certifs-ab'], '4') === 0 ? 'checked="checked"' : $neant; ?>>  
-            <label class="form-check-label cet-qstprod-label-text" 
-              for="qstprod-bio-certifs-nonab">Non certifié AB.</label>
-          </div>-->
         </div>
         <div class="form-group mb-3">
           <label class="cet-input-label"><small class="cet-qstprod-label-text"><img src="/res/content/icons/logos-verts-europe-ab.png" height="30" alt="">&#160;&#160;Si vous êtes certifiés AB, veuillez nous indiquer votre organisme de certificationation :</small></label>
