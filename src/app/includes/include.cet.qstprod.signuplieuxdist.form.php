@@ -121,9 +121,6 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
         <p class="qstprod--recap" style="margin-bottom: -12px;"><small>Récapitulatif de vos lieux de distributions :</small></p>
         <hr>
         <div class="lieux--list" id="lieux-dist-recap-liste"></div>
-        <button class="btn cet-navbar-btn cet-navbar-btn-small clear--lieux">
-          supprimer les lieux de distribution
-        </button>
       </div>
 
     </div> <!-- end container -->

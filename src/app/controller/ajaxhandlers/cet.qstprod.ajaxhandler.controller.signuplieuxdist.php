@@ -24,7 +24,7 @@ else if (isset($_POST) && $_POST['action'] === 'Reseau de vente en circuit court
   
   echo json_encode($data);
 }
-else if (isset($_POST) && $_POST['action'] === 'amap') 
+else if (isset($_POST) && $_POST['action'] === 'AMAP') 
 {
   require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
   $model = new QSTPRODLieuModel();

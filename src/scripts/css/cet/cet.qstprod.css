@@ -365,4 +365,11 @@ table#lieux-dist-table-recap-lieux {
   background-color: rgba(252,255,255, 0.3);
   color: #6C3012 !important;
 }
+span.lieux-dist-recap-liste-sup {
+  color: #DD4215 !important;
+}
+span.lieux-dist-recap-liste-sup:hover {
+  cursor: pointer;
+  color: red !important;
+}
 /***********************************************************************/

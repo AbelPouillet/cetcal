@@ -33,6 +33,7 @@ let marches;
 let postObjet;
 let inputMarche;
 let precisions_texte = '';
+let pasDeSousType = false;
 
 /**
  * Définition de la structure de données pour lieux de distributions (tous cas confondus).
@@ -83,6 +84,7 @@ selectElement.addEventListener('change', (event)=> {
 
   if (value === 'Marché') {
 
+    pasDeSousType = true;
     if (addLieu != null) {
       addLieu.classList.add('d-none');
     } else {
@@ -96,8 +98,9 @@ selectElement.addEventListener('change', (event)=> {
       amapFlag = false;
     }
 
-  } else if (value === 'Reseau de vente en circuit court') {
+  } else if (value === 'Réseau de vente en circuit court') {
 
+    pasDeSousType = false;
     if (precisionsFlag === true) {
       precisionsProd.classList.add('d-none');
       precisionsFlag = false;
@@ -133,12 +136,11 @@ selectElement.addEventListener('change', (event)=> {
 
 selectSousType.addEventListener('change', (e) => {
   const req = selectSousType.options[selectSousType.selectedIndex].text
-  if (req === "amap" && amapFlag === false) {
+  if (req === "AMAP") {
     precisionsProd.classList.remove('d-none');
     amapTypeahead.classList.remove('d-none');
     showAmap();
     ajaxCall(req);
-    console.log(req);
     amapFlag = true;
     sousTypeFlag = true;
   } else {
@@ -166,10 +168,16 @@ checkboxMarche.addEventListener('change', (event) => {
 // Event : Ajout des lieux.
 addCircuit.addEventListener('mousedown', () => {
 
-  if (checkboxFlag === false && (postObjet === undefined || postObjet.denomination === undefined)) {
-    console.log("Aucun le lieux de distribution renseigné.", "danger");
+  if (postObjet === undefined) {
+    alerter('Aucun le lieux de distribution renseigné', 'Veuillez renseigner tous les choix et sous-catégories proposés.', 'J\'ai compris');
     return;
   } 
+
+  if (!pasDeSousType && (postObjet.sous_type === undefined || postObjet.sous_type === null)) {
+    alerter('Le lieux de distribution est incomplet', 
+      'Veuillez renseigner la sous-catégories depuis la liste proposée.', 'J\'ai compris');
+    return;
+  }
 
   if (checkboxFlag === true) {
     postObjet = new PostObj();
@@ -191,15 +199,7 @@ addCircuit.addEventListener('mousedown', () => {
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
     postO.lieux.push(postObjet);
-
-    /**
-     * Suite à push OK : 
-     * 0 - mise à jour du JSON en cas de validation / POST de la page : FAIT.
-     * 1 - Mise à jour du récapitulatif : 
-     * 2 - tout ré-initialiser.
-     */
     $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
-    console.log(JSON.parse(decodeURIComponent($('#qstprod-signuplieuxdist-json').val())));
 
     postObjet = undefined;
     // finalement ré-initialiser le formulaire et reconstruire le récap.
@@ -207,8 +207,9 @@ addCircuit.addEventListener('mousedown', () => {
     buildRecapLieux();
 
   } else {
-    console.log("Le lieux de distribution " + postObjet.denomination 
-      + " est déjà sélectionné dans votre liste.", "danger");
+    alerter('Lieux de distribution est déjà renseigné', 
+      'Le lieux de distribution ' + postObjet.denomination + ' est déjà sélectionné dans votre liste.', 
+      'J\'ai compris');
   }
 
 });
@@ -248,6 +249,7 @@ function clearInputs() {
   clear(amapTypeahead);
   selectElement.options[0].selected = 'selected';
   clear(allMarcheBox);
+  pasDeSousType = false;
 
   var evt = document.createEvent("HTMLEvents");
   evt.initEvent("change", false, true);
@@ -298,11 +300,6 @@ function showCircuitCout() {
   sousTypeSelect.classList.remove("d-none");
 }
 
-// display alert
-function displayAlert(text, action) {
-  
-}
-
 // vérifie si pk est présente : 
 function pkPresent(pk_ent) {
   return (pk_ent !== undefined && pk_ent !== null && pk_ent !== '') && 
@@ -317,7 +314,7 @@ function denominationPresente(nom) {
 
 function buildRecapLieux() {
   var html_thead = '<thead>' 
-    + '<tr><th scope="col">Type</th>' 
+    + '<tr><th scope="col"></th><th scope="col">Type</th>' 
     + '<th scope="col">Nom</th>'
     + '<th scope="col">Date</th>'
     + '<th scope="col">Jour</th>'
@@ -327,13 +324,15 @@ function buildRecapLieux() {
     + '</thead>'
   var html_table = '';
   for (var i = 0; i < postO.lieux.length; i++) {
-    html_table += '<tr><td><i>' + emptyIfNullOrUndefined(getTypeOuSousType(postO.lieux[i].type, postO.lieux[i].sous_type)) + '</i></td>'
+    html_table += '<tr><td style="text-align: center;"><span class="lieux-dist-recap-liste-sup" data="' + i 
+      + '"><i class="fas fa-minus-square"></i><span></td>'
+      + '<td><i>' + emptyIfNullOrUndefined(getTypeOuSousType(postO.lieux[i].type, postO.lieux[i].sous_type)) + '</i></td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].denomination) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].date) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].jour) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].heure_deb) + '</td>'
       + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].heure_fin) + '</td>'
-      + '<td>' + emptyIfNullOrUndefined(postO.lieux[i].precs) + '</td>'
+      + '<td>' + emptyIfNullOrUndefined(substrIfNeeded(postO.lieux[i].precs)) + '</td>'
       + '</tr>';
   }
   html_table = '<table class="table table-sm" id="lieux-dist-table-recap-lieux">' 
@@ -343,6 +342,10 @@ function buildRecapLieux() {
   $('#lieux-dist-recap-liste').empty();
   $('#lieux-dist-recap-liste').append(html_table);
   $('#lieux-dist-recap-avant-envoi').show('slow');
+
+  setupLieuDeleteEvent();
+  if (postO.lieux.length <= 0) $('#lieux-dist-recap-avant-envoi').hide('slow');
+  $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
 }
 
 function emptyIfNullOrUndefined(data) {
@@ -351,6 +354,38 @@ function emptyIfNullOrUndefined(data) {
 
 function getTypeOuSousType(type, sousType) {
   return (sousType !== undefined && sousType !== null && sousType !== '') ? type + ' (' + sousType + ')' : type;
+}
+
+function substrIfNeeded(str) {
+  return str.length > 37 ? str.substring(0, 34) + '...' : str;
+}
+
+function setupLieuDeleteEvent() {
+  $('.lieux-dist-recap-liste-sup').off();
+  $('.lieux-dist-recap-liste-sup').on('mousedown', function() {
+    try {
+      for (var i = 0; i < postO.lieux.length; i++) {
+        if (i == parseInt($(this).attr('data'))) {
+          postO.lieux.splice(i, 1);
+          buildRecapLieux();
+        }
+      }
+    } catch (error) { 
+      postO = { lieux: [] };
+    }
+  });
+}
+
+function alerter(titre, texte, texte_boutton) {
+  $('#cet-modal-alerte-titre').text(titre);
+  $('#cet-modal-alerte-paragraphe').text(texte);
+  $('#cet-modal-alerte-btn-primary').text(texte_boutton);
+  $('#cet-modal-alerte-btn-primary').off();
+  $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
+    $('#cet-modal-alerte').modal('hide');
+  });
+  $('#cet-modal-alerte-btn-annuler').hide();
+  $('#cet-modal-alerte-btn').click();
 }
 
 /** *****************************************************************************************
@@ -368,7 +403,7 @@ function ajaxCall(action) {
       success: function(response) {
       // Début si réseau de vente en circuit court
       
-        if (action === "Reseau de vente en circuit court") {
+        if (action === "Réseau de vente en circuit court") {
           clear(selectSousType);
           const initOpt = document.createElement("option");
           initOpt.value ="0";
@@ -378,7 +413,7 @@ function ajaxCall(action) {
           selectSousType.insertAdjacentHTML('beforeend', test);
         // fin si
         //Début si amap
-        } else if (action === "amap" || action === "Marché") {
+        } else if (action === "AMAP" || action === "Marché") {
 
           let engine = new Bloodhound({
             local: response,
@@ -403,7 +438,7 @@ function ajaxCall(action) {
               cb(matches);
             };
           };
-if (action === "amap") {
+if (action === "AMAP") {
 
   $('#amap .typeahead').typeahead({
         hint: true,
@@ -441,9 +476,8 @@ else if ( action === "Marché") {
   $('#the-basics').on('typeahead:selected', function (e, datum) {
     postObjet = new PostObj(datum.denomination, action, null, datum.pk_entite, null, null, null, null, null, null);
   });
-      } else if (action !== 'Reseau de vente en circuit court') {
+      } else if (action !== 'Réseau de vente en circuit court') {
         postObjet = new PostObj('TODO', action, null, null, null, null, null, null, null, null);   
-        console.log(postObjet);
       }
 
         // fin si
@@ -459,11 +493,17 @@ else if ( action === "Marché") {
             initOpt.text = response[i].sous_type;
             selectSousType.add(initOpt, selectSousType.options[i + 1]);
           }
-          showCircuitCout();
+          if (response.length > 0) {
+            showCircuitCout();
+            pasDeSousType = false;
+          } else {
+            postObjet = new PostObj('TODO', selectElement.options[selectElement.selectedIndex].text, 
+              null, null, null, null, null, null, null, null);   
+            pasDeSousType = true;
+          }
         }
       }, // END Ajax success.
     error: function(jqXHR, textStatus, errorThrown) {
-        console.log('err ajax' + response);
         console.log(textStatus, errorThrown);
       }
     }); // END Ajax.
