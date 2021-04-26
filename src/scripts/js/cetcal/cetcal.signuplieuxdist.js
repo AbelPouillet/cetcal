@@ -42,7 +42,9 @@ const PostObj = class {
   constructor(denomination, type, sous_type, pk_entite, crea_marche, precesions, dateLieux, 
     heureDeb, heureFin, jour) {
     this.denomination = denomination;
+    this.code_type = '';
     this.type = type;
+    this.code_sous_type = '';
     this.sous_type = sous_type;
     this.pk_entite = pk_entite;
     this.crea_marche = crea_marche;
@@ -148,7 +150,7 @@ selectSousType.addEventListener('change', (e) => {
     clear(amapTypeahead);
     precisionsProd.classList.remove('d-none');
     sousTypeFlag = true;
-    postObjet = new PostObj('TODO', value, req, null, false, null, null, null, null, null);
+    postObjet = new PostObj('NULL', value, req, null, false, null, null, null, null, null);
   }
 
 });
@@ -168,18 +170,18 @@ checkboxMarche.addEventListener('change', (event) => {
 // Event : Ajout des lieux.
 addCircuit.addEventListener('mousedown', () => {
 
-  if (postObjet === undefined) {
-    alerter('Aucun le lieux de distribution renseigné', 'Veuillez renseigner tous les choix et sous-catégories proposés.', 'J\'ai compris');
+  if (postObjet === undefined && checkboxMarche.checked === false) {
+    alerter('Aucun le lieu de distribution renseigné', 'Veuillez renseigner tous les choix et sous-catégories proposés.', 'J\'ai compris');
     return;
   } 
 
-  if (!pasDeSousType && (postObjet.sous_type === undefined || postObjet.sous_type === null)) {
-    alerter('Le lieux de distribution est incomplet', 
-      'Veuillez renseigner la sous-catégories depuis la liste proposée.', 'J\'ai compris');
+  if (!pasDeSousType && selectSousType.selectedIndex === 0) {
+    alerter('Le lieu de distribution est incomplet', 
+      'Veuillez renseigner la sous-catégorie depuis la liste proposée.', 'J\'ai compris');
     return;
   }
 
-  if (checkboxFlag === true) {
+  if (checkboxMarche.checked) {
     postObjet = new PostObj();
     postObjet.crea_marche = true;
     postObjet.type = 'Marché';
@@ -195,11 +197,14 @@ addCircuit.addEventListener('mousedown', () => {
 
   // dans tous les cas :
   postObjet.precs = textAreaProd.value;
+  postObjet.code_type = selectElement.options[selectElement.selectedIndex].value;
+  postObjet.code_sous_type = pasDeSousType ? 'NULL' : selectSousType.options[selectSousType.selectedIndex].value; 
 
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
     postO.lieux.push(postObjet);
     $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
+    console.log(postO);
 
     postObjet = undefined;
     // finalement ré-initialiser le formulaire et reconstruire le récap.
@@ -308,7 +313,7 @@ function pkPresent(pk_ent) {
 
 // vérifie si la dénomination est présent : 
 function denominationPresente(nom) {
-  if (nom === 'TODO') return false;
+  if (nom === 'NULL') return false;
   return postO.lieux.some(entite => entite.denomination === nom);
 }
 
@@ -349,7 +354,7 @@ function buildRecapLieux() {
 }
 
 function emptyIfNullOrUndefined(data) {
-  return data === undefined || data === 'undefined' || data == 'null' || data === null || data === 'TODO' ? '' : data;
+  return data === undefined || data === 'undefined' || data == 'null' || data === null || data === 'NULL' ? '' : data;
 }
 
 function getTypeOuSousType(type, sousType) {
@@ -362,12 +367,26 @@ function substrIfNeeded(str) {
 
 function setupLieuDeleteEvent() {
   $('.lieux-dist-recap-liste-sup').off();
+  
   $('.lieux-dist-recap-liste-sup').on('mousedown', function() {
+
     try {
+
       for (var i = 0; i < postO.lieux.length; i++) {
         if (i == parseInt($(this).attr('data'))) {
-          postO.lieux.splice(i, 1);
-          buildRecapLieux();
+          $('#cet-modal-alerte-titre').text('Veuillez confirmer la suppression');
+          $('#cet-modal-alerte-paragraphe').text('Veuillez confirmer la suppression du lieu de distribution "' 
+            + postO.lieux[i].denomination + '".');
+          $('#cet-modal-alerte-btn-primary').text('Supprimer');
+          $('#cet-modal-alerte-btn-primary').attr('data', i);
+          $('#cet-modal-alerte-btn-primary').off();
+          $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
+            postO.lieux.splice(parseInt($(this).attr('data')), 1);
+            $('#cet-modal-alerte').modal('hide');
+            buildRecapLieux();
+          });
+          $('#cet-modal-alerte-btn-annuler').text('Annuler');
+          $('#cet-modal-alerte-btn').click();
         }
       }
     } catch (error) { 
@@ -402,14 +421,13 @@ function ajaxCall(action) {
       dataType: 'JSON',
       success: function(response) {
       // Début si réseau de vente en circuit court
-      
         if (action === "Réseau de vente en circuit court") {
           clear(selectSousType);
           const initOpt = document.createElement("option");
           initOpt.value ="0";
           initOpt.text = "-- Choississez un mode de distribution --";
           selectSousType.add(initOpt, selectSousType.options[0]);
-          const test = response.map((item) => `<option value="${item.id}">${item.sous_type}</option>`).join(' ');
+          const test = response.map((item) => `<option value="${item.code_sous_type}">${item.sous_type}</option>`).join(' ');
           selectSousType.insertAdjacentHTML('beforeend', test);
         // fin si
         //Début si amap
@@ -477,7 +495,7 @@ else if ( action === "Marché") {
     postObjet = new PostObj(datum.denomination, action, null, datum.pk_entite, null, null, null, null, null, null);
   });
       } else if (action !== 'Réseau de vente en circuit court') {
-        postObjet = new PostObj('TODO', action, null, null, null, null, null, null, null, null);   
+        postObjet = new PostObj('NULL', action, null, null, null, null, null, null, null, null);   
       }
 
         // fin si
@@ -489,7 +507,7 @@ else if ( action === "Marché") {
           selectSousType.add(initOpt, selectSousType.options[0]);
           for (var i = 0; i < response.length; i++) {
             initOpt = document.createElement("option");
-            initOpt.value = response[i].sous_type;
+            initOpt.value = response[i].code_sous_type;
             initOpt.text = response[i].sous_type;
             selectSousType.add(initOpt, selectSousType.options[i + 1]);
           }
@@ -497,7 +515,7 @@ else if ( action === "Marché") {
             showCircuitCout();
             pasDeSousType = false;
           } else {
-            postObjet = new PostObj('TODO', selectElement.options[selectElement.selectedIndex].text, 
+            postObjet = new PostObj('NULL', selectElement.options[selectElement.selectedIndex].text, 
               null, null, null, null, null, null, null, null);   
             pasDeSousType = true;
           }
@@ -541,6 +559,7 @@ $(document).ready(function() {
     postO = JSON.parse(decodeURIComponent($('#qstprod-signuplieuxdist-json').val())); 
     buildRecapLieux();
   } catch (error) { 
+    console.log(error);
     postO = { lieux: [] };
   }
 });

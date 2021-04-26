@@ -1,7 +1,7 @@
 <?php
 $neant = "";
 $currentForm = isset($_SESSION['signuplieuxdist.form.post']) ? $_SESSION['signuplieuxdist.form.post'] : $neant;
-$cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signupprods']) ? $_SESSION['CONTEXTE_MODIF-signupprods'] : false;
+$cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signuplieuxdist']) ? $_SESSION['CONTEXTE_MODIF-signuplieuxdist'] : false;
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.qstprod.controller.signuplieuxdist.php');
 $datas = formLieuDistController::fetchUniqueAllTypeLieu();
 $sousTypes = formLieuDistController::fetchAllTypeLieu();
@@ -26,7 +26,7 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           <select class="form-control select--lieudist">
               <option value="NULL">Choississez un type de lieu de distribution</option>
               <?php foreach ($datas as $data): ?>
-                  <option value="<?=$data->id?>"><?= ucfirst($data->type) ?></option>
+                  <option value="<?= $data->code_type ?>"><?= ucfirst($data->type) ?></option>
               <?php endforeach;?>
           </select>
       </div>

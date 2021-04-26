@@ -22,9 +22,9 @@ try
   require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signuplieuxdist.dto.php');
   $dtoLieuDist = new QstLieuxDistributionDTO(urldecode($form_json_data));
   $_SESSION['signuplieuxdist.form'] = serialize($dtoLieuDist);
-  error_log('[CONTROL FORM LIEUX DIST] donnees JSON='.$dtoLieuDist->json);
 
   $_SESSION['signuplieuxdist.form.post'] = $_POST;
+  if ($nav == 'valider') $_SESSION['CONTEXTE_MODIF-signuplieuxdist'] = false;
   session_write_close();
   /* *****************************************************************************/
 

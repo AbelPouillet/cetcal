@@ -39,11 +39,13 @@ Class SessionHelper
     session_id($sessionid);
     session_start();
     $_SESSION['signupgen.form.post'] = $forms_questionnaire['signupgen.form.post'];
+    $_SESSION['signuplieuxdist.form.post'] = $forms_questionnaire['signuplieuxdist.form.post'];
     $_SESSION['signupprods.form.post'] = $forms_questionnaire['signupprods.form.post'];
     $_SESSION['signupconso.form.post'] = $forms_questionnaire['signupconso.form.post'];
     $_SESSION['signupbesoins.form.post'] = $forms_questionnaire['signupbesoins.form.post'];
     $_SESSION['signuprecap.opinions'] = $forms_questionnaire['signuprecap.opinions'];
     $_SESSION['CONTEXTE_MODIF-signupgen'] = true;
+    $_SESSION['CONTEXTE_MODIF-signuplieuxdist'] = true;
     $_SESSION['CONTEXTE_MODIF-signupprods'] = true;
     $_SESSION['CONTEXTE_MODIF-signupconso'] = true;
     $_SESSION['CONTEXTE_MODIF-signupbesoins'] = true;
@@ -57,6 +59,7 @@ Class SessionHelper
     session_id($sessionid);
     session_start();
     unset($_SESSION['signupgen.form.post']);
+    unset($_SESSION['signuplieuxdist.form.post']);
     unset($_SESSION['signupprods.form.post']);
     unset($_SESSION['signupconso.form.post']);
     unset($_SESSION['signupbesoins.form.post']);

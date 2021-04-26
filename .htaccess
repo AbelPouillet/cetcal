@@ -1,2 +1,4 @@
-Header unset Cookie
-Header unset Set-Cookie
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /var/www/decidelabiolocale/.htpasswd
+Require valid-user

@@ -508,6 +508,15 @@ class QSTPRODProducteurModel extends CETCALModel
     return $stmt->rowCount();
   }
 
+  public function findLieuxDistByPk($pk)
+  {
+    require_once('cet.qstprod.lieuxdist.model.php');
+    $model_lieux = new QSTPRODLieuModel();
+    $lieux = $model_lieux->selectAllByPkProducteur($pk);
+
+    return $lieux;
+  }
+
   /* *************************************************************************************************
    * fonctions privées.
    */

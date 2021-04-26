@@ -26,6 +26,10 @@ class QSTPRODProducteurPOSTModel extends QSTPRODProducteurModel
         $this->findProducteurByPk($pk), 
         $pk
       );
+    $producteur['signuplieuxdist.form.post'] = $this->toLieuxDistForm(
+        $this->findLieuxDistByPk($pk),
+        $pk
+      );
     $producteur['signupprods.form.post'] = $this->toProduitsForm(
         $this->findProduitByFkProducteur($pk),
         $this->findSpecificitesProduitsByPkProducteur($pk),
@@ -124,6 +128,38 @@ class QSTPRODProducteurPOSTModel extends QSTPRODProducteurModel
     );
 
     return $signupprods;
+  }
+
+  /**
+   * Correspond à la page 2 du questionnaire.
+   * Données issues de la table cetcal_producteur_lieu_dist.
+   */
+  private function toLieuxDistForm($data, $pk)
+  {
+    $json = ["lieux" => array()];
+    foreach ($data as $lieu) 
+    {
+      array_push($json['lieux'], [
+        "pk_entite" => $lieu['fk_entite'],
+        "code_type" => $lieu['code_type'],
+        "type" => $lieu['type'],
+        "code_sous_type" => $lieu['code_sous_type'],
+        "sous_type" => $lieu['sous_type'],
+        "denomination" => $lieu['denomination'],
+        "crea_marche" => $lieu['crea_marche'],
+        "precs" => $lieu['precisions'],
+        "date" => $lieu['date_lieu'],
+        "heure_deb" => $lieu['heure_deb'],
+        "heure_fin" => $lieu['heure_fin'],
+        "jour" => $lieu['jour']
+      ]);
+    }
+
+    $json = json_encode($json);
+    $lieuxdist = array();
+    $lieuxdist['qstprod-signuplieuxdist-json'] = rawurlencode($json);
+
+    return $lieuxdist;
   }
 
   /**

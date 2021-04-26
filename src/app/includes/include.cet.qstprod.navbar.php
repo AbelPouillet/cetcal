@@ -26,7 +26,7 @@
       </li>
     </ul>
     <ul class="navbar-nav mr-auto">
-      <?php if (!in_array($statut, CetQstProdFilArianneHelper::$states)): ?>
+      <?php if ($OPEN_PAGE_RECETTES && !in_array($statut, CetQstProdFilArianneHelper::$states)): ?>
         <li class="nav-item" style="z-index: 1; margin-top: 8px;">
           <a class="btn cet-navbar-btn cet-navbar-btn-small" href="/?statut=base.recettes&anr=true">
             <i class="fas fa-temperature-high"></i>&#160;&#160;&#160;Livret de recettes

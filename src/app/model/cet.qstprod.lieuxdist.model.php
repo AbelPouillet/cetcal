@@ -13,7 +13,7 @@ class QSTPRODLieuModel extends CETCALModel
    */
   public function gestionEnvoiQstprod($pPK, $pLieuDto, $contextMdifGlobal, $pk_mdif)
   {
-    $this->createLieu($contextMdifGlobal ? $pk_mdif : $pPK, $pLieuDto);
+    $this->createLieu($contextMdifGlobal ? $pk_mdif : $pPK, $pLieuDto, $contextMdifGlobal);
   }
 
   public function getSousTypesSiNonNULL($type)
@@ -95,6 +95,24 @@ class QSTPRODLieuModel extends CETCALModel
     return $data;
   }
 
+  public function selectAllByPkProducteur($pk)
+  {
+    try 
+    {
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare($qLib::SELECT_CETCAL_LIEUX_BY_PK_PRODUCTEUR);
+      $stmt->bindParam(":pPk_producteur", $pk, PDO::PARAM_INT);
+      $stmt->execute();    
+      $data = $stmt->fetchAll();
+
+      return $data;
+    }
+    catch (Exception $e)
+    {
+      error_log($e->getMessage());
+    }
+  }
+
   /* *************************************************************************************************
    * fonctions privées.
    */
@@ -104,6 +122,27 @@ class QSTPRODLieuModel extends CETCALModel
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.qstprod.signuplieuxdist.dto.php');
     $dtoLieux = new QstLieuxDistributionDTO();
     $dtoLieux = unserialize($pLieuDto);
+    $obj = json_decode($dtoLieux->json);
+
+    foreach ($obj->lieux as $lieu)
+    {
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_PRODUCTEUR_LIEU_DE_DISTRIBUTION);
+      $stmt->bindParam(":pFk_producteur", $pPK, PDO::PARAM_INT);
+      $stmt->bindParam(":pFk_entite", $lieu->pk_entite, PDO::PARAM_STR);
+      $stmt->bindParam(":pCodeType", $lieu->code_type, PDO::PARAM_STR);
+      $stmt->bindParam(":pType", $lieu->type, PDO::PARAM_STR);
+      $stmt->bindParam(":pCodeSousType", $lieu->code_sous_type, PDO::PARAM_STR);
+      $stmt->bindParam(":pSousType", $lieu->sous_type, PDO::PARAM_STR);
+      $stmt->bindParam(":pDenomination", $lieu->denomination, PDO::PARAM_STR);
+      $stmt->bindParam(":pCreaMarche", $lieu->crea_marche, PDO::PARAM_STR);
+      $stmt->bindParam(":pPrecisions", $lieu->precs, PDO::PARAM_STR);
+      $stmt->bindParam(":pDateLieu", $lieu->date, PDO::PARAM_STR);
+      $stmt->bindParam(":pHeureDeb", $lieu->heure_deb, PDO::PARAM_STR);
+      $stmt->bindParam(":pHeureFin", $lieu->heure_fin, PDO::PARAM_STR);
+      $stmt->bindParam(":pJour", $lieu->jour, PDO::PARAM_STR);
+      $stmt->execute();
+    }
   }
 
 }

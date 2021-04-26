@@ -80,6 +80,8 @@ class CETCALQueryLibrary
   const UPDATE_ENTITE_BY_PK = "UPDATE cetcal.cetcal_entite SET denomination=:pDenomination, territoire=:pTerritoire, activite=:pActivite, adresse=:pAdrliterale, tels=:pTels, personne=:pContactPersonne, email=:pEmail, urlwww=:pUrlwww, infoscmd=:pInfoCommande, jourhoraire=:pJourHoraire, specificites=:pSpecificite, type=:pType WHERE pk_entite=:pPk;";
   const DELETE_LOGIQUE_ENTITE_BY_PK = "UPDATE cetcal.cetcal_entite SET etat=0 WHERE pk_entite=:pPk;";
   const SELECT_ALL_TYPES_LIEU = "SELECT DISTINCT (type) FROM cetcal.cetcal_entite;";
+  const SELECT_ALL_DENOMINATION_MARCHE = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'marche';";
+  const SELECT_ALL_DENOMINATION_AMAP = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
 
   const SELECT_ALL_FROM_AMINISTRATION = "SELECT * FROM cetcal.cetcal_administration;";
   const SELECT_CETCAL_ADMIN_BY_SESSION_ID = "SELECT * FROM cetcal.cetcal_administration WHERE session_id=:pSessionId;";
@@ -110,27 +112,16 @@ class CETCALQueryLibrary
   const SELECT_CATEGORIES_PRODUITS_BY_PK_PRODUCTEUR = "SELECT DISTINCT (categorie) FROM cetcal.producteur_join_produits, cetcal.cetcal_produit WHERE fk_produits_join=pk_produit AND fk_producteur_join=:pPk_producteur";
   const UPDATE_USER_SESSION = "UPDATE cetcal.cetcal_user SET session_id=:pSessionId, user_ip=:pUserIp WHERE user_id=:pUserId;";
 
-  // Queries pour select lieux de vente
-  // const SELECT_ALL_TYPES_LIEU = "SELECT DISTINCT (type) FROM cetcal.cetcal_entite";
-
-  /*
-   * Queries mise à jour base de données
-   */
+  // TODO check deprecated ??? :
   const SELECT_PRODUCTEUR_WITH_MARCHE = "SELECT * FROM cetcal.producteur_join_lieu JOIN cetcal_lieu WHERE cetcal_lieu.pk_lieu = producteur_join_lieu.fk_lieu AND cetcal_lieu.nom = 'mad1'";
+  // TODO check deprecated ??? :
   const SELECT_MARCHE_LIKE = "SELECT * FROM cetcal.cetcal_entite WHERE denomination LIKE CONCAT ('%', :pDenomination, '%') AND type = 'marche';";
-  const INSERT_CETCAL_PRODUCTEUR_LIEU_DE_DISTRIBUTION = "INSERT INTO cetcal.cetcal_producteurs_lieux_distribution (fk_producteur, fk_entite) VALUES (:pFk_producteur, :pFk_entite);";
 
-  /**
-   * Queries formulaire lieux de vente et de distribution producteur
-   */
-  const SELECT_ALL_SOUS_TYPE_LIEU_BY_TYPE = "SELECT sous_type FROM cetcal.cetcal_type_lieu WHERE type=:pType AND sous_type != 'NULL';";
+  const INSERT_CETCAL_PRODUCTEUR_LIEU_DE_DISTRIBUTION = "INSERT INTO cetcal.cetcal_producteur_lieu_dist (fk_producteur, fk_entite, code_type, type, code_sous_type, sous_type, denomination, crea_marche, precisions, date_lieu, heure_deb, heure_fin, jour) VALUES (:pFk_producteur, :pFk_entite, :pCodeType, :pType, :pCodeSousType, :pSousType, :pDenomination, :pCreaMarche, :pPrecisions, :pDateLieu, :pHeureDeb, :pHeureFin, :pJour);";
+  const SELECT_CETCAL_LIEUX_BY_PK_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_producteur_lieu_dist WHERE fk_producteur=:pPk_producteur;";
+
+  const SELECT_ALL_SOUS_TYPE_LIEU_BY_TYPE = "SELECT code_sous_type, sous_type FROM cetcal.cetcal_type_lieu WHERE type=:pType AND sous_type != 'NULL';";
   const SELECT_ALL_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu;";
   const SELECT_ONE_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu WHERE type = :pType;";
-
-  /**
-   * Queries pour le fomulaire d'inscription - Lieux distribution
-   */
-  const SELECT_ALL_DENOMINATION_MARCHE = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'marche';";
-  const SELECT_ALL_DENOMINATION_AMAP = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
 
 }

@@ -17,7 +17,8 @@ class CETCALTransactionsLibrary
     "DELETE FROM cetcal.cetcal_sondage WHERE fk_producteur_sondage=%d;",
     "DELETE FROM cetcal.cetcal_mode_conso WHERE fk_producteur_mode_conso=%d;",
     "DELETE FROM cetcal.cetcal_mode_conso WHERE fk_producteur_mode_conso=%d;",
-    "DELETE FROM cetcal.cetcal_information_producteur WHERE fk_producteur_information_producteur=%d;"
+    "DELETE FROM cetcal.cetcal_information_producteur WHERE fk_producteur_information_producteur=%d;",
+    "DELETE FROM cetcal.cetcal_producteur_lieu_dist WHERE fk_producteur=%d;"
   ];
 
   public function build($queries, $pk_producteur)

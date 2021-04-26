@@ -32,6 +32,8 @@ $PHP_UTILS_PATH = $DOC_ROOT.'/src/app/utils/';
 /**
  * Constantes globaux de paramétrage app.
  */
+// Afficher page de recettes.
+$OPEN_PAGE_RECETTES = false;
 // Si true, les producteurs non inscrits via questionnaire seront lues pour carto.
 $SELECT_PRD_NON_INSCRITS = true;
 // Si true, dialog de geoloc utilisateur s'affiche à l'entrée de l'app. Sinon rien ne se passe.
@@ -40,6 +42,7 @@ $CLIENT_CARTO_GEOLOCALISE = true;
 $CLIENT_CARTO_AVANCEE = true;
 // Permettre ou non le login / signup
 $OPEN_LOGIN_SIGNUP = true;
+
 
 include $PHP_CONST_PATH.'cet.qstprod.const.listes.php';
 require_once($PHP_UTILS_PATH.'cet.qstprod.utils.httpdataprocessor.php');
