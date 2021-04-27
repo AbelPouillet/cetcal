@@ -42,21 +42,19 @@ $(document).ready(function() {
 
 	$("#annuaire-user-signup-form").submit(function(event) {
 
-	  var entries = $("#annuaire-user-signup-form :input").serializeArray();
-	  var commune = $('#annuaire-user-signup-commune').val();
+	  var commune = $('#cet-annuaire-recherche-communes-value').val();
 	  var email = $('#annuaire-user-signup-email').val();
 	  var email_conf = $('#annuaire-user-signup-email-conf').val();
 	  var mdp = $('#annuaire-user-signup-mdp').val();
 	  var mdp_conf = $('#annuaire-user-signup-mdpconf').val();
     var choix_contacts = $("#annuaire-user-signup-form input:checkbox:checked").length > 0 ?
       'ok' : undefined;
-	  var data = [email, email_conf, mdp_conf, mdp, choix_contacts];
+	  var data = [email, email_conf, mdp_conf, mdp, choix_contacts, commune];
 
 	  var r = -1;
 		for (var i = 0; i < data.length; i++) {
 			var entry = data[i];
-			if (entry === undefined || entry == 'undefined' || 
-        entry.length < 1) ++r;
+			if (entry === undefined || entry == 'undefined' || entry.length < 1) ++r;
 		}
 
 	  if (r !== -1) {

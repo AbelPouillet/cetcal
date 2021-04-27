@@ -58,7 +58,12 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
     <div class="col-lg-6">
       <div class="alert alert-success cet-bloc" role="alert">
         <p><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?></p>
-        <p>L'inscription .... TODO</p>
+        <p>
+          L'inscription à l'annuaire décidelabiolocale.org vous permet de recevoir des informations sur les producteur.e.s, sur les événements de votre région et de la Bio Locale, sur des opportunités liées aux circuits courts (collectivités, cantines, restaurateurs concernés).
+        </p>
+        <p>
+          L'inscription vous permettra également de communiquer directement avec les producteur.e.s ainsi que les autres memebres. Décide la BIO Locale, soutient notre démarche et inscrit toi !
+        </p>
         <hr>
         <label>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
@@ -84,7 +89,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
         <div class="cet-formgroup-container" style=" width: 100% !important;">
           <div class="form-group mb-3" id="cet-annuaire-recherche-communes-conatiner">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Ou souhaitez-vous consommer BIO, local ?<br><b>Si votre commune ne figure pas dans la liste, merci de sélectionner une commune à proximité.</b><br>Choississez votre commune :</small></label>
-            <input type="text" class="form-control typeahead"
+            <input type="text" class="form-control is-invalid typeahead"
               id="cet-annuaire-recherche-communes-value"
               name="annuaire-user-signup-commune"
               style="border-radius: 4px !important; width: 100% !important;">
