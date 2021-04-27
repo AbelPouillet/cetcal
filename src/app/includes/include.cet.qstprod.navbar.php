@@ -53,13 +53,13 @@
               $('#cetcal-cnx-not-done').hide('slow'); 
               $('#cetcal-obl-done').hide('slow'); 
               $('#cetcal-obl-not-done').hide('slow'); });">
-            <i class="fas fa-user"></i>&#160;Producteur.e, se connecter
+            <i class="fas fa-user"></i>&#160;Se connecter
           </a>
         </li>
         <li class="nav-item">
           <a id="cet-annuaire-user-signup" class="btn cet-navbar-btn cet-navbar-btn-small" 
-            href="#" prevhref="/?statut=user.signup&anr=true">
-            <i class="fas fa-info-circle"></i>&#160;créer un compte
+            href="/?statut=user.signup&anr=true">
+            <i class="fas fa-info-circle"></i>&#160;Inscription (non producteur.e)
           </a>
         </li>
       <?php endif; ?>

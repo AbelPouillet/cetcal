@@ -12,7 +12,8 @@ try
     	$_POST['annuaire-user-signup-email'], 
     	$_POST['annuaire-user-signup-email-conf'], 
     	$_POST['annuaire-user-signup-mdp'], 
-    	$_POST['annuaire-user-signup-mdpconf'])
+    	$_POST['annuaire-user-signup-mdpconf'],
+      $_POST['annuaire-user-signup-type'])
     );
     $dataProcessor->checkArrayPopulated(
       $dataProcessor->processHttpFormArrayData($_POST['annuaire-user-signup-recevoir'])
@@ -38,6 +39,7 @@ try
   if ($nav == 'valider')
   {
   	$form_commune = $dataProcessor->processHttpFormData($_POST['annuaire-user-signup-commune']);
+    $form_user_type = $dataProcessor->processHttpFormData($_POST['annuaire-user-signup-type']);
     $form_user = $dataProcessor->processHttpFormData($_POST['annuaire-user-signup-nomusr']);
     $form_email = $dataProcessor->processHttpFormData($_POST['annuaire-user-signup-email']);
     $form_emailconf = $dataProcessor->processHttpFormData($_POST['annuaire-user-signup-email-conf']);
@@ -55,8 +57,6 @@ try
   require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.communes.model.php');
   require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.user.model.php');
   require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
-  $communes_mdl = new CETCALCommunesModel();
-  $commune_libelle = $communes_mdl->getLibelleCommuneByPK($form_commune);
   $mdl = new CETCALUserModel();
   $mdl_producteur = new QSTPRODProducteurModel();
 
@@ -64,8 +64,8 @@ try
   $email_prd_exists = $mdl_producteur->emailExists(trim($form_email));
   if (!$exists && $email_prd_exists === 0) 
   {
-  	$user = $mdl->insert($form_email, $form_user, $form_mdp_hash, $form_telport, $commune_libelle, 
-  		$_SERVER['REMOTE_ADDR'], $form_commune, $form_infos, $form_achat, $form_hebdo);
+  	$user = $mdl->insert($form_email, $form_user, $form_user_type, $form_mdp_hash, $form_telport, 
+      $form_commune, $_SERVER['REMOTE_ADDR'], $form_infos, $form_achat, $form_hebdo);
   	$signup_done = (isset($user['pk']) && isset($user['wid'])) ? 'true' : 'false'; 
     // Apply navigation. Arrivé ici, l'utilisateur est inscrit.
 	  header('Location: /?statut='.$statut.'&anr=true&usrs='.$signup_done.'&usri='.$user['pk'].'&email='.$form_email);

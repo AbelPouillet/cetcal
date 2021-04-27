@@ -98,7 +98,7 @@ class CETCALQueryLibrary
   const SELECT_CETCAL_COMMUNES_BY_ID_LATLNG_EXISTS = "SELECT * FROM cetcal.cetcal_communes WHERE id=:pId AND lat <> 'NULL' AND lng <> 'NULL';";
   const SELECT_COMMUNE_BY_PK = "SELECT * FROM cetcal.cetcal_communes WHERE id=:pId;";
   
-  const INSERT_CETCAL_USER = "INSERT INTO cetcal.cetcal_user (user_email, user_usr_name, user_usr_mdp, user_telport, user_commune, user_ip, identifiant_cet, user_fk_commune, notifier_info, notifier_achat, notifier_hebdo) VALUES (:pEmail, :pUsrNom, :pMdpHash, :pTelPort, :pCommune, :pIP, :pCetWebID, :pFKCommune, :pInfos, :pAchat, :pHebdo);";
+  const INSERT_CETCAL_USER = "INSERT INTO cetcal.cetcal_user (user_email, user_usr_name, user_type, user_usr_mdp, user_telport, user_commune, user_ip, identifiant_cet, notifier_info, notifier_achat, notifier_hebdo) VALUES (:pEmail, :pUsrNom, :pUsrType, :pMdpHash, :pTelPort, :pCommune, :pIP, :pCetWebID, :pInfos, :pAchat, :pHebdo);";
   const SELECT_ONE_USER_BY_EMAIL = "SELECT * FROM cetcal.cetcal_user WHERE user_email=:pEmail LIMIT 1;";
   const SELECT_CETCAL_USER_BY_EMAIL = "SELECT * FROM cetcal.cetcal_user WHERE user_email=:pEmail;";
   const SELECT_CETCAL_USER_BY_EMAIL_AND_PWD_HASH = "SELECT * FROM cetcal.cetcal_user WHERE user_email=:pEmail AND user_usr_mdp=:pMdpHash;";

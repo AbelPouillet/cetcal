@@ -8,7 +8,7 @@ require_once('cet.qstprod.querylibrary.php');
 class CETCALUserModel extends CETCALModel 
 {
 
-	public function insert($pEmail, $pUsrNom, $pMdpHash, $pTelPort, $pCommune, $pIP, $pFKCommune,
+	public function insert($pEmail, $pUsrNom, $pTypeUser, $pMdpHash, $pTelPort, $pCommune, $pIP,
     $pInfos, $pAchat, $pHebdo) 
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.identifiantcet.php');
@@ -20,12 +20,12 @@ class CETCALUserModel extends CETCALModel
     $stmt = $this->getCnxdb()->prepare($qLib::INSERT_CETCAL_USER);
     $stmt->bindParam(":pEmail", $pEmail, PDO::PARAM_STR);
     $stmt->bindParam(":pUsrNom", $pUsrNom, PDO::PARAM_STR);
+    $stmt->bindParam(":pUsrType", $pTypeUser, PDO::PARAM_STR);
     $stmt->bindParam(":pMdpHash", $pMdpHash, PDO::PARAM_STR);
     $stmt->bindParam(":pTelPort", $pTelPort, PDO::PARAM_STR);
     $stmt->bindParam(":pCommune", $pCommune, PDO::PARAM_STR);
     $stmt->bindParam(":pIP", $pIP, PDO::PARAM_STR);
     $stmt->bindParam(":pCetWebID", $cetcal_web_id, PDO::PARAM_STR);
-    $stmt->bindParam(":pFKCommune", $pFKCommune, PDO::PARAM_STR);
     $stmt->bindParam(":pInfos", $pInfos, PDO::PARAM_INT);
     $stmt->bindParam(":pAchat", $pAchat, PDO::PARAM_INT);
     $stmt->bindParam(":pHebdo", $pHebdo, PDO::PARAM_INT);

@@ -8,7 +8,6 @@ $currentForm = (isset($_SESSION['annuaire.user.signup.form']) && isset($_SESSION
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.httpdataprocessor.php');
 $dataProcessor = new HTTPDataProcessor();
 
-
 $email_does_exist = false; $email_user = ''; $email_exists = '';
 if (isset($_GET['usrs']) && isset($_GET['email']))
 {
@@ -59,12 +58,16 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
     <div class="col-lg-6">
       <div class="alert alert-success cet-bloc" role="alert">
         <p><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?></p>
+        <p>L'inscription .... TODO</p>
         <hr>
         <label>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
             <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </label>
+        <p>
+          <a href="#" onmousedown="$('#cet-qstprod_intro').fadeIn('slow');scrollTowardsId('cet-qstprod_intro', -18);"><i class="fas fas fa-info fa-lg"></i>&#160;&#160;Si vous êtes producteur, veuillez utiliser le formulaire d'inscriptio qui vous est dédié. Cliquer ici.</a>
+        </p>
       </div>
     </div>
   </div>
@@ -78,14 +81,24 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
         <label class="cet-formgroup-container-label">
           <small class="form-text">Informations nécessaires à votre inscription :</small>
         </label>
-        <div class="cet-formgroup-container">
-          <div class="form-group mb-3">
+        <div class="cet-formgroup-container" style=" width: 100% !important;">
+          <div class="form-group mb-3" id="cet-annuaire-recherche-communes-conatiner">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Ou souhaitez-vous consommer BIO, local ?<br><b>Si votre commune ne figure pas dans la liste, merci de sélectionner une commune à proximité.</b><br>Choississez votre commune :</small></label>
-            <select class="form-control" id="annuaire-user-signup-commune" name="annuaire-user-signup-commune">
-              <?php //foreach ($communes as $commune): ?>
-                <option value="<?= $commune['id'] ?>"><?= $commune['libelle'] ?></option>
-              <?php //endforeach; ?>
-              <option value="0" selected="selected">-- Villes, Communes --</option>
+            <input type="text" class="form-control typeahead"
+              id="cet-annuaire-recherche-communes-value"
+              name="annuaire-user-signup-commune"
+              style="border-radius: 4px !important; width: 100% !important;">
+          </div>
+          <div class="form-group mb-3">
+            <label class="cet-input-label"><small class="cet-qstprod-label-text">Dites-nous qui vous êtes : </small></label>
+            <select class="form-control" id="annuaire-user-signup-type" name="annuaire-user-signup-type">
+              <option value="particulier" selected="selected">Je suis un particulier</option>
+              <option value="restaurateur">Un restaurateur/rice</option>
+              <option value="orgmarche">Un organisateur de marché</option>
+              <option value="amap">Une AMAP</option>
+              <option value="collectif">Un membre de collectif (groupement d'achat, association...)</option>
+              <option value="retaurationcol">Responsable de restauration collective</option>
+              <option value="retaurationcol">Je travail pour une collectivité et je m'inscrit à ce titre</option>
             </select>
           </div>
           <div class="form-group mb-3">
@@ -188,18 +201,21 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
           <div class="col text-center">
             <a class="btn cet-navbar-btn" id="btn-user-signup-form-retour" href="./">Annuler</a>
             <button class="btn cet-navbar-btn" type="submit" id="btn-user-signup-form-valider" 
-              onmousedown="$('#annuaire-user-signup-nav').val('valider');">Valider l'inscription</button>
+              onmousedown="$('#annuaire-user-signup-nav').val('valider');$('#annuaire-user-signup-commune').val($('#cet-annuaire-recherche-communes-value').val());">Valider l'inscription</button>
           </div>
         </div>
 
-        <input type="text" name="annuaire-user-signup-nav" id="annuaire-user-signup-nav" value="unset" hidden="hidden">
+        <input type="text" name="annuaire-user-signup-nav" id="annuaire-user-signup-nav" 
+          value="unset" hidden="hidden">
       </form>
     </div>
   </div>
 <?php endif; ?>
 
 <?php include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php'; ?>
+<script src="/src/scripts/js/typeahead.0.11.1.min.js"></script>
 <script src="/src/scripts/js/cetcal/cetcal.min.signup.user.js"></script>
 <script type="text/javascript">
   $('#cet-qstprod_intro').show();
+  $('.twitter-typeahead').css('width', '100%');
 </script>

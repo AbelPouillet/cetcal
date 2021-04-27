@@ -1,3 +1,43 @@
+var json_communes;
+var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+
+    var matches, substringRegex;
+    // an array that will be populated with substring matches
+    matches = [];
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) { if (substrRegex.test(str)) { matches.push(str); } });
+
+    cb(matches);
+  };
+};
+
+var communes = [];
+$.ajax({
+  url: '/src/app/controller/cet.annuaire.controller.communes.php',
+  success: function(json) {
+    var cmns = JSON.parse(json);
+    json_communes = cmns;
+    for (var i = 0; i < cmns.length; ++i) communes.push(cmns[i].libelle);
+  },
+  error: function(jqXHR, textStatus, errorThrown) {
+    console.log(textStatus, errorThrown);
+  }
+});
+
+$('#cet-annuaire-recherche-communes-conatiner .typeahead').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  name: 'communes',
+  source: substringMatcher(communes)
+});
+
 $(document).ready(function() {
 
 	$("#annuaire-user-signup-form").submit(function(event) {
@@ -30,6 +70,7 @@ $(document).ready(function() {
 	  } else {
 	  	return true;
 	  }
+
 	});
 
 });
