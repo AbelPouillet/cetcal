@@ -46,13 +46,14 @@
     </ul>
     <ul class="navbar-nav ml-auto" style="margin-bottom: 6px;">
       <?php if ($OPEN_LOGIN_SIGNUP && !$cnx_done && in_array($statut, NavbarHelper::$status_connection_signup)): ?>
+
         <li class="nav-item">
           <a id="cet-annuaire-user-login" class="btn cet-navbar-btn cet-navbar-btn-small" href="#"
             onmousedown="$('#cet-qstprod_seconnecter').show('slow', function(){ 
               $('#cetcal-cnx-not-done').hide('slow'); 
               $('#cetcal-obl-done').hide('slow'); 
               $('#cetcal-obl-not-done').hide('slow'); });">
-            <i class="fas fa-user"></i>&#160;se connecter
+            <i class="fas fa-user"></i>&#160;Producteur.e, se connecter
           </a>
         </li>
         <li class="nav-item">

@@ -32,6 +32,19 @@ $loader->loadCommunes();
           type="button">Valider
         </button>
       </div>
+      <div class="dropdown" style="margin-left: 12px;">
+        <button class="btn dropdown-toggle" type="button" id="dropdown-filtres-cartographie" 
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #6C3012 !important;">
+          choisir un filtre et l'appliquer
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdown-filtres-cartographie" id="dropdown-filtres-cartographie-liste">
+          <a class="dropdown-item" href="#"
+            style="font-family: 'Signika' !important; color: #6C3012 !important;"
+            onclick="return false;" onmousedown="appliquerFiltreCartographie('NULL');">
+            N'appliquer aucun filtre
+          </a>
+        </div>
+      </div>
     </div>
     <?php if ($CLIENT_CARTO_AVANCEE) include $PHP_INCLUDES_PATH.'cartographie/include.cet.annuaire.params.cartographie.php'; ?>
   </div>
