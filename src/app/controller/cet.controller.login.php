@@ -21,8 +21,6 @@ Class LoginController extends AnnuaireController
    * Retourne true si OK et si l'ouverture session peut être géré par le controlleur appelant.
    * Sinon retourne false si données de login insufisantes ou erronées ou toute 
    * autre raison dont le dénoument est login refusé.
-   * 
-   * Si l'IP est black listée alors logger et retourner à la racine.
    */
   public function controlLogin($login, $mdp)
   {
@@ -87,7 +85,7 @@ Class LoginController extends AnnuaireController
     /**
      * Cas 1 : utilisateur.
      * Cas 2 : producteur inscrit.
-     * Cas 3 : producteur pré-inscrit avec email renseigné.
+     * Cas 3 : producteur pré-inscrit avec email renseigné. NON ENCORE IMPLEMENTE.
      */
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.user.model.php');
@@ -120,6 +118,17 @@ Class LoginController extends AnnuaireController
         $found = true;  
         $contact_mail = $producteur[0]['email']; 
       }
+    }
+
+    if ($found === false)
+    {
+      /**
+       * Cas 3. producteur pré-inscrit avec email renseigné. NON ENCORE IMPLEMENTE.
+       * à implémenter si souhaité.
+       * Dans ce cas : si email pré-inscrit trouvé alors créer un MDP et notifier par email.
+       * Sinon, le dénouement doit rediriger vers le formulaire de contact "je suis prd référencé
+       * mais je n'arrive pas à me connecter".
+       */
     }
 
     if ($etat !== CetConnectionConst::RENOUVELLEMENT_MDP_PRD_OK && 

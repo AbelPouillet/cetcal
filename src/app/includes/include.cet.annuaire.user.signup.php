@@ -57,11 +57,14 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
   <div class="row justify-content-lg-center">
     <div class="col-lg-6">
       <div class="alert alert-success cet-bloc" role="alert">
-        <p><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?></p>
-        <p>
+        <h3 class="alert-heading">
+          DECIDELABIOLOCALE.ORG a besoin de votre soutient<br>Inscrivez-vous !
+          <span style="font-size: 16px;">&#160;<a href="#" onclick="return false;" onmousedown="lireLaSuite('intro-inscription-lire-plus');">Lire la suite...</a></span>
+        </h3>
+        <p class="intro-inscription-lire-plus">
           L'inscription à l'annuaire décidelabiolocale.org vous permet de recevoir des informations sur les producteur.e.s, sur les événements de votre région et de la Bio Locale, sur des opportunités liées aux circuits courts (collectivités, cantines, restaurateurs concernés).
         </p>
-        <p>
+        <p class="intro-inscription-lire-plus">
           L'inscription vous permettra également de communiquer directement avec les producteur.e.s ainsi que les autres memebres. Décide la BIO Locale, soutient notre démarche et inscrit toi !
         </p>
         <hr>
@@ -104,6 +107,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
               <option value="collectif">Un membre de collectif (groupement d'achat, association...)</option>
               <option value="retaurationcol">Responsable de restauration collective</option>
               <option value="retaurationcol">Je travail pour une collectivité et je m'inscrit à ce titre</option>
+              <option value="retaurationcol">Je suis producteur.e non référencé dans l'annuaire</option>
             </select>
           </div>
           <div class="form-group mb-3">

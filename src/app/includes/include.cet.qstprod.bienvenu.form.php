@@ -11,7 +11,9 @@
           <i class="fas fas fa-globe-europe fa-lg"></i>&#160;&#160;&#160;S'inscrire sur l'annuaire des Producteur.e.s
         </a>
       </p>
-      <p><?= CetQstprodConstTextes::login_intro_block_textinf_d; ?></p>
+      <p>
+        <?= CetQstprodConstTextes::login_intro_block_textinf_d; ?>&#160;<a href="#" onclick="return false;" onmousedown="lireLaSuite('intro-prd-lire-plus');">Lire la suite...</a>
+      </p>
       <p class="intro-prd-lire-plus"><?= CetQstprodConstTextes::login_intro_block_textinf_a; ?></p>
       <p class="intro-prd-lire-plus"><?= CetQstprodConstTextes::login_intro_block_textinf_b; ?></p>
       <p class="intro-prd-lire-plus"><?= CetQstprodConstTextes::login_intro_block_textinf_c; ?></p>

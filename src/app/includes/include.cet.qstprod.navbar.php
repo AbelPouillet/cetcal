@@ -34,7 +34,7 @@
         </li>
       <?php endif; ?>
       <li class="nav-item" style="z-index: 1; margin-top: 8px;">
-        <a id="cet-notre-projet" class="nav-link cet-p" href="#"><i class="fas fa-info-circle"></i>&#160;&#160;Notre projet, Circuits Alimentaires Locaux (CAL)</a>
+        <a id="cet-notre-projet" class="nav-link cet-p" href="#"><i class="fas fa-info-circle"></i>&#160;&#160;Notre projet décidelabiolocale.org</a>
       </li>
     </ul>
     <ul class="navbar-nav mr-auto" style="margin-top: 8px;">
