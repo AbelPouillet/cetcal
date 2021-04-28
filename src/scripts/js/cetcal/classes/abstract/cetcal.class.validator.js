@@ -4,6 +4,10 @@ class Validator {
        this.form = form;
     }
 
+    toto() {
+      console.log('Validator->toto');
+    }
+
     validateFields(field) { 
 
       // vérifie la présence de valeur

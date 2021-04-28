@@ -1,5 +1,10 @@
 class LieuxDistValidator extends TimeCheckerValidator {
 
+  toto() {
+    super.toto();
+    console.log('LieuxDistValidator->toto');
+  }
+
   // devient une surcharge de la Class TimeCheckerValidator. 
   // Nous voulons vérifier les dates et heures. Les Classes mères, gèrent les validations de type vide/renseigné.
     timeCheckValidator(field) {
