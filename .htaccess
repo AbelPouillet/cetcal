@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Restricted Content"
-AuthUserFile /var/www/decidelabiolocale/.htpasswd
-Require valid-user

@@ -3,7 +3,7 @@ alter table cetcal_type_lieu ADD column code_type VARCHAR(4) NOT NULL;
 alter table cetcal_type_lieu ADD column code_sous_type VARCHAR(4) NOT NULL;
 
 delete from cetcal_type_lieu;
-INSERT INTO cetcal.cetcal_type_lieu (code_type, type, code_sous_type, sous_type) VALUES ('mbio', 'Magasin Biologique', 'epcr', 'Épicerie')
+INSERT INTO cetcal.cetcal_type_lieu (code_type, type, code_sous_type, sous_type) VALUES ('mbio', 'Magasin Biologique', 'epcr', 'Épicerie');
 INSERT INTO cetcal.cetcal_type_lieu (code_type, type, code_sous_type, sous_type) VALUES ('mbio', 'Magasin Biologique', 'cvst', 'Caviste');
 INSERT INTO cetcal.cetcal_type_lieu (code_type, type, code_sous_type, sous_type) VALUES ('mbio', 'Magasin Biologique', 'vrac', 'Vrac');
 INSERT INTO cetcal.cetcal_type_lieu (code_type, type, code_sous_type, sous_type) VALUES ('mprd', 'Magasin de producteurs', '----', NULL);

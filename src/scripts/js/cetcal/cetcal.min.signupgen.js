@@ -2,7 +2,7 @@
  * Prevent form submit if any necessary fields are unset.
  */
 $(function(){
-  $('#btn-signupgen-form-valider').on('mousedown', function(e) {
+    $('#btn-signupgen-form-valider').on('mousedown', function(e) {
     if (document.querySelector('.is-invalid') !== null || $('#annuaire-contact-problematique').val().length < 2) {
       	e.preventDefault();
       	var text = 'Des informations obligatoires sont manquantes au formulaire.'

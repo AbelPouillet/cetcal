@@ -54,20 +54,23 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
         </label>
       </div>
 
-      <div class="new--marche ml-5 d-none">
+        <div class="new--marche ml-5 d-none">
         <div class="form-group mb-3">
           <label for="qstlieudist-3">
             <small class="cet-qstprod-label-text">Entrez le nom de votre marché : </small>
           </label>
           <input type="text" class="form-control marche--prod" name="nv-marche-lieuxdist-nom"
             id="nv-marche-lieuxdist-nom" placeholder="Entrez un seul marché à la fois">
+            <span class="error-message"></span>
         </div>
+
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Entrez l'adresse de votre marché : </small>
           </label>
           <input type="text" class="form-control adresse--marche--prod" name="nv-marche-lieuxdist-adr"
             id="nv-marche-lieuxdist-adr" placeholder="Adresse du marché" >
+            <span class="error-message"></span>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
@@ -86,6 +89,7 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           </label>
           <input class="form-control" type="text" id="timeInput-heure-deb" name="timeInput-heure-deb" data-time-format="H:i" 
             style="max-width: 256px;" />
+            <span class="error-message"></span>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
@@ -93,6 +97,7 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           </label>
           <input class="form-control" type="text" id="timeInput-heure-fin" name="timeInput-heure-fin" data-time-format="H:i" 
             style="max-width: 256px;" />
+            <span class="error-message"></span>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
@@ -102,6 +107,8 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
             id="timeInput-date" name="timeInput-date"
             style="max-width: 256px;">
           <div data-toggle="datepicker"></div>
+            <span class="error-message"></span>
+
         </div>
       </div>
 
@@ -153,8 +160,8 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
 
   </div><!-- fin col -->
 </div><!-- fin row -->
-
-<script src="/src/scripts/js/cetcal/cetcal.signuplieuxdist.js"></script>
+<script src="/src/scripts/js/cetcal/classes/cetcal.class.formvalidator.js" ></script>
+<script src="/src/scripts/js/cetcal/cetcal.signuplieuxdist.js" ></script>
 <script src="/src/scripts/js/typeahead.0.11.1.min.js" ></script>
 <script src="/src/scripts/js/timepicker/jquery.timepicker.min.js"></script>
 <script src="/src/scripts/js/cetcal/datepicker.js"></script>
