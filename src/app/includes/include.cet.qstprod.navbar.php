@@ -19,8 +19,11 @@
         <a class="nav-link dropdown-toggle cet-p" href="#" id="navbar-qui-nous-sommes-dropdown" 
         	role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Qui sommes nous &#160;<i class="fas fa-question-circle"></i>&#160;</a>
         <div class="dropdown-menu" aria-labelledby="navbar-qui-nous-sommes-dropdown">
-          <a class="dropdown-item" href="#" 
-          onmousedown="scrollTowardsId('cet-annuaire-footer', 0);">L'association Castillonnais en Transition
+          <a class="dropdown-item" href="http://castillonnaisentransition.org/" target="_blank">
+            - L'association CET, à propos
+          </a>
+          <a class="dropdown-item" href="https://github.com/j-fish/cetcal" target="_blank">
+            - Notre projet sur GitHub
           </a>
         </div>
       </li>

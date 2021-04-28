@@ -4,7 +4,10 @@
     <div class="alert alert-light cet-bloc" role="alert" style="color: rgb(50,70,50);"
       id="espace-prd-header-area">   
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_UTSR_REUSSIE): ?>
-        <h3 class="alert-heading">Votre espace <?= $libelle_client_type; ?> - bienvenu.</h3>
+        <h3 class="alert-heading">Bienvenu.</h3>
+        <hr>
+        <p>Des fonctionnalités vous seront proposées très prochainement</p>
+        <p><b>Merci pour votre inscription et engagement</b>,<br>l'équipe decidelabiolocale.org</p>
       <?php endif; ?>
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE): ?>
         <?php $nomFerme = $ctrl->fetchDonneeProducteur($usrpk, 'nom_ferme'); ?>

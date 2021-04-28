@@ -55,7 +55,7 @@ Class CETMailjetHelper
 
       $mj = new \Mailjet\Client(
         '0dab5700b9ac85f8a590e7ac44c7c72b',
-        '3d07d4001372eee6d3b183eee616eece',
+        'c8fdec73eb04c65e49932a9f0646b392',
         true,
         ['version' => 'v3.1']
       );

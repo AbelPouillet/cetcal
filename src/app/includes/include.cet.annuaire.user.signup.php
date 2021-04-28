@@ -58,14 +58,14 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
     <div class="col-lg-6">
       <div class="alert alert-success cet-bloc" role="alert">
         <h3 class="alert-heading">
-          DECIDELABIOLOCALE.ORG a besoin de votre soutient<br>Inscrivez-vous !
+          décidelabiolocale.org a besoin de votre soutien<br>Inscrivez-vous !
           <span style="font-size: 16px;">&#160;<a href="#" onclick="return false;" onmousedown="lireLaSuite('intro-inscription-lire-plus');">Lire la suite...</a></span>
         </h3>
         <p class="intro-inscription-lire-plus">
           L'inscription à l'annuaire décidelabiolocale.org vous permet de recevoir des informations sur les producteur.e.s, sur les événements de votre région et de la Bio Locale, sur des opportunités liées aux circuits courts (collectivités, cantines, restaurateurs concernés).
         </p>
         <p class="intro-inscription-lire-plus">
-          L'inscription vous permettra également de communiquer directement avec les producteur.e.s ainsi que les autres memebres. Décide la BIO Locale, soutient notre démarche et inscrit toi !
+          L'inscription vous permettra très bientôt de communiquer directement avec les producteur.e.s ainsi que les autres membres. Décidez la BIO Locale et soutenez notre démarche - <b>Inscrivez-vous !</b>
         </p>
         <hr>
         <label>
@@ -74,7 +74,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
           </small>
         </label>
         <p>
-          <a href="#" onmousedown="$('#cet-qstprod_intro').fadeIn('slow');scrollTowardsId('cet-qstprod_intro', -18);"><i class="fas fas fa-info fa-lg"></i>&#160;&#160;Si vous êtes producteur, veuillez utiliser le formulaire d'inscriptio qui vous est dédié. Cliquer ici.</a>
+          <a href="#" onmousedown="$('#cet-qstprod_intro').fadeIn('slow');scrollTowardsId('cet-qstprod_intro', -18);"><i class="fas fas fa-info fa-lg"></i>&#160;&#160;Si vous êtes producteur, veuillez utiliser le formulaire d'inscription et questionnaire qui vous est dédié. Cliquer ici.</a>
         </p>
       </div>
     </div>
