@@ -62,6 +62,7 @@ button.margin-80-infeq-700 { margin-top: 80px !important; }
 /***************************************/
 /*********************************/
 /** CSS toutes pages. ************/
+.intro-prd-lire-plus, .intro-inscription-lire-plus { display: none; }
 .cet-borderless-alert { padding: 0px !important; }
 .cet-p-dark { color: rgb(50,70,50); }
 .cet-navbar-btn-infos {
