@@ -10,6 +10,7 @@ Class CETMailjetHelper
 
   const FROM = "Annuaire CETCAL.site";
   const EMAIL = "annuaire@castillonnaisentransition.org";
+  const EMAIL_PROTONMAIL = 'cetcal@protonmail.com';
   const SUBJECT_PREFIX = "";
 
   public function __construct() { }
@@ -64,7 +65,7 @@ Class CETMailjetHelper
         'Messages' => [
           [
             'From' => [
-              'Email' => CETMailjetHelper::EMAIL,
+              'Email' => CETMailjetHelper::EMAIL_PROTONMAIL,
               'Name' => CETMailjetHelper::FROM
             ],
             'To' => [

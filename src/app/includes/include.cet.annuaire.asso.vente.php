@@ -86,9 +86,8 @@ if (isset($_GET['q']))
       <?php endif; ?>
       <div class="col-lg-3">
         <div class="card cet-bloc" style="margin-bottom: 12px;">
-          <div class="card-header"><?= $row['denomination']; ?></div>
           <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted"><?= $row['territoire']; ?></h6>
+            <h4 class="card-text"><?= $row['denomination']; ?></h4>
             <p class="card-text"><?= $row['activite']; ?> <?= $row['specificites']; ?></p>
             <p class="card-text"><?= $row['adresse']; ?></p>
             <?php if (isset($row['infoscmd']) && !empty($row['infoscmd'])): ?>
