@@ -33,20 +33,16 @@ $loader->loadCommunes();
         </button>
       </div>
       <div class="input-group-append">
-        <div class="dropdown">
+        <div class="dropdown" id="dropdown-filtres-cartographie-dropdown">
           <button class="btn dropdown-toggle" type="button" 
             style="font-family: 'Signika' !important; color: #6C3012 !important;" 
             id="dropdown-filtres-cartographie" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            choisir un filtre et l'appliquer&#160;&#160;<span class="badge badge-warning" 
+            Sélectionner des filtre et les appliquer&#160;&#160;<span class="badge badge-warning" 
             id="dropdown-filtres-count">0</span>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdown-filtres-cartographie" id="dropdown-filtres-cartographie-liste">
-            <a class="dropdown-item" href="#"
-              style="font-family: 'Signika' !important; color: #6C3012 !important;"
-              onclick="return false;" onmousedown="appliquerFiltreCartographie('NULL');">
-              <img src="res/content/icons/bonpour1tour/withbg/all.png" height="32" />&#160;&#160;N'appliquer aucun filtre
-            </a>
+          <div class="dropdown-menu" aria-labelledby="dropdown-filtres-cartographie" 
+            id="dropdown-filtres-cartographie-liste">
           </div>
         </div>
       </div>

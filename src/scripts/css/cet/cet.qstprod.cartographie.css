@@ -127,3 +127,24 @@ div.tt-suggestion:hover {
   font-family: 'Signika', sans-serif !important;
   font-size: 16px !important;
 }
+
+/** ********************************
+ * Filtres
+ */
+div.cet-cartographie-filtre-input-container {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+div.cet-cartographie-filtre-input-container .form-check-input {
+  margin-top: 8px !important;
+}
+
+div#dropdown-filtres-cartographie-liste button#valider-filtres-types-cartographie {
+  float: right !important;
+  margin-right: 16px;
+}
+
+div#dropdown-filtres-cartographie-liste {
+  min-width: 256px;
+}
