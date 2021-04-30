@@ -1,5 +1,5 @@
 use cetcal;
-CREATE TABLE cetcal_producteur_lieu_distx (
+CREATE TABLE cetcal_producteur_lieu_dist (
   pk_producteur_lieu_dist INT NOT NULL AUTO_INCREMENT,
   fk_entite INT DEFAULT NULL,
   fk_producteur INT DEFAULT NULL,
