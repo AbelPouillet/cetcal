@@ -34,6 +34,26 @@ Class FileReaderUtils
       fclose($file);
       return $this->temp;
     }
+    else
+    {
+      return 'file does not exist...';
+    }
+  }
+
+  public function readFromCannonicalPathToString($cannonicalPath)
+  {
+    if (file_exists($cannonicalPath))
+    {
+      $this->temp = '';
+      $file = fopen($cannonicalPath, "r");
+      while(!feof($file)) $this->temp .= trim(fgets($file));
+      fclose($file);
+      return $this->temp;
+    }
+    else
+    {
+      return 'file does not exist...';
+    }
   }
 
   public function readWithKV($fileName, $pSortAlphabetique = false)

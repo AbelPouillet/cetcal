@@ -8,10 +8,15 @@ use GuzzleHttp\Psr7;
  */
 class CETCALCartographieLoader
 {
-  
+
+  private $properties;
   const TYPES_ENTITES_A_CARTOGRAPHIER = ['marche', 'mbio', 'amap'];
 
-  function __construct() {}
+  function __construct() 
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.annuaire.utils.cryption.php');
+    $this->properties = json_decode(EncryptionUtils::getProperties(), true);
+  }
 
   /**
    * cartographie des entités. Table cetcal.cetcal_entite.

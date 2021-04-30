@@ -8,12 +8,17 @@ use \Mailjet\Resources;
 Class CETMailjetHelper
 {
 
+  private $properties;
   const FROM = "Annuaire CETCAL.site";
   const EMAIL = "annuaire@castillonnaisentransition.org";
   const EMAIL_PROTONMAIL = 'cetcal@protonmail.com';
   const SUBJECT_PREFIX = "";
 
-  public function __construct() { }
+  public function __construct() 
+  { 
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.annuaire.utils.cryption.php');
+    $this->properties = json_decode(EncryptionUtils::getProperties(), true);
+  }
 
   public function send($mailFileHTML, $mailFilePlain, $mailTo, $mailSubject, $fileReader, $dataFilePrefix, 
     $key = false, $value = false)
@@ -55,8 +60,8 @@ Class CETMailjetHelper
     {
 
       $mj = new \Mailjet\Client(
-        '0dab5700b9ac85f8a590e7ac44c7c72b',
-        'c8fdec73eb04c65e49932a9f0646b392',
+        $this->properties['properties']['mailjet']['token'],
+        $this->properties['properties']['mailjet']['secret'],
         true,
         ['version' => 'v3.1']
       );

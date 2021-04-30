@@ -38,7 +38,7 @@ $pkprd = isset($_SESSION['CONTEXTE_MODIF-PKPRD']) ? $_SESSION['CONTEXTE_MODIF-PK
             <?php $input_emailconf_val = $used_email_value; ?>
             <label class="cet-input-label">
               <small class="cet-qstprod-label-text" style="color: red !important;">
-                <b>L'adresse e-mail renseignée est déjà associée à un compte producteur.e, veuillez en saisir une autre :</b>
+                L'adresse e-mail renseignée est déjà associée à un compte décidelabiolocale.org existant, veuillez en saisir une autre :
               </small>
             </label>
           <?php elseif ($email_used === false): ?>

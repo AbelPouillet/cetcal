@@ -15,7 +15,7 @@ $loader->loadCommunes();
 <div class="cet-module row justify-content-lg-center" style="color: #6C3012 !important; margin-bottom: 8px !important;">
   <div id="cet-annuaire-crt-controls-container" class="col-lg-12">
     <p class="cet-p" style="margin-bottom: 4px; margin-top: -12px;">
-      Producteur.e.s BIO, Viticulteurs BIO, marchés, AMAP's et lieux de distribution BIO (à 40km et + autour de Castillon) <b><?= count($data) + count($entites_data); ?> éléments cartographiés</b>.<br><small><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Si votre commune ne vous est pas proposée dans la recherche, veuillez rechercher une commune à proximité.</small>
+      Producteur.e.s BIO, Viticulteurs BIO, marchés, AMAP's et lieux de distribution BIO (à 40km et + autour de Castillon)<br><small><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Si votre commune ne vous est pas proposée dans la recherche, veuillez rechercher une commune à proximité.</small>
     </p>
     <div class="input-group mb-6" style="margin-bottom: 6px !important;">
       <div class="input-group-prepend">

@@ -29,15 +29,18 @@ try
      * producteur (inscrit ou préinscrit) alors lancement d'exception et signaler.
      */
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.user.model.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/exceptions/cet.email.deja.present.exception.php');
     $model = new QSTPRODProducteurModel();
+    $model_user = new CETCALUserModel();
     $context_mdif_global = isset($_SESSION['CONTEXTE_MODIF-GLOBAL']) && $_SESSION['CONTEXTE_MODIF-GLOBAL'] == true ? true : false;
     error_log('[CONTROL SIGNUPGEN] verification unicite email='.$s_email.' pk='.$pk_producteur.' cntx='.$context.' cntx_global='.$context_mdif_global);
     if (($context_mdif_global === false && $model->emailExists($s_email) !== 0) ||
-        ($context_mdif_global === true && $model->emailExistsSurAutrePk($s_email, $pk_producteur) !== 0)) 
+        ($context_mdif_global === true && $model->emailExistsSurAutrePk($s_email, $pk_producteur) !== 0) ||
+         $model_user->existsByEmail($s_email) === true) 
     {
       $statut = 'signupgen.form';
-      throw new EmailDejaExistantException('Un compte producteur est deja associe a l\'adresse email '.
+      throw new EmailDejaExistantException('Un compte décidelabiolocale.org est deja associe a l\'adresse email '.
         $s_email.' renseigne. Votre demande ne peut aboutir.');
     }
   }

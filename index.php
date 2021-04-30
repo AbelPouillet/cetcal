@@ -80,3 +80,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     });
   </script>
 <?php endif; ?>
+<?php
+  //require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.annuaire.utils.cryption.php');
+  //echo EncryptionUtils::encryptProperties();
+?>

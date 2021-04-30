@@ -30,7 +30,9 @@ try
     require_once($PATH_MODEL_DTO.'cet.qstprod.questionnaire.sondage.producteur.model.php');
     require_once($PATH_MODEL_DTO.'cet.qstprod.informations.model.php');
     require_once($PATH_MODEL_DTO.'cet.qstprod.cartographie.model.php');
+    require_once($PATH_MODEL_DTO.'cet.annuaire.user.model.php');
     $model = new QSTPRODProducteurModel();
+    $model_user = new CETCALUserModel(); 
 
     session_id($cetcal_session_id);
     session_start();
@@ -51,7 +53,8 @@ try
     $context_mdif_global = isset($_SESSION['CONTEXTE_MODIF-GLOBAL']) && $_SESSION['CONTEXTE_MODIF-GLOBAL'] == true ? true : false;
     error_log('[CONTROL SIGNUPRECAP] verification unicite email='.$form_email.' pk='.$pk_producteur.' cntx='.$context.' cntx_global='.$context_mdif_global);
     if (($context_mdif_global === false && $model->emailExists($form_email) !== 0) ||
-        ($context_mdif_global === true && $model->emailExistsSurAutrePk($form_email, $pk_producteur) !== 0))
+        ($context_mdif_global === true && $model->emailExistsSurAutrePk($form_email, $pk_producteur) !== 0) ||
+         $model_user->existsByEmail($form_email) === true)
     {
       throw new EmailDejaExistantException('Un compte producteur est déjà associé à l\'adresse email '.
         $form_email.' renseigné. Votre demande ne peut aboutir.');
