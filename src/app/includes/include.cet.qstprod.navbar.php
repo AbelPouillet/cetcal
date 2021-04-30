@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/?">
-    <img src="/res/content/logo-annuaire.png" height="80" alt="">
+    <img src="/res/content/dlbl_a_1.png" height="76" alt=""><br>
+    <img src="/res/content/anuuaire_dlbl_desc_01.png" height="101" alt="">
   </a>
   <button class="navbar-toggler margin-80-infeq-700" id="cet-navbar-hamburger" type="button" data-toggle="collapse" 
     data-target="#navbar-cet-qstprod" aria-controls="navbar-cet-qstprod" 
@@ -49,7 +50,6 @@
     </ul>
     <ul class="navbar-nav ml-auto" style="margin-bottom: 6px;">
       <?php if ($OPEN_LOGIN_SIGNUP && !$cnx_done && in_array($statut, NavbarHelper::$status_connection_signup)): ?>
-
         <li class="nav-item">
           <a id="cet-annuaire-user-login" class="btn cet-navbar-btn cet-navbar-btn-small" href="#"
             onmousedown="$('#cet-qstprod_seconnecter').show('slow', function(){ 
