@@ -17,6 +17,24 @@ input.copier-element-presse-papier-input[disabled="disabled"] { background-color
   font-family: 'Signika' !important;
   color: #DD4215 !important; 
 }
+.navbar a.cet-p-20 { 
+  font-family: 'Signika' !important;
+  color: #DD4215 !important; 
+  font-size: 20px !important; 
+}
+.navbar .navbar-toggler {
+  background-color: #009c31 !important;
+  color: white !important;
+  border-color: white !important;
+  padding-top: 6px;
+}
+.navbar .navbar-brand {
+  color: #009c31 !important; font-family: 'Signika' !important; font-weight: 
+  bold; font-size: 20px;
+}
+span.cet-navbar-toggler {
+  vertical-align: middle; font-size: 43px;
+}
 a.cet-p { color: #DD4215 !important; font-family: 'Signika' !important; }
 .navbar a.cet-p:hover, .cet-footer a.cet-p:hover { color: #DD4215 !important; }
 li.cet-footer-li { background-color: white !important; }
