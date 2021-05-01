@@ -6,26 +6,26 @@ input.copier-element-presse-papier-input[disabled="disabled"] { background-color
 /***************************************/
 /** START style charte graphique Fanny */ 
 .navbar { 
-  margin-bottom: 28px; 
-  border-bottom: 1px solid lightgrey !important;
+  /*margin-bottom: 28px; */
   background-color: rgb(252,255,255) !important;
+  /*border-bottom: 1px solid lightgrey !important;
   -webkit-box-shadow: 0 0px 12px -6px #222;
   -moz-box-shadow: 0 0px 12px -6px #222;
-  box-shadow: 0 0px 12px -6px #222;
+  box-shadow: 0 0px 12px -6px #222;*/
 }
 .navbar a.cet-p, a.dropdown-item { 
-  font-family: 'Courgette' !important;
+  font-family: 'Signika' !important;
   color: #DD4215 !important; 
 }
 a.cet-p { color: #DD4215 !important; font-family: 'Signika' !important; }
 .navbar a.cet-p:hover, .cet-footer a.cet-p:hover { color: #DD4215 !important; }
 li.cet-footer-li { background-color: white !important; }
 .cet-footer { 
-  border-top: 1px solid lightgrey !important; 
   background-color: rgb(252,255,255) !important;
+  /*border-top: 1px solid lightgrey !important; 
   -webkit-box-shadow: 0 0px 12px -6px #222;
   -moz-box-shadow: 0 0px 12px -6px #222;
-  box-shadow: 0 0px 12px -6px #222;
+  box-shadow: 0 0px 12px -6px #222;*/
 }
 .cet-bienvenue-producteurs { 
   background-color: white !important;

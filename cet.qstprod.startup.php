@@ -33,7 +33,7 @@ $PHP_UTILS_PATH = $DOC_ROOT.'/src/app/utils/';
  * Constantes globaux de paramétrage app.
  */
 // Afficher page de recettes.
-$OPEN_PAGE_RECETTES = false;
+$OPEN_PAGE_RECETTES = true;
 // Si true, les producteurs non inscrits via questionnaire seront lues pour carto.
 $SELECT_PRD_NON_INSCRITS = true;
 // Si true, dialog de geoloc utilisateur s'affiche à l'entrée de l'app. Sinon rien ne se passe.
