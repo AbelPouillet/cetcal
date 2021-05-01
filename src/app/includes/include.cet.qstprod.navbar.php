@@ -8,8 +8,7 @@
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="navbar-collapse collapse navbar-cet-qstprod">
+  <div class="navbar-collapse collapse w-100 navbar-cet-qstprod">
     <ul class="navbar-nav mr-auto">
       <?php if (!in_array($statut, CetQstProdFilArianneHelper::$states)): ?>
         <li class="nav-item">
@@ -37,40 +36,27 @@
           <i class="fas fa-info-circle"></i>&#160;&#160;Notre projet décidelabiolocale.org
         </a>
       </li>
+      <!-- PARTENAIRES -->
+      <li class="nav-item">
+        <a class="nav-link cet-p" href="/?statut=partenaires.liens&anr=true">
+          <i class="fas fa-hands-helping"></i>&#160;&#160;&#160;Partenaires et liens utiles
+        </a>
+      </li>
     </ul>
   </div>
-
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 navbar-cet-qstprod">
-    <ul class="navbar-nav ml-auto">
-      <?php if ($OPEN_LOGIN_SIGNUP && !$cnx_done && in_array($statut, NavbarHelper::$status_connection_signup)): ?>
-        <li class="nav-item" style="margin-right: 4px;">
-          <a id="cet-annuaire-user-login" class="btn cet-navbar-btn" href="#"
-            onmousedown="$('#cet-qstprod_seconnecter').show('slow', function(){ 
-              $('#cetcal-cnx-not-done').hide('slow'); 
-              $('#cetcal-obl-done').hide('slow'); 
-              $('#cetcal-obl-not-done').hide('slow'); });">
-            <i class="fas fa-user"></i>&#160;Se connecter
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="cet-annuaire-user-signup" class="btn cet-navbar-btn" 
-            href="/?statut=user.signup&anr=true">
-            <i class="fas fa-info-circle"></i>&#160;Inscription (non producteur.e)
-          </a>
-        </li>
-      <?php endif; ?>
-    </ul>
-  </div>
-
-  <!--<div class="hidden-infeq-700" 
-    style="position: absolute; right: 0px; top: 0px; z-index: 0;">
-    <img src="/res/content/partenaires/logo_region.jpg" height="80">
-    <img src="/res/content/partenaires/logo_gironde.jpg" height="80">
-    <img src="/res/content/partenaires/logo_FSE.jpg" height="80">
-  </div>-->
-
 </nav>
 <?php if (!in_array($statut, CetQstProdFilArianneHelper::$states)): ?>
   <?php include $PHP_INCLUDES_PATH.'navbar-entities/include.cet.qstprod.nav.leftpanel.php'; ?>
 <?php endif; ?>
-<p><img src="/res/content/DCDL_biolocale_2.jpg" height="324" alt=""></p>
+<div class="row justify-content-around">
+  <div class="col-1 hidden-infeq-700"></div>
+  <div id="w-100-infeq-700-div-id" class="col-8">
+    <img class="img-fluid" src="/res/content/DCDL_biolocale_2.jpg" alt="">
+  </div>
+  <div class="col-2 my-auto hidden-infeq-700" align="center">
+    <img class="float-left" src="/res/content/partenaires/logo_region.jpg" height="80">
+    <img class="float-left" src="/res/content/partenaires/logo_gironde.jpg" height="80">
+    <img class="float-left" src="/res/content/partenaires/logo_FSE.jpg" height="80">
+  </div>
+  <div class="col-1 hidden-infeq-700"></div>
+</div>
