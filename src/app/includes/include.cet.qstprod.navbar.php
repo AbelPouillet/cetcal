@@ -36,6 +36,7 @@
         <li class="nav-item">
           <a id="cet-annuaire-user-login" class="btn cet-navbar-btn cet-navbar-btn-small" href="#"
             onmousedown="$('#cet-qstprod_seconnecter').show('slow', function(){ 
+              scrollTowardsId('cet-qstprod_seconnecter', -10);
               $('#cetcal-cnx-not-done').hide('slow'); 
               $('#cetcal-obl-done').hide('slow'); 
               $('#cetcal-obl-not-done').hide('slow'); });">
@@ -56,26 +57,29 @@
 <?php if (!in_array($statut, CetQstProdFilArianneHelper::$states)): ?>
   <?php include $PHP_INCLUDES_PATH.'navbar-entities/include.cet.qstprod.nav.leftpanel.php'; ?>
 <?php endif; ?>
-
-<nav class="navbar navbar-expand-xl navbar-light bg-light">
-  <div class="row justify-content-between">
-    <div id="w-100-infeq-700-div-id" class="col-6">
-      <img class="img-fluid" src="/res/content/DCDL_biolocale_2.jpg" alt="">
-    </div>
-    <div class="col-6 my-top hidden-infeq-700">
-      <div class="row">
-        <div class="col-4 hidden-infeq-700">
-        </div> 
-        <div class="col-4 hidden-infeq-700">
-          <img class="img-fluid float-right" src="/res/content/partenaires/logo_gironde.jpg" height="80">
-        </div>
-        <div class="col-2 hidden-infeq-700">
-          <img class="img-fluid float-right" src="/res/content/partenaires/logo_region.jpg" height="80">
-        </div>
-        <div class="col-2 hidden-infeq-700">
-          <img class="img-fluid float-right" src="/res/content/partenaires/logo_FSE.jpg" height="80">
+<?php if (strcmp($statut, 'accueil.cet') === 0): ?>
+  <nav class="navbar navbar-expand-xl navbar-light bg-light">
+    <div class="row justify-content-between">
+      <div id="w-100-infeq-700-div-id" class="col-6">
+        <img class="img-fluid" src="/res/content/DCDL_biolocale_2.jpg" alt="">
+      </div>
+      <div class="col-6 my-top hidden-infeq-700">
+        <div class="row">
+          <div class="col-4 hidden-infeq-700">
+          </div> 
+          <div class="col-4 hidden-infeq-700">
+            <img class="img-fluid float-right" src="/res/content/partenaires/logo_gironde.jpg" height="80">
+          </div>
+          <div class="col-2 hidden-infeq-700">
+            <img class="img-fluid float-right" src="/res/content/partenaires/logo_region.jpg" height="80">
+          </div>
+          <div class="col-2 hidden-infeq-700">
+            <img class="img-fluid float-right" src="/res/content/partenaires/logo_FSE.jpg" height="80">
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+<?php else: ?>
+  <br>
+<?php endif; ?>

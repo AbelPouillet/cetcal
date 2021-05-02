@@ -8,7 +8,7 @@ $data = $ctrl->fetchRecettes();
 ?>
 
 <div class="row justify-content-lg-center" style="margin-bottom: 42px; margin-top: 32px;">
-  <div class="col-md-9">
+  <div class="col-md-6">
     <div id="cetcal-recette-accordion">
       <?php foreach ($data as $recette): ?>
         <div class="card cet-bloc">
@@ -95,7 +95,7 @@ $data = $ctrl->fetchRecettes();
             </div>
             <div class="card-body" style="background-color: rgb(250,250,250) !important; color: rgb(30,30,45);">
               <div class="row">
-                <div class="col-9">
+                <div class="col-12">
                   <p>
                     Chez quel(le)s Producteur.e.s trouvez les produits associés à cette recette ?&#160;&#160;
                     <i class="far fa-hand-point-down"></i>
@@ -104,7 +104,7 @@ $data = $ctrl->fetchRecettes();
                     onmousedown="rechercherProducteurPourProduits('<?= $recette['mots_cles_produits'] ?>', 
                       'cetcal-producteurs-recette-table-<?= $recette['pk_recette']; ?>', this.id);">
                     <i class="fas fa-search"></i>
-                    &#160;&#160;&#160; Rechercher les Producteur.e.(s) pour les produits 
+                    &#160;&#160;Rechercher des Producteur.e.s les produits 
                     &#171; <?= $util->separatorToComaSpace(';', $recette['mots_cles_produits']); ?>  &#187;
                   </button>
                   <br>
@@ -113,9 +113,9 @@ $data = $ctrl->fetchRecettes();
                   </table>
                 </div>
                 <div class="col-3">
-                  <button class="btn cet-navbar-btn cet-navbar-btn-small" style="float: right;">
+                  <!--<button class="btn cet-navbar-btn cet-navbar-btn-small" style="float: right;">
                     <i class="fas fa-pencil-alt"></i>&#160;&#160;&#160; Modifier cette recette
-                  </button>
+                  </button>-->
                 </div>
               </div>
             </div>

@@ -22,6 +22,15 @@ else
 }
 
 $producteur = $model->findProducteursINPkArray(array_unique($pks));
-if (count($producteur) > 0) echo json_encode($producteur);
+$check_array = array();
+$checked_array = array();
+foreach ($producteur as $tmp) 
+{
+  if (in_array($tmp->nom_ferme, $check_array)) continue;
+  array_push($check_array, $tmp->nom_ferme);
+  array_push($checked_array, $tmp);
+}
+
+if (count($checked_array) > 0) echo json_encode($checked_array);
 else echo json_encode(['err' => 'Aucun producteur.e trouvé.']);
 return;

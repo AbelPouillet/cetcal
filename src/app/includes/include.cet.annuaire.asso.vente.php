@@ -84,7 +84,7 @@ if (isset($_GET['q']))
     <?php if ($counter === 1): ?>
       <div class="row justify-content-center">
       <?php endif; ?>
-      <div class="col-lg-3">
+      <div class="col-lg-3" style="padding-left: 6px !important; padding-right: 6px;">
         <div class="card cet-bloc" style="margin-bottom: 12px;">
           <div class="card-body">
             <h4 class="card-text"><?= $row['denomination']; ?></h4>
@@ -100,7 +100,7 @@ if (isset($_GET['q']))
         </div>
         <ul class="list-group list-group-flush">
           <?php if (isset($row['email']) && !empty($row['email'])): ?>
-          <li class="list-group-item">
+          <li class="list-group-item" style="border: none !important;">
             <?php foreach ($ctrl->splitData("#", $row['email']) as $value): ?>
               <div class="input-group mb-3">
                 <input type="text" class="form-control copier-element-presse-papier-input"
@@ -116,7 +116,7 @@ if (isset($_GET['q']))
         </li>
       <?php endif; ?>
       <?php if (isset($row['tels']) && !empty($row['tels'])): ?>
-      <li class="list-group-item">
+      <li class="list-group-item" style="border: none !important;">
         <?php foreach ($ctrl->splitData("#", $row['tels']) as $value): ?>
           <a href="tel:<?= $value; ?>" class="card-link">
             <?= $value; ?>
@@ -125,7 +125,7 @@ if (isset($_GET['q']))
       </li>
     <?php endif; ?>
     <?php if (isset($row['urlwww']) && !empty($row['urlwww'])): ?>
-    <li class="list-group-item">
+    <li class="list-group-item" style="border: none !important;">
       <?php foreach ($ctrl->splitData("#", $row['urlwww']) as $value): ?>
         <a href="<?= $value; ?>" class="card-link" target="_blank">
           <?= $value; ?>
