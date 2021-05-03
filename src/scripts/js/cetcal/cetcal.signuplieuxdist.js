@@ -31,8 +31,6 @@ let inputMarche;
 let precisions_texte = '';
 let pasDeSousType = false;
 
-let form = document.querySelector(".cet-formgroup-container");
-
 /**
  * Définition de la structure de données pour lieux de distributions (tous cas confondus).
  */
@@ -585,7 +583,7 @@ $(document).ready(function() {
     console.log(error);
     postO = { lieux: [] };
   }
-  const formValidator = new LieuxDistValidator(form);
-        formValidator.initialize();
+  const formValidator = new LieuxDistValidator(document);
+  formValidator.initialize();
 
 });
