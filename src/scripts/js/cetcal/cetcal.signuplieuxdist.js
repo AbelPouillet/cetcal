@@ -583,7 +583,9 @@ $(document).ready(function() {
     console.log(error);
     postO = { lieux: [] };
   }
-  const formValidator = new LieuxDistValidator(document);
+
+  // TODO : blocker action du bouton ajouter si un ou des fields sont non validés.
+  const formValidator = new LieuxDistValidator(document, bouton_ajouté);
   formValidator.initialize();
 
 });
