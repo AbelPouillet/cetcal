@@ -11,7 +11,7 @@ $data = $controller->fetchProducteursDerniersInscrit(5);
     <div class="alert alert-light cet-bloc cet-borderless-alert" role="alert" style="background-color: white !important;">    
       <table class="table bordered-table">
         <tr>
-          <td colspan="2" style="border-top: none !important;"><h4 class="alert-heading"><i class="far fa-thumbs-up fa-2x" style="color: #17a2b8;"></i> Les derniers Producteur.e.s inscrits à ce jour :</h4></td>
+          <td colspan="2" style="border-top: none !important;"><h4 class="alert-heading"><i class="far fa-thumbs-up fa-2x" style="color: #009c31;"></i> Les derniers Producteur.e.s inscrits à ce jour :</h4></td>
         </tr>
         <?php foreach ($data as $prdDto): ?>
           <?php 
@@ -25,7 +25,6 @@ $data = $controller->fetchProducteursDerniersInscrit(5);
                 <?= html_entity_decode($utils->formatDenominationUpperCases(trim($prdDto->nomferme))); ?>                   
               </span>
             </td>
-            <!--<td><i class="fas fa-directions fa-2x" style="color: #DD4215 !important;"></i></td>-->
             <td class="w-75">
               &#160;<?= trim($adr); ?>, (<?= $utils->formatTypesProduction($prdDto->typeDeProduction); ?>).
             </td>

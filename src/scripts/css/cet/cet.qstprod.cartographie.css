@@ -148,3 +148,10 @@ div#dropdown-filtres-cartographie-liste button#valider-filtres-types-cartographi
 div#dropdown-filtres-cartographie-liste {
   min-width: 256px;
 }
+
+span#dropdown-filtres-count {
+  background-color: #009c31;
+  color: white;
+  padding-top: 4px;
+  font-size: 16px;
+}
