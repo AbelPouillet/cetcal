@@ -585,7 +585,7 @@ $(document).ready(function() {
     console.log(error);
     postO = { lieux: [] };
   }
-  const formValidator = new FormValidator(form);
+  const formValidator = new LieuxDistValidator(form);
         formValidator.initialize();
 
 });
