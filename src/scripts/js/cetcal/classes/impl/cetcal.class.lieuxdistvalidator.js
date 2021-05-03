@@ -1,14 +1,16 @@
 class LieuxDistValidator extends TimeCheckerValidator {
 
-  toto() {
-    super.toto();
-    console.log('LieuxDistValidator->toto');
-  }
+    initialize() {
+        super.initialize();
+        this.timeCheckValidator();
+    }
 
-  // devient une surcharge de la Class TimeCheckerValidator. 
-  // Nous voulons vérifier les dates et heures. Les Classes mères, gèrent les validations de type vide/renseigné.
-    timeCheckValidator(field) {
-      
+    // devient une surcharge de la Class TimeCheckerValidator.
+   // Nous voulons vérifier les dates et heures. Les Classes mères, gèrent les validations de type vide/renseigné.
+
+    timeCheckValidator() {
+
+
         // controle de la validité des heures
         if (field.id === "timeInput-heure-fin" || field.id === "timeInput-heure-deb") {
             const heureDeb = this.form.querySelector('#timeInput-heure-deb');
