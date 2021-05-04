@@ -1,7 +1,9 @@
 class FormValidator {
-    constructor(form, submit) {
+
+    newMarche = undefined;
+
+    constructor(form) {
         this.form = form;
-        this.submit = submit;
     }
 
     initialize() {
@@ -42,7 +44,7 @@ class FormValidator {
             console.log(field.value);
             this.setStatus(field, null, "success");
             if(field.id === "nv-marche-lieuxdist-nom" || "nv-marche-lieuxdist-adr" && field.id !== undefined ) {
-               this.createNewMarche(field, field.value);
+               this.newMarche = this.createNewMarche(field, field.value);
             }
         }
         // controle de la validité des heures
@@ -59,7 +61,7 @@ class FormValidator {
                 }
             } else {
                 this.setStatus(field, null, "success");
-                this.createNewMarche(field.id, field.value);
+                this.newMarche = this.createNewMarche(field.id, field.value);
             }
         }
     }
@@ -104,8 +106,14 @@ class FormValidator {
         newMarcheToPost.heure_fin = document.querySelector('#qstprod--precisions--prod').value;
 
         console.log(newMarcheToPost);
+
+        // Si problème retourner FALSE. Sinon retourner l'instance.
     }
 
+
+    getNewMarche() {
+      return this.newMarche;
+    }
 
 }
 

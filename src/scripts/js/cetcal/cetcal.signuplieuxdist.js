@@ -203,7 +203,15 @@ addCircuit.addEventListener('mousedown', () => {
 
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
-    postO.lieux.push(postObjet);
+    // Si créa marche (checkboxMarche.checked) : {
+    // newMarche = formValidator.getNewMarche();
+    // SI (newMarche === false) On Bloque.
+    // SINON postO.lieux.push(newMarche);
+    // Alerter... 
+    // }
+    // Sinon : 
+    postO.lieux.push(postObjet); 
+
     $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
     console.log(postO);
 
@@ -565,7 +573,7 @@ $(document).ready(function() {
   }
 
   // TODO : blocker action du bouton ajouter si un ou des fields sont non validés.
-  const formValidator = new LieuxDistValidator(document, bouton_ajouté);
+  const formValidator = new FormValidator(document);
   formValidator.initialize();
 
 });
