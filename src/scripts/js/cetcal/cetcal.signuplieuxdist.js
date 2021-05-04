@@ -160,9 +160,6 @@ checkboxMarche.addEventListener('change', (event) => {
     newMarcheProd.classList.remove('d-none');
     allMarcheBox.classList.add('d-none');
     checkboxFlag = true;
-    /*const validatorTest = new FormValidator(newMarcheProd);
-    validatorTest.initialize();
-    console.log(validatorTest.setStatus);*/
   } else {
     newMarcheProd.classList.add('d-none');
     allMarcheBox.classList.remove('d-none');
@@ -185,15 +182,10 @@ addCircuit.addEventListener('mousedown', () => {
   }
 
   if (checkboxMarche.checked) {
-    postObjet = new PostObj();
-    postObjet.crea_marche = true;
-    postObjet.type = 'Marché';
-    postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
-    postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
-    postObjet.heure_deb = $('#timeInput-heure-deb').val();
-    postObjet.heure_fin = $('#timeInput-heure-fin').val();
-    postObjet.date = $('#timeInput-date').val();
-    postObjet.jour = $('#timeInput-jour').val();
+
+        let test = getdata();
+
+
   } else {
     postObjet.crea_marche = false;
   }
@@ -543,26 +535,6 @@ $(function() { $('#timeInput-heure-deb').timepicker({
   interval: 30
 });
 });
-
-/*let heureDebBtn = document.querySelector('#timeInput-heure-deb');
-    heureDebBtn.addEventListener('change', (e)=>{
-      console.log(document.querySelector('#timeInput-heure-deb').value);
-      const validatorTest = new FormValidator(newMarcheProd);
-      validatorTest.initialize();
-      validatorTest.timeChecker(document.querySelector('#timeInput-heure-deb').value, document.querySelector('#timeInput-heure-fin').value)
-
-    })
-
-let heureFinBtn = document.querySelector('#timeInput-heure-fin');
-    heureFinBtn.addEventListener('change', (e)=>{
-    console.log(document.querySelector('#timeInput-heure-fin').value);
-      const validatorTest = new FormValidator(newMarcheProd);
-      validatorTest.initialize();
-      validatorTest.timeChecker(document.querySelector('#timeInput-heure-deb').value, document.querySelector('#timeInput-heure-fin').value);
-
-})*/
-
-
 $(function() { $('#timeInput-heure-fin').timepicker({
   timeFormat: 'HH:mm',
   minTime: '03:00:00',
@@ -585,7 +557,8 @@ $(document).ready(function() {
     console.log(error);
     postO = { lieux: [] };
   }
-  const formValidator = new LieuxDistValidator(form);
+
+  const formValidator = new FormValidator(form);
         formValidator.initialize();
 
 });

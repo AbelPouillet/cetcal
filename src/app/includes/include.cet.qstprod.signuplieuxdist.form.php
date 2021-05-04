@@ -160,9 +160,8 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
 
   </div><!-- fin col -->
 </div><!-- fin row -->
-<script src="/src/scripts/js/cetcal/classes/abstract/cetcal.class.validator.js"></script>
 <script src="/src/scripts/js/cetcal/classes/abstract/cetcal.class.formvalidator.js"></script>
-<script src="/src/scripts/js/cetcal/classes/abstract/cetcal.class.timecheckervalidator.js"></script>
+<script src="/src/scripts/js/cetcal/classes/abstract/cetcal.class.postvalidator.js"></script>
 <script src="/src/scripts/js/cetcal/classes/impl/cetcal.class.lieuxdistvalidator.js"></script>
 <script src="/src/scripts/js/cetcal/cetcal.signuplieuxdist.js"></script>
 <script src="/src/scripts/js/typeahead.0.11.1.min.js" ></script>
