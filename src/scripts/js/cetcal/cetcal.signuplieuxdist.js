@@ -31,8 +31,6 @@ let inputMarche;
 let precisions_texte = '';
 let pasDeSousType = false;
 
-let form = document.querySelector(".cet-formgroup-container");
-
 /**
  * Définition de la structure de données pour lieux de distributions (tous cas confondus).
  */
@@ -160,6 +158,9 @@ checkboxMarche.addEventListener('change', (event) => {
     newMarcheProd.classList.remove('d-none');
     allMarcheBox.classList.add('d-none');
     checkboxFlag = true;
+    /*const validatorTest = new FormValidator(newMarcheProd);
+    validatorTest.initialize();
+    console.log(validatorTest.setStatus);*/
   } else {
     newMarcheProd.classList.add('d-none');
     allMarcheBox.classList.remove('d-none');
@@ -182,10 +183,15 @@ addCircuit.addEventListener('mousedown', () => {
   }
 
   if (checkboxMarche.checked) {
-
-        let test = getdata();
-
-
+    postObjet = new PostObj();
+    postObjet.crea_marche = true;
+    postObjet.type = 'Marché';
+    postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
+    postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
+    postObjet.heure_deb = $('#timeInput-heure-deb').val();
+    postObjet.heure_fin = $('#timeInput-heure-fin').val();
+    postObjet.date = $('#timeInput-date').val();
+    postObjet.jour = $('#timeInput-jour').val();
   } else {
     postObjet.crea_marche = false;
   }
@@ -558,7 +564,8 @@ $(document).ready(function() {
     postO = { lieux: [] };
   }
 
-  const formValidator = new FormValidator(form);
-        formValidator.initialize();
+  // TODO : blocker action du bouton ajouter si un ou des fields sont non validés.
+  const formValidator = new LieuxDistValidator(document, bouton_ajouté);
+  formValidator.initialize();
 
 });

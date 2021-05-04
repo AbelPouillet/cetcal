@@ -7,6 +7,8 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="EXPIRES" CONTENT="Sun, 2 Mai 2021 01:12:01 GMT">
     <title>Annuaire des producteurs bio de la région castillon</title>
     <meta name="description" content="............"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
