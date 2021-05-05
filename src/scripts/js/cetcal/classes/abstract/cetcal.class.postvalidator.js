@@ -1,7 +1,7 @@
 class PostValidator {
 
     constructor(denomination, type, sous_type, pk_entite, crea_marche, precesions, dateLieux,
-                heureDeb, heureFin, jour) {
+                heureDeb, heureFin, jour, adr) {
         this.denomination = denomination;
         this.code_type = '';
         this.type = type;
@@ -14,6 +14,7 @@ class PostValidator {
         this.heure_deb = heureDeb;
         this.heure_fin = heureFin;
         this.jour = jour;
+        this.adr = adr;
     }
 
 

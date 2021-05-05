@@ -1,9 +1,14 @@
 class FormValidator {
 
-    newMarche = undefined;
+    newMarcheToPost = undefined
 
     constructor(form) {
         this.form = form;
+        this.counter = 0;
+        this.newMarcheToPost = new PostValidator();
+
+
+
     }
 
     initialize() {
@@ -84,35 +89,46 @@ class FormValidator {
         }
 
     }
+
     // creer un nouveau marché
     createNewMarche(field, value){
-        const newMarcheToPost = new PostValidator();
-        newMarcheToPost.crea_marche = true;
-        newMarcheToPost.type = 'Marché';
+
+
+        this.newMarcheToPost.crea_marche = true;
+        this.newMarcheToPost.type = 'Marché';
+        this.newMarcheToPost.precs = document.querySelector('#qstprod--precisions--prod');
         switch (field.id) {
             case 'nv-marche-lieuxdist-nom':
-                newMarcheToPost.denomination = value;
+                this.newMarcheToPost.denomination = value;
+                this.counter ++;
                 break;
             case 'nv-marche-lieuxdist-adr':
-                newMarcheToPost.denomination = value;
+                this.newMarcheToPost.adr = value;
+                this.counter ++;
+
                 break;
             case 'timeInput-heure-deb':
-                newMarcheToPost.denomination = value;
+                this.newMarcheToPost.heure_deb = value;
+                this.counter ++;
+
                 break;
             case 'timeInput-heure-fin':
-                newMarcheToPost.denomination = value;
+                this.newMarcheToPost.heure_fin = value;
+                this.counter ++;
                 break;
         }
-        newMarcheToPost.heure_fin = document.querySelector('#qstprod--precisions--prod').value;
 
-        console.log(newMarcheToPost);
+        if(this.counter === 4) {
+            console.log(this.newMarcheToPost);
+        } else {
+        }
 
-        // Si problème retourner FALSE. Sinon retourner l'instance.
     }
 
 
-    getNewMarche() {
-      return this.newMarche;
+
+     getNewMarche() {
+        return this.newMarcheToPost;
     }
 
 }

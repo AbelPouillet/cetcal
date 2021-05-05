@@ -183,15 +183,26 @@ addCircuit.addEventListener('mousedown', () => {
   }
 
   if (checkboxMarche.checked) {
-    postObjet = new PostObj();
-    postObjet.crea_marche = true;
+      //
+      let testToTo = new FormValidator(document);
+      let toPost = testToTo.getNewMarche();
+      console.log(toPost);
+      postObjet = new PostObj();
+
+    if(toPost) {
+      console.log(toPost);
+      } else if(toPost === false) {
+        //alerte
+        console.log(toPost);
+      }
+   /* postObjet.crea_marche = true;
     postObjet.type = 'Marché';
     postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
     postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
     postObjet.heure_deb = $('#timeInput-heure-deb').val();
     postObjet.heure_fin = $('#timeInput-heure-fin').val();
     postObjet.date = $('#timeInput-date').val();
-    postObjet.jour = $('#timeInput-jour').val();
+    postObjet.jour = $('#timeInput-jour').val();*/
   } else {
     postObjet.crea_marche = false;
   }
@@ -575,5 +586,7 @@ $(document).ready(function() {
   // TODO : blocker action du bouton ajouter si un ou des fields sont non validés.
   const formValidator = new FormValidator(document);
   formValidator.initialize();
+  let ToTonewMarche = formValidator.NewMarche;
+ //console.log(ToTonewMarche)
 
 });
