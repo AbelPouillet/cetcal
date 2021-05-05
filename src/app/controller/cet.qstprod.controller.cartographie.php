@@ -21,7 +21,7 @@ class CETCALCartographieController
     return $loader->load($result);
   }
 
-  public function fetchDataCartographieEntite($filtrer, $types = "") 
+  public function fetchDataCartographieEntite() 
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.entites.model.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/admin/cet.qstprod.admin.cartographie.loader.php');

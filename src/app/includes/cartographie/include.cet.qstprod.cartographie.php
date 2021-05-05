@@ -1,12 +1,10 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.cartographie.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/media/cet.qstprod.controller.media.php');
-$types_entites = isset($_GET['typent']) ? $dataProcessor->processHttpFormData($_GET['typent']) : "";
-$filtrer = strlen($types_entites) > 0;
 $controller = new CETCALCartographieController();
 $media_controller = new MediaController();
 $data = $controller->fetchDataCartographie($SELECT_PRD_NON_INSCRITS);
-$entites_data = $controller->fetchDataCartographieEntite($filtrer, $types_entites);
+$entites_data = $controller->fetchDataCartographieEntite();
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/admin/cet.qstprod.admin.cartographie.loader.php');
 $loader = new CETCALCartographieLoader();
 $loader->loadCommunes();
@@ -99,9 +97,6 @@ $loader->loadCommunes();
 <div id="cetcal.entite.xml" hidden="hidden">
   <entites hidden="hidden">
     <?php foreach ($entites_data as $entiteDto): ?>
-      <?php if(strcmp($entiteDto->type, "marche") !== 0 && 
-               strcmp($entiteDto->type, "mbio") !== 0 &&
-               strcmp($entiteDto->type, "amap") !== 0) continue; ?>
       <entite>
         <pk><?= $entiteDto->getPk(); ?></pk>
         <type><?= $entiteDto->type; ?></type>
