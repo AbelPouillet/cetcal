@@ -391,4 +391,10 @@ span.lieux-dist-recap-liste-sup:hover {
   cursor: pointer;
   color: red !important;
 }
+
+small.nouveau-marche-error-message {
+  color: red !important;
+  margin-left: 3px;
+  display: none;
+}
 /***********************************************************************/

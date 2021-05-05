@@ -15,6 +15,7 @@ class PostValidator {
         this.heure_fin = heureFin;
         this.jour = jour;
         this.adr = adr;
+        this.validated = false;
     }
 
 

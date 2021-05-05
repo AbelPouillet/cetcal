@@ -7,7 +7,7 @@ $datas = formLieuDistController::fetchUniqueAllTypeLieu();
 $sousTypes = formLieuDistController::fetchAllTypeLieu();
 ?>
 
-<div class="row justify-content-lg-center">
+<div class="row justify-content-lg-center" id="qstprod-lieuxdist-root-div">
   <div class="col-lg-6">
 
     <?php include $PHP_INCLUDES_PATH.'areas/include.cet.qstprod.signup.entete.form.php'; ?>
@@ -60,59 +60,57 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
             <small class="cet-qstprod-label-text">Entrez le nom de votre marché : </small>
           </label>
           <input type="text" class="form-control marche--prod" name="nv-marche-lieuxdist-nom"
-            id="nv-marche-lieuxdist-nom" placeholder="Entrez un seul marché à la fois"
-            validate="text">
-          <span class="error-message"></span>
+            id="nv-marche-lieuxdist-nom" placeholder="Entrez un seul marché à la fois">
+          <small class="nouveau-marche-error-message"></small>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Entrez l'adresse de votre marché : </small>
           </label>
           <input type="text" class="form-control adresse--marche--prod" name="nv-marche-lieuxdist-adr"
-            id="nv-marche-lieuxdist-adr" placeholder="Adresse du marché" 
-            validate="text">
-          <span class="error-message"></span>
+            id="nv-marche-lieuxdist-adr" placeholder="Adresse du marché">
+          <small class="nouveau-marche-error-message"></small>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Jour de présence à ce marché : </small>
           </label>
-          <select class="form-control" id="timeInput-jour" name="timeInput-jour" style="max-width: 256px;"
-            validate="text">
+          <select class="form-control" id="timeInput-jour" name="timeInput-jour" 
+            style="max-width: 256px;">
             <option value="non-renseigné">Sélectionner un jour</option>
             <?php foreach ($listes_arrays->marches_jours as $jour): ?>
-              <option value="<?= $jour[1]; ?>">Tous les <?= strtolower($jour[1]); ?>s</option>
+              <option value="<?= $jour[1]; ?>"><?= $jour[1]; ?></option>
             <?php endforeach;?>
           </select>
+          <small class="nouveau-marche-error-message"></small>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Heure de début de votre présence : </small>
           </label>
-          <input class="form-control" type="text" id="timeInput-heure-deb" name="timeInput-heure-deb" data-time-format="H:i"  validate="time"
+          <input class="form-control" type="text" id="timeInput-heure-deb" 
+            name="timeInput-heure-deb" data-time-format="H:i"
             style="max-width: 256px;" />
-          <span class="error-message"></span>
+          <small class="nouveau-marche-error-message"></small>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Heure de fin présence : </small>
           </label>
           <input class="form-control" type="text" id="timeInput-heure-fin" name="timeInput-heure-fin" 
-            data-time-format="H:i" 
-            validate="time"
+            data-time-format="H:i"
             style="max-width: 256px;" />
-          <span class="error-message"></span>
+          <small class="nouveau-marche-error-message"></small>
         </div>
         <div class="form-group mb-3">
           <label for="qstlieudist-3-1">
-            <small class="cet-qstprod-label-text">Date de présence sur ce marché : </small>
+            <small class="cet-qstprod-label-text">Date de présence sur ce marché (pour les marchés événementiels uniquement) : </small>
           </label>
           <input data-toggle="datepicker" class="form-control" type="text" 
-            id="timeInput-date" name="timeInput-date" validate="date"
+            id="timeInput-date" name="timeInput-date"
             style="max-width: 256px;">
           <div data-toggle="datepicker"></div>
-          <span class="error-message"></span>
-
+          <small class="nouveau-marche-error-message"></small>
         </div>
       </div>
 

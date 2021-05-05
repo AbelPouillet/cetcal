@@ -30,7 +30,6 @@ let postObjet;
 let inputMarche;
 let precisions_texte = '';
 let pasDeSousType = false;
-
 /**
  * Définition de la structure de données pour lieux de distributions (tous cas confondus).
  */
@@ -56,6 +55,7 @@ const PostObj = class {
  * DTO JSON pour tous les lieux ajoutés.
  */
 let postO = { lieux: [] };
+let newMarcheValidator = undefined;
 
 // edit option, Flags :
 let editElement;
@@ -158,13 +158,12 @@ checkboxMarche.addEventListener('change', (event) => {
     newMarcheProd.classList.remove('d-none');
     allMarcheBox.classList.add('d-none');
     checkboxFlag = true;
-    /*const validatorTest = new FormValidator(newMarcheProd);
-    validatorTest.initialize();
-    console.log(validatorTest.setStatus);*/
+    newMarcheValidator = new FormValidator();
   } else {
     newMarcheProd.classList.add('d-none');
     allMarcheBox.classList.remove('d-none');
     checkboxFlag = false;
+    clearInputs();
   }
 });
 
@@ -182,27 +181,22 @@ addCircuit.addEventListener('mousedown', () => {
     return;
   }
 
+  // Cas particulier des nouveaux marchés.
   if (checkboxMarche.checked) {
-      //
-      let testToTo = new FormValidator(document);
-      let toPost = testToTo.getNewMarche();
-      console.log(toPost);
-      postObjet = new PostObj();
-
-    if(toPost) {
-      console.log(toPost);
-      } else if(toPost === false) {
-        //alerte
-        console.log(toPost);
-      }
-   /* postObjet.crea_marche = true;
+    if (!newMarcheValidator.isDataValidated()) {
+      alerter('Des informations sont manquantes concernant ce marché.', 
+        'Veuillez, dans la mesure du possible, renseigner toutes les informations demandées.', 'J\'ai compris');
+      return;
+    }
+    postObjet = new PostObj();
+    postObjet.crea_marche = true;
     postObjet.type = 'Marché';
     postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
     postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
     postObjet.heure_deb = $('#timeInput-heure-deb').val();
     postObjet.heure_fin = $('#timeInput-heure-fin').val();
     postObjet.date = $('#timeInput-date').val();
-    postObjet.jour = $('#timeInput-jour').val();*/
+    postObjet.jour = $('#timeInput-jour').val();
   } else {
     postObjet.crea_marche = false;
   }
@@ -214,17 +208,8 @@ addCircuit.addEventListener('mousedown', () => {
 
   if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
     
-    // Si créa marche (checkboxMarche.checked) : {
-    // newMarche = formValidator.getNewMarche();
-    // SI (newMarche === false) On Bloque.
-    // SINON postO.lieux.push(newMarche);
-    // Alerter... 
-    // }
-    // Sinon : 
     postO.lieux.push(postObjet); 
-
     $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
-    console.log(postO);
 
     postObjet = undefined;
     // finalement ré-initialiser le formulaire et reconstruire le récap.
@@ -265,6 +250,7 @@ function clearInputs() {
   $('#timeInput-heure-deb').val('');
   $('#timeInput-heure-fin').val('');
   $('#timeInput-date').val('');
+  $('.nouveau-marche-error-message').hide();
   textAreaProd.value = '';
   $('input.typeahead').val('');
   checkboxMarche.checked = false;
@@ -582,11 +568,4 @@ $(document).ready(function() {
     console.log(error);
     postO = { lieux: [] };
   }
-
-  // TODO : blocker action du bouton ajouter si un ou des fields sont non validés.
-  const formValidator = new FormValidator(document);
-  formValidator.initialize();
-  let ToTonewMarche = formValidator.NewMarche;
- //console.log(ToTonewMarche)
-
 });

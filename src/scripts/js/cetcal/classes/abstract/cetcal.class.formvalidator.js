@@ -1,135 +1,137 @@
 class FormValidator {
 
-    newMarcheToPost = undefined
+  idsNewMarche = [
+    'nv-marche-lieuxdist-nom', 
+    'nv-marche-lieuxdist-adr', 
+    'timeInput-heure-deb', 
+    'timeInput-heure-fin', 
+    'timeInput-jour'];
+  newMarcheToPost = undefined
 
-    constructor(form) {
-        this.form = form;
-        this.counter = 0;
-        this.newMarcheToPost = new PostValidator();
+  constructor() {
+    this.newMarcheToPost = new PostValidator();
+    this.initialize();
+  }
+
+  initialize() {
+    this.appendEventListeners();
+  }
+
+  appendEventListeners() {
+    var fieldArray = [];
+    this.idsNewMarche.forEach(fieldid => { fieldArray.push(document.getElementById(fieldid)); });
+    fieldArray.forEach(element => {
+      element.addEventListener('change', event => { this.validateFields(element); })
+    });
+  }
 
 
+  // Logique principale de validation de tous les champs.
+  validateFields(field) {
 
-    }
+    this.completeNewMarche(field, field.value);
 
-    initialize() {
-        this.getFieldsOfForm();
-        this.validateOnEntry();
-    }
-
-
-
-    getFieldsOfForm() {
-        let self = this;
-        let AllFields = [...this.form.querySelectorAll('input')];
-        let hasSelect = [...this.form.querySelectorAll('select')];
-        const fields = AllFields.map(field => field.id);
-        if (hasSelect) {
+    // controle de la validité des heures
+    if (field.id === "timeInput-heure-fin" || field.id === "timeInput-heure-deb") {
+      const heureDeb = document.getElementById('timeInput-heure-deb');
+      const heureFin = document.getElementById('timeInput-heure-fin');
+      if (field.value.trim() === "") this.setStatus(field, "Merci de préciser une heure.", "error");
+      if (heureFin.value !== "" && heureDeb.value !== "" && heureFin.value <= heureDeb.value) {
+        if (field.id === "timeInput-heure-deb" ) {
+          this.setStatus(field, `${field.previousElementSibling.innerText} est supérieure ou égale à l'heure de départ`, "error");
+        } else if (field.id === "timeInput-heure-fin"){
+          this.setStatus(field, `${field.previousElementSibling.innerText} est inférieure ou égale à l'heure d'arrivée`, "error");
         }
+      } else {
+        if (heureDeb.value !== "") this.setStatus(heureDeb, '', "success");
+        if (heureFin.value !== "") this.setStatus(heureFin, '', "success");
+      }
+    } else if (field.id === "timeInput-jour") {
+      // vérifie le jour de présence. 
+      if (field.value.trim() === "non-renseigné") {
+        this.setStatus(field, `${field.previousElementSibling.innerText} ce champ doit être renseigné`, "error");
+      } else {
+        this.setStatus(field, '', "success");
+      }
+    } else {
+      // vérifie la présence de valeur. 
+      if (field.value.trim() === "") {
+        this.setStatus(field, `${field.previousElementSibling.innerText} ce champ ne peut pas être vide`, "error");
+      } else {
+        this.setStatus(field, '', "success");
+      }
+    }
+  }
 
-        return fields;
+  // Affecter le message d'erreur ou le code couleur de validation pour saisies valides.
+  setStatus(field, message, status) {
+
+    const errorMessage = field.parentElement.querySelector('.nouveau-marche-error-message')
+
+    // selectionner les icones erreurs
+    if (status === "success") {
+      field.classList.add('is-valid');
+      field.classList.remove('is-invalid');
+      field.parentElement.querySelector('.nouveau-marche-error-message').innerText = message;
+      field.parentElement.querySelector('.nouveau-marche-error-message').style.display = 'none';
+      return status
     }
 
+    if (status === "error") {
+      field.classList.add('is-invalid');
+      field.classList.remove('is-valid');
+      field.parentElement.querySelector('.nouveau-marche-error-message').innerText = message;
+      field.parentElement.querySelector('.nouveau-marche-error-message').style.display = 'inline';
+      this.newMarcheToPost.validated = false;
+    }
+  }
 
-    validateOnEntry() {
-        let self = this;
-        const fields = self.getFieldsOfForm();
-        fields.forEach(field => {
-            const input = document.querySelector(`#${field}`);
-            input.addEventListener('change', event => {
-                self.validateFields(input);
-            })
-        })
+  // Compéter l'instance avec les valeurs des inputs / selects.
+  completeNewMarche(field, value) {
+
+    switch (field.id) {
+      case 'nv-marche-lieuxdist-nom':
+      this.newMarcheToPost.denomination = value;
+      break;
+      case 'nv-marche-lieuxdist-adr':
+      this.newMarcheToPost.adr = value;
+      break;
+      case 'timeInput-heure-deb':
+      this.newMarcheToPost.heure_deb = value;
+      break;
+      case 'timeInput-heure-fin':
+      this.newMarcheToPost.heure_fin = value;
+      break;
+      case 'timeInput-jour':
+      this.newMarcheToPost.jour = value;
+      break;
     }
 
-    validateFields(field) {
-        // vérifie la présence de valeur
-        if (field.value.trim() === "") {
-            this.setStatus(field, `${field.previousElementSibling.innerText} ce champ ne peut pas être vide`, "error");
-        } else {
-            console.log(field.value);
-            this.setStatus(field, null, "success");
-            if(field.id === "nv-marche-lieuxdist-nom" || "nv-marche-lieuxdist-adr" && field.id !== undefined ) {
-               this.newMarche = this.createNewMarche(field, field.value);
-            }
-        }
-        // controle de la validité des heures
-        if (field.id === "timeInput-heure-fin" || field.id === "timeInput-heure-deb") {
-            const heureDeb = this.form.querySelector('#timeInput-heure-deb');
-            const heureFin = this.form.querySelector('#timeInput-heure-fin');
-            if (field.value.trim() === "") {
-                this.setStatus(field, "Merci de préciser votre heure de départ.", "error");
-            } else if (heureFin.value <= heureDeb.value && heureFin.value !== "" ) {
-                if(field.id === "timeInput-heure-deb" ) {
-                    this.setStatus(field, `${field.previousElementSibling.innerText} est supérieure ou égale à l'heure de départ`, "error");
-                } else if (field.id === "timeInput-heure-fin"){
-                    this.setStatus(field, `${field.previousElementSibling.innerText} est inférieure ou égale à l'heure d'arrivée`, "error");
-                }
-            } else {
-                this.setStatus(field, null, "success");
-                this.newMarche = this.createNewMarche(field.id, field.value);
-            }
-        }
+    console.log(this.newMarcheToPost);
+
+    this.newMarcheToPost.validated = this.globalValidation();
+  }
+
+  globalValidation() {
+    try {
+      return this.newMarcheToPost.denomination.length > 0
+      && this.newMarcheToPost.adr.length > 0
+      && this.newMarcheToPost.heure_deb.length > 0
+      && this.newMarcheToPost.heure_fin.length > 0
+      && this.newMarcheToPost.jour.length > 0 
+      && this.newMarcheToPost.jour !== 'non-renseigné';
+    } catch (error) {
+      return false;
     }
+    
+  }
 
+  isDataValidated() {
+    return this.newMarcheToPost.validated;
+  }
 
-    setStatus(field, message, status) {
-        const errorMessage = field.parentElement.querySelector('.error-message')
-        // selectionner les icones erreurs
-        if (status === "success") {
-            field.classList.add('is-valid');
-            field.classList.remove('is-invalid');
-            return status
-        }
-
-        if (status === "error") {
-            field.classList.add('is-invalid');
-            field.classList.remove('is-valid');
-            field.parentElement.querySelector('.error-message').innerText = message;
-            //this.submit.classList.add('d-none');
-        }
-
-    }
-
-    // creer un nouveau marché
-    createNewMarche(field, value){
-
-
-        this.newMarcheToPost.crea_marche = true;
-        this.newMarcheToPost.type = 'Marché';
-        this.newMarcheToPost.precs = document.querySelector('#qstprod--precisions--prod');
-        switch (field.id) {
-            case 'nv-marche-lieuxdist-nom':
-                this.newMarcheToPost.denomination = value;
-                this.counter ++;
-                break;
-            case 'nv-marche-lieuxdist-adr':
-                this.newMarcheToPost.adr = value;
-                this.counter ++;
-
-                break;
-            case 'timeInput-heure-deb':
-                this.newMarcheToPost.heure_deb = value;
-                this.counter ++;
-
-                break;
-            case 'timeInput-heure-fin':
-                this.newMarcheToPost.heure_fin = value;
-                this.counter ++;
-                break;
-        }
-
-        if(this.counter === 4) {
-            console.log(this.newMarcheToPost);
-        } else {
-        }
-
-    }
-
-
-
-     getNewMarche() {
-        return this.newMarcheToPost;
-    }
+  getNewMarche() {
+    return this.newMarcheToPost;
+  }
 
 }
-
