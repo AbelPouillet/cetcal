@@ -22,10 +22,13 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbar-qui-nous-sommes-dropdown">
           <a class="dropdown-item cet-p-20" href="http://castillonnaisentransition.org/" target="_blank">
-            - L'association CET, à propos
+            L'association CET, à propos...
           </a>
           <a class="dropdown-item cet-p-20" href="https://github.com/j-fish/cetcal" target="_blank">
-            - Notre projet sur GitHub
+            Notre projet sur GitHub
+          </a>
+          <a class="dropdown-item cet-p-20" href="/?statut=contact.form&anr=true&em=&ntp=">
+            Des questions ? Contacter l'équipe decidelabiolocale.org
           </a>
         </div>
       </li>

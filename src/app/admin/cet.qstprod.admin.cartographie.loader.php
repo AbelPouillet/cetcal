@@ -29,7 +29,6 @@ class CETCALCartographieLoader
     
     foreach ($data as $entiteDto)
     {
-      if (!in_array($entiteDto->type, CETCALCartographieLoader::TYPES_ENTITES_A_CARTOGRAPHIER)) continue;
       if ($model->existsEntite($entiteDto->getPk()))
       {
         $latLng = $model->getLatLngEntite($entiteDto->getPk());

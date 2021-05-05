@@ -106,7 +106,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
               <option value="amap">Une AMAP</option>
               <option value="collectif">Un membre de collectif (groupement d'achat, association...)</option>
               <option value="retaurationcol">Responsable de restauration collective</option>
-              <option value="retaurationcol">Je travail pour une collectivité et je m'inscrit à ce titre</option>
+              <option value="retaurationcol">Je travail pour une collectivité ou une CDC et je m'inscrit à ce titre</option>
               <option value="retaurationcol">Je suis producteur.e non référencé dans l'annuaire</option>
             </select>
           </div>

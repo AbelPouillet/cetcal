@@ -19,7 +19,7 @@ $params = [
   "[texte]" => $texte,
   "[objet]" => $objet
 ];
-$mail_contact_cetcal = 'contact@castillonnaisentransition.org';
+$mail_contact_cetcal = 'contact@decidelabiolocale.org';
 
 // Mail client :
 $mailHelper->send_paramsMultiples('cet.contact.html.mail.content.html', 

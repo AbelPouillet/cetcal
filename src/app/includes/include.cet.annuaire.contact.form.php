@@ -36,7 +36,7 @@ $heading = strcmp($demande, 'jeconstateuneerreurdecarto') === 0 ? "Je constate u
           <label class="cet-input-label"><small class="cet-qstprod-label-text">Afin de faciliter la prise de contact, veuillez préciser un horaire préféré pour être appelé.</small></label>   
           <textarea class="form-control is-invalid" id="annuaire-contact-problematique" 
             name="annuaire-contact-problematique" maxlength="1024"
-            placeholder="<?= strcmp($demande, 'jeconstateuneerreurdecarto') === 0 ? "Veuillez détailler le défaut d'information constaté (Ex: le nom de la ferme en question ainsi que l'information faisant défaut). Merci pour toute aide et participation." : (strcmp($demande, 'jesuisproducteur') === 0 ? "Afin de pouvoir traiter votre demande, veuillez nous préciser un horaire d'appel et détailler votre demande..." : "Afin de pouvoir traiter votre demande, veuillez détailler celle-ci."); ?>"
+            placeholder="<?= strcmp($demande, 'jeconstateuneerreurdecarto') === 0 ? "Veuillez détailler le défaut d'information constaté (Ex: le nom de la ferme en question ainsi que l'information faisant défaut). Merci pour toute aide et participation." : (strcmp($demande, 'jesuisproducteur') === 0 ? "Afin de pouvoir traiter votre demande, veuillez nous préciser un horaire d'appel et détailler votre demande..." : "Afin de pouvoir traiter votre demande, veuillez nous préciser un maximum d'informations."); ?>"
             onblur="checkFormInput(1024, 'annuaire-contact-problematique');"
             value=""></textarea>
         </div>
@@ -65,7 +65,7 @@ $heading = strcmp($demande, 'jeconstateuneerreurdecarto') === 0 ? "Je constate u
             Les détails de votre demande :<br>Votre numéro de téléphone : <b><?= $ntelport; ?></b><br>
             Votre demande :<br><?= $texte; ?>
           </p>
-          <p>Votre demande est parvenue à l'équipe cetcal. Elle sera traité dans les plus brefs délais.</p>
+          <p>Votre demande est parvenue à l'équipe decidelabiolocale.org. Elle sera traité dans les plus brefs délais.</p>
           <p><a href="./">Retourner à l'accueil</a></p>
         </div>
       </div>

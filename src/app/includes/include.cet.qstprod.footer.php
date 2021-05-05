@@ -7,7 +7,7 @@
           <li class="list-group-item cet-footer-li">Nous sommes une association <b>Loi 1901</b></li>
           <li class="list-group-item cet-footer-li">À Castillon-la-Bataille : une épicerie bio coopérative, un café associatif, un espace de création et de travail partagé.</li>
           <li class="list-group-item cet-footer-li">Page de l'association : <a href="http://castillonnaisentransition.org/" target="_blank">http://castillonnaisentransition.org/</a></li>
-          <li class="list-group-item cet-footer-li">Contact : <email>contact@castillonnaisentransition.org</email></li>
+          <li class="list-group-item cet-footer-li">Contact : <email>contact@decidelabiolocale.org</email></li>
           <li class="list-group-item cet-footer-li"><a href="https://www.facebook.com/castillonnaisentransition/" target="_blank">Nous sommes actifs sur Facebook !</a></li>
           <li class="list-group-item cet-footer-li cet-p">
             Nos partenaires :
