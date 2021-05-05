@@ -30,26 +30,11 @@ let postObjet;
 let inputMarche;
 let precisions_texte = '';
 let pasDeSousType = false;
+
 /**
  * Définition de la structure de données pour lieux de distributions (tous cas confondus).
  */
-const PostObj = class {
-  constructor(denomination, type, sous_type, pk_entite, crea_marche, precesions, dateLieux, 
-    heureDeb, heureFin, jour) {
-    this.denomination = denomination;
-    this.code_type = '';
-    this.type = type;
-    this.code_sous_type = '';
-    this.sous_type = sous_type;
-    this.pk_entite = pk_entite;
-    this.crea_marche = crea_marche;
-    this.precs = precesions;
-    this.date = dateLieux;
-    this.heure_deb = heureDeb;
-    this.heure_fin = heureFin;
-    this.jour = jour;
-  }
-}
+const PostObj = undefined;
 
 /**
  * DTO JSON pour tous les lieux ajoutés.
@@ -148,7 +133,7 @@ selectSousType.addEventListener('change', (e) => {
     clear(amapTypeahead);
     precisionsProd.classList.remove('d-none');
     sousTypeFlag = true;
-    postObjet = new PostObj('NULL', value, req, null, false, null, null, null, null, null);
+    postObjet = new LieuDistPost('NULL', value, req, null, false, null, null, null, null, null);
   }
 
 });
@@ -163,7 +148,10 @@ checkboxMarche.addEventListener('change', (event) => {
     newMarcheProd.classList.add('d-none');
     allMarcheBox.classList.remove('d-none');
     checkboxFlag = false;
-    clearInputs();
+    if (newMarcheValidator !== undefined) {
+      newMarcheValidator.clear();
+      newMarcheValidator = undefined;
+    }
   }
 });
 
@@ -187,16 +175,21 @@ addCircuit.addEventListener('mousedown', () => {
       alerter('Des informations sont manquantes concernant ce marché.', 
         'Veuillez, dans la mesure du possible, renseigner toutes les informations demandées.', 'J\'ai compris');
       return;
+    } else {
+      postObjet = new LieuDistPost();
+      postObjet.crea_marche = true;
+      postObjet.type = 'Marché';
+      postObjet.pk_entite = null;
+      postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
+      postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
+      postObjet.heure_deb = $('#timeInput-heure-deb').val();
+      postObjet.heure_fin = $('#timeInput-heure-fin').val();
+      postObjet.date = $('#timeInput-date').val();
+      postObjet.jour = $('#timeInput-jour').val();
+      newMarcheValidator.clear();
+      newMarcheValidator = undefined;
     }
-    postObjet = new PostObj();
-    postObjet.crea_marche = true;
-    postObjet.type = 'Marché';
-    postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
-    postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
-    postObjet.heure_deb = $('#timeInput-heure-deb').val();
-    postObjet.heure_fin = $('#timeInput-heure-fin').val();
-    postObjet.date = $('#timeInput-date').val();
-    postObjet.jour = $('#timeInput-jour').val();
+
   } else {
     postObjet.crea_marche = false;
   }
@@ -217,7 +210,7 @@ addCircuit.addEventListener('mousedown', () => {
     buildRecapLieux();
 
   } else {
-    alerter('Lieux de distribution est déjà renseigné', 
+    alerter('Lieux de distribution déjà renseigné', 
       'Le lieux de distribution ' + postObjet.denomination + ' est déjà sélectionné dans votre liste.', 
       'J\'ai compris');
   }
@@ -250,6 +243,8 @@ function clearInputs() {
   $('#timeInput-heure-deb').val('');
   $('#timeInput-heure-fin').val('');
   $('#timeInput-date').val('');
+  $('#timeInput-jour').val('');
+  // Remove class .is-valid pour nouveaux marchés.
   $('.nouveau-marche-error-message').hide();
   textAreaProd.value = '';
   $('input.typeahead').val('');
@@ -313,14 +308,14 @@ function showCircuitCout() {
 
 // vérifie si pk est présente : 
 function pkPresent(pk_ent) {
-  return (pk_ent !== undefined && pk_ent !== null && pk_ent !== '') && 
+  return (pk_ent !== undefined && pk_ent !== 'undefined' && pk_ent !== null && pk_ent !== '') && 
     postO.lieux.some(entite => entite.pk_entite === pk_ent);
 }
 
 // vérifie si la dénomination est présent : 
 function denominationPresente(nom) {
   if (nom === 'NULL') return false;
-  return postO.lieux.some(entite => entite.denomination === nom);
+  return postO.lieux.some(entite => entite.denominationPresente === nom);
 }
 
 function buildRecapLieux() {
@@ -478,7 +473,7 @@ if (action === "AMAP") {
       });
 
   $('#amap').on('typeahead:selected', function (e, datum) {
-    postObjet = new PostObj(datum.denomination, action, value, datum.pk_entite, null, null, null, null, null, null);
+    postObjet = new LieuDistPost(datum.denomination, action, value, datum.pk_entite, null, null, null, null, null, null);
   });
 }
 else if ( action === "Marché") {
@@ -498,10 +493,10 @@ else if ( action === "Marché") {
 
 
   $('#the-basics').on('typeahead:selected', function (e, datum) {
-    postObjet = new PostObj(datum.denomination, action, null, datum.pk_entite, null, null, null, null, null, null);
+    postObjet = new LieuDistPost(datum.denomination, action, null, datum.pk_entite, null, null, null, null, null, null);
   });
       } else if (action !== 'Réseau de vente en circuit court') {
-        postObjet = new PostObj('NULL', action, null, null, null, null, null, null, null, null);   
+        postObjet = new LieuDistPost('NULL', action, null, null, null, null, null, null, null, null);   
       }
 
         // fin si
@@ -521,7 +516,7 @@ else if ( action === "Marché") {
             showCircuitCout();
             pasDeSousType = false;
           } else {
-            postObjet = new PostObj('NULL', selectElement.options[selectElement.selectedIndex].text, 
+            postObjet = new LieuDistPost('NULL', selectElement.options[selectElement.selectedIndex].text, 
               null, null, null, null, null, null, null, null);   
             pasDeSousType = true;
           }

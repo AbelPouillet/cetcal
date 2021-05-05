@@ -7,9 +7,10 @@ class FormValidator {
     'timeInput-heure-fin', 
     'timeInput-jour'];
   newMarcheToPost = undefined
+  fieldArray = []
 
   constructor() {
-    this.newMarcheToPost = new PostValidator();
+    this.newMarcheToPost = new LieuDistPost();
     this.initialize();
   }
 
@@ -18,9 +19,9 @@ class FormValidator {
   }
 
   appendEventListeners() {
-    var fieldArray = [];
-    this.idsNewMarche.forEach(fieldid => { fieldArray.push(document.getElementById(fieldid)); });
-    fieldArray.forEach(element => {
+    this.fieldArray = [];
+    this.idsNewMarche.forEach(fieldid => { this.fieldArray.push(document.getElementById(fieldid)); });
+    this.fieldArray.forEach(element => {
       element.addEventListener('change', event => { this.validateFields(element); })
     });
   }
@@ -107,8 +108,6 @@ class FormValidator {
       break;
     }
 
-    console.log(this.newMarcheToPost);
-
     this.newMarcheToPost.validated = this.globalValidation();
   }
 
@@ -124,6 +123,15 @@ class FormValidator {
       return false;
     }
     
+  }
+
+  clear() {
+    this.fieldArray.forEach(element => {
+      element.classList.remove('is-invalid');
+      element.classList.remove('is-valid');
+      element.removeEventListener('change', event => { this.validateFields(element); });
+      element.value = '';
+    });
   }
 
   isDataValidated() {
