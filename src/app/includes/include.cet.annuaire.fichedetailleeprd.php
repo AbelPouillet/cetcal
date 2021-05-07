@@ -12,7 +12,7 @@ $data = $controller->fetchProducteurByPk($pk);
   <div class="row justify-content-lg-center">
     <div class="col-4">
       <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
-        <h4><?= $data['nom_ferme']; ?></h4>
+        <h4 id="fichedetailleeprd-nom-ferme"><?= ucfirst($data['nom_ferme']); ?></h4>
         <?php $logo_ferme = $media_controller->selectSrcLogoFemreProducteur($pk); ?>
         <?php if (isset($logo_ferme) && strlen($logo_ferme) > 1): ?> 
           <p>
@@ -73,3 +73,4 @@ $data = $controller->fetchProducteurByPk($pk);
   </div>
 </div>
 <?php include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.produits.fichedetailleeprd.php'; ?>
+<script src="/src/scripts/js/cetcal/cetcal.min.fichedetailleeprd.js"></script>
