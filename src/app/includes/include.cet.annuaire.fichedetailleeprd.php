@@ -1,4 +1,5 @@
 <?php
+$neant = '';
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/media/cet.qstprod.controller.media.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.controller.fichedetaillee.producteur.php');
 $pk = $_GET['pkprd'];
@@ -12,6 +13,9 @@ $data = $controller->fetchProducteurByPk($pk);
     <div class="col-4">
       <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
         <h4><?= $data['nom_ferme']; ?></h4>
+        <p>
+          <img class="fichedetailleeprd-logo-ferme img-fluid" src="<?= $media_controller->selectSrcLogoFemreProducteur($pk); ?>"/>
+        </p>
         <p>
           <span><?= ucfirst($data['prenom']); ?> <?= ucfirst($data['nom']); ?></span><br>
           <?php
@@ -43,11 +47,19 @@ $data = $controller->fetchProducteurByPk($pk);
       </div>
     </div>
     <div class="col-4">
-      <div class="cet-formgroup-container">
-        <img class="mini-fiche-logo-ferme" src="<?= $media_controller->selectSrcLogoFemreProducteur($pk); ?>"/>
-        <?php
-          var_dump($media_controller->selectMediasProducteur($pk));
-        ?>
+      <div style="overflow-wrap: break-word; margin-bottom: 16px !important;">
+        <?php $media_data = $media_controller->selectMediasProducteur($pk); $counter = 0; ?>
+        <div id="fichedetailleeprd-carousel" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <?php foreach ($media_data as $media): ?>
+              <div class="carousel-item <?= $counter == 0 ? 'active' : $neant; ?>"
+                style="">
+                <img class="img-fluid" src="<?= $media['urlr']; ?>" style="" />
+              </div>
+              <?php ++$counter; ?>
+            <?php endforeach; ?>          
+          </div>
+        </div>
       </div>
     </div>
   </div>
