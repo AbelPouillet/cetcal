@@ -1,12 +1,14 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/media/cet.qstprod.controller.media.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.controller.fichedetaillee.producteur.php');
 $pk = $_GET['pkprd'];
+$controller = new CETCALAnnuaireFicheDetailleController();
 $media_controller = new MediaController();
 $data = $controller->fetchProducteurByPk($pk);
 ?>
 
 <div class="row justify-content-lg-center">
-  <div class="col-lg-3">
+  <div class="col-xl-3">
     <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
       <h4><?= $data['nom_ferme']; ?></h4>
       <p>
@@ -39,7 +41,7 @@ $data = $controller->fetchProducteurByPk($pk);
       </p>
     </div>
   </div>
-  <div class="col-lg-3">
+  <div class="col-xl-3">
     <div class="cet-formgroup-container">
       <img class="mini-fiche-logo-ferme" src="<?= $media_controller->selectSrcLogoFemreProducteur($pk); ?>"/>
       <?php
@@ -48,10 +50,4 @@ $data = $controller->fetchProducteurByPk($pk);
     </div>
   </div>
 </div>
-<div class="row justify-content-lg-center">
-  <div class="col-lg-6">
-    <div class="cet-formgroup-container">
-      <?php include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.produits.fichedetailleeprd.php'; ?>
-    </div>
-  </div>
-</div>
+<?php include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.produits.fichedetailleeprd.php'; ?>

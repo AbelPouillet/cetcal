@@ -5,4 +5,13 @@ $controller = new CETCALAnnuaireFicheDetailleController();
 $produits = $controller->fetchProduitByPkProducteur($pk);
 $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 ?>
-<p>TODO</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-9">
+      <div class="cet-formgroup-container">
+        <p>TODO</p>
+      </div>
+    </div>
+  </div>
+</div>
