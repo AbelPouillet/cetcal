@@ -13,9 +13,12 @@ $data = $controller->fetchProducteurByPk($pk);
     <div class="col-4">
       <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
         <h4><?= $data['nom_ferme']; ?></h4>
-        <p>
-          <img class="fichedetailleeprd-logo-ferme img-fluid" src="<?= $media_controller->selectSrcLogoFemreProducteur($pk); ?>"/>
-        </p>
+        <?php $logo_ferme = $media_controller->selectSrcLogoFemreProducteur($pk); ?>
+        <?php if (isset($logo_ferme) && strlen($logo_ferme) > 1): ?> 
+          <p>
+            <img class="fichedetailleeprd-logo-ferme img-fluid" src="<?= $media_controller->selectSrcLogoFemreProducteur($pk); ?>"/>
+          </p>
+        <?php endif; ?>
         <p>
           <span><?= ucfirst($data['prenom']); ?> <?= ucfirst($data['nom']); ?></span><br>
           <?php
@@ -57,7 +60,12 @@ $data = $controller->fetchProducteurByPk($pk);
                 <img class="img-fluid" src="<?= $media['urlr']; ?>" style="" />
               </div>
               <?php ++$counter; ?>
-            <?php endforeach; ?>          
+            <?php endforeach; ?>  
+            <?php if ($counter == 0): ?>
+              <div class="carousel-item active" style="">
+                <img class="img-fluid" src="/res/content/DCDL_biolocale_1.jpg" style="" />
+              </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
