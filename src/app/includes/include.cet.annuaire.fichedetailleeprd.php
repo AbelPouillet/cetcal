@@ -9,7 +9,7 @@ $data = $controller->fetchProducteurByPk($pk);
 
 <div class="container">
   <div class="row justify-content-lg-center">
-    <div class="col-6">
+    <div class="col-4">
       <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
         <h4><?= $data['nom_ferme']; ?></h4>
         <p>
@@ -42,7 +42,7 @@ $data = $controller->fetchProducteurByPk($pk);
         </p>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <div class="cet-formgroup-container">
         <img class="mini-fiche-logo-ferme" src="<?= $media_controller->selectSrcLogoFemreProducteur($pk); ?>"/>
         <?php
