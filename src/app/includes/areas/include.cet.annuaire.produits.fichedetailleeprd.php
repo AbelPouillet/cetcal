@@ -8,7 +8,7 @@ $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 
 <div class="container">
   <div class="row">
-    <div class="col-xl-9">
+    <div class="col-xl-6">
       <div class="cet-formgroup-container">
         <p>TODO</p>
       </div>
