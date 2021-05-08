@@ -9,8 +9,8 @@ $data = $controller->fetchProducteurByPk($pk);
 ?>
 
 <div class="container">
-  <div class="row justify-content-lg-center">
-    <div class="col-4">
+  <div class="row d-flex justify-content-center flex-column-reverse flex-md-row flex-xl-row">
+    <div class="col-xs-12 col-md-8 col-xl-4">
       <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
         <h4 id="fichedetailleeprd-nom-ferme"><?= ucfirst($data['nom_ferme']); ?></h4>
         <?php $logo_ferme = $media_controller->selectSrcLogoFemreProducteur($pk); ?>
@@ -28,7 +28,7 @@ $data = $controller->fetchProducteurByPk($pk);
           ?>
           <span><?= $adr; ?></span><br>
           <span>Tél : <?= $data['telfixe']; ?></span><br>
-          <span>Tél mobil : <?= $data['telport']; ?></span><br>
+          <span>Tél mobile : <?= $data['telport']; ?></span><br>
           <span>Email : <?= $data['email']; ?></span><br>
           <span>Site web : <br>
             <a href="<?= $data['url_web']; ?>" target="_blank"><?= $data['url_web']; ?></a>
@@ -49,7 +49,7 @@ $data = $controller->fetchProducteurByPk($pk);
         </p>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-xs-12 col-md-4 col-xl-4 ">
       <div style="overflow-wrap: break-word; margin-bottom: 16px !important;">
         <?php $media_data = $media_controller->selectMediasProducteur($pk); $counter = 0; ?>
         <div id="fichedetailleeprd-carousel" class="carousel slide" data-ride="carousel">

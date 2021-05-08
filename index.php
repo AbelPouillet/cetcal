@@ -15,13 +15,16 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="Expires" CONTENT="-1">
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <!--Scripts css debut-->
     <link rel="stylesheet" href="/src/scripts/css/bootstrap.min.css">
-    <link href="/src/scripts/css/font-awesome/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/scripts/css/font-awesome/css/all.min.css" >
     <link rel="stylesheet" href="/src/scripts/css/cet/cet.qstprod.css">
     <link rel="stylesheet" href="/src/scripts/css/cet/cet.qstprod.cartographie.css">
     <link rel="stylesheet" href="/src/scripts/css/cet/cet.fichedetailleeprd.css">
     <link rel="stylesheet" href="/src/scripts/css/cet/cet.annuaire.custom.css">
-      <link rel="stylesheet" href="/src/scripts/js/timepicker/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="/src/scripts/js/timepicker/jquery.timepicker.min.css">
+    <!--fin-->
+
     <!-- start : charte-g Fanny -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&family=Signika:wght@400;700&display=swap">
     <!-- end -->
