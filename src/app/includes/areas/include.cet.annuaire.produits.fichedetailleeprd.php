@@ -11,7 +11,7 @@ $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
   <div class="row d-flex justify-content-center">
     <div class="col-xs-12 col-xl-8 col-md-12">
       <div class="cet-formgroup-container">
-          <div>
+          <div class="d-flex">
               <?php foreach ( $productsCategories as $productCategorie) : ?>
               <?= "<p class='cst-catProduits'>" . $productCategorie->categorie . "</p>" ?>
               <?php endforeach; ?>
