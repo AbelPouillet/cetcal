@@ -19,3 +19,14 @@
     border-radius: 15px;
 
 }
+
+.cst-catProduits{
+    border: solid 2px;
+    border-color: #804a3f;
+    border-radius: 10px;
+    background: #ffff;
+    color: #804a3f;
+    margin: 5px 20px 5px;
+    width: 80px;
+    text-align: center;
+}
