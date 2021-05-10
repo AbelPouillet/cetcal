@@ -17,7 +17,7 @@ if (isset($_GET['q']))
   $data = $ctrl->loadQuery($filtre, $type);
 }
 ?>
-
+<div class="container">
 <div class="row justify-content-center">
   <div class="col-lg-9">
     <p class="form-text text-muted">
@@ -144,5 +144,6 @@ if (isset($_GET['q']))
 <?php if ($counter !== 3): // close div if it hasn't been done in loop.  ?>
 </div>
 <?php endif; ?>
+</div>
 </div>
 <script src="/src/scripts/js/cetcal/cetcal.recherche.min.js"></script>
