@@ -7,7 +7,6 @@ $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 //var_dump($productsCategories);
 //var_dump($produits);
 ?>
-
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-xs-12 col-xl-8 col-md-12">
@@ -25,9 +24,6 @@ $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
                   <p class="cst-produits"><?=  $produit->nom ?></p>
                   <?php endforeach; ?>
               </div>
-
-              </div>
-
       </div>
     </div>
   </div>
