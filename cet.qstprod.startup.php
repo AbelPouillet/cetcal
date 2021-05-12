@@ -39,7 +39,7 @@ $SELECT_PRD_NON_INSCRITS = true;
 // Si true, dialog de geoloc utilisateur s'affiche à l'entrée de l'app. Sinon rien ne se passe.
 $CLIENT_CARTO_GEOLOCALISE = true;
 // Cartographie paramétrable et filtres/recherche détaillée.
-$CLIENT_CARTO_AVANCEE = false;
+$CLIENT_CARTO_AVANCEE = true;
 // Permettre ou non le login / signup
 $OPEN_LOGIN_SIGNUP = true;
 

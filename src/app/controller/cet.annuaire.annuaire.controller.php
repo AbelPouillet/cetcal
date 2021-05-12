@@ -23,7 +23,7 @@ class AnnuaireController
         $index = stripos($value, $motCle);
         if ($index !== false && $index >= 0) 
         {
-          array_push($res, str_ireplace($filtre, '<span class="cet-r-q">'.$filtre.'</span>', $row));
+          array_push($res, $row);
           break;
         }
       }

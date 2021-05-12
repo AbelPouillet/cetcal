@@ -1,4 +1,5 @@
 <?php
+$neant = '';
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/const/cet.annuaire.const.types.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/utils/cet.qstprod.utils.httpdataprocessor.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.annuaire.controller.asso.vente.php');
@@ -10,14 +11,15 @@ $typesDeLieux = $LieuxDeVenteCtrl->showAllTypes();
 $type = $dataProcessor->processHttpFormData($_GET['type']);
 $counter = 0;
 $data = $ctrl->init($type);
+$filtre = false;
 
-if (isset($_GET['q'])) 
+if (isset($_GET['q']) && !empty($_GET['q'])) 
 {
   $filtre = $dataProcessor->processHttpFormData($_GET['q']);
   $data = $ctrl->loadQuery($filtre, $type);
 }
 ?>
-<div class="container">
+<!--<div class="container">-->
 <div class="row justify-content-center">
   <div class="col-lg-9">
     <p class="form-text text-muted">
@@ -31,7 +33,6 @@ if (isset($_GET['q']))
   <div class="col-lg-4">
     <div class="input-group mb-3">
       <select id="cet-annuaire-select-filter" class="form-control" aria-label="Default select example">
-        <option>--- Recherche par filtre ---</option>
         <option value="">Tous les lieux</option>
         <?php foreach ($typesDeLieux as $typeLieu): ?>
           <option value="<?= $typeLieu->type; ?>" 
@@ -46,11 +47,10 @@ if (isset($_GET['q']))
     </div>
   </div>
   <div class="col-lg-5">
-    <!--
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Rechercher par mot clé, commune, activité, marché..."
         aria-label="Recherche par mot clé" id="cet-annuaire-recherche-filtre"
-        name="cet-annuaire-recherche-filtre">
+        name="cet-annuaire-recherche-filtre" value="<?= $filtre !== false ? $filtre : $neant; ?>">
       <div class="input-group-append">
         <a class="btn cet-navbar-btn cet-navbar-btn-small" id="cet-annuaire-recherche-filtrer"
           href="/?statut=asso.vente&anr=true&type=<?= $type; ?>&q=">
@@ -58,10 +58,9 @@ if (isset($_GET['q']))
         </a>
       </div>
     </div>
-    -->
   </div>
 </div>
-<?php if (1 == 2): ?>
+<?php if ($filtre !== false && is_array($data) && count($data) === 0): ?>
   <div class="row justify-content-lg-center" style="margin-bottom: 80px;">
     <div class="col-9">
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -145,5 +144,5 @@ if (isset($_GET['q']))
 </div>
 <?php endif; ?>
 </div>
-</div>
+<!--</div>-->
 <script src="/src/scripts/js/cetcal/cetcal.recherche.min.js"></script>
