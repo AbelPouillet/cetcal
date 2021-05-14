@@ -51,6 +51,15 @@ let precisionsFlag = false;
 let sousTypeFlag = false;
 let checkboxFlag = false;
 
+// get types
+
+class Types{
+  async getTypes(){
+    try{
+      let results = await fetch('src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php')
+    }
+  }
+}
 
 
 /** *****************************************************************************************
@@ -413,8 +422,8 @@ function alerter(titre, texte, texte_boutton) {
  */
 function ajaxCall(action) {
 
-  if (action === undefined) return;
-  $(document).ready(function() {
+
+  //$(document).ready(function() {
 
     $.ajax({ url: 'src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php',
       type: 'POST',
@@ -422,7 +431,8 @@ function ajaxCall(action) {
       dataType: 'JSON',
       success: function(response) {
       // Début si réseau de vente en circuit court
-        if (action === "Réseau de vente en circuit court") {
+       // if (action === "Réseau de vente en circuit court") {
+
           clear(selectSousType);
           const initOpt = document.createElement("option");
           initOpt.value ="0";
@@ -432,7 +442,7 @@ function ajaxCall(action) {
           selectSousType.insertAdjacentHTML('beforeend', test);
         // fin si
         //Début si amap
-        } else if (action === "AMAP" || action === "Marché") {
+     //   } else if (action === "AMAP" || action === "Marché") {
 
           let engine = new Bloodhound({
             local: response,
@@ -457,7 +467,7 @@ function ajaxCall(action) {
               cb(matches);
             };
           };
-if (action === "AMAP") {
+//if (action === "AMAP") {
 
   $('#amap .typeahead').typeahead({
         hint: true,
@@ -475,8 +485,8 @@ if (action === "AMAP") {
   $('#amap').on('typeahead:selected', function (e, datum) {
     postObjet = new LieuDistPost(datum.denomination, action, value, datum.pk_entite, null, null, null, null, null, null);
   });
-}
-else if ( action === "Marché") {
+//}
+//else if ( action === "Marché") {
 
   $('#the-basics .typeahead').typeahead({
         hint: true,
@@ -495,12 +505,12 @@ else if ( action === "Marché") {
   $('#the-basics').on('typeahead:selected', function (e, datum) {
     postObjet = new LieuDistPost(datum.denomination, action, null, datum.pk_entite, null, null, null, null, null, null);
   });
-      } else if (action !== 'Réseau de vente en circuit court') {
+  //    } else if (action !== 'Réseau de vente en circuit court') {
         postObjet = new LieuDistPost('NULL', action, null, null, null, null, null, null, null, null);   
-      }
+  //    }
 
         // fin si
-        } else {
+  //      } else {
           clear(selectSousType);
           var initOpt = document.createElement("option");
           initOpt.value ="0";
@@ -520,13 +530,13 @@ else if ( action === "Marché") {
               null, null, null, null, null, null, null, null);   
             pasDeSousType = true;
           }
-        }
+        //}
       }, // END Ajax success.
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
       }
     }); // END Ajax.
-  }); // END document.ready.
+ // }); // END document.ready.
 } // END fonction ajaxCall.
 
 /** *****************************************************************************************

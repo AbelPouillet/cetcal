@@ -16,3 +16,4 @@ update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where typ
 update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where type='Magasin Biologique';
 update cetcal_type_lieu set recherche_tbl_entite=0, visibilite_ui = 8 where type='Vente directe';
 update cetcal_type_lieu set recherche_tbl_entite=0, visibilite_ui = 8 where type='Export';
+update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where type='Cooperative / Maraîcher';
