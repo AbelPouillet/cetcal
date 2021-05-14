@@ -124,7 +124,7 @@ class CETCALQueryLibrary
   const INSERT_CETCAL_PRODUCTEUR_LIEU_DE_DISTRIBUTION = "INSERT INTO cetcal.cetcal_producteur_lieu_dist (fk_producteur, fk_entite, code_type, type, code_sous_type, sous_type, denomination, crea_marche, precisions, date_lieu, heure_deb, heure_fin, jour) VALUES (:pFk_producteur, :pFk_entite, :pCodeType, :pType, :pCodeSousType, :pSousType, :pDenomination, :pCreaMarche, :pPrecisions, :pDateLieu, :pHeureDeb, :pHeureFin, :pJour);";
   const SELECT_CETCAL_LIEUX_BY_PK_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_producteur_lieu_dist WHERE fk_producteur=:pPk_producteur;";
 
-  const SELECT_ALL_SOUS_TYPE_LIEU_BY_TYPE = "SELECT code_sous_type, sous_type FROM cetcal.cetcal_type_lieu WHERE type=:pType AND sous_type != 'NULL';";
+  const SELECT_ALL_SOUS_TYPE_LIEU_BY_TYPE = "SELECT * FROM cetcal.cetcal_type_lieu WHERE code_type=:pType AND sous_type != 'NULL';";
   const SELECT_DISTINCT_ALL_TYPE_LIEU = "SELECT type, sous_type, code_type, code_sous_type, visibilite_ui, recherche_tbl_entite FROM cetcal.cetcal_type_lieu GROUP BY type;";
   const SELECT_ONE_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu WHERE type = :pType;";
 

@@ -56,11 +56,9 @@ let checkboxFlag = false;
  */
 selectElement.addEventListener('change', (event)=> {
   let data = selectElement.options[selectElement.selectedIndex].getAttribute("data");
+  let cible = data.length > 0 ? 'sous_type' : 'entite';
   value = selectElement.value;
-  console.log(value + " " + data);
-  //console.log(da)
-
-
+  ajaxCall(cible, value);
 });
 
 selectSousType.addEventListener('change', (e) => {
@@ -362,16 +360,21 @@ function ajaxCall(cible, action) {
 
     $.ajax({ url: 'src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php',
       type: 'POST',
-      data: {'action': action,
-             'cible ': cible
-      },
+      data: {'cible': cible, 'action': action },
       dataType: 'JSON',
       success: function(response) {
+      
+      if (cible === 'entite') {
+        // gère type ahead. 
+      } else if (cible === 'sous_type') {
+        // Aliementer 2ème select. Pas de type ahead encore.
+        //let niv_visibilite_ui = JSON.parse(response).visibilite_ui;
+        //console.log(response);
+      } else {
+        // problémo.
+      }
+
       console.log(response);
-      console.log("-----------------------------------");
-      console.log("-----------------------------------");
-      console.log("-----------------------------------");
-      console.log("-----------------------------------");
       // Début si réseau de vente en circuit court
        // if (action === "Réseau de vente en circuit court") {
 

@@ -5,10 +5,6 @@ $cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signuplieuxdist']) ? $_SESSION['CONTE
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.qstprod.controller.signuplieuxdist.php');
 $ctrl = new FormLieuDistController();
 $dataTypeLieu = $ctrl->fetchAllTypeLieuxDistinctType();
-echo '<pre>';
-var_dump($dataTypeLieu);
-echo '</pre>';
-
 ?>
 
 <div class="row justify-content-lg-center" id="qstprod-lieuxdist-root-div">
