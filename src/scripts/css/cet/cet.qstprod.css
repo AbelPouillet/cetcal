@@ -399,3 +399,9 @@ small.nouveau-marche-error-message {
   display: none;
 }
 /***********************************************************************/
+img.lieuxdevente-logo-entite {
+  max-height: 212px;
+}
+p.lieuxdevente-logo-entite-container {
+  text-align: center;
+}

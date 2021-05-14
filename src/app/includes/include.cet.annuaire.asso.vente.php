@@ -91,7 +91,7 @@ if (isset($_GET['q']) && !empty($_GET['q']))
             <h4 class="card-text"><?= $row['denomination']; ?></h4>
             <?php $logo_entite = $media_controller->selectSrcLogoEntite($row['pk_entite']); ?>
             <?php if (isset($logo_entite) && strlen($logo_entite) > 1): ?> 
-              <p>
+              <p class="lieuxdevente-logo-entite-container">
                 <img class="lieuxdevente-logo-entite img-fluid" src="<?= $logo_entite; ?>"/>
               </p>
             <?php endif; ?>
