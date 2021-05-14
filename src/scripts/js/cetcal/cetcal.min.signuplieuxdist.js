@@ -55,9 +55,10 @@ let checkboxFlag = false;
  * EVENT LISTENERS 
  */
 selectElement.addEventListener('change', (event)=> {
-  console.log(selectElement.options[selectElement.selectedIndex].getAttribute("data"));
+  let data = selectElement.options[selectElement.selectedIndex].getAttribute("data");
   value = selectElement.value;
-  //console.log(value);
+  console.log(value + " " + data);
+  //console.log(da)
 
 
 });
