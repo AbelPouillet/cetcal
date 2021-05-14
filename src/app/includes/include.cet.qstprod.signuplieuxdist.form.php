@@ -26,7 +26,7 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           <select class="form-control select--lieudist">
               <option value="NULL">Choississez un type de lieu de distribution</option>
               <?php foreach ($datas as $data): ?>
-                  <option value="<?= $data->code_type ?>"><?= ucfirst($data->type) ?></option>
+                  <option value="<?= $data->code_type; ?>" data="<?= $data->sous_type; ?>"><?= ucfirst($data->type) ?></option>
               <?php endforeach;?>
           </select>
       </div>
