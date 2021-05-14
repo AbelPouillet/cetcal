@@ -3,6 +3,8 @@ $neant = '';
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/const/cet.annuaire.const.types.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/utils/cet.qstprod.utils.httpdataprocessor.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.annuaire.controller.asso.vente.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/media/cet.qstprod.controller.media.php');
+$media_controller = new MediaController();
 $dataProcessor = new HTTPDataProcessor();
 $ctrl = new AssoDistributeursController();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.annuaire.controller.marches.castillonnais.php');
@@ -87,6 +89,12 @@ if (isset($_GET['q']) && !empty($_GET['q']))
         <div class="card cet-bloc" style="margin-bottom: 12px;">
           <div class="card-body">
             <h4 class="card-text"><?= $row['denomination']; ?></h4>
+            <?php $logo_entite = $media_controller->selectSrcLogoEntite($row['pk_entite']); ?>
+            <?php if (isset($logo_entite) && strlen($logo_entite) > 1): ?> 
+              <p>
+                <img class="lieuxdevente-logo-entite img-fluid" src="<?= $logo_entite; ?>"/>
+              </p>
+            <?php endif; ?>
             <p class="card-text"><?= $row['activite']; ?> <?= $row['specificites']; ?></p>
             <p class="card-text"><?= $row['adresse']; ?></p>
             <?php if (isset($row['infoscmd']) && !empty($row['infoscmd'])): ?>

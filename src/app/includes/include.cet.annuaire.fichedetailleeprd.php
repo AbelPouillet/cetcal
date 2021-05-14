@@ -16,7 +16,7 @@ $data = $controller->fetchProducteurByPk($pk);
         <?php $logo_ferme = $media_controller->selectSrcLogoFemreProducteur($pk); ?>
         <?php if (isset($logo_ferme) && strlen($logo_ferme) > 1): ?> 
           <p>
-            <img class="fichedetailleeprd-logo-ferme img-fluid" src="<?= $media_controller->selectSrcLogoFemreProducteur($pk); ?>"/>
+            <img class="fichedetailleeprd-logo-ferme img-fluid" src="<?= $logo_ferme; ?>"/>
           </p>
         <?php endif; ?>
         <p>
