@@ -36,6 +36,7 @@ class CETCALQueryLibrary
   const SELECT_CETCAL_MEDIA_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_media WHERE fk_producteur=:pFk;";
   const SELECT_CETCAL_MEDIA_ENTITE = "SELECT * FROM cetcal.cetcal_media WHERE fk_entite=:pFk;";
   const SELECT_CETCAL_MEDIA_PRODUCTEUR_LOGO_FERME = "SELECT urlr FROM cetcal.cetcal_media WHERE cible='logo-ferme' AND fk_producteur=:pFk LIMIT 1;";
+  const SELECT_CETCAL_MEDIA_ENTITE_LOGO = "SELECT urlr FROM cetcal.cetcal_media WHERE cible='logo-entite' AND fk_entite=:pFk LIMIT 1;";
   const DELETE_PHYSIQUE_MEDIA_PRODUCTEUR = "DELETE FROM cetcal.cetcal_media WHERE id=:pPk AND fk_producteur=:pFk_producteur;";
   const DELETE_PHYSIQUE_MEDIA_ENTITE = "DELETE FROM cetcal.cetcal_media WHERE id=:pPk AND fk_entite=:pFk_entite;";
 

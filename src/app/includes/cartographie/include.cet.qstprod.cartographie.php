@@ -104,6 +104,7 @@ $loader->loadCommunes();
         <email><?= $entiteDto->email; ?></email>
         <adresse><?= $entiteDto->adresse; ?></adresse>
         <latlng><?= $entiteDto->getLatLng(); ?></latlng>
+        <logoentite><?= $media_controller->selectSrcLogoEntite($entiteDto->getPk()); ?></logoentite>
       </entite>
     <?php endforeach; ?>
   </entites>

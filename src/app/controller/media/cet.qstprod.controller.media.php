@@ -33,6 +33,14 @@ class MediaController extends AnnuaireController
     return $data;
   }
 
+  public function selectSrcLogoEntite($pk)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.media.model.php');
+    $model = new QSTPRODMediaModel();
+    $data = $model->selectSrcLogoEntite($pk);
+    return $data;
+  }
+
   public function deleteMediaProducteur($id, $pk)
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.media.model.php');

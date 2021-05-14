@@ -104,10 +104,10 @@ $(document).ready(function() {
               $('#data-media-admin-entite-container').show();
               $('#entite-media-pkent-value').val(entite.pk_entite);
               $('#cetFileDropzoneImgentite').attr('action', '/src/app/controller/media/cet.qstprod.controller.media.form.php?pkent=' + entite.pk_entite 
-                + '&sitkn=' + urlParams.get('sitkn') + '&cible=media-entite');
+                + '&sitkn=' + urlParams.get('sitkn') + '&cible=logo-entite');
               // Initier la dropzone pour cette entite : 
               Dropzone.forElement("#cetFileDropzoneImgentite").options.url = '/src/app/controller/media/cet.qstprod.controller.media.form.php?pkent=' + entite.pk_entite 
-                + '&sitkn=' + urlParams.get('sitkn') + '&cible=media-entite';
+                + '&sitkn=' + urlParams.get('sitkn') + '&cible=logo-entite';
               clearAllFiles(1);
               reloadMedia(entite.pk_entite, 'entite');
               // END dropzone.

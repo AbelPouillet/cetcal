@@ -98,6 +98,23 @@ class QSTPRODMediaModel extends CETCALModel
     }
   }
 
+  public function selectSrcLogoEntite($fk) 
+  {
+    try 
+    {
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare($qLib::SELECT_CETCAL_MEDIA_ENTITE_LOGO);
+      $stmt->bindParam(":pFk", $fk, PDO::PARAM_INT);
+      $stmt->execute();    
+      $data = $stmt->fetch();
+      return $data ? $data['urlr'] : '';
+    }
+    catch (Exception $e)
+    {
+      error_log($e->getMessage());
+    }
+  }
+
   public function selectSrcLogoFerme($fk) 
   {
     try 

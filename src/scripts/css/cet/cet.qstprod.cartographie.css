@@ -20,13 +20,13 @@
 	font-weight: bold;
 }
 .cet-ann-crt-head-text { margin-top: 8px !important; }
-img.mini-fiche-logo-ferme {
+img.mini-fiche-logo-element {
   display: inline-block;
   float: right;
   padding: 6px;
   height: 128px;
   margin-right: -18px;
-  border: 1px solid lightgray;
+  /*border: 1px solid lightgray;*/
   border-radius: 6px;
 }
 #cet-annuaire-crt-mini-fiche-producteur-container {
