@@ -5,46 +5,33 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.httpdat
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
 $dataProcessor = new HTTPDataProcessor();
 $type = $dataProcessor->processHttpFormData($_POST['action']);
+$cible = $dataProcessor->processHttpFormData($_POST['cible']);
 
-if (isset($_POST) && $_POST['action'] === 'Marché') 
-{
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
-    $model = new QSTPRODLieuModel();
-    $data = $model->getAllMarcheDenomination();
+// envoie type au modele
 
-    echo json_encode($data);
-}
-else if (isset($_POST) && $_POST['action'] === 'Reseau de vente en circuit court') 
+if (!isset($type) || !isset($cible) || empty($type && $cible))
 {
+    // TODO : formaliser un contenu dans le JSON dans ce cas :
+    echo json_encode('{}');
 
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
-  $ctrl = new QSTPRODLieuModel();
-  $req = strtolower($_POST['action']);
-  $data = $ctrl->findOneTypeLieu($req);
-  
-  echo json_encode($data);
-}
-else if (isset($_POST) && $_POST['action'] === 'AMAP') 
-{
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
-  $model = new QSTPRODLieuModel();
-  $data = $model->getAllAmapDenomination();
+} else {
 
-  echo json_encode($data);
+    if (strcmp($cible, "entite") === 0)
+    {
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
+        $model = new QSTPRODLieuModel();
+        $data = $model->getAllMarcheDenomination();
+        echo json_encode($data);
+    }
+    else if (strcmp($cible, "sous_type") === 0)
+    {
+        $model = new QSTPRODLieuModel();
+        $data = $model->getSousTypesSiNonNULL(strtolower(trim($type)));
+        echo json_encode($data);
+    }
 }
-else if (strlen($type) > 0) 
-{
-  error_log(' >>>> type='.$type);
-  $model = new QSTPRODLieuModel();
-  $data = $model->getSousTypesSiNonNULL(strtolower(trim($type)));
-  error_log(' >>>> data='.count($data));
-  echo json_encode($data);
-}
-else
-{
-  // TODO : formaliser un contenu dans le JSON dans ce cas :
-  echo json_encode('{}'); 
-}
+
+
 
 
 
