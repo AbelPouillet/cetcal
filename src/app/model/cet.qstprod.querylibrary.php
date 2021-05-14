@@ -85,6 +85,7 @@ class CETCALQueryLibrary
   const SELECT_ALL_TYPES_LIEU = "SELECT DISTINCT (type) FROM cetcal.cetcal_entite;";
   const SELECT_ALL_DENOMINATION_MARCHE = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'marche';";
   const SELECT_ALL_DENOMINATION_AMAP = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
+  const SELECT_ALL_ENTITE_BY_TYPES = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type IN ([types]);";
 
   const SELECT_ALL_FROM_AMINISTRATION = "SELECT * FROM cetcal.cetcal_administration;";
   const SELECT_CETCAL_ADMIN_BY_SESSION_ID = "SELECT * FROM cetcal.cetcal_administration WHERE session_id=:pSessionId;";

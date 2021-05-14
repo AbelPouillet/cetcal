@@ -63,6 +63,16 @@ class QSTPRODLieuModel extends CETCALModel
     return $data;
   }
 
+  public function getDenominatonsByTypes($types)
+  {
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare(str_replace('[types]', $types, $qLib::SELECT_ALL_ENTITE_BY_TYPES));
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+      return $data;
+  }
+
   public function getAllMarcheDenomination()
   {
     $qLib = $this->getQuerylib();

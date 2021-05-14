@@ -420,14 +420,16 @@ function alerter(titre, texte, texte_boutton) {
 /** *****************************************************************************************
  * AJAXs.
  */
-function ajaxCall(action) {
+function ajaxCall(cible, action) {
 
 
   //$(document).ready(function() {
 
     $.ajax({ url: 'src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php',
       type: 'POST',
-      data: {'action': action },
+      data: {'action': action,
+             'cible ': cible
+      },
       dataType: 'JSON',
       success: function(response) {
       // Début si réseau de vente en circuit court
