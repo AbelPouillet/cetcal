@@ -67,7 +67,7 @@ class Types{
  */
 selectElement.addEventListener('change', (event)=> {
   value = selectElement.options[selectElement.selectedIndex].text;
-
+  
   if (selectElement.options[selectElement.selectedIndex].value === 'NULL') {
     clearInputs();
     clear(amapTypeahead);

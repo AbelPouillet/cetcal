@@ -3,8 +3,8 @@ $neant = "";
 $currentForm = isset($_SESSION['signuplieuxdist.form.post']) ? $_SESSION['signuplieuxdist.form.post'] : $neant;
 $cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signuplieuxdist']) ? $_SESSION['CONTEXTE_MODIF-signuplieuxdist'] : false;
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.qstprod.controller.signuplieuxdist.php');
-$datas = formLieuDistController::fetchUniqueAllTypeLieu();
-$sousTypes = formLieuDistController::fetchAllTypeLieu();
+$ctrl = new FormLieuDistController();
+$dataTypeLieu = $ctrl->fetchAllTypeLieuxDistinctType();
 ?>
 
 <div class="row justify-content-lg-center" id="qstprod-lieuxdist-root-div">
@@ -25,8 +25,8 @@ $sousTypes = formLieuDistController::fetchAllTypeLieu();
           <label class="cet-input-label"><small class="cet-qstprod-label-text">Veuillez sélectionner le type de lieux de distribution :</small></label>
           <select class="form-control select--lieudist">
               <option value="NULL">Choississez un type de lieu de distribution</option>
-              <?php foreach ($datas as $data): ?>
-                  <option value="<?= $data->code_type ?>"><?= ucfirst($data->type) ?></option>
+              <?php foreach ($dataTypeLieu as $data): ?>
+                  <option value="<?= $data->code_type; ?>"><?= ucfirst($data->type); ?></option>
               <?php endforeach;?>
           </select>
       </div>

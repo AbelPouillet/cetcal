@@ -124,7 +124,7 @@ class CETCALQueryLibrary
   const SELECT_CETCAL_LIEUX_BY_PK_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_producteur_lieu_dist WHERE fk_producteur=:pPk_producteur;";
 
   const SELECT_ALL_SOUS_TYPE_LIEU_BY_TYPE = "SELECT code_sous_type, sous_type FROM cetcal.cetcal_type_lieu WHERE type=:pType AND sous_type != 'NULL';";
-  const SELECT_ALL_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu;";
+  const SELECT_DISTINCT_ALL_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu GROUP BY type;";
   const SELECT_ONE_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu WHERE type = :pType;";
 
 }
