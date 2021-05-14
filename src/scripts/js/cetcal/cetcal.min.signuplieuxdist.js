@@ -51,80 +51,14 @@ let precisionsFlag = false;
 let sousTypeFlag = false;
 let checkboxFlag = false;
 
-// get types
-
-class Types{
-  async getTypes(){
-    try{
-      let results = await fetch('src/app/controller/ajaxhandlers/cet.qstprod.ajaxhandler.controller.signuplieuxdist.php')
-    }
-  }
-}
-
-
 /** *****************************************************************************************
  * EVENT LISTENERS 
  */
 selectElement.addEventListener('change', (event)=> {
-  value = selectElement.options[selectElement.selectedIndex].text;
+  console.log(selectElement.options[selectElement.selectedIndex].getAttribute("data"));
+  value = selectElement.value;
+  //console.log(value);
 
-  if (selectElement.options[selectElement.selectedIndex].value === 'NULL') {
-    clearInputs();
-    clear(amapTypeahead);
-    clear(allMarcheBox);
-    postObjet = undefined;
-    return;
-  }
-
-  if (value === 'Marché') {
-
-    pasDeSousType = true;
-    if (addLieu != null) {
-      addLieu.classList.add('d-none');
-    } else {
-      clear(amapTypeahead);
-      showMarche();
-      hideCircuitCourt();
-      ajaxCall();
-      allMarcheBox.classList.remove('d-none');
-      newMarcheBox.classList.remove('d-none');
-      precisionsProd.classList.remove('d-none');
-      amapFlag = false;
-    }
-
-  } else if (value === 'Réseau de vente en circuit court') {
-
-    pasDeSousType = false;
-    if (precisionsFlag === true) {
-      precisionsProd.classList.add('d-none');
-      precisionsFlag = false;
-      sousTypeFlag = true;
-    }
-
-    if (addLieu != null) {
-      addLieu.classList.add('d-none');
-    } else {
-      clear(allMarcheBox);
-      clear(amapTypeahead);
-      hideNewMarche();
-      showCircuitCout();
-      ajaxCall(value);
-    }
-
-  } else {
-
-    if (sousTypeFlag === true) {
-      sousTypeSelect.classList.add('d-none');
-      sousTypeFlag = false;
-    }
-    amapFlag = false;
-    hideNewMarche();
-    clear(amapTypeahead);
-    clear(allMarcheBox);
-    precisionsFlag = true;
-    precisionsProd.classList.remove('d-none');
-    ajaxCall(value);
-  }
 
 });
 
@@ -432,6 +366,11 @@ function ajaxCall(cible, action) {
       },
       dataType: 'JSON',
       success: function(response) {
+      console.log(response);
+      console.log("-----------------------------------");
+      console.log("-----------------------------------");
+      console.log("-----------------------------------");
+      console.log("-----------------------------------");
       // Début si réseau de vente en circuit court
        // if (action === "Réseau de vente en circuit court") {
 
@@ -513,7 +452,7 @@ function ajaxCall(cible, action) {
 
         // fin si
   //      } else {
-          clear(selectSousType);
+/*          clear(selectSousType);
           var initOpt = document.createElement("option");
           initOpt.value ="0";
           initOpt.text = "-- Préciser votre choix --";
@@ -522,8 +461,8 @@ function ajaxCall(cible, action) {
             initOpt = document.createElement("option");
             initOpt.value = response[i].code_sous_type;
             initOpt.text = response[i].sous_type;
-            selectSousType.add(initOpt, selectSousType.options[i + 1]);
-          }
+            selectSousType.add(initOpt, selectSousType.options[i + 1]);*/
+          //}
           if (response.length > 0) {
             showCircuitCout();
             pasDeSousType = false;
@@ -572,7 +511,7 @@ $(document).ready(function() {
     postO = JSON.parse(decodeURIComponent($('#qstprod-signuplieuxdist-json').val()));
     buildRecapLieux();
   } catch (error) {
-    console.log(error);
+  //  console.log(error);
     postO = { lieux: [] };
   }
 });
