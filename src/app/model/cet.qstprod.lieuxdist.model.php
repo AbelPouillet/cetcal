@@ -37,25 +37,14 @@ class QSTPRODLieuModel extends CETCALModel
   /**
    * fonctions publiques
    */
-  public function allLieuDist()
+  public function allLieuDistDistinctType()
   {
     $qLib = $this->getQuerylib();
-    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_TYPE_LIEU);
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_DISTINCT_ALL_TYPE_LIEU);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_OBJ);
 
     return $data;
-  }
-
-  public function allLieuDist2()
-  {
-    $qLib = $this->getQuerylib();
-    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_TYPE_LIEU);
-    $stmt->execute();
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $filtered = array_unique($data);
-
-    return $filtered;
   }
 
   /**
