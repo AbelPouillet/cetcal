@@ -43,6 +43,8 @@ $cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signupconso']) ? $_SESSION['CONTEXTE_
             <?php endif; ?>
           >
         </div>
+
+        <!-- Questions retirés le 17 mai 2021 : évols page des lieux de distribution.
         <br>
         <label><small class="form-text">Comment le consommateur va réceptionner vos produits ? (plusieurs options possibles)</small></label>
         <?php $counter = 0; ?>
@@ -89,6 +91,8 @@ $cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signupconso']) ? $_SESSION['CONTEXTE_
         <?php ++$counter; ?>
         <?php endforeach; ?>
         <br>
+        -->
+        
         <br>
         <label><small class="form-text">Comment les consommateurs peuvent vous payer ? Les Moyens de paiement (plusieurs options possibles)</small></label>
         <?php $counter = 0; ?>
