@@ -12,6 +12,7 @@ $idcetwww = (isset($_GET['idfcet']) && !empty($_GET['idfcet'])) ?
     <div class="alert alert-success" role="alert">
       <h5 class="alert-heading">Bienvenu.e Producteur.e.s !</h5>
       <h5 class="alert-heading">Nous avons traité votre inscription avec succès. Vous êtes maintenant référencé dans l'annuaire. Merci.</h5>
+      <!-- Zone retiré le 17 mai 2021 : identifiant reste interne.
       <p><b>Veuillez noter votre identifiant cetcal.site :</b></p>
       <div class="container">
         <div class="row">
@@ -25,8 +26,10 @@ $idcetwww = (isset($_GET['idfcet']) && !empty($_GET['idfcet'])) ?
           </div>
         </div>
       </div>
+      -->
       <br>
-      <p>Un email vous a été envoyé à l'adresse <b><?= $insrp_validee_email; ?></b>. Votre <b>identifiant de connection</b> y est signalé - garder cet identifiant. <b>S'il vient à être perdu, contactez nous.</b></p><p>Vous pourrez administrer votre fiche producteur prochainement en cliquant sur <b><i>"Votre page producteur"</i></b> depuis notre page d'accueil. Si vous n'avez pas souhaité nous communiqué votre adresse email, nous vous appelerons dans les plus bref délais pour activer votre compte par téléphone.</p>
+      <p>Un email de confirmation d'inscription vous a été envoyé à l'adresse <b><?= $insrp_validee_email; ?></b>.</p>
+      <p>Vous pourrez dès à présent administrer votre espace produteur.e cliquant sur <b><i>"Se connecter"</i></b> depuis notre page d'accueil. Pour ajouter des images ou un logo à votre profil, ou bien affiner votre géolocalisation, nous vous invitons à vous connecter à votre espace prodiucteur.e.</p>
       <p>Vous pouvez dès maintenant <a href="/">retourner à l'accueil.</a></p>
     </div>
   </div>

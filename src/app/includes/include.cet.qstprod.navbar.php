@@ -5,7 +5,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" 
     data-target=".navbar-cet-qstprod" aria-controls="navbar-cet-qstprod" 
     aria-expanded="false" aria-label="Toggle navigation">
-    <span class="cet-navbar-toggler"><i class="fas fa-bars"></i></span>
+    <span class="cet-navbar-toggler" style="font-size: 32px !important;"><i class="fas fa-bars"></i></span>
   </button>
   <div class="navbar-collapse collapse w-100 navbar-cet-qstprod">
     <ul class="navbar-nav mr-auto">
@@ -33,7 +33,6 @@
         </div>
       </li>
     </ul>
-
     <ul class="navbar-nav ml-auto">
       <?php if ($OPEN_LOGIN_SIGNUP && !$cnx_done && in_array($statut, NavbarHelper::$status_connection_signup)): ?>
         <li class="nav-item">
@@ -54,32 +53,37 @@
         </li>
       <?php endif; ?>
     </ul>
-
   </div>
 </nav>
 <?php if (!in_array($statut, CetQstProdFilArianneHelper::$states)): ?>
   <?php include $PHP_INCLUDES_PATH.'navbar-entities/include.cet.qstprod.nav.leftpanel.php'; ?>
 <?php endif; ?>
+
+<div class="row">
+  <div calss="col-lg-2 col-sm-12">
+    <img src="/res/content/icons/logos-verts-europe-ab.png" height="56" alt=""
+      style="margin-bottom: 6px; margin-left: 16px;">
+  </div>
+  <div class="col-lg-10 col-sm-12">
+    <p class="cet-p">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>&#160;
+      Notre objectif à travers cette plateforme est de favoriser la bio locale, mais nous avons voulu aussi ouvrir à des producteurs respectant le cahier des charges bio mais non labellisé. Le logo bio ne sera pas présent dans leur fiche de présentation et ils seront invités dans leur fiche à nous expliquer leur démarche.
+    </p>
+  </div>
+</div>
+
+
 <?php if (strcmp($statut, 'accueil.cet') === 0): ?>
   <nav class="navbar navbar-expand-xl navbar-light bg-light">
-    <div class="row justify-content-between">
-      <div id="w-100-infeq-700-div-id" class="col-6">
+    <div class="row justify-content-center">
+      <div class="col-6">
         <img class="img-fluid" src="/res/content/DCDL_biolocale_2.jpg" alt="">
-      </div>
-      <div class="col-6 my-top hidden-infeq-700">
-        <div class="row">
-          <div class="col-4 hidden-infeq-700">
-          </div> 
-          <div class="col-4 hidden-infeq-700">
-            <img class="img-fluid float-right" src="/res/content/partenaires/logo_gironde.jpg" height="80">
-          </div>
-          <div class="col-2 hidden-infeq-700">
-            <img class="img-fluid float-right" src="/res/content/partenaires/logo_region.jpg" height="80">
-          </div>
-          <div class="col-2 hidden-infeq-700">
-            <img class="img-fluid float-right" src="/res/content/partenaires/logo_FSE.jpg" height="80">
-          </div>
-        </div>
+        <br>
+        <p style="text-align: center;">
+          <img src="/res/content/partenaires/logo_gironde.jpg" height="80">
+          <img src="/res/content/partenaires/logo_region.jpg" height="80">
+          <img src="/res/content/partenaires/logo_FSE.jpg" height="80">
+        </p>
       </div>
     </div>
   </nav>
