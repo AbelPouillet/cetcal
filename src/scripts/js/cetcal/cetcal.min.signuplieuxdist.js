@@ -99,10 +99,6 @@ class UI {
   displayResults(results){
 
     const VISIBILTY = "visibility_ui";
-    const MAX_VISIBILITY = 0;
-    const HIGH_VISIBILITY = 8;
-    const MEDIUM_VISIBILITY = 16;
-    const LOW_VISIBILITY = 32;
     const TARGET_ENTITE = "entite";
     const TARGET_SOUS_TYPE = "sous_type";
 
@@ -125,10 +121,11 @@ class UI {
   }
 
   displaySousSelect(){
-    allMarcheBox.classList.add("d-none");
+    //allMarcheBox.classList.add("d-none");
     sousTypeSelect.classList.remove("d-none");
     this.clear(selectSousType);
     this.clear(newMarcheBox);
+    this.clear(allMarcheBox);
   }
 
 
@@ -279,14 +276,11 @@ class UI {
 
     });
   }
-
     clear(divToClear) {
+    console.log(divToClear);
     while (divToClear.firstChild) divToClear.removeChild(divToClear.firstChild);
   }
-
 }//FIN Classe
-
-
 
 const test = new Data();
 const testUI = new UI;
