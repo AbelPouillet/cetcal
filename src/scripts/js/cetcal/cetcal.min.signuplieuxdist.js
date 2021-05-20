@@ -51,6 +51,12 @@ let precisionsFlag = false;
 let sousTypeFlag = false;
 let checkboxFlag = false;
 
+/**
+ * const test
+ */
+
+
+
 /** *****************************************************************************************
  * EVENT LISTENERS 
  */
@@ -71,7 +77,7 @@ constructor() {
         async: false,
         context: this,
         success: function (response) {
-          //console.log(response);
+          console.log(response);
           //console.log(typeof response + " c'est le type de response");
           let test = {"target": cible }
           response.push(test);
@@ -94,9 +100,27 @@ class UI {
 
   constructor(results) {
     this.results = results;
+   //this.filterAndDispatch() = this.filterAndDispatch.bind(this);
+  }
+
+  initialize(){
+    this.displayResults(this.results);
+
   }
 
   displayResults(results){
+    console.log(this.results);
+
+    const VISIBILTY = "visibility_ui";
+    const TARGET_ENTITE = "entite";
+    const TARGET_SOUS_TYPE = "sous_type";
+
+    this.filterAndDispatch(results);
+  }
+
+  filterAndDispatch(results){
+    let self = this;
+    console.log(this.results);
 
     const VISIBILTY = "visibility_ui";
     const TARGET_ENTITE = "entite";
@@ -104,30 +128,33 @@ class UI {
 
 
     if(results.some(item => item.target === TARGET_ENTITE)) {
+      console.log("il faut afficher entité");
       let newArr = results.filter((item) => item.target != TARGET_ENTITE);
-      this.typeAheadData(newArr);
+      this.maxVisibilityDisplay(newArr);
 
     } else if (results.some(item => item.target === TARGET_SOUS_TYPE )) {
       let newArr = results.filter((item) => item.target != TARGET_SOUS_TYPE);
       console.log("il faut afficher les sous types");
-      this.displaySousSelect();
-      this.populateSousSelect(newArr);
-
+      this.displaySousSelect(newArr);
     }
   }
 
   maxVisibilityDisplay(results) {
+    this.clear(selectSousType);
+    this.typeAheadData(results);
+    this.addNewCircuitDisplay();
 
   }
 
-  displaySousSelect(){
+  displaySousSelect(arr){
     //allMarcheBox.classList.add("d-none");
     sousTypeSelect.classList.remove("d-none");
     this.clear(selectSousType);
     this.clear(newMarcheBox);
     this.clear(allMarcheBox);
+    this.populateSousSelect(arr);
+    selectSousType.addEventListener('input', this.sousSelectLogic);
   }
-
 
   populateSousSelect(results){
     const initOpt = document.createElement("option");
@@ -135,8 +162,24 @@ class UI {
     initOpt.text = "-- Choississez un mode de distribution --";
     selectSousType.add(initOpt, selectSousType.options[0]);
     console.log(results);
-    const newSelectOptions = results.map((item) => `<option value="${item.code_sous_type}" data="${item.recherche_tbl_entite}">${item.sous_type}</option>`).join(' ');
+    const newSelectOptions = results.map((item) => `<option value="${item.code_sous_type}" data="">${item.sous_type}</option>`).join(' ');
     selectSousType.insertAdjacentHTML('beforeend', newSelectOptions);
+  }
+
+  sousSelectLogic(){
+
+    const data = selectSousType.options[selectSousType.selectedIndex].getAttribute("data");
+    const cible = data.length > 0 ? 'sous_type' : 'entite';
+    const req = selectSousType.value;
+    console.log(req);
+    console.log(cible);
+    const test3 = new Data();
+    test3.fetchData(cible, req);
+    this.results = test3.resultsOfAjax;
+    console.log(this.results);
+    this.filterAndDispatch(this.results);
+
+
   }
 
   createTypeAheadModule(){
@@ -195,7 +238,9 @@ class UI {
     });
   }// fin function
 
-  addNewCircuitModule(){
+  addNewCircuitDisplay(){
+   // console.log("toto");
+    newMarcheBox.classList.remove("d-none");
     checkboxMarche.addEventListener('change', (event) => {
       if (checkboxMarche.checked) {
         newMarcheProd.classList.remove('d-none');
@@ -212,6 +257,24 @@ class UI {
         }
       }
     });
+  }
+  addNewCircuitModule(){
+   /* checkboxMarche.addEventListener('change', (event) => {
+      if (checkboxMarche.checked) {
+        newMarcheProd.classList.remove('d-none');
+        allMarcheBox.classList.add('d-none');
+        checkboxFlag = true;
+        newMarcheValidator = new FormValidator();
+      } else {
+        newMarcheProd.classList.add('d-none');
+        allMarcheBox.classList.remove('d-none');
+        checkboxFlag = false;
+        if (newMarcheValidator !== undefined) {
+          newMarcheValidator.clear();
+          newMarcheValidator = undefined;
+        }
+      }
+    });*/
 
 
 // Event : Ajout des lieux.
@@ -283,7 +346,7 @@ class UI {
 }//FIN Classe
 
 const test = new Data();
-const testUI = new UI;
+//const testUI = new UI();
 
 
 
@@ -293,14 +356,12 @@ selectElement.addEventListener('change', (event)=> {
   let cible = data.length > 0 ? 'sous_type' : 'entite';
   //console.log(cible);
   value = selectElement.value;
-  //console.log(dd.getdata());
-
+ //console.log(value);
   test.fetchData(cible, value);
-
   let obj = test.resultsOfAjax;
-
-  testUI.displayResults(obj);
-
+  console.log(obj);
+  const testUI = new UI(obj);
+        testUI.initialize();
 })
 
 /*selectSousType.addEventListener('change', (e) => {
