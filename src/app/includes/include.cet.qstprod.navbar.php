@@ -59,19 +59,20 @@
   <?php include $PHP_INCLUDES_PATH.'navbar-entities/include.cet.qstprod.nav.leftpanel.php'; ?>
 <?php endif; ?>
 
+<?php if (strcmp($statut, 'accueil.cet') === 0): ?>
 <div class="row">
   <div calss="col-lg-2 col-sm-12">
     <img src="/res/content/icons/logos-verts-europe-ab.png" height="56" alt=""
       style="margin-bottom: 6px; margin-left: 16px;">
   </div>
   <div class="col-lg-10 col-sm-12">
-    <p class="cet-p">
+    <p class="cet-p" style="margin-top: 6px;">
       <i class="fa fa-info-circle" aria-hidden="true"></i>&#160;
-      Notre objectif à travers cette plateforme est de favoriser la bio locale, mais nous avons voulu aussi ouvrir à des producteurs respectant le cahier des charges bio mais non labellisé. Le logo bio ne sera pas présent dans leur fiche de présentation et ils seront invités dans leur fiche à nous expliquer leur démarche.
+      Notre objectif à travers cette plateforme est de favoriser la bio locale, mais nous avons voulu aussi ouvrir à des producteurs respectant le cahier des charges bio mais non labellisé. Le logo bio ne sera pas présent dans leur fiche de présentation et ils seront invités dans leur fiche à nous expliquer leur démarche. <a href="./?statut=bio.ytendant&anr=true" target="black_">En savoir plus...</a>
     </p>
   </div>
 </div>
-
+<?php endif; ?>
 
 <?php if (strcmp($statut, 'accueil.cet') === 0): ?>
   <nav class="navbar navbar-expand-xl navbar-light bg-light">

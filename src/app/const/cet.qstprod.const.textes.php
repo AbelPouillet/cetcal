@@ -18,11 +18,11 @@ Class CetQstprodConstTextes
   const nouveau_monde_p3 = "Afin d'avoir une vraie plus-value par rapport aux plateformes existantes, nous souhaitons via ce questionnaire vous référencer et connaître vos besoins et vos attentes par rapport à ce type d'outil. Cela dans un moment particulier de crise sanitaire et économique, mais aussi d'une profonde volonté collective de renforcement de la résilience et de l'autonomie de nos territoires via une relocalisation de la production, la transformation et la commercialisation de notre alimentation.";
 
   const notre_projet_titre = "Voici notre projet de circuits alimentaires locaux DECIDELABIOLOCALE.ORG";
-  const notre_projet_debut = "L'association Castillonnais en transition est composée de girondins et périgourdins engagés. Elle travaille au développement de la Bio Locale. Nos priorités sont de :";
+  const notre_projet_debut = "L'association Castillonnais en transition est composée de girondins et périgourdins engagés. Elle travaille au développement de la BIO Locale. Nos priorités sont de :";
   const notre_projet_priorite_1 = "Remettre l'agriculture, l'alimentation, le vivant, à une place centrale.";
   const notre_projet_priorite_2 = "Renforcer la résilience alimentaire de nos territoires.";
   const notre_projet_priorite_3 = "Créer du lien, de la solidarité et de l'entraide entre producteurs, entre producteurs et consommateurs, avec les collectivités locales engagées, les associations, les chercheurs...";
   const notre_projet_priorite_4 = "A partir de ces priorités nous travaillons sur un projet de plate forme numérique financée par le Conseil régional de Nouvelle Aquitaine et l'Europe. Elle a un double objectif :";
-  const notre_projet_priorite_4_a = "être exhaustive, en présentant gratuitement tout les producteurs bio qui le souhaitent, dans un rayon de 40 km autour de Castillon la Bataille.";
+  const notre_projet_priorite_4_a = "être exhaustive, en présentant gratuitement tout les producteurs BIO et y tendant qui le souhaitent, dans un rayon de 40 km autour de Castillon la Bataille.<br><a href=\"./?statut=bio.ytendant&anr=true\" target=\"black_\">En savoir plus</a> sur le BIO et les producteur.e.s y tendant.";
   const notre_projet_priorite_4_b = "être construite à partir de vos besoins et attentes. Le questionnaire ci-dessous va nous permettre de recueillir ces informations qui nous permettront de valoriser votre ferme, votre travail et de connaître vos attentes.";
 }
