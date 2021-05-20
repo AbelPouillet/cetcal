@@ -130,16 +130,19 @@ class UI {
     if(results.some(item => item.target === TARGET_ENTITE)) {
       console.log("il faut afficher entité");
       let newArr = results.filter((item) => item.target != TARGET_ENTITE);
+      console.log(newArr);
       this.maxVisibilityDisplay(newArr);
+
 
     } else if (results.some(item => item.target === TARGET_SOUS_TYPE )) {
       let newArr = results.filter((item) => item.target != TARGET_SOUS_TYPE);
       console.log("il faut afficher les sous types");
-      this.displaySousSelect(newArr);
+      this.displaySousSelect(newArr, this.filterAndDispatch);
     }
   }
 
   maxVisibilityDisplay(results) {
+    console.log("toto 143")
     this.clear(selectSousType);
     this.typeAheadData(results);
     this.addNewCircuitDisplay();
@@ -153,7 +156,7 @@ class UI {
     this.clear(newMarcheBox);
     this.clear(allMarcheBox);
     this.populateSousSelect(arr);
-    selectSousType.addEventListener('input', this.sousSelectLogic);
+    this.sousSelectLogic();
   }
 
   populateSousSelect(results){
@@ -168,18 +171,18 @@ class UI {
 
   sousSelectLogic(){
 
-    const data = selectSousType.options[selectSousType.selectedIndex].getAttribute("data");
-    const cible = data.length > 0 ? 'sous_type' : 'entite';
-    const req = selectSousType.value;
-    console.log(req);
-    console.log(cible);
-    const test3 = new Data();
-    test3.fetchData(cible, req);
-    this.results = test3.resultsOfAjax;
-    console.log(this.results);
-    this.filterAndDispatch(this.results);
-
-
+    selectSousType.addEventListener('change', (e) => {
+      const data = selectSousType.options[selectSousType.selectedIndex].getAttribute("data");
+      const cible = data.length > 0 ? 'sous_type' : 'entite';
+      const req = selectSousType.value;
+      console.log(req);
+      console.log(cible);
+      const test3 = new Data();
+      test3.fetchData(cible, req);
+      this.results = test3.resultsOfAjax;
+      console.log(this.results);
+      this.displayResults(this.results);
+    });
   }
 
   createTypeAheadModule(){
@@ -240,6 +243,7 @@ class UI {
 
   addNewCircuitDisplay(){
    // console.log("toto");
+   // newMarcheProd.classList.remove('d-none');
     newMarcheBox.classList.remove("d-none");
     checkboxMarche.addEventListener('change', (event) => {
       if (checkboxMarche.checked) {
