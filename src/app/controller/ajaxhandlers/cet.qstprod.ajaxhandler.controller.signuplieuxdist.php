@@ -16,17 +16,30 @@ else
 {
   if (strcmp($cible, "entite") === 0)
   {
+    $typesEntite = '';
+    try 
+    {
       $typesEntite = CetAnnuaireConstTypes::TRANSCO_TYPE_ENTITE[$type];
       require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
       $model = new QSTPRODLieuModel();
       $data = $model->getDenominatonsByTypes($typesEntite);
       echo json_encode($data);
+    }
+    catch (Exception $e)
+    {
+      echo json_encode(array(
+        'error' => array(
+            'msg' => 'Imposible de lire les entites pour le type:'.$type,
+            'code' => 204
+        ),
+      ));
+    }
   }
   else if (strcmp($cible, "sous_type") === 0)
   {
-      $model = new QSTPRODLieuModel();
-      $data = $model->getSousTypesSiNonNULL(strtolower(trim($type)));
-      echo json_encode($data);
+    $model = new QSTPRODLieuModel();
+    $data = $model->getSousTypesSiNonNULL(strtolower(trim($type)));
+    echo json_encode($data);
   }
 }
 

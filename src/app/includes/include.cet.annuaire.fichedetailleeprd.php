@@ -26,6 +26,7 @@ $data = $controller->fetchProducteurByPk($pk);
               .$data['adrferme_lieudit'].' '.$data['adrferme_commune'].' '
               .$data['adrferme_cp'].' '.$data['adrferme_compladr']);
           ?>
+
           <span><?= $adr; ?></span><br>
           <span>Tél : <?= $data['telfixe']; ?></span><br>
           <span>Tél mobile : <?= $data['telport']; ?></span><br>

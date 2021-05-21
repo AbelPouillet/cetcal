@@ -5,10 +5,6 @@ $cntxmdf = isset($_SESSION['CONTEXTE_MODIF-signuplieuxdist']) ? $_SESSION['CONTE
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/controller/cet.qstprod.controller.signuplieuxdist.php');
 $ctrl = new FormLieuDistController();
 $dataTypeLieu = $ctrl->fetchAllTypeLieuxDistinctType();
-/*echo '<pre>';
-var_dump($dataTypeLieu);
-echo '<pre>';*/
-
 ?>
 
 <div class="row justify-content-lg-center" id="qstprod-lieuxdist-root-div">
@@ -26,61 +22,70 @@ echo '<pre>';*/
     <div class="cet-formgroup-container">
 
       <div class="form-group mb-3">
-          <label class="cet-input-label"><small class="cet-qstprod-label-text">Veuillez sélectionner le type de lieux de distribution :</small></label>
-          <select class="form-control select--lieudist">
-              <option value="NULL">Choississez un type de lieu de distribution</option>
-              <?php foreach ($dataTypeLieu as $data): ?>
-                  <option value="<?= $data->code_type; ?>" data="<?= $data->sous_type; ?>" 
-                    visibiliteui="<?= $data->visibilite_ui; ?>"><?= ucfirst($data->type) ?></option>
-              <?php endforeach;?>
-          </select>
+        <label class="cet-input-label"><small class="cet-qstprod-label-text">Veuillez sélectionner le type de lieux de distribution :</small></label>
+        <select class="form-control cet-visiui-input-select" id="qstprod-lieuxdist-type">
+          <option value="" id="qstprod-lieuxdist-type-null">Choississez un type de lieu de distribution</option>
+          <?php foreach ($dataTypeLieu as $data): ?>
+            <option value="<?= $data->code_type; ?>" data="<?= $data->sous_type; ?>" 
+              visibiliteui="<?= $data->visibilite_ui; ?>"
+              opensearch="<?= $data->recherche_tbl_entite; ?>"><?= ucfirst($data->type) ?></option>
+          <?php endforeach;?>
+        </select>
       </div>
-      <div class="form-group mb-3">
-        <div id="the-basics" class="qstprod--marchebox d-none"></div>
-      </div>
-
-      <div class="form-group mb-3 qstprod--soustype d-none">
+      <div class="form-group mb-3 cet-visiui visiui-sup-0" id="qstprod-lieudist-soustypes-container">
         <label class="cet-input-label">
           <small class="cet-qstprod-label-text">Précisez votre choix</small>
         </label>
-        <select class="form-control select--sous--type" name="qstlieudist-1-1">
-            <option value="0">Default select</option>
+        <select class="form-control cet-visiui-input-select" 
+          id="qstprod-lieudist-soustypes" name="qstprod-lieudist-soustypes">
+          <option value="">Veuillez préciser votre choix</option>
         </select>
       </div>
-      <div class="form-group mb-3">
-        <div id="amap" class="amap--typeahead mt-5 d-none"></div>
+
+      <div class="form-group mb-3 cet-visiui visiui-recherche-ta" 
+        id="qstprod-recherche-lieuxdist-container" 
+        style="display: none;">
+        <label class="form-check-label cet-qstprod-label-text" id="qstprod-recherche-label" 
+          for="qstprod-recherche-lieuxdist">
+          Rechercher votre lieu de distribution :&#160;
+        </label>
+        <input type="text" class="form-control typeahead cet-visiui-input" placeholder="" aria-label="" 
+          id="qstprod-recherche-lieuxdist" name="qstprod-recherche-lieuxdist">
       </div>
 
-      <div class="form-check form-check-inline unfinded--marche d-none" style="margin-bottom: 8px;">
-        <input type="checkbox" class="checkbox--new--marche" name="qstlieudist-1" id="qstlieudist-1" 
+      <div class="form-check form-check-inline cet-visiui visiui-recherche-ta" 
+        id="cet-lieux-non-trouve-container"
+        style="margin-bottom: 8px;">
+        <input class="cet-visiui-input-checkbox" type="checkbox" id="cet-lieux-non-trouve" 
           aria-label="">
-        <label class="form-check-label cet-qstprod-label-text" name="qstlieudist-2" for="qstlieudist-1">
-          &#160;Je n'ai pas trouvé le marché recherché
+        <label class="form-check-label cet-qstprod-label-text" id="qstlieudist-1-label" 
+          for="cet-lieux-non-trouve">
+          &#160;Aucun élément trouvé dans la recherche
         </label>
       </div>
 
-        <div class="new--marche ml-5 d-none">
-        <div class="form-group mb-3">
+      <div class="ml-5">
+        <div class="form-group mb-3 cet-visiui cet-crea-entite visiui-sup-8">
           <label for="qstlieudist-3">
-            <small class="cet-qstprod-label-text">Entrez le nom de votre marché : </small>
+            <small class="cet-qstprod-label-text">Entrez le nom de ce lieu de distrubution : </small>
           </label>
-          <input type="text" class="form-control marche--prod" name="nv-marche-lieuxdist-nom"
-            id="nv-marche-lieuxdist-nom" placeholder="Entrez un seul marché à la fois">
+          <input type="text" class="form-control cet-visiui-input" name="nv-marche-lieuxdist-nom"
+            id="nv-marche-lieuxdist-nom" placeholder="Entrez le nom de ce lieu">
           <small class="nouveau-marche-error-message"></small>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 cet-visiui cet-crea-entite visiui-sup-8">
           <label for="qstlieudist-3-1">
-            <small class="cet-qstprod-label-text">Entrez l'adresse de votre marché : </small>
+            <small class="cet-qstprod-label-text">Entrez l'adresse complète de ce lieu de distribution : </small>
           </label>
-          <input type="text" class="form-control adresse--marche--prod" name="nv-marche-lieuxdist-adr"
-            id="nv-marche-lieuxdist-adr" placeholder="Adresse du marché">
+          <input type="text" class="form-control cet-visiui-input" name="nv-marche-lieuxdist-adr"
+            id="nv-marche-lieuxdist-adr" placeholder="Adresse complète">
           <small class="nouveau-marche-error-message"></small>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 cet-visiui cet-crea-entite visiui-sup-8">
           <label for="qstlieudist-3-1">
-            <small class="cet-qstprod-label-text">Jour de présence à ce marché : </small>
+            <small class="cet-qstprod-label-text">Jour de présence à ce lieu (marché, AMAP...) : </small>
           </label>
-          <select class="form-control" id="timeInput-jour" name="timeInput-jour" 
+          <select class="form-control cet-visiui-input-select" id="timeInput-jour" name="timeInput-jour" 
             style="max-width: 256px;">
             <option value="non-renseigné">Sélectionner un jour</option>
             <?php foreach ($listes_arrays->marches_jours as $jour): ?>
@@ -89,29 +94,30 @@ echo '<pre>';*/
           </select>
           <small class="nouveau-marche-error-message"></small>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 cet-visiui cet-crea-entite visiui-sup-16">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Heure de début de votre présence : </small>
           </label>
-          <input class="form-control" type="text" id="timeInput-heure-deb" 
+          <input class="form-control cet-visiui-input" type="text" id="timeInput-heure-deb" 
             name="timeInput-heure-deb" data-time-format="H:i"
             style="max-width: 256px;" />
           <small class="nouveau-marche-error-message"></small>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 cet-visiui cet-crea-entite visiui-sup-16">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Heure de fin présence : </small>
           </label>
-          <input class="form-control" type="text" id="timeInput-heure-fin" name="timeInput-heure-fin" 
+          <input class="form-control cet-visiui-input" type="text" id="timeInput-heure-fin" 
+            name="timeInput-heure-fin" 
             data-time-format="H:i"
             style="max-width: 256px;" />
           <small class="nouveau-marche-error-message"></small>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 cet-visiui cet-crea-entite visiui-sup-16">
           <label for="qstlieudist-3-1">
             <small class="cet-qstprod-label-text">Date de présence sur ce marché (pour les marchés événementiels uniquement) : </small>
           </label>
-          <input data-toggle="datepicker" class="form-control" type="text" 
+          <input data-toggle="datepicker" class="form-control cet-visiui-input" type="text" 
             id="timeInput-date" name="timeInput-date"
             style="max-width: 256px;">
           <div data-toggle="datepicker"></div>
@@ -119,22 +125,22 @@ echo '<pre>';*/
         </div>
       </div>
 
-      <div class="form-group mb-3 qstprod--precisions d-none" style="margin-top: 12px;">
-        <label for="qstprod--precisions--prod" name="qstlieudist-4"><i class="fas fa-question-circle"></i>&#160;&#160;Précisions liée à votre présence sur ce lieu de distribution :</label>
-        <textarea class="form-control" name="qstlieudist-4" id="qstprod--precisions--prod" maxlength="256" rows="3"></textarea>
-        <p class="limit--text--alert" 
+      <div class="form-group mb-3 cet-visiui visiui-recherche-ta" style="margin-top: 12px;">
+        <label for="qstprod-precisions-prod" name="qstlieudist-4"><i class="fas fa-question-circle"></i>&#160;&#160;Précisions liée à votre présence sur ce lieu de distribution :</label>
+        <textarea class="form-control cet-visiui-input-textarea" name="qstlieudist-4" id="qstprod-precisions-prod" maxlength="256" rows="3"></textarea>
+        <p class="limit-text-alert" 
           style="margin-left: 4px; margin-top: 2px; font-size: 14px;">
           Aucune saisie pour le moment.
         </p>
         <div class="d-flex justify-content-end">
-          <button class="btn cet-navbar-btn cet-navbar-btn-small addCircuit">Ajouter ce lieu de distribution</button>
+          <button class="btn cet-navbar-btn cet-navbar-btn-small" id="add-lieuxdist-au-recap">Ajouter ce lieu de distribution</button>
         </div>
       </div>
 
       <div id="lieux-dist-recap-avant-envoi" style="display: none;">
-        <p class="qstprod--recap" style="margin-bottom: -12px;"><small>Récapitulatif de vos lieux de distributions :</small></p>
+        <p style="margin-bottom: -12px;"><small>Récapitulatif de vos lieux de distributions :</small></p>
         <hr>
-        <div class="lieux--list" id="lieux-dist-recap-liste"></div>
+        <div id="lieux-dist-recap-liste"></div>
       </div>
 
     </div> <!-- end container -->

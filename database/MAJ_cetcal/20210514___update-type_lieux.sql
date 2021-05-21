@@ -11,9 +11,12 @@ ALTER TABLE cetcal_type_lieu ADD COLUMN visibilite_ui tinyint(2) default NULL;
  */
 ALTER TABLE cetcal_type_lieu ADD COLUMN recherche_tbl_entite tinyint(1) default 0;
 update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 32 where type='Marché';
-update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 32 where type='Réseau de vente en circuit court';
+update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where type='Réseau de vente en circuit court';
 update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where type='Magasin de producteurs';
 update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where type='Magasin Biologique';
 update cetcal_type_lieu set recherche_tbl_entite=0, visibilite_ui = 8 where type='Vente directe';
 update cetcal_type_lieu set recherche_tbl_entite=0, visibilite_ui = 8 where type='Export';
 update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where type='Cooperative / Maraîcher';
+/*update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where sous_type='AMAP';
+update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where sous_type='Drive';
+update cetcal_type_lieu set recherche_tbl_entite=1, visibilite_ui = 16 where sous_type='AMAP';*/
