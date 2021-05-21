@@ -12,6 +12,7 @@ class UIHelper {
     return this;
   }
 
+<<<<<<< HEAD
   apply(dataHelper, elemNonTrouve) {
     if (!this.initialized) throw 'UI Helper non initialisé';
     if (dataHelper.isReadyTypeAhead() || elemNonTrouve) $('.visiui-recherche-ta').each(function() { $(this).show(); });
@@ -19,6 +20,43 @@ class UIHelper {
       if (this.visiui > 0) $('.visiui-sup-0').each(function() { $(this).show(); });
       if (this.visiui > 8) $('.visiui-sup-8').each(function() { $(this).show(); });
       if (this.visiui > 16) $('.visiui-sup-16').each(function() { $(this).show(); });
+=======
+  initialize(){
+    this.displayResults(this.results);
+
+  }
+
+  displayResults(results){
+    console.log(this.results);
+
+    const VISIBILTY = "visibility_ui";
+    const TARGET_ENTITE = "entite";
+    const TARGET_SOUS_TYPE = "sous_type";
+
+    this.filterAndDispatch(results);
+  }
+
+  filterAndDispatch(results){
+    let self = this;
+    console.log(this.results);
+
+    const VISIBILTY = "visibility_ui";
+    const TARGET_ENTITE = "entite";
+    const TARGET_SOUS_TYPE = "sous_type";
+
+
+    if(results.some(item => item.target === TARGET_ENTITE)) {
+      console.log("il faut afficher entité");
+      let newArr = results.filter((item) => item.target != TARGET_ENTITE);
+      console.log(newArr);
+      this.maxVisibilityDisplay(newArr);
+
+
+    } else if (results.some(item => item.target === TARGET_SOUS_TYPE )) {
+      let newArr = results.filter((item) => item.target != TARGET_SOUS_TYPE);
+      console.log("il faut afficher les sous types");
+      this.displaySousSelect(newArr, this.filterAndDispatch);
+>>>>>>> branch 'cetcal_phase2' of https://github.com/j-fish/cetcal.git
     }
 
     if (!dataHelper.hasSousTypes()) $('#qstprod-lieudist-soustypes-container').hide();
@@ -28,16 +66,36 @@ class UIHelper {
     else $('#cet-lieux-non-trouve-container').hide();
   }
 
+<<<<<<< HEAD
   unInit() {
     this.type = undefined;
     this.sous_type = undefined;
     this.visiui = undefined;
     this.initialized = false;
     return this;
+=======
+  maxVisibilityDisplay(results) {
+    console.log("toto 143")
+    this.clear(selectSousType);
+    this.typeAheadData(results);
+    this.addNewCircuitDisplay();
+
+>>>>>>> branch 'cetcal_phase2' of https://github.com/j-fish/cetcal.git
   }
 
+<<<<<<< HEAD
   isInitialized() {
     return this.initialized && this.type !== undefined && this.sous_type !== undefined && this.visiui !== undefined;
+=======
+  displaySousSelect(arr){
+    //allMarcheBox.classList.add("d-none");
+    sousTypeSelect.classList.remove("d-none");
+    this.clear(selectSousType);
+    this.clear(newMarcheBox);
+    this.clear(allMarcheBox);
+    this.populateSousSelect(arr);
+    this.sousSelectLogic();
+>>>>>>> branch 'cetcal_phase2' of https://github.com/j-fish/cetcal.git
   }
 
 }
@@ -82,7 +140,22 @@ class DataHelper {
       }
     });
 
+<<<<<<< HEAD
     return outcome;
+=======
+    selectSousType.addEventListener('change', (e) => {
+      const data = selectSousType.options[selectSousType.selectedIndex].getAttribute("data");
+      const cible = data.length > 0 ? 'sous_type' : 'entite';
+      const req = selectSousType.value;
+      console.log(req);
+      console.log(cible);
+      const test3 = new Data();
+      test3.fetchData(cible, req);
+      this.results = test3.resultsOfAjax;
+      console.log(this.results);
+      this.displayResults(this.results);
+    });
+>>>>>>> branch 'cetcal_phase2' of https://github.com/j-fish/cetcal.git
   }
 
   isReadyTypeAhead() {
@@ -236,7 +309,279 @@ function loadTypeahead(results) {
         source: engine.ttAdapter(),
     });
 
+<<<<<<< HEAD
     return true;
+=======
+  addNewCircuitDisplay(){
+   // console.log("toto");
+   // newMarcheProd.classList.remove('d-none');
+    newMarcheBox.classList.remove("d-none");
+    checkboxMarche.addEventListener('change', (event) => {
+      if (checkboxMarche.checked) {
+        newMarcheProd.classList.remove('d-none');
+        allMarcheBox.classList.add('d-none');
+        checkboxFlag = true;
+        newMarcheValidator = new FormValidator();
+      } else {
+        newMarcheProd.classList.add('d-none');
+        allMarcheBox.classList.remove('d-none');
+        checkboxFlag = false;
+        if (newMarcheValidator !== undefined) {
+          newMarcheValidator.clear();
+          newMarcheValidator = undefined;
+        }
+      }
+    });
+  }
+  addNewCircuitModule(){
+   /* checkboxMarche.addEventListener('change', (event) => {
+      if (checkboxMarche.checked) {
+        newMarcheProd.classList.remove('d-none');
+        allMarcheBox.classList.add('d-none');
+        checkboxFlag = true;
+        newMarcheValidator = new FormValidator();
+      } else {
+        newMarcheProd.classList.add('d-none');
+        allMarcheBox.classList.remove('d-none');
+        checkboxFlag = false;
+        if (newMarcheValidator !== undefined) {
+          newMarcheValidator.clear();
+          newMarcheValidator = undefined;
+        }
+      }
+    });*/
+
+
+// Event : Ajout des lieux.
+    addCircuit.addEventListener('mousedown', () => {
+
+      if (postObjet === undefined && checkboxMarche.checked === false) {
+        alerter('Aucun le lieu de distribution renseigné', 'Veuillez renseigner tous les choix et sous-catégories proposés.', 'J\'ai compris');
+        return;
+      }
+
+      if (!pasDeSousType && selectSousType.selectedIndex === 0) {
+        alerter('Le lieu de distribution est incomplet',
+            'Veuillez renseigner la sous-catégorie depuis la liste proposée.', 'J\'ai compris');
+        return;
+      }
+
+      // Cas particulier des nouveaux marchés.
+      if (checkboxMarche.checked) {
+        if (!newMarcheValidator.isDataValidated()) {
+          alerter('Des informations sont manquantes concernant ce marché.',
+              'Veuillez, dans la mesure du possible, renseigner toutes les informations demandées.', 'J\'ai compris');
+          return;
+        } else {
+          postObjet = new LieuDistPost();
+          postObjet.crea_marche = true;
+          postObjet.type = 'Marché';
+          postObjet.pk_entite = null;
+          postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
+          postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
+          postObjet.heure_deb = $('#timeInput-heure-deb').val();
+          postObjet.heure_fin = $('#timeInput-heure-fin').val();
+          postObjet.date = $('#timeInput-date').val();
+          postObjet.jour = $('#timeInput-jour').val();
+          newMarcheValidator.clear();
+          newMarcheValidator = undefined;
+        }
+
+      } else {
+        postObjet.crea_marche = false;
+      }
+
+      // dans tous les cas :
+      postObjet.precs = textAreaProd.value;
+      postObjet.code_type = selectElement.options[selectElement.selectedIndex].value;
+      postObjet.code_sous_type = pasDeSousType ? 'NULL' : selectSousType.options[selectSousType.selectedIndex].value;
+
+      if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
+
+        postO.lieux.push(postObjet);
+        $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
+
+        postObjet = undefined;
+        // finalement ré-initialiser le formulaire et reconstruire le récap.
+        clearInputs();
+        buildRecapLieux();
+
+      } else {
+        alerter('Lieux de distribution déjà renseigné',
+            'Le lieux de distribution ' + postObjet.denomination + ' est déjà sélectionné dans votre liste.',
+            'J\'ai compris');
+      }
+
+    });
+  }
+    clear(divToClear) {
+    console.log(divToClear);
+    while (divToClear.firstChild) divToClear.removeChild(divToClear.firstChild);
+  }
+}//FIN Classe
+
+const test = new Data();
+//const testUI = new UI();
+
+
+
+selectElement.addEventListener('change', (event)=> {
+  let data = selectElement.options[selectElement.selectedIndex].getAttribute("data");
+  //console.log(data);
+  let cible = data.length > 0 ? 'sous_type' : 'entite';
+  //console.log(cible);
+  value = selectElement.value;
+ //console.log(value);
+  test.fetchData(cible, value);
+  let obj = test.resultsOfAjax;
+  console.log(obj);
+  const testUI = new UI(obj);
+        testUI.initialize();
+})
+
+/*selectSousType.addEventListener('change', (e) => {
+  const req = selectSousType.options[selectSousType.selectedIndex].text
+  if (req === "AMAP") {
+    precisionsProd.classList.remove('d-none');
+    amapTypeahead.classList.remove('d-none');
+    showAmap();
+    ajaxCall(req);
+    amapFlag = true;
+    sousTypeFlag = true;
+  } else {
+    amapFlag = false;
+    clear(amapTypeahead);
+    precisionsProd.classList.remove('d-none');
+    sousTypeFlag = true;
+    postObjet = new LieuDistPost('NULL', value, req, null, false, null, null, null, null, null);
+  }
+
+});*/
+
+checkboxMarche.addEventListener('change', (event) => {
+  if (checkboxMarche.checked) {
+    newMarcheProd.classList.remove('d-none');
+    allMarcheBox.classList.add('d-none');
+    checkboxFlag = true;
+    newMarcheValidator = new FormValidator();
+  } else {
+    newMarcheProd.classList.add('d-none');
+    allMarcheBox.classList.remove('d-none');
+    checkboxFlag = false;
+    if (newMarcheValidator !== undefined) {
+      newMarcheValidator.clear();
+      newMarcheValidator = undefined;
+    }
+  }
+});
+
+
+// Event : Ajout des lieux.
+addCircuit.addEventListener('mousedown', () => {
+
+  if (postObjet === undefined && checkboxMarche.checked === false) {
+    alerter('Aucun le lieu de distribution renseigné', 'Veuillez renseigner tous les choix et sous-catégories proposés.', 'J\'ai compris');
+    return;
+  } 
+
+  if (!pasDeSousType && selectSousType.selectedIndex === 0) {
+    alerter('Le lieu de distribution est incomplet', 
+      'Veuillez renseigner la sous-catégorie depuis la liste proposée.', 'J\'ai compris');
+    return;
+  }
+
+  // Cas particulier des nouveaux marchés.
+  if (checkboxMarche.checked) {
+    if (!newMarcheValidator.isDataValidated()) {
+      alerter('Des informations sont manquantes concernant ce marché.', 
+        'Veuillez, dans la mesure du possible, renseigner toutes les informations demandées.', 'J\'ai compris');
+      return;
+    } else {
+      postObjet = new LieuDistPost();
+      postObjet.crea_marche = true;
+      postObjet.type = 'Marché';
+      postObjet.pk_entite = null;
+      postObjet.denomination = $('#nv-marche-lieuxdist-nom').val();
+      postObjet.adr = $('#nv-marche-lieuxdist-adr').val();
+      postObjet.heure_deb = $('#timeInput-heure-deb').val();
+      postObjet.heure_fin = $('#timeInput-heure-fin').val();
+      postObjet.date = $('#timeInput-date').val();
+      postObjet.jour = $('#timeInput-jour').val();
+      newMarcheValidator.clear();
+      newMarcheValidator = undefined;
+    }
+
+  } else {
+    postObjet.crea_marche = false;
+  }
+
+  // dans tous les cas :
+  postObjet.precs = textAreaProd.value;
+  postObjet.code_type = selectElement.options[selectElement.selectedIndex].value;
+  postObjet.code_sous_type = pasDeSousType ? 'NULL' : selectSousType.options[selectSousType.selectedIndex].value; 
+
+  if (!pkPresent(postObjet.pk_entite) && !denominationPresente(postObjet.denomination)) {
+    
+    postO.lieux.push(postObjet); 
+    $('#qstprod-signuplieuxdist-json').val(encodeURIComponent(JSON.stringify(postO)));
+
+    postObjet = undefined;
+    // finalement ré-initialiser le formulaire et reconstruire le récap.
+    clearInputs();
+    buildRecapLieux();
+
+  } else {
+    alerter('Lieux de distribution déjà renseigné', 
+      'Le lieux de distribution ' + postObjet.denomination + ' est déjà sélectionné dans votre liste.', 
+      'J\'ai compris');
+  }
+
+});
+
+// Limitation textarea :
+textAreaProd.addEventListener("input", event => {
+
+  const target = event.currentTarget;
+  const maxLength = target.getAttribute("maxlength");
+  const currentLength = target.value.length;
+  if (currentLength >= maxLength) {
+    limitTextAlert.textContent = "limite de caractères atteinte";
+  } else if (currentLength > 0) {
+    limitTextAlert.textContent = `${maxLength - currentLength} caractères restants`;
+  } else {
+    limitTextAlert.textContent = "Aucune saisie pour le moment.";
+  }
+
+  precisions_texte = target.value;
+});
+
+/** *****************************************************************************************
+ * FUNCTIONS
+ */
+function clearInputs() {
+  $('#nv-marche-lieuxdist-nom').val('');
+  $('#nv-marche-lieuxdist-adr').val('');
+  $('#timeInput-heure-deb').val('');
+  $('#timeInput-heure-fin').val('');
+  $('#timeInput-date').val('');
+  $('#timeInput-jour').val('');
+  // Remove class .is-valid pour nouveaux marchés.
+  $('.nouveau-marche-error-message').hide();
+  textAreaProd.value = '';
+  $('input.typeahead').val('');
+  checkboxMarche.checked = false;
+  $('.unfinded--marche').hide();
+  precisionsProd.classList.add('d-none');
+  sousTypeSelect.classList.add('d-none');
+  clear(amapTypeahead);
+  selectElement.options[0].selected = 'selected';
+  clear(allMarcheBox);
+  pasDeSousType = false;
+
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("change", false, true);
+  checkboxMarche.dispatchEvent(evt);
+>>>>>>> branch 'cetcal_phase2' of https://github.com/j-fish/cetcal.git
 }
 
 function resetForm() {
