@@ -24,7 +24,8 @@ class UIHelper {
     if (!dataHelper.hasSousTypes()) $('#qstprod-lieudist-soustypes-container').hide();
     if (elemNonTrouve === false) $('.cet-crea-entite').each(function() { $(this).hide(); });
     if (!dataHelper.isTypeAheadPopulated()) $('#qstprod-recherche-lieuxdist-container').hide();
-    if (dataHelper.open_search == 1) $('#cet-lieux-non-trouve-container').show();
+    if (dataHelper.open_search == 1 && dataHelper.isReadyTypeAhead() && 
+      dataHelper.typeahead_populated) $('#cet-lieux-non-trouve-container').show();
     else $('#cet-lieux-non-trouve-container').hide();
   }
 
@@ -116,11 +117,12 @@ $(document).ready(function() {
     dataHelper.datum_typeahead = datum;
   });
 
-  $('#qstprod-lieuxdist-type').on('focus', function() { });
+  $('#qstprod-lieuxdist-type').on('focus', function() { 
+    resetForm();
+  });
 
   $('#qstprod-lieuxdist-type').on('change', function() {
     
-    resetForm();
     var value = $("#qstprod-lieuxdist-type option:selected").val();
     if (value === 'NULL') return;
 
@@ -131,13 +133,15 @@ $(document).ready(function() {
     var fetch_result = dataHelper.fetchdata(false);
     if (dataHelper.isReadyTypeAhead()) {
       dataHelper.typeahead_populated = loadTypeahead(dataHelper.data_typeahead);
-      if (!fetch_result) $('#cet-lieux-non-trouve').prop('checked', true);
+      $('#cet-lieux-non-trouve').prop('checked', false);
+      if (!dataHelper.typeahead_populated) $('#cet-lieux-non-trouve').prop('checked', true);
     } else {
       populateSousSelect(dataHelper.data_sous_types);
     }
 
     uiHelper.init(dataHelper.type, dataHelper.sous_type, dataHelper.visiui)
       .apply(dataHelper, $('#cet-lieux-non-trouve').is(':checked'));
+    $(this).blur();
   });
 
   $('#qstprod-lieudist-soustypes').on('change', function() {
@@ -179,8 +183,6 @@ $(document).ready(function() {
     }
 
     resetForm();
-    $('#qstprod-lieuxdist-type').val('');
-    $('#qstprod-lieudist-soustypes').val('');
     postO.lieux.push(postObjet);
     buildRecapLieux();
   });
@@ -240,9 +242,11 @@ function loadTypeahead(results) {
 }
 
 function resetForm() {
+  $('#qstprod-lieuxdist-type').val('');
+  $('#qstprod-lieudist-soustypes').val('');
   $('.cet-visiui-input').each(function() { $(this).val(''); });
   $('.cet-visiui-input-textarea').each(function() { $(this).val(''); });
-  $('.cet-visiui-input-select').each(function() {  });
+  $('.cet-visiui-input-select').each(function() { $(this).val(''); });
   $('.cet-visiui-input-checkbox').each(function() { $(this).prop('checked', false); });
   $('.cet-visiui').each(function() { $(this).hide(); });
 }

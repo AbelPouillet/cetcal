@@ -87,7 +87,7 @@ $dataTypeLieu = $ctrl->fetchAllTypeLieuxDistinctType();
           </label>
           <select class="form-control cet-visiui-input-select" id="timeInput-jour" name="timeInput-jour" 
             style="max-width: 256px;">
-            <option value="non-renseigné">Sélectionner un jour</option>
+            <option value="">Sélectionner un jour</option>
             <?php foreach ($listes_arrays->marches_jours as $jour): ?>
               <option value="<?= $jour[1]; ?>"><?= $jour[1]; ?></option>
             <?php endforeach;?>

@@ -8,6 +8,8 @@ $dataProcessor = new HTTPDataProcessor();
 $type = $dataProcessor->processHttpFormData($_POST['action']);
 $cible = $dataProcessor->processHttpFormData($_POST['cible']);
 
+error_log($type. '/ ' .$cible);
+
 if (!isset($type) || !isset($cible) || empty($type) || empty($cible))
 {
   echo json_encode('{}');
