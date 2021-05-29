@@ -56,7 +56,6 @@ try
   }
   else if (strcmp($nav, 'certif-bioab-prd') === 0)
   {
-    error_log('CERTIF PRD');
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.certification.bioab.php');
     $pk_prd = $dataProcessor->processHttpFormData($_POST['producteur-bioab-pk']);
     $url = $dataProcessor->processHttpFormData($_POST['producteur-bioab-url-org']);

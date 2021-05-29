@@ -21,7 +21,7 @@
       data-parent="#cet-admin-bioab-accordion">
       <!-- Formulaire de certification BIO/AB -->
       <div class="card-body cet-accordion-admin-critique cet-bloc">
-        <form class="form" id="admin-entite-form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
+        <form class="form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
           <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="certif-bioab-prd">
           <!-- contenu du formulaire, reflet de la table cetcal_entite pour les entites -->
