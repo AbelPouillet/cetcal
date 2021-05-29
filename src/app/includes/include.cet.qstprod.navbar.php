@@ -80,11 +80,11 @@
       <div class="col-6">
         <img class="img-fluid" src="/res/content/DCDL_biolocale_2.jpg" alt="">
         <br>
-        <p style="text-align: center;">
+        <!--<p style="text-align: center;">
           <img src="/res/content/partenaires/logo_gironde.jpg" height="80">
           <img src="/res/content/partenaires/logo_region.jpg" height="80">
           <img src="/res/content/partenaires/logo_FSE.jpg" height="80">
-        </p>
+        </p>-->
       </div>
     </div>
   </nav>
