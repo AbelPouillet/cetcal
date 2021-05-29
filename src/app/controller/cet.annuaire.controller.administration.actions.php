@@ -54,6 +54,16 @@ try
   	echo json_encode($result);
 	  exit;
   }
+  else if (strcmp($nav, 'certif-bioab-prd') === 0)
+  {
+    error_log('CERTIF PRD');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.certification.bioab.php');
+    $pk_prd = $dataProcessor->processHttpFormData($_POST['producteur-bioab-pk']);
+    $url = $dataProcessor->processHttpFormData($_POST['producteur-bioab-url-org']);
+    $num_certif = $dataProcessor->processHttpFormData($_POST['producteur-bioab-numcertif']);
+    $subControlleur = new CertificationBioABProducteurController();
+    $subControlleur->certifierProducteur($pk_prd, $url, $num_certif);
+  }
   /* FIN traitement cetcal.cetcal_entite.
   ** ***********************************************************************/
 

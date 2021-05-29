@@ -128,4 +128,9 @@ class CETCALQueryLibrary
   const SELECT_DISTINCT_ALL_TYPE_LIEU = "SELECT type, sous_type, code_type, code_sous_type, visibilite_ui, recherche_tbl_entite FROM cetcal.cetcal_type_lieu GROUP BY type;";
   const SELECT_ONE_TYPE_LIEU = "SELECT * FROM cetcal.cetcal_type_lieu WHERE type = :pType;";
 
+  const INSERT_INTO_CETCAL_BIODATA = "INSERT INTO cetcal.cetcal_biodata (fk_producteur, url_org_certif, matricule) VALUES (:pPk_producteur, :pUrl, :pNumCertif);";
+  const SELECT_BIODATA = "SELECT * from cetcal.cetcal_biodata;";
+  const DELETE_FROM_BIODATA_WHERE_PKPRD = "DELETE FROM cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
+  const SELECT_BIODATA_BY_FK_PRODUCTEUR = "SELECT * from cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
+
 }

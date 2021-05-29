@@ -50,10 +50,11 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     			<?php 
     				// les modules d'administration ajoutés un par un :
     				include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.producteurs.php'; 
+            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.certification.producteurs.php'; 
             include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
     				include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.cantines.structures.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php'; 
-
+            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
+            
             include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
           ?>
   		  </div>

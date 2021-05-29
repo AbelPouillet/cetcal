@@ -2,10 +2,13 @@
 $neant = '';
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/media/cet.qstprod.controller.media.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.controller.fichedetaillee.producteur.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.certification.bioab.php');
 $pk = $_GET['pkprd'];
 $controller = new CETCALAnnuaireFicheDetailleController();
 $media_controller = new MediaController();
+$certif_controller = new CertificationBioABProducteurController();
 $data = $controller->fetchProducteurByPk($pk);
+$certif_bioab = $certif_controller->getCertificationProducteur($pk);
 ?>
 
 <div class="container">
@@ -13,6 +16,19 @@ $data = $controller->fetchProducteurByPk($pk);
     <div class="col-xs-12 col-md-8 col-xl-4">
       <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
         <h4 id="fichedetailleeprd-nom-ferme"><?= ucfirst($data['nom_ferme']); ?></h4>
+        <?php if (isset($certif_bioab) && $certif_bioab !== false && strlen($certif_bioab['url_org_certif']) > 7): ?> 
+          <div class="row">
+            <div class="col-5">
+              <a href="<?= $certif_bioab['url_org_certif']; ?>" target="_blank">
+                <img class="img-fluid" src="/res/content/icons/logos-verts-europe-ab.png"/>
+              </a>
+            </div>
+            <div class="col-7">
+              Code certification :<br>
+              <b><?= $certif_bioab['matricule']; ?></b><br>
+            </div>
+          </div>
+        <?php endif; ?>
         <?php $logo_ferme = $media_controller->selectSrcLogoFemreProducteur($pk); ?>
         <?php if (isset($logo_ferme) && strlen($logo_ferme) > 1): ?> 
           <p>
@@ -46,6 +62,11 @@ $data = $controller->fetchProducteurByPk($pk);
             <span>
               <a href="<?= $data['pageurl_ig']; ?>" target="_blank"><img class="cet-crt-icon" src="/res/content/icons/ig-flat-icon_256.png" height="42"/></a>
             </span>
+          <?php endif; ?>
+          <?php if (isset($certif_bioab) && $certif_bioab !== false && strlen($certif_bioab['url_org_certif']) > 7): ?>
+            <a href="<?= $certif_bioab['url_org_certif']; ?>" target="_blank">
+              Consulter le certification BIO/AB de <?= ucfirst($data['nom_ferme']); ?>
+            </a>
           <?php endif; ?>
         </p>
       </div>
