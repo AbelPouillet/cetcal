@@ -1,10 +1,9 @@
 use cetcal;
 CREATE TABLE cetcal_biodata (
   id INT NOT NULL AUTO_INCREMENT,
-  dept INT NOT NULL,
-  denomination VARCHAR(512) NOT NULL,
-  adr_certification VARCHAR(512) NOT NULL,
-  id_certification VARCHAR(512) NOT NULL,
-  source VARCHAR(128) NOT NULL,
+  fk_producteur INT DEFAULT NULL,
+  url_org_certif VARCHAR(1024) DEFAULT NULL,
+  id_certification VARCHAR(512) DEFAULT NULL,
+  matricule VARCHAR(256) DEFAULT NULL,
   PRIMARY KEY (id)
 );

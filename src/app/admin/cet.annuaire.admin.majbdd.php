@@ -10,7 +10,6 @@ $pattern = "/[(,]+/";
 $sanitize = new HTTPDataProcessor();
 $insertData = new CETCALrefactoring();
 
-
 foreach ($producteurs as $producteur){
 
     $q[$i] =  preg_split($pattern, $producteur->adresse_literale, 0, PREG_SPLIT_NO_EMPTY);

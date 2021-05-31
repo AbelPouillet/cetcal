@@ -8,6 +8,16 @@ $('#cet-admin-prd-inscrits').on('shown.bs.collapse', function () {
   $('#cet-accordion-icon-admin-prd-inscrits').addClass('fa-hand-o-up');
 });
 
+$('#cet-admin-bioab').on('hidden.bs.collapse', function () {
+  $('#cet-admin-bioab-accordion').removeClass('fa-hand-o-up');
+  $('#cet-admin-bioab-accordion').addClass('fa-hand-o-down');
+});
+
+$('#cet-admin-bioab').on('shown.bs.collapse', function () {
+  $('#cet-admin-bioab-accordion').removeClass('fa-hand-o-down');
+  $('#cet-admin-bioab-accordion').addClass('fa-hand-o-up');
+});
+
 $('#cet-admin-1').on('hidden.bs.collapse', function () {
   $('#cet-accordion-icon-admin-main-1').removeClass('fa-hand-o-up');
   $('#cet-accordion-icon-admin-main-1').addClass('fa-hand-o-down');

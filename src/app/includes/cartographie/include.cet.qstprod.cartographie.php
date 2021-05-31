@@ -1,8 +1,10 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.cartographie.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/media/cet.qstprod.controller.media.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.certification.bioab.php');
 $controller = new CETCALCartographieController();
 $media_controller = new MediaController();
+$certif_controller = new CertificationBioABProducteurController();
 $data = $controller->fetchDataCartographie($SELECT_PRD_NON_INSCRITS);
 $entites_data = $controller->fetchDataCartographieEntite();
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/admin/cet.qstprod.admin.cartographie.loader.php');
@@ -89,6 +91,11 @@ $loader->loadCommunes();
         <infosltrl><?= $prdDto->infosLtrl; ?></infosltrl>
         <fournisseurcet><?= $prdDto->fournisseurcet; ?></fournisseurcet>
         <logoferme><?= $media_controller->selectSrcLogoFemreProducteur($prdDto->getPk()); ?></logoferme>
+        <?php $certif_bioab = $certif_controller->getCertificationProducteur($prdDto->getPk()); ?>
+        <certifbioab><?= $certif_bioab === false ? 'false' : 'true'; ?></certifbioab>
+        <certifbioaburl>
+          <?= $certif_bioab === false ? 'false' : $certif_bioab['url_org_certif']; ?>
+        </certifbioaburl>
       </producteur>
     <?php endforeach; ?>
   </producteurs>
