@@ -16,6 +16,10 @@ $lieuxdist = $sessionshelper->getDto('signuplieuxdist.form', new QstLieuxDistrib
 $conso = $sessionshelper->getDto('signupconso.form', new QstConsomateursDTO());
 $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
 $recapLieuxDist = json_decode($lieuxdist->json);
+$whitespace = " ";
+echo '<pre>';
+var_dump($recapLieuxDist);
+echo '</pre>';
 ?>
 
 <!-- singup récapitulatif html form -->
@@ -182,12 +186,69 @@ $recapLieuxDist = json_decode($lieuxdist->json);
                     <tbody>
                         <?php foreach ($recapLieuxDist->lieux as $value): ?>
                         <tr>
-                            <td>
-                                <span class="text-muted"><?= $value->type; ?></span>
-                            </td>
-                            <td>
-                                <span class="text-muted"><?= $value->denomination; ?></span>
-                            </td>
+                            <?php if ( strlen($value->type) > 0): ?>
+                                <td>
+                                    <span class="text-muted"><?=$value->type; ?></span>
+                                </td>
+                            <?php else : ?>
+                                <td>
+                                    <span class="text-muted"><?=$whitespace;?></span>
+                                </td>
+                            <?php endif; ?>
+                            <?php if ( strlen($value->denomination) > 0): ?>
+                                <td>
+                                    <span class="text-muted"><?=$value->denomination; ?></span>
+                                </td>
+                            <?php else : ?>
+                                <td>
+                                    <span class="text-muted"><?=$whitespace;?></span>
+                                </td>
+                            <?php endif; ?>
+                            <?php if ( isset($value->date) ): ?>
+                                <td>
+                                    <span class="text-muted"><?=$value->date; ?></span>
+                                </td>
+                            <?php else : ?>
+                                <td>
+                                    <span class="text-muted"><?=$whitespace;?></span>
+                                </td>
+                            <?php endif; ?>
+                            <?php if ( isset($value->jour) ): ?>
+                                <td>
+                                    <span class="text-muted"><?=$value->jour; ?></span>
+                                </td>
+                            <?php else : ?>
+                                <td>
+                                    <span class="text-muted"><?=$whitespace;?></span>
+                                </td>
+                            <?php endif; ?>
+                            <?php if (isset($value->heure_deb) ): ?>
+                                <td>
+                                    <span class="text-muted"><?=$value->heure_deb; ?></span>
+                                </td>
+                            <?php else  :?>
+                                <td>
+                                    <span class="text-muted"><?=$whitespace;?></span>
+                                </td>
+                            <?php endif; ?>
+                            <?php if ( isset($value->heure_fin)) :?>
+                                <td>
+                                    <span class="text-muted"><?=$value->heure_fin; ?></span>
+                                </td>
+                            <?php else : ?>
+                                <td>
+                                    <span class="text-muted"><?=$whitespace;?></span>
+                                </td>
+                            <?php endif; ?>
+                            <?php if ( strlen($value->precs) > 0): ?>
+                                <td>
+                                    <span class="text-muted"><?=$value->precs; ?></span>
+                                </td>
+                            <?php else : ?>
+                                <td>
+                                    <span class="text-muted"><?=$whitespace;?></span>
+                                </td>
+                            <?php endif; ?>
                         </tr>
                         <?php endforeach;?>
                     </tbody>
@@ -212,7 +273,7 @@ $recapLieuxDist = json_decode($lieuxdist->json);
                             <span class="text-muted">Vos produits : </span>
                             <?php foreach ($produits->listAllProducts() as $k => $v): ?>
                                 <?php foreach ($v as $prd): ?>
-                                    <span class="cet-qstprod-produit-type <?= $k ?>"><?= $prd; ?></span>
+                                    <span class="cst-produits"><?= $prd; ?></span>
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
                         </td>
