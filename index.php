@@ -63,7 +63,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
       if (file_exists($module)) include $module;
       if ($anr && strcmp($statut, 'bienvenu.form') !== 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php';
       if (strcmp($statut, 'accueil.cet') === 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php';
-      
+
       include $PHP_INCLUDES_PATH.'include.cet.qstprod.footer.php';
       include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal1.php';
       include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';

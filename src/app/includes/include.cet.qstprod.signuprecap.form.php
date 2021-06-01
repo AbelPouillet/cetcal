@@ -17,9 +17,6 @@ $conso = $sessionshelper->getDto('signupconso.form', new QstConsomateursDTO());
 $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
 $recapLieuxDist = json_decode($lieuxdist->json);
 $whitespace = " ";
-echo '<pre>';
-var_dump($recapLieuxDist);
-echo '</pre>';
 ?>
 
 <!-- singup récapitulatif html form -->

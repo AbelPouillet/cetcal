@@ -30,8 +30,10 @@ $PHP_CONTROLLER_PATH = $DOC_ROOT.'/src/app/controller/';
 $PHP_UTILS_PATH = $DOC_ROOT.'/src/app/utils/';
 
 /**
- * Constantes globaux de paramétrage app.
+ * Constantes globales de paramétrage app.
  */
+// MODE Débug pour laisser passer les var dumps.
+$MODE_DEBUG = strpos($_SERVER['REMOTE_ADDR'], "127.0.4") !== false;
 // Afficher page de recettes.
 $OPEN_PAGE_RECETTES = true;
 // Si true, les producteurs non inscrits via questionnaire seront lues pour carto.
@@ -42,7 +44,6 @@ $CLIENT_CARTO_GEOLOCALISE = true;
 $CLIENT_CARTO_AVANCEE = false;
 // Permettre ou non le login / signup
 $OPEN_LOGIN_SIGNUP = true;
-
 
 include $PHP_CONST_PATH.'cet.qstprod.const.listes.php';
 require_once($PHP_UTILS_PATH.'cet.qstprod.utils.httpdataprocessor.php');

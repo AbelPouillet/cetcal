@@ -71,7 +71,7 @@ $certif_bioab = $certif_controller->getCertificationProducteur($pk);
         </p>
       </div>
     </div>
-    <div class="col-xs-12 col-md-4 col-xl-4 ">
+    <div class="col-xs-12 col-md-4 col-xl-4">
       <div style="overflow-wrap: break-word; margin-bottom: 16px !important;">
         <?php $media_data = $media_controller->selectMediasProducteur($pk); $counter = 0; ?>
         <div id="fichedetailleeprd-carousel" class="carousel slide" data-ride="carousel">
