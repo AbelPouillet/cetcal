@@ -11,7 +11,7 @@ $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
   <div class="row d-flex justify-content-center">
     <div class="col-xs-12 col-xl-8 col-md-12">
       <div class="cet-formgroup-container">
-          <div class="row">
+          <div class="row d-flex flex-column">
               <div class="mt-2">
                   <div class="ml-2">Types de production</div>
                   <?php foreach ( $productsCategories as $productCategorie) : ?>
