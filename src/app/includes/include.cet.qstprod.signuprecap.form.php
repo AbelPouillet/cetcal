@@ -17,9 +17,6 @@ $conso = $sessionshelper->getDto('signupconso.form', new QstConsomateursDTO());
 $besoins = $sessionshelper->getDto('signupbesoins.form', new QstBesoinsDTO());
 $recapLieuxDist = json_decode($lieuxdist->json);
 $whitespace = " ";
-echo '<pre>';
-var_dump($recapLieuxDist);
-echo '</pre>';
 ?>
 
 <!-- singup récapitulatif html form -->
@@ -43,82 +40,82 @@ echo '</pre>';
                     <tbody>
                     <?php if ( strlen($infogenerales->nom) || strlen($infogenerales->prenom) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Nom, prénom : </span><?= $infogenerales->nom; ?> <?= $infogenerales->prenom; ?></td>
+                            <td><span class="text-muted"><b>Nom, prénom :</b></span><?= $infogenerales->nom; ?> <?= $infogenerales->prenom; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->email) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Adresse email : </span><?= $infogenerales->email; ?></td>
+                            <td><span class="text-muted"><b>Adresse email :</b></span><?= $infogenerales->email; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->telfix) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Téléphone fixe : </span><?= $infogenerales->telfix; ?></td>
+                            <td><span class="text-muted"><b>Téléphone fixe :</b></span><?= $infogenerales->telfix; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->telport) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Téléphone mobile : </span><?= $infogenerales->telport; ?></td>
+                            <td><span class="text-muted"><b>Téléphone mobile :</b></span><?= $infogenerales->telport; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->nomferme) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Nom de la ferme: </span><?= $infogenerales->nomferme; ?></td>
+                            <td><span class="text-muted"><b>Nom de la ferme:</b></span><?= $infogenerales->nomferme; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->siret) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Siret associé à la ferme : </span><?= $infogenerales->siret; ?></td>
+                            <td><span class="text-muted"><b>Siret associé à la ferme : </b></span><?= $infogenerales->siret; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if (isset($infogenerales->adrLieudit) || isset($infogenerales->adrComplementAdr)) $displayCmplAdr = true; ?>
                     <tr>
-                        <td><span class="text-muted">Adresse postale de la ferme : </span><?= $infogenerales->adrNumvoie; ?> <?= $infogenerales->adrRue; ?><?php if ($displayCmplAdr) : ?><br><?= $infogenerales->adrLieudit; ?> <?= $infogenerales->adrComplementAdr; ?><?php endif; ?><br><?= $infogenerales->adrCommune; ?> <?= $infogenerales->adrCodePostal; ?>
+                        <td><span class="text-muted"><b>Adresse postale de la ferme : </b></span><?= $infogenerales->adrNumvoie; ?> <?= $infogenerales->adrRue; ?><?php if ($displayCmplAdr) : ?><br><?= $infogenerales->adrLieudit; ?> <?= $infogenerales->adrComplementAdr; ?><?php endif; ?><br><?= $infogenerales->adrCommune; ?> <?= $infogenerales->adrCodePostal; ?>
                         </td>
                     </tr>
                     <?php if ( strlen($infogenerales->pageFB) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Page Facebook : </span><?= $infogenerales->pageFB; ?></td>
+                            <td><span class="text-muted"><b>Page Facebook :</b></span><?= $infogenerales->pageFB; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->pageIG) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Page Instagram : </span><?= $infogenerales->pageIG; ?></td>
+                            <td><span class="text-muted"><b>Page Instagram :</b></span><?= $infogenerales->pageIG; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->pageTwitter) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Page Twitter : </span><?= $infogenerales->pageTwitter; ?></td>
+                            <td><span class="text-muted"><b>Page Twitter :</b></span><?= $infogenerales->pageTwitter; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->siteWebUrl) > 0): ?>
                         <tr>
-                            <td><span class="text-muted">Adresse web de votre site dédié : </span><?= $infogenerales->siteWebUrl; ?></td>
+                            <td><span class="text-muted"><b>Adresse web de votre site dédié :</b></span><?= $infogenerales->siteWebUrl; ?></td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->boutiqueEnLigneUrl) > 0): ?>
                         <tr>
                             <td>
-                                <span class="text-muted">Adresse web, Boutique en ligne : </span><?= $infogenerales->boutiqueEnLigneUrl; ?>
+                                <span class="text-muted"><b>Adresse web, Boutique en ligne :</b></span><?= $infogenerales->boutiqueEnLigneUrl; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->groupeCagette) > 0): ?>
                         <tr>
                             <td>
-                                <span class="text-muted">Votre groupe Cagette : </span><?= $infogenerales->groupeCagette; ?>
+                                <span class="text-muted"><b>Votre groupe Cagette :</b></span><?= $infogenerales->groupeCagette; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->organismeCertificateurBIO) > 0): ?>
                         <tr>
                             <td>
-                                <span class="text-muted">Organisme Certificateur BIO : </span><?= $infogenerales->organismeCertificateurBIO; ?>
+                                <span class="text-muted"><b>Organisme Certificateur BIO :</b></span><?= $infogenerales->organismeCertificateurBIO; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <tr>
-                        <td><span class="text-muted">Type de production : </span>
+                        <td><span class="text-muted"><b>Type de production :</b></span>
                             <?php if (isset($infogenerales->typeDeProduction) && is_array($infogenerales->typeDeProduction) && count($infogenerales->typeDeProduction) > 0): ?>
                                 <?php $counter = 0; ?>
                                 <?php foreach ($infogenerales->typeDeProduction as $typeprod): ?>
@@ -131,28 +128,28 @@ echo '</pre>';
                     <?php if ( strlen($infogenerales->surfaceHectTerres) > 0): ?>
                         <tr>
                             <td>
-                                <span class="text-muted">Surface de terres cultivées : </span><?= $infogenerales->surfaceHectTerres; ?> <i>Hectares</i>
+                                <span class="text-muted"><b>Surface de terres cultivées :</b></span><?= $infogenerales->surfaceHectTerres; ?> <i>Hectares</i>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->surfaceHectSousSerre) > 0): ?>
                         <tr>
                             <td>
-                                <span class="text-muted">Surface sous serre(s) : </span><?= $infogenerales->surfaceHectSousSerre; ?> <i>Ares</i>
+                                <span class="text-muted"><b>Surface sous serre(s) :</b></span><?= $infogenerales->surfaceHectSousSerre; ?> <i>Ares</i>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->nbrTetesBetail) > 0): ?>
                         <tr>
                             <td>
-                                <span class="text-muted">Nombre de têtes (si bétail) : </span><?= $infogenerales->nbrTetesBetail; ?>
+                                <span class="text-muted"><b>Nombre de têtes (si bétail) :</b></span><?= $infogenerales->nbrTetesBetail; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ( strlen($infogenerales->hectolitresParAn) > 0): ?>
                         <tr>
                             <td>
-                                <span class="text-muted">Hectolitres / an (si production boissons) : </span><?= $infogenerales->hectolitresParAn; ?> <i>Hectolitres</i>
+                                <span class="text-muted"><b>Hectolitres / an (si production boissons) :</b></span><?= $infogenerales->hectolitresParAn; ?> <i>Hectolitres</i>
                             </td>
                         </tr>
                     <?php endif; ?>
@@ -166,6 +163,8 @@ echo '</pre>';
 <!-- -------------------------------------- -->
 <!-- ZONE de récap lieux de distribution.   -->
 <!-- -------------------------------------- -->
+
+<?php if (!empty($recapLieuxDist)): ?>
 <div class="row justify-content-lg-center">
     <div class="col-lg-6">
         <label class="cet-formgroup-container-label"><small class="form-text">Récapitulatif de vos points de vente / distribution :</small></label>
@@ -257,6 +256,20 @@ echo '</pre>';
         </div>
     </div>
 </div>
+<?php else : ?>
+<div class="row justify-content-lg-center">
+    <div class="col-lg-6">
+        <label class="cet-formgroup-container-label"><small class="form-text">Récapitulatif de vos points de vente / distribution :</small></label>
+        <div class="cet-formgroup-container">
+            <div class="d-flex justify-content-center">
+               <p><b>Aucun lieu de distribution renseigné</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif;?>
+
+
 
 <!-- -------------------------------------- -->
 <!-- ZONE de récap produits.                -->
