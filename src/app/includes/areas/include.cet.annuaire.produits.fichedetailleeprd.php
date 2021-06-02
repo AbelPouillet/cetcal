@@ -24,7 +24,7 @@ $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
                   <p class="cst-produits"><?=  $produit->nom ?></p>
                   <?php endforeach; ?>
               </div>
-      </div>
+        </div>
     </div>
   </div>
 </div>
