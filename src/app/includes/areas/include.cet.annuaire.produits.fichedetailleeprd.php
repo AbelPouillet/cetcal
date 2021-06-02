@@ -1,11 +1,8 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.controller.fichedetaillee.producteur.php');
 $controller = new CETCALAnnuaireFicheDetailleController();
-//$lieux = $controller->fetchLieuByPkProducteur($pk);
 $produits = $controller->fetchProduitByPkProducteur($pk);
 $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
-//var_dump($productsCategories);
-//var_dump($produits);
 ?>
 <div class="container">
   <div class="row d-flex justify-content-center">
