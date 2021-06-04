@@ -17,15 +17,11 @@ $certif_bioab = $certif_controller->getCertificationProducteur($pk);
       <div class="cet-formgroup-container" style="overflow-wrap: break-word;">
         <h4 id="fichedetailleeprd-nom-ferme"><?= ucfirst($data['nom_ferme']); ?></h4>
         <?php if (isset($certif_bioab) && $certif_bioab !== false && strlen($certif_bioab['url_org_certif']) > 7): ?> 
-          <div class="row">
-            <div class="col-5">
+          <div class="row justify-content-center" style="margin-bottom: 12px;">
+            <div class="col-8">
               <a href="<?= $certif_bioab['url_org_certif']; ?>" target="_blank">
                 <img class="img-fluid" src="/res/content/icons/logos-verts-europe-ab.png"/>
               </a>
-            </div>
-            <div class="col-7">
-              Code certification :<br>
-              <b><?= $certif_bioab['matricule']; ?></b><br>
             </div>
           </div>
         <?php endif; ?>
@@ -42,7 +38,6 @@ $certif_bioab = $certif_controller->getCertificationProducteur($pk);
               .$data['adrferme_lieudit'].' '.$data['adrferme_commune'].' '
               .$data['adrferme_cp'].' '.$data['adrferme_compladr']);
           ?>
-
           <span><?= $adr; ?></span><br>
           <span>Tél : <?= $data['telfixe']; ?></span><br>
           <span>Tél mobile : <?= $data['telport']; ?></span><br>
@@ -64,8 +59,8 @@ $certif_bioab = $certif_controller->getCertificationProducteur($pk);
             </span>
           <?php endif; ?>
           <?php if (isset($certif_bioab) && $certif_bioab !== false && strlen($certif_bioab['url_org_certif']) > 7): ?>
-            <a href="<?= $certif_bioab['url_org_certif']; ?>" target="_blank">
-              Consulter le certification BIO/AB de <?= ucfirst($data['nom_ferme']); ?>
+            <a class="btn btn-small btn-outline-success" href="<?= $certif_bioab['url_org_certif']; ?>" target="_blank">
+              <b><i class="fas fa-stamp"></i>&#160;&#160;Consulter la certification BIO/AB de <?= ucfirst($data['nom_ferme']); ?></b>
             </a>
           <?php endif; ?>
         </p>
