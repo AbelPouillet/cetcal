@@ -20,7 +20,8 @@ Class CetAnnuaireConstTypes
     "mbio" => "'mbio'",
     "amap" => "'amap'",
     "rvcc" => "'amap'",
-    "mrch" => "'marche'"
+    "mrch" => "'marche'",
+    "ascd" => "'assocdist'"
   ];
   
 }

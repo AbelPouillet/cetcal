@@ -2,8 +2,8 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.annuaire.controller.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.controller.marches.castillonnais.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/utils/cet.qstprod.utils.httpdataprocessor.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/src/app/model/cet.qstprod.lieuxdist.model.php');
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/src/app/const/cet.annuaire.const.types.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.lieuxdist.model.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.annuaire.const.types.php');
 $dataProcessor = new HTTPDataProcessor();
 $type = $dataProcessor->processHttpFormData($_POST['action']);
 $cible = $dataProcessor->processHttpFormData($_POST['cible']);
@@ -44,8 +44,3 @@ else
     echo json_encode($data);
   }
 }
-
-
-
-
-
