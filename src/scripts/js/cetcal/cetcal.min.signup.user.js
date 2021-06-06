@@ -42,6 +42,7 @@ $(document).ready(function() {
 
 	$("#annuaire-user-signup-form").submit(function(event) {
 
+    var declaratif = false;
 	  var commune = $('#cet-annuaire-recherche-communes-value').val();
 	  var email = $('#annuaire-user-signup-email').val();
 	  var email_conf = $('#annuaire-user-signup-email-conf').val();
@@ -57,7 +58,19 @@ $(document).ready(function() {
 			if (entry === undefined || entry == 'undefined' || entry.length < 1) ++r;
 		}
 
-	  if (r !== -1) {
+    if ($("#qstprod-declaration-valide-honneur").prop('checked')) {
+      declaratif = true;
+    } else {
+      event.preventDefault();
+      $('#modal-questionaire-titre').text('Il vous faut déclarer les informations renseignées sur l\'honneur');
+      $('#modal-questionaire-paragraphe').text(
+        'Afin de pouvoir protéger vos données personnelles et valider votre inscritpion basée sur une déclaration sur l\'honneur, veuillez cocher la case liée au déclaratif.');
+      $('#modal-questionaire-btn-primary').text("J'ai compris");
+      $('#modal-questionaire-btn').click();
+      return false;
+    }
+
+	  if (r !== -1 || declaratif === false) {
 	  	event.preventDefault();
 	  	$('#modal-questionaire-titre').text('Le formulaire d\'inscription est incomplet.');
 			$('#modal-questionaire-paragraphe').text(

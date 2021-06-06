@@ -203,6 +203,23 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
                 </label>
               </div>
             </div>
+            <br>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <p><small class="cet-qstprod-label-text"><b><?= CetQstprodConstTextes::recap_questionnaire_declaratif_a; ?></b></small></p>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="mandatory-cbx-group" id="annuaire-user-signup-mandatory-cbx-declaratif">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" 
+                  id="qstprod-declaration-valide-honneur"
+                  name="qstprod-declaration-valide" value="non">
+                <label class="form-check-label">
+                  Je déclare sur l'honneur que les informations renseignées sont exactes et vérifiées.
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 

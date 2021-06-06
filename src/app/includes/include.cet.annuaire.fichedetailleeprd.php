@@ -59,7 +59,7 @@ $certif_bioab = $certif_controller->getCertificationProducteur($pk);
             </span>
           <?php endif; ?>
           <?php if (isset($certif_bioab) && $certif_bioab !== false && strlen($certif_bioab['url_org_certif']) > 7): ?>
-            <a class="btn btn-small btn-outline-success" href="<?= $certif_bioab['url_org_certif']; ?>" target="_blank">
+            <a class="btn btn-small btn-outline-success" href="<?= $certif_bioab['url_org_certif']; ?>" target="_blank" style="margin-top: 12px;">
               <b><i class="fas fa-stamp"></i>&#160;&#160;Consulter la certification BIO/AB de <?= ucfirst($data['nom_ferme']); ?></b>
             </a>
           <?php endif; ?>
