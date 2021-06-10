@@ -38,7 +38,7 @@ $loader->loadCommunes();
             style="font-family: 'Signika' !important; color: #6C3012 !important;" 
             id="dropdown-filtres-cartographie" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Sélectionner des filtre et les appliquer&#160;&#160;<span class="badge" 
+            Recherche avancée&#160;&#160;<span class="badge" 
             id="dropdown-filtres-count">0</span>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdown-filtres-cartographie" 
