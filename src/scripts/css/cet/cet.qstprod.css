@@ -400,7 +400,8 @@ small.nouveau-marche-error-message {
 }
 /***********************************************************************/
 img.lieuxdevente-logo-entite {
-  max-height: 212px;
+  /*max-height: 212px;*/
+  border-radius: 6px;
 }
 p.lieuxdevente-logo-entite-container {
   text-align: center;
