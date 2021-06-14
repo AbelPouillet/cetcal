@@ -130,8 +130,8 @@ $dataTypeLieu = $ctrl->fetchAllTypeLieuxDistinctType();
         <textarea class="form-control cet-visiui-input-textarea" name="qstlieudist-4" id="qstprod-precisions-prod" maxlength="256" rows="3"></textarea>
         <p class="limit-text-alert" 
           style="margin-left: 4px; margin-top: 2px; font-size: 14px;">
-          Aucune saisie pour le moment.
-        </p>
+<!--          Aucune saisie pour le moment.
+-->        </p>
         <div class="d-flex justify-content-end">
           <button class="btn cet-navbar-btn cet-navbar-btn-small" id="add-lieuxdist-au-recap">Ajouter ce lieu de distribution</button>
         </div>
