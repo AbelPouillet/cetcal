@@ -18,6 +18,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     <!--Scripts css debut-->
     <link rel="stylesheet" href="/src/scripts/css/bootstrap.min.css">
     <link rel="stylesheet" href="/src/scripts/css/font-awesome/css/all.min.css" >
+    <link rel="stylesheet" href="/src/scripts/css/cet/cet.homepage.css">
     <link rel="stylesheet" href="/src/scripts/css/cet/cet.qstprod.css">
     <link rel="stylesheet" href="/src/scripts/css/cet/cet.qstprod.cartographie.css">
     <link rel="stylesheet" href="/src/scripts/css/cet/cet.fichedetailleeprd.css">

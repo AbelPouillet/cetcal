@@ -1,0 +1,26 @@
+ /****************\
+ -----HOMEPAGE-----
+ \****************/
+
+ /*HEROSECTION*/
+ .herosection-wrapper{}
+
+ /*NAVBAR*/
+.nav-wrapper{
+    background-color: #fee378;
+}
+ .nav-wrapper li{
+     list-style-type: none;
+ }
+
+#cet-annuaire-crt-main-container{
+
+}
+ #cet-annuaire-crt-bootstrap-wrapper{
+ }
+
+.searchbar{
+    z-index: 1;
+    margin: 30px;
+    background: #009938;
+}
