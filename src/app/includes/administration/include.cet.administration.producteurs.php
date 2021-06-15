@@ -41,6 +41,7 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
             <th>Identifiant CETCAL</th>
             <th>Nom Prénom</th>
             <th>Lat/lng</th>
+            <th>Actions</th>
           </tr>
           <tr><td colspan="6"><b>Producteur.e.s inscrits (avec identifiant cetcal) : </b></td></tr>
           <?php $count = 0; $count_preinscrits = 0; ?>
@@ -55,7 +56,7 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
                 str_replace("  ", " ", $prd->adrNumvoie.' '.$prd->adrRue.' '.$prd->adrLieudit.' '.
                 $prd->adrCommune.' '.$prd->adrCodePostal.' '.$prd->adrComplementAdr); 
             ?>
-            <tr>
+            <tr id="row-admin-prd-pk-<?= $prd->getPk(); ?>">
               <td><?= $prd->getPk(); ?></td>
               <td class="admin-producteur-wordbreakable">
                 <a href="/src/app/controller/cet.qstprod.controller.demande.update.superadmin.php?sau_pk=<?= $sau_pk; ?>&sau_sitkn=<?= $sau_cetcal_session_id; ?>&sau_pkprd=<?= $prd->getPk(); ?>" target="_blank"><?= $prd->nomferme; ?></a>
@@ -65,6 +66,15 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
               <td class="admin-producteur-wordbreakable"><?= $prd->identifiant_cet; ?></td>
               <td class="admin-producteur-wordbreakable"><?= $prd->nom.' '.$prd->prenom; ?></td>
               <td class="admin-producteur-wordbreakable"><?= $prd->getLatLng(); ?></td>
+              <td class="admin-producteur-wordbreakable">
+                <button class="administration-desactiver-producteur btn-small btn btn-outline-danger" 
+                  row-cible="row-admin-prd-pk-<?= $prd->getPk(); ?>"
+                  prd-cible="[n°<?= $prd->getPk(); ?>] <?= $prd->nomferme; ?> (adresse: <?= $adr; ?>)."
+                  data="<?= $prd->getPk(); ?>"
+                  style="float: right; padding: 4px !important;">
+                  <i class="fas fa-user-times"></i>
+                </button>
+              </td>
             </tr>
           <?php endforeach; ?>
           <tr><td colspan="6"><br><br><b>Producteur.e.s préinscrits : </b></td></tr>
@@ -72,7 +82,7 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
             <?php if (strlen($prd_preinscrit->identifiant_cet) > 1 && 
                       strcmp($prd_preinscrit->prodInscrit, 'true') === 0) continue;
                   else ++$count_preinscrits; ?>
-            <tr>
+            <tr id="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>">
               <td><?= $prd_preinscrit->getPk(); ?></td>
               <td class="admin-producteur-wordbreakable">
                 <a href="/src/app/controller/cet.qstprod.controller.demande.update.superadmin.php?sau_pk=<?= $sau_pk; ?>&sau_sitkn=<?= $sau_cetcal_session_id; ?>&sau_pkprd=<?= $prd_preinscrit->getPk(); ?>" target="_blank"><?= $prd_preinscrit->nomferme; ?></a>
@@ -82,6 +92,15 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
               <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->identifiant_cet; ?></td>
               <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->nom.' '.$prd_preinscrit->prenom; ?></td>
               <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->getLatLng(); ?></td>
+              <td class="admin-producteur-wordbreakable">
+                <button class="administration-desactiver-producteur btn-small btn btn-outline-danger" 
+                  row-cible="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>"
+                  prd-cible="[n°<?= $prd_preinscrit->getPk(); ?>] <?= $prd_preinscrit->nomferme; ?> (adresse: <?= $prd_preinscrit->adrfermeLtrl; ?>)."
+                  data="<?= $prd_preinscrit->getPk(); ?>"
+                  style="float: right; padding: 4px !important;">
+                  <i class="fas fa-user-times"></i>
+                </button>
+              </td>
             </tr>
           <?php endforeach; ?>
         </table>

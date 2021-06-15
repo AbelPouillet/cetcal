@@ -49,6 +49,38 @@ $('#cet-admin-3').on('shown.bs.collapse', function () {
 });
 
 $(document).ready(function() {
+  
+  $('button.administration-desactiver-producteur').on('mousedown', function() {
+
+    var pk = $(this).attr('data');
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var rowcible = $(this).attr('row-cible');
+    $('#cet-modal-alerte-titre').text("Demande de suppression producteur.e");
+    $('#cet-modal-alerte-paragraphe').text("Veuillez confirmer la suppression du producteur.s suivant : ");
+    $('#cet-modal-alerte-paragraphe-bis').text($(this).attr('prd-cible'));
+    $('#cet-modal-alerte-paragraphe-ter').text("La suppression est immédiatement effcetive pour tout utilisateur de decidelabiolocale.org. En cas d'erreur sur une suppression, veuillez contacter l'équipe technique.");
+    $('#cet-modal-alerte-btn-annuler').text("Annuler");
+    $('#cet-modal-alerte-btn-annuler').show();
+    $('#cet-modal-alerte-btn-primary').text("Supprimer ce producteur.e");
+    $('#cet-modal-alerte-btn-primary').off();
+    $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
+      $.ajax({
+        url: '../../../controller/cet.annuaire.controller.administration.actions.php?sitkn=' + urlParams.get('sitkn'),
+        type: 'POST',
+        data: { admin_action_cible : 'sup-producteur', pkid : pk },
+        success: function (json) { }, 
+        error: function(jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); }
+      });
+      $('#cet-modal-alerte').modal('hide');
+      $('#' + rowcible).hide('slow');
+    });
+    $('#cet-modal-alerte-btn-annuler').off();
+    $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
+      $('#cet-modal-alerte').modal('hide'); 
+    });
+    $('#cet-modal-alerte-btn').click();
+  });
 
 	/*********************************************************************
 	 * Actions liées aux marchés, leiux de distributions, Asso, AMAPS etc.

@@ -466,7 +466,6 @@ class QSTPRODProducteurModel extends CETCALModel
     $stmt->bindParam(":pSessionId", $sessionId, PDO::PARAM_STR);
     $stmt->bindParam(":pProducteurIp", $ip, PDO::PARAM_STR);
     $stmt->bindParam(":pPk", $pk, PDO::PARAM_INT);
-
     $stmt->execute();
   }
 
@@ -477,7 +476,22 @@ class QSTPRODProducteurModel extends CETCALModel
     $stmt = $this->getCnxdb()->prepare($qLib::UPDATE_PRODUCTEUR_MOT_DE_PASSE);
     $stmt->bindParam(":pEmail", $email, PDO::PARAM_STR);
     $stmt->bindParam(":pMdpsha", $pwd_hash, PDO::PARAM_STR);
+    $stmt->execute();
+  }
 
+  public function desactiverProducteurByPk($pk)
+  {
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::DESACTIVER_PRODUCTEUR_BY_PK);
+    $stmt->bindParam(":pPk", $pk, PDO::PARAM_INT);
+    $stmt->execute();
+  }
+
+  public function activerProducteurByPk($pk)
+  {
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::ACTIVER_PRODUCTEUR_BY_PK);
+    $stmt->bindParam(":pPk", $pk, PDO::PARAM_INT);
     $stmt->execute();
   }
 

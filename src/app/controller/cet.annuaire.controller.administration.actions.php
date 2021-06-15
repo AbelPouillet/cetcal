@@ -63,6 +63,13 @@ try
     $subControlleur = new CertificationBioABProducteurController();
     $subControlleur->certifierProducteur($pk_prd, $url, $num_certif);
   }
+  else if (strcmp($nav, 'sup-producteur') === 0)
+  {
+    $pk = $dataProcessor->processHttpFormData($_POST['pkid']);
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
+    $prdmodel = new QSTPRODProducteurModel();
+    $prdmodel->desactiverProducteurByPk($pk);
+  }
   /* FIN traitement cetcal.cetcal_entite.
   ** ***********************************************************************/
 
