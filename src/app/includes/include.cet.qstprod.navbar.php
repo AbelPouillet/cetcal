@@ -1,6 +1,6 @@
 <header>
     <!--- DEBUT HEADER --->
-    <div class="container-fluid">
+    <div class="">
         <div class="row">
             <div class="herosection-wrapper d-flex">
                 <div class="col-5">

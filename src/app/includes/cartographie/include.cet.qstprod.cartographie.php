@@ -12,7 +12,7 @@ $loader = new CETCALCartographieLoader();
 $loader->loadCommunes();
 ?>
 
-<div class="container-fluid">
+<div class="">
     <div class="row">
         <?php if ($CLIENT_CARTO_AVANCEE) include $PHP_INCLUDES_PATH.'cartographie/include.cet.annuaire.params.cartographie.php'; ?>
     </div>
