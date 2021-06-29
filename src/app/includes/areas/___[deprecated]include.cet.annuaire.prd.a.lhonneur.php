@@ -14,7 +14,7 @@ $data = $controller->fetchProducteursDerniersInscrit(5);
           <td colspan="2" style="border-top: none !important;"><h4 class="alert-heading"><i class="far fa-thumbs-up fa-2x" style="color: #009c31;"></i> Les derniers Producteur.e.s inscrits à ce jour :</h4></td>
         </tr>
         <?php foreach ($data as $prdDto): ?>
-          <?php 
+          <?php
             $adr = $prdDto->prodInscrit === 'false' ? $prdDto->adrfermeLtrl : 
               str_replace("  ", " ", $prdDto->adrNumvoie.' '.$prdDto->adrRue.' '.$prdDto->adrLieudit.' '.
               $prdDto->adrCommune.' '.$prdDto->adrCodePostal.' '.$prdDto->adrComplementAdr);

@@ -29,6 +29,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     <!-- start : charte-g Fanny -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&family=Signika:wght@400;700&display=swap">
     <!-- end -->
+
     <!-- start LeafletJS and Mapbox -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -41,6 +42,9 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""></script>
     <!-- end -->
+      <!--start js homepage-->
+      <script src="/src/scripts/js/cetcal/cet.homepage.js" defer></script>
+      <!--end js homepage-->
     <script src="/src/scripts/js/cetcal/cetcal.annuaire.geoloc.min.js"></script>
     <script src="/src/scripts/js/jquery/jquery-3.4.1.min.js"></script>
     <script src="/src/scripts/js/popper.min.js"></script>
@@ -48,29 +52,38 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     <script src="/src/scripts/js/cetcal/cetcal.min.js"></script>
   </head>
   <body id="cet-annuaire-body">
-    <?php
-      include $PHP_INCLUDES_PATH.'include.cet.qstprod.navbar.php';
-      
-      if (strcmp($statut, 'accueil.cet') === 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.login.form.php';    
-      if (isset($cnx) && $cnx !== false) include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.login.outcome.php';  
-      if (isset($obl) && $obl !== false) include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.renouvellement.outcome.php';  
-      
-      if (!$anr && !in_array($statut, CetQstProdFilArianneHelper::$statesFilAriane) 
-        && strcmp($statut, 'sondage.marche') !== 0) include $PHP_INCLUDES_PATH.'cartographie/include.cet.qstprod.cartographie.php';
-      if (strcmp($statut, 'accueil.cet') === 0) include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.prd.a.lhonneur.php';
-      
-      if (!$anr && in_array($statut, CetQstProdFilArianneHelper::$statesFilAriane)) include $PHP_INCLUDES_PATH.'include.cet.qstprod.filarianne.php';
-      $module = $PHP_INCLUDES_PATH.'include.cet.'.$scope.'.'.$statut.'.php';
-      if (file_exists($module)) include $module;
-      if ($anr && strcmp($statut, 'bienvenu.form') !== 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php';
-      if (strcmp($statut, 'accueil.cet') === 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php';
+      <div class="container-fluid">
+          <?php
+          include $PHP_INCLUDES_PATH.'include.cet.qstprod.navbar.php';
 
-      include $PHP_INCLUDES_PATH.'include.cet.qstprod.footer.php';
-      include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal1.php';
-      include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
-      include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal.notreprojet.php';
-      include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal.donnes.numeriques.php';
-    ?>
+          if (strcmp($statut, 'accueil.cet') === 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.login.form.php';
+          if (isset($cnx) && $cnx !== false) include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.login.outcome.php';
+          if (isset($obl) && $obl !== false) include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.renouvellement.outcome.php';
+
+          if (!$anr && !in_array($statut, CetQstProdFilArianneHelper::$statesFilAriane)
+              && strcmp($statut, 'sondage.marche') !== 0) include $PHP_INCLUDES_PATH.'cartographie/include.cet.qstprod.cartographie.php';
+          if (strcmp($statut, 'accueil.cet') === 0)
+              include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.slogan.php';
+          include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.prd.a.lhonneur.php';
+          include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.plateforme.php';
+          include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.calltoaction.php';
+          include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.calltoactionvisitor.php';
+          include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
+          include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.footer.php';
+
+  /*        if (!$anr && in_array($statut, CetQstProdFilArianneHelper::$statesFilAriane)) include $PHP_INCLUDES_PATH.'include.cet.qstprod.filarianne.php';
+          $module = $PHP_INCLUDES_PATH.'include.cet.'.$scope.'.'.$statut.'.php';
+          if (file_exists($module)) include $module;
+          if ($anr && strcmp($statut, 'bienvenu.form') !== 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php';
+          if (strcmp($statut, 'accueil.cet') === 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php';*/
+
+/*          include $PHP_INCLUDES_PATH.'include.cet.qstprod.footer.php';
+          include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal1.php';
+          include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
+          include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal.notreprojet.php';
+          include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal.donnes.numeriques.php';*/
+          ?>
+      </div>
   </body>
 </html>
 <?php if (strcmp($statut, 'accueil.cet') === 0): ?>

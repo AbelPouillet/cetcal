@@ -21,9 +21,20 @@ $loader->loadCommunes();
             <div id="cet-annuaire-crt-main"></div>
         </div>
         <!--SEARCH BAR DEBUT-->
-        <div class="col-12 searchbar">
-            <input type="text">
+        <div class="row searchbar-wrapper">
+            <div class="col-12">
+                <div class="d-flex">
+                    <div class="input-wrapper">
+                        <input class="search-input"type="text">
+                    </div>
+                    <div class="btn-wrapper d-flex">
+                        <button class="btn-search text-center">Rechercher</button>
+                        <button class="btn-filter">Filtrer</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <!--SEARCH BAR FIN-->
     </div>
 
