@@ -100,16 +100,16 @@
 
     z-index: 400;
     position: absolute;
-    top:844px;
-    left: 307px;
+    top:86%;
+    left: 222px;
     margin: 0px 0%;
-    width: 33%;
-    height: 2rem;
+    width: 66%;
+    height: 13.875rem;
     max-height: 5rem;
 }
  .search-input{
     height: 100%;
-    width: 754px;
+    width: 100%;
     border: 1px solid #85c296;
 }
  .input-wrapper input:focus{
