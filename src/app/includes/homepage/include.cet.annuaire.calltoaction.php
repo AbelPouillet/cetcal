@@ -1,8 +1,7 @@
 <section class="call-to-action-prd pt-5 pb-5">
-    <div class="row">
-        <div class="col-7 d-flex justify-content-around ">
-            <div>
-                <p>
+    <div class="row d-flex flex-column-reverse flex-xl-row">
+        <div class="col-12 col-xl-7 d-flex flex-column flex-xl-row justify-content-xl-around">
+                <p class="mw-100">
                     Castillonnais En Transition porte un
                     projet de développement des Circuits
                     Alimentaires Locaux de produits bio
@@ -13,9 +12,8 @@
                     à jour sur comment se procurer ces
                     productions alimentaires.
                 </p>
-            </div>
-            <div>
-                <p>
+
+                <p class="mw-100">
                     Le but de cet annuaire est de
                     favoriser le rapprochement entre les
                     consommateurs et les producteurs
@@ -31,10 +29,7 @@
                     la résilience alimentaire de notre
                     territoire.
                 </p>
-            </div>
-
-            <div>
-                <p>
+                <p class="mw-100">
                     Cet annuaire sera diffusé localement
                     auprès de toutes les structures
                     qui sont en lien avec le public :
@@ -43,19 +38,19 @@
                     associations locales, marchés..., en
                     version papier.
                 </p>
-            </div>
-
         </div>
-        <div class="col-5 d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-xl-5 d-flex flex-column justify-content-center align-items-center pb-3 ">
             <div class="">
-                <div class="text-prd-1 text-center d-flex flex-column">
-                    <p>Si vous êtes producteur</p>
-                    <p>et vous souhaitez être référencé</p>
+                <div class="text-prd-1 text-center d-flex flex-column w-100">
+                    <p class="w-100">Si vous êtes producteur</p>
+                    <p class="w-100">et vous souhaitez être référencé</p>
                     <p>dans l'annuaire, cliquez ci-dessous :</p>
                 </div>
             </div>
-            <div class="pt-3 pb-3">
-                <a class="btn-inscriptionPrd text-center" href="">s’inscrire sur l’annuaire des producteurs</a>
+            <div class="pt-3 pb-3 ">
+                <div class="btn-inscriptionPrd d-flex justify-content-xl-center">
+                    <a class="" href="">s’inscrire sur l’annuaire des producteurs</a>
+                </div>
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center text-prd-2 w-100">
                 <p class="w-100 text-center">Ce projet est financé par la Région Nouvelle-Aquitaine <br> <span>et l'Union Européenne</span>

@@ -1,12 +1,12 @@
 <section class="bg-slogan container-fluid pt-5 pb-5">
-        <div class="row slogan">
-            <div class="col-5">
+        <div class="row d-flex flex-column flex-xl-row slogan">
+            <div class="col-12 col-xl-5 pt-5">
                 <img class="mw-100" src="res/documentation/images-site/au-coeur.png" alt="Max-width 100%">
             </div>
-            <div class="col-2">
+            <div class="col-12 col-xl-2 pt-5">
                 <img class="mw-100" src="res/content/icons/logos-verts-europe-ab.png" alt="Max-width 100%">
             </div>
-            <div class="col-5">
+            <div class="col-12 col-xl-5 pt-5">
                 <p class="text-slogan">
                     Cet annuaire répertorie l’ensemble des producteurs BIO et y tendant*, les
                     lieux de distribution, les structures ou entités intégrant les circuits courts

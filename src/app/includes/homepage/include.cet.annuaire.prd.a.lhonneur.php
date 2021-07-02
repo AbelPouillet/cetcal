@@ -11,36 +11,36 @@ $data = $controller->fetchProducteursDerniersInscrit(5);
             <div class="col-12 d-flex justify-content-center pb-3">
                 <span class="prd-highlight">Les derniers producteurs inscrits :</span>
             </div>
-            <div class="col-12 d-flex justify-content-between">
-                <div class="card-last-prd">
+            <div class="col-12 d-flex flex-column flex-xl-row justify-content-between">
+                <div class="card-last-prd mt-3">
                     <p class="denomination">TOTO</p>
                     <p class="comumne"></p>
                     <p class="lieu-dit"></p>
                     <p class="codepostal"></p>
                     <p class="type-production"></p>
                 </div>
-                <div class="card-last-prd">
+                <div class="card-last-prd mt-3">
                     <p class="denomination">TOTO</p>
                     <p class="comumne"></p>
                     <p class="lieu-dit"></p>
                     <p class="codepostal"></p>
                     <p class="type-production"></p>
                 </div>
-                <div class="card-last-prd">
+                <div class="card-last-prd mt-3">
                     <p class="denomination">TOTO</p>
                     <p class="comumne"></p>
                     <p class="lieu-dit"></p>
                     <p class="codepostal"></p>
                     <p class="type-production"></p>
                 </div>
-                <div class="card-last-prd">
+                <div class="card-last-prd mt-3">
                     <p class="denomination">TOTO</p>
                     <p class="comumne"></p>
                     <p class="lieu-dit"></p>
                     <p class="codepostal"></p>
                     <p class="type-production"></p>
                 </div>
-                <div class="card-last-prd">
+                <div class="card-last-prd mt-3">
                     <p class="denomination">TOTO</p>
                     <p class="comumne"></p>
                     <p class="lieu-dit"></p>
