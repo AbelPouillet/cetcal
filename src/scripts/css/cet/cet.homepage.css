@@ -1,0 +1,360 @@
+ /****************\
+ -----HOMEPAGE-----
+ \****************/
+
+ /*HEROSECTION*/
+ .herosection-wrapper{}
+
+
+
+ .button-bag li{
+     list-style-type: none;
+     margin-bottom: 0.625rem;
+     border: 0;
+     border-radius: 0.50rem;
+     box-sizing: border-box;
+     color: white;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 1rem;
+     line-height: 1.2;
+     white-space: nowrap;
+     cursor: pointer;
+     padding: 0.5rem 1.875rem 0.5rem 1.875rem;
+ }
+
+ .button-bag a {
+     text-decoration: none;
+     color: #FFFFFF;
+ }
+
+.btnconnect{
+    background: #de4317;
+}
+.btnprd{
+    background: #6d3115;
+}
+
+.btncustomer{
+    background: #059b30;
+}
+
+.yellowLine{
+    width: 100%;
+    height: 14px;
+    background-color: #fee378;
+}
+
+ /*NAVBAR*/
+
+.nav-wrapper{
+    background-color: #fee378;
+    padding-top: 1.25rem;
+    height: 57px;
+}
+
+.nav-wrapper a {
+    color: #059b30;
+    font-family: Signika;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+
+}
+ .nav-wrapper li{
+     list-style-type: none;
+     margin-right: 1.56rem;
+ }
+ /*dropdown*/
+ .dropdown {
+     position: relative;
+     display: inline-block;
+     cursor: pointer;
+ }
+ .menu {
+     display: none;
+     position: absolute;
+     background-color: #FFFFFF;
+     border: 1px solid #fee378;
+     min-width: 300px;
+     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+     padding: 12px 16px;
+     z-index: 450;
+ }
+
+ .menu a {
+     color: #059b30;
+ }
+
+ .dropdown:hover .menu{
+     display: block;
+ }
+
+ .btn-dropdown{
+     list-style-type: none;
+     color: #059b30;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 14px;
+ }
+
+#cet-annuaire-crt-main-container{
+
+}
+ #cet-annuaire-crt-bootstrap-wrapper{
+ }
+
+.searchbar-wrapper{
+
+    z-index: 400;
+    position: absolute;
+    top:86%;
+    left: 222px;
+    margin: 0px 0%;
+    width: 66%;
+    height: 13.875rem;
+    max-height: 5rem;
+}
+ .search-input{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #85c296;
+}
+ .input-wrapper input:focus{
+ }
+
+.btn-search{
+    background-color: #de4317;
+    border: 1px solid #85c296;
+    color: white;
+    height: 4.6875rem;
+    width: 55%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 0px;
+    cursor: pointer;
+}
+.btn-filter{
+    background-color: #85c296;
+    border: 1px solid #85c296;
+    color: #059b30;
+    height: 4.6875rem;
+    width: 45%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 0px;
+    cursor: pointer;
+}
+.bg-slogan{
+   background-color: #bdddea;
+}
+
+.text-slogan {
+    color: #059b30;
+    font-family: Signika;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+ .text-slogan-r{
+     color: #de4317 !important;
+ }
+
+ .slogan-asterisque{
+     color: #059b30;
+     font-family: Signika;
+     font-weight: 350;
+     font-size: 14px;
+ }
+
+p{
+    word-wrap: break-word;
+}
+.img-plateforme{
+    width: 30%;
+}
+
+section .pour-qui ul{
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+}
+.pour-qui{
+    background-color: #de4317;
+}
+.pour-qui  ul > li{
+    list-style-type: none;
+    color: #FFFFFF;
+    font-family: Signika;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.prd-highlight{
+
+    color: #059b30;
+    font-family: Signika;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.card-last-prd{
+    border: 1px solid #059b30;
+    border-radius: 5px;
+    background-color: #fff2bd;
+    flex: 0 1 calc(20% - 0.875rem);
+/*    max-width: calc(20% - 0.875rem);
+    min-width: calc(20% - 0.875rem);*/
+
+}
+
+/*
+    CALL-TO-ACTION SECTION
+ */
+
+ .call-to-action-prd {
+     background-color: #926550;
+ }
+
+ .call-to-action-prd p {
+     max-width: 19.6875rem;
+     color: #FFFFFF;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 14px;
+ }
+ .call-to-action-prd a {
+     text-decoration: none;
+     color: #FFFFFF;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 21px;
+
+ }
+
+ .btn-inscriptionPrd{
+     border: 0;
+     border-radius: 1rem;
+     background: #de4317;
+     white-space: nowrap;
+     padding: 0.5rem 0.5rem 0.8rem 0.9rem;
+     cursor: pointer;
+     width: 100%;
+     height: 100%;
+ }
+
+ .text-prd-1 p {
+     padding: 0;
+     margin: 0;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 21px;
+     white-space: nowrap;
+
+ }
+
+ .text-prd-2{
+     text-decoration: none;
+     color: #FFFFFF;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 21px;
+
+ }
+
+ .text-prd-2 p{
+     padding: 0;
+     margin: 0;
+     white-space: nowrap;
+ }
+
+ .call-to-action-visitor{
+     background: #059b30;
+ }
+
+ .ctav-text-1{
+     text-decoration: none;
+     color: #FFFFFF;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 21px;
+
+ }
+
+ .ctav-text-2{
+     text-decoration: none;
+     color: #FFFFFF;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 14px;
+
+ }
+
+ .text-soutien{
+     padding: 0;
+     margin: 0;
+     font-family: Signika;
+     color: #FFFFFF;
+     font-weight: bold;
+     font-size: 21px;
+     white-space: nowrap;
+ }
+ .btn-cta-visitor a {
+     text-decoration: none;
+     color: #FFFFFF;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 21px;
+ }
+
+ .btn-cta-visitor{
+     border: 0;
+     border-radius: 0.9rem;
+     background: #de4317;
+     line-height: 1.2;
+     white-space: nowrap;
+     padding: 1rem 1.9rem 1rem;
+     margin: 0.25rem;
+     cursor: pointer;
+     max-width: 36.0625rem;
+     min-width: 36.0625rem;
+     text-decoration: none;
+     color: #FFFFFF;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 21px;
+ }
+
+ .text-aboutus p{
+     padding: 0;
+     margin: 0;
+     font-family: Signika;
+     font-weight: 600;
+     font-size: 14px;
+     color: #059b30;
+ }
+
+ .address-wrapper{
+     background-color: #7cbcd7;
+     border-radius: 0.70rem;
+     height: 16.875rem;
+     max-height: 16.875rem;
+
+ }
+
+ .address-wrapper, address, a{
+     color: #FFFFFF;
+     font-weight: 350;
+
+ }
+ .address-card-title{
+     font-family: Signika;
+     font-weight: bold;
+     color: #FFFFFF;
+
+ }
+

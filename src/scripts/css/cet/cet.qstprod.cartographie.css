@@ -45,7 +45,10 @@ p.mini-fiche-logo-element-container {
 	margin-top: 8px;
 	margin-left: 2px;
 }
-#cet-annuaire-crt-main-container {  }
+#cet-annuaire-crt-main-container {
+}
+#cet-annuaire-crt-bootstrap-wrapper{
+}
 #cet-ann-crt-ctrl-a-id {
 	display: block;
 	background-color: white !important;

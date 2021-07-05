@@ -134,7 +134,6 @@
         </table>
       </div>
       <!-- END Listing des entités pour mises à jour -->
-
     </div>
     <!-- END Bloc collasable -->
 
