@@ -2,11 +2,13 @@
     <!--- DEBUT HEADER --->
         <div class="row">
             <div class="col-12 col-xl-12 herosection-wrapper d-flex justify-content-center align-items-start flex-column-reverse flex-xl-row">
+
                 <div class="col-12 col-sm-12 col-xl-5">
-                    <img class="w-100 mw-100" src="res/content/images-site/decidelabiolocale.png" alt="Max-width 100%">
+                    <img class="w-100 mw-100" src="res/content/images-site/decidelabiolocale.png" alt="Max-width 100%"/>
                 </div>
+
                 <div class="col-12 col-sm-12 col-xl-4">
-                    <img class="w-100 mw-100" src="res/content/images-site/sous-titres.png" alt="Max-width 100%">
+                    <img class="w-100 mw-100" src="res/content/images-site/sous-titres.png" alt="Max-width 100%"/>
                 </div>
                 <div class="col-12 col-xl-3 justify-content-xl-center align-items-xl-center d-flex">
                     <ul class="d-flex flex-xl-column button-bag justify-content-around">
