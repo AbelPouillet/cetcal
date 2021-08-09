@@ -38,8 +38,22 @@
 
  }
 
-.btnconnect{
-    background: #de4317;
+.btn-connect{
+    background-color: #de4317;
+  /*  width: 346px;
+    height: 57px;*/
+    border-radius: 20px;
+
+    border: none;
+    color: white !important;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
 }
 .btnprd{
     background: #6d3115;
@@ -80,8 +94,7 @@
 
 .nav-wrapper{
     background-color: #fee378;
-    padding-top: 1.25rem;
-    height: 55px;
+    height: 84px;
 }
 
 .nav-wrapper a {
