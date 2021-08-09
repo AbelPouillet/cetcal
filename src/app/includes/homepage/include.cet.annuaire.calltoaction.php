@@ -47,8 +47,8 @@
                     <p>dans l'annuaire, cliquez ci-dessous :</p>
                 </div>
             </div>
-            <div class="pt-3 pb-3 ">
-                <div class="btn-inscriptionPrd d-flex justify-content-xl-center">
+            <div class="col-12 pt-3 pb-3">
+                <div class="col-12 btn-inscriptionPrd d-flex justify-content-center justify-content-xl-center">
                     <a class="" href="">s’inscrire sur l’annuaire des producteurs</a>
                 </div>
             </div>
