@@ -3,7 +3,10 @@
  \****************/
 
  /*HEROSECTION*/
- .herosection-wrapper{}
+ .herosection-wrapper{
+     max-height: 610px;
+     padding-bottom: 3.75rem;
+ }
 
  .button-bag{
      max-height: 34px;
