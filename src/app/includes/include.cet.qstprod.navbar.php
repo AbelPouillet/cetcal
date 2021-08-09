@@ -5,17 +5,17 @@
 
                 <div class="col-12 col-md-12 col-lg-3 col-xl-3 d-flex justify-content-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center">
 
-                    <ul class="d-flex flex-lg-column flex-xl-column button-bag justify-content-around">
+            <!--        <ul class="d-flex flex-lg-column flex-xl-column button-bag justify-content-around">
                         <li class="text-xl-center btnconnect" ><a class="btn--header" href="">Se connecter</a></li>
                         <li class="btnprd" ><a class="btn--header" href="">Je suis producteur</a></li>
                         <li class="btncustomer" ><a class="btn--header"href="">Je suis consommateur</a></li>
-                    </ul>
+                    </ul>-->
 
-                    <div class="container-burger d-flex flex-xl-column align-items-xl-center">
+                    <!--<div class="container-burger d-flex flex-xl-column align-items-xl-center">
                         <div class="bar1"></div>
                         <div class="bar2"></div>
                         <div class="bar3"></div>
-                    </div>
+                    </div>-->
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-5  col-xl-5">
@@ -31,9 +31,9 @@
     <div class="row yellowLine d-block d-sm-none d-md-none d-lg-none d-xl-none"></div>
     <div class="row pt-sm-5 pt-md-5 pt-lg-5 pt-xl-5 d-none d-sm-block d-md-block d-lg-block d-xl-block">
             <!--DEBUT NAV MENU-->
-            <div class="col-12 nav-wrapper d-flex justify-content-center align-items-center">
-                <nav class="d-flex justify-content-center">
-                    <ul class="d-flex align-items-center">
+            <div class="col-12 nav-wrapper d-flex">
+                <nav class="col-12 d-flex">
+                    <ul class=" col-9 d-flex justify-content-start align-items-center">
                         <li><a class="navbar-link" href="">Notre projet decidelabiolocale.org</a></li>
                         <!--dropdown debut-->
                         <li>
@@ -50,6 +50,9 @@
                         <li><a class="navbar-link" href="">Qui sommes-nous ?</a></li>
                         <li><a class="navbar-link" href="">Partenaires et liens utiles</a></li>
                     </ul>
+                    <div class="col-3 d-flex justify-content-end  ml-auto">
+                        <a class="btn--header" href="">Se connecter</a>
+                    </div>
                 </nav>
             </div>
             <!-- FIN NAV MENU -->
