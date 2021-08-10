@@ -19,11 +19,11 @@
                 </div>-->
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-6">
-                    <img class="w-100 mw-100" src="res/content/images-site/decidelabiolocale.png" alt="Max-width 100%"/>
+                    <img class="img-fluid w-75"  src="res/content/images-site/decidelabiolocale.png" alt="Responsive image">
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-6">
-                    <img class="w-100 mw-100" src="res/content/images-site/sous-titres.png" alt="Max-width 100%"/>
+                    <img class="img-fluid w-75"  src="res/content/images-site/sous-titres.png" alt="Responsive image">
                 </div>
 
             </div>

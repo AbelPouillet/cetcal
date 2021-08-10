@@ -4,8 +4,6 @@
 
  /*HEROSECTION*/
  .herosection-wrapper{
-     max-height: 610px;
-     padding-bottom: 3.75rem;
  }
 
  .button-bag{
@@ -150,9 +148,9 @@
 
 .searchbar-wrapper{
 
-    z-index: 400;
-    position: absolute;
-    top:86%;
+    z-index: 2;
+    position: relative;
+    top:-47px;
     left: 222px;
     margin: 0px 0%;
     width: 66%;
@@ -161,7 +159,7 @@
 }
  .search-input{
     height: 100%;
-    width: 100%;
+    width: 600px;
     border: 1px solid #85c296;
 }
  .input-wrapper input:focus{
