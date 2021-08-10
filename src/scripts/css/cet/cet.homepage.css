@@ -1,7 +1,9 @@
  /****************\
  -----HOMEPAGE-----
  \****************/
-
+ label {
+    margin-bottom: 0;
+}
  /*HEROSECTION*/
  .herosection-wrapper{
  }
@@ -92,7 +94,7 @@
 
 .nav-wrapper{
     background-color: #fee378;
-    height: 84px;
+    height: 49px;
 }
 
 .nav-wrapper a {
@@ -146,23 +148,46 @@
  #cet-annuaire-crt-bootstrap-wrapper{
  }
 
+
 .searchbar-wrapper{
 
     z-index: 2;
     position: relative;
     top:-47px;
     left: 222px;
-    margin: 0px 0%;
+    margin: 0;
     width: 66%;
     height: 13.875rem;
     max-height: 5rem;
 }
  .search-input{
     height: 100%;
-    width: 600px;
+    width: 100%;
     border: 1px solid #85c296;
 }
  .input-wrapper input:focus{
+ }
+
+ .perimeter-search{
+     background-color: #79b9d4;
+ }
+
+ .dropdown-search {
+     position: relative;
+     display: inline-block;
+     cursor: pointer;
+ }
+
+ .searchbar-inputs{
+     width: 60%;
+ }
+
+ .search-dropdown:hover .menu{
+     display: block;
+ }
+
+ .btn-wrapper{
+     width: 100%;
  }
 
 .btn-search{
@@ -170,7 +195,7 @@
     border: 1px solid #85c296;
     color: white;
     height: 4.6875rem;
-    width: 55%;
+    width: 100%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -179,11 +204,11 @@
     cursor: pointer;
 }
 .btn-filter{
-    background-color: #85c296;
+    background-color: #219130;
     border: 1px solid #85c296;
-    color: #059b30;
+    color: #FFFFFF;
     height: 4.6875rem;
-    width: 45%;
+    width: 100%;
     text-align: center;
     text-decoration: none;
     display: inline-block;

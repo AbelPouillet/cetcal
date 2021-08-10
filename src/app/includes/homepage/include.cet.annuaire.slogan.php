@@ -1,35 +1,59 @@
 <section class="bg-slogan container-fluid pt-5 pb-5">
     <!--SEARCH BAR DEBUT-->
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 searchbar-wrapper d-none d-sm-block d-md-block d-lg-block d-xl-block">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 searchbar-wrapper d-none d-sm-block d-md-block d-lg-block d-xl-block p-xl-0">
         <div class="d-flex w-100">
-            <div class="col-xl-12 input-wrapper w-100 d-flex p-xl-0">
-                <!--<label class="search-input"></label>-->
-                div.col-
-                <input class="search-input" type="text"/>
-                <div>
-                    <p>Rayon</p>
+            <div class="col-xl-12 input-wrapper w-100 d-flex flex-xl-row p-xl-0">
+
+                <div class="col-xl-3 p-xl-0"
+                    <label class="" for="search-input"></label>
+                    <input class="search-input" type="text"/>
                 </div>
-                <div>
-                    <label> 10km</label>
-                    <input type="radio">
+
+                <div class="col-xl-3 d-flex p-xl-0 perimeter-search align-items-center">
+
+                    <div class="d-flex align-items-center">
+                        <span class="mt-0">Rayon</span>
+                    </div>
+                    <div class="d-flex align-items-start flex-column ml-3">
+                        <label>10km</label>
+                        <input type="radio" id="" class="align-self-center"  name="" for="" value="">
+                    </div>
+                    <div class="d-flex align-items-start flex-column ml-3">
+                        <label>15km</label>
+                        <input type="radio" id="" class="align-self-center" name="" for="" value="">
+                    </div>
+                    <div class="d-flex align-items-start flex-column ml-3">
+                        <label>20km</label>
+                        <input type="radio" id="" class="align-self-center" name="" for="" value="">
+                    </div>
+                    <div class="d-flex align-items-start flex-column ml-3">
+                        <label>40km</label>
+                        <input type="radio" id="" class="align-self-center" name="" for="" value="">
+                    </div>
                 </div>
-                <div>
-                    <label> 15km</label>
-                    <input type="radio">
+
+                <div class="col-xl-3 p-xl-0">
+                    <input class="search-input" type="text"/>
+                    <label class="" for="search-input"></label>
                 </div>
-                <div>
-                    <label> 20km</label>
-                    <input type="radio">
-                </div>
-                <div>
-                    <label> 40km</label>
-                    <input type="radio">
+
+            <div class="col-xl-3 p-xl-0">
+                <div class="btn-wrapper d-flex">
+                    <div class="searchbar-inputs search-dropdown">
+                        <button class="btn-filter">Catégories <span>▸</span></button>
+                        <ul class="menu">
+                            <li><a href="">Lieux de vente</a></li>
+                            <li><a href="">Producteurs</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button class="btn-search text-center">Rechercher</button>
+                    </div>
                 </div>
             </div>
-            <div class="btn-wrapper d-flex">
-                <button class="btn-search text-center">Rechercher</button>
-                <button class="btn-filter">Filtrer</button>
+
             </div>
+
         </div>
     </div>
     <!--SEARCH BAR FIN-->
