@@ -6,10 +6,10 @@
 
                 <div class="col-xl-3 p-xl-0"
                     <label class="" for="search-input"></label>
-                    <input class="search-input" type="text"/>
+                    <input class="search-input text-center" type="text" placeholder="Rechercher votre commune"/>
                 </div>
 
-                <div class="col-xl-3 d-flex p-xl-0 perimeter-search align-items-center">
+                <div class="col-xl-3 d-flex p-xl-0 perimeter-search justify-content-center align-items-center">
 
                     <div class="d-flex align-items-center">
                         <span class="mt-0">Rayon</span>
@@ -33,14 +33,14 @@
                 </div>
 
                 <div class="col-xl-3 p-xl-0">
-                    <input class="search-input" type="text"/>
+                    <input class="search-input text-center" type="text" placeholder="Nom, adresse, mot-clé, etc"/>
                     <label class="" for="search-input"></label>
                 </div>
 
             <div class="col-xl-3 p-xl-0">
                 <div class="btn-wrapper d-flex">
                     <div class="searchbar-inputs search-dropdown">
-                        <button class="btn-filter">Catégories <span>▸</span></button>
+                        <button class="btn-filter">Catégories <span class="triangle">▸</span></button>
                         <ul class="menu">
                             <li><a href="">Lieux de vente</a></li>
                             <li><a href="">Producteurs</a></li>
@@ -59,10 +59,10 @@
     <!--SEARCH BAR FIN-->
         <div class="row d-flex flex-column flex-xl-row slogan">
             <div class="col-12 col-xl-5 pt-5">
-                <img class="mw-100" src="res/documentation/images-site/au-coeur.png" alt="Max-width 100%">
+                <img class="img-remettre" src="res/documentation/images-site/au-coeur.png" alt="Max-width 100%">
             </div>
-            <div class="col-12 col-xl-2 pt-5">
-                <img class="mw-100" src="res/content/icons/logos-verts-europe-ab.png" alt="Max-width 100%">
+            <div class="col-12 col-xl-2 pt-5 d-flex align-items-center">
+                <img class="img-abeu" src="res/content/icons/logos-verts-europe-ab.png" alt="Max-width 100%">
             </div>
             <div class="col-12 col-xl-5 pt-5">
                 <p class="text-slogan">

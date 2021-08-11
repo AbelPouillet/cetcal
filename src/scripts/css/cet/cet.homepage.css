@@ -148,16 +148,22 @@
  #cet-annuaire-crt-bootstrap-wrapper{
  }
 
+.img-remettre{
+    max-width: 90%;
+}
 
+.img-abeu{
+    max-width: 85%;
+}
 .searchbar-wrapper{
 
     z-index: 2;
     position: relative;
     top:-47px;
-    left: 222px;
+    left: 75px;
     margin: 0;
-    width: 66%;
-    height: 13.875rem;
+    width: 95%;
+    height: 49px;
     max-height: 5rem;
 }
  .search-input{
@@ -170,6 +176,7 @@
 
  .perimeter-search{
      background-color: #79b9d4;
+     max-width: 305px;
  }
 
  .dropdown-search {
@@ -185,6 +192,13 @@
  .search-dropdown:hover .menu{
      display: block;
  }
+.triangle{
+    transform: rotate(30deg);
+}
+ .btn-filter:hover > triangle{
+
+ }
+
 
  .btn-wrapper{
      width: 100%;
