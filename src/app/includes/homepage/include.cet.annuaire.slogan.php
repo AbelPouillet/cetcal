@@ -41,9 +41,13 @@
                 <div class="btn-wrapper d-flex">
                     <div class="searchbar-inputs search-dropdown">
                         <button class="btn-filter">Catégories <span class="triangle">▸</span></button>
-                        <ul class="menu">
-                            <li><a href="">Lieux de vente</a></li>
-                            <li><a href="">Producteurs</a></li>
+                        <ul class="menu search-links">
+                            <li><input class="checkbox-dropdown" id="checkbox-dropdown-1" type="checkbox"><label for="checkbox-dropdown-1">Producteurs</label></li>
+                            <li><input class="checkbox-dropdown" id="checkbox-dropdown-2" type="checkbox"><label for="checkbox-dropdown-2">Marchés</label></li>
+                            <li><input class="checkbox-dropdown" id="checkbox-dropdown-3" type="checkbox"><label for="checkbox-dropdown-3">AMAP</label></li>
+                            <li><input class="checkbox-dropdown" id="checkbox-dropdown-4" type="checkbox"><label for="checkbox-dropdown-4">Magasins BIO</label></li>
+                            <li><input class="checkbox-dropdown" id="checkbox-dropdown-5" type="checkbox"><label for="checkbox-dropdown-5">Associations</label></li>
+                            <li class="text-center"> <a> recherche avancée</a></li>
                         </ul>
                     </div>
                     <div>
