@@ -152,11 +152,13 @@
 
 .img-remettre{
     max-width: 34.688rem;
-    max-height: 6.75rem;
+    max-height: 6.31rem;
 }
 
 .img-abeu{
-    max-width: 85%;
+    width: 161px;
+    height: 71px;
+
 }
 .searchbar-wrapper{
 
@@ -262,11 +264,18 @@
    background-color: #bdddea;
 }
 
+.text-slogan-wrapper{
+    min-width: 25.25%;
+    max-width: 100%;
+    min-height: 6.26%;
+    max-height: 100%;
+}
+
 .text-slogan {
     color: #059b30;
     font-family: Signika;
     font-weight: bold;
-    font-size: 21px;
+    font-size: 14px;
 }
 
  .text-slogan-r{
@@ -277,7 +286,7 @@
      color: #059b30;
      font-family: Signika;
      font-weight: 350;
-     font-size: 14px;
+     font-size: 10px;
  }
 
 p{
@@ -390,7 +399,7 @@ section .pour-qui ul{
      color: #FFFFFF;
      font-family: Signika;
      font-weight: bold;
-     font-size: 21px;
+     font-size: 14px;
 
  }
 
@@ -399,7 +408,7 @@ section .pour-qui ul{
      color: #FFFFFF;
      font-family: Signika;
      font-weight: bold;
-     font-size: 14px;
+     font-size: 10px;
 
  }
 
