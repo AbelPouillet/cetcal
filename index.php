@@ -52,10 +52,11 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     <script src="/src/scripts/js/cetcal/cetcal.min.js"></script>
   </head>
   <body id="">
-      <div class="container-fluid">
+      <div class="container-fluid p-0">
           <?php
           include $PHP_INCLUDES_PATH.'include.cet.qstprod.navbar.php';
           include $PHP_INCLUDES_PATH.'cartographie/include.cet.qstprod.cartographie.php';
+          include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.searchbar.php';
           include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.slogan.php';
           include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.prd.a.lhonneur.php';
           include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.plateforme.php';
