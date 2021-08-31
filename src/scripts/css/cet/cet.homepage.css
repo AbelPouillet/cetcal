@@ -194,7 +194,7 @@ input[type="radio"]:checked + label::before {
 
 .searchtxt-bleu{
     list-style-type: none;
-    color: #79b9d4;
+    color: #79b9d4!important;
     font-family: Signika;
     font-weight: bold;
     font-size: 14px;
@@ -284,6 +284,14 @@ label{
 }
  .btn-filter:hover > triangle{
 
+ }
+
+ .advanced-searchtxt{
+     color: #de4317!important;
+     font-family: Signika;
+     font-weight: bold;
+     font-size: 14px;
+     cursor: pointer;
  }
 
 
