@@ -6,35 +6,40 @@
 
                 <div class="d-flex">
                     <label class="label" for="search-input"></label>
-                    <input class="search-input text-center" type="text" placeholder="Rechercher votre commune"/>
+                    <input class="search-input text-center searchtxt-bleu" type="text" placeholder="Rechercher votre commune"/>
                 </div>
 
                 <div class="d-flex p-xl-0 perimeter-search justify-content-center align-items-center">
 
-                    <div class="d-flex align-items-center">
-                        <span class="mt-0">Rayon</span>
+                    <div class="d-flex align-items-center ml-3 mr-3">
+                        <span class="mt-0 searchtxt-rayon">rayon</span>
+                    </div>
+                    <div class="d-flex align-items-start flex-column">
+                        <p class="mb-0 searchtxt-blanc">10km</p>
+                        <input type="radio" id="perim-10" class="align-self-center" name="perim" value="perim-10">
+                        <label class="mb-0 searchtxt-blanc" for="perim-10"></label>
+
                     </div>
                     <div class="d-flex align-items-start flex-column ml-3">
-                        <label class="mb-0" for="perim-10">10km</label>
-                        <input type="radio" id="perim-10" class="align-self-center" name="perim-10" value="">
+                        <p class="mb-0 searchtxt-blanc">15km</p>
+                        <input type="radio" id="perim-15" class="align-self-center" name="perim" value="perim-15">
+                        <label class="mb-0 searchtxt-blanc" for="perim-15"></label>
                     </div>
                     <div class="d-flex align-items-start flex-column ml-3">
-                        <label class="mb-0" for="perim-15">15km</label>
-                        <input type="radio" id="perim-15" class="align-self-center" name="perim-15" value="">
+                        <p class="mb-0 searchtxt-blanc">20km</p>
+                        <input type="radio" id="perim-20" class="align-self-center" name="perim" value="perim-20">
+                        <label class="mb-0 searchtxt-blanc" for="perim-20"></label>
                     </div>
-                    <div class="d-flex align-items-start flex-column ml-3">
-                        <label class="mb-0" for="perim-20">20km</label>
-                        <input type="radio" id="perim-20" class="align-self-center" name="perim-20" value="">
-                    </div>
-                    <div class="d-flex align-items-start flex-column ml-3">
-                        <label class="mb-0" for="perim-40">40km</label>
-                        <input type="radio" id="perim-40" class="align-self-center" name="perim-40" value="">
+                    <div class="d-flex align-items-start flex-column ml-3 mr-3">
+                        <p class="mb-0 searchtxt-blanc">40km</p>
+                        <input type="radio" id="perim-40" class="align-self-center" name="perim" value="perim-40">
+                        <label class="mb-0 searchtxt-blanc" for="perim-40"></label>
                     </div>
                 </div>
 
                 <div class="d-flex">
                     <label class="label" for="search-input"></label>
-                    <input class="search-input text-center" type="text" placeholder="Nom, adresse, mot-clé, etc"/>
+                    <input class="search-input text-center searchtxt-bleu" type="text" placeholder="Nom, adresse, mot-clé, etc"/>
                 </div>
 
                 <div class="p-xl-0">
