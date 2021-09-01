@@ -42,18 +42,14 @@
 
 .btn-connect{
     background-color: #de4317;
-/*    width: 165px;
-    height: 27px;*/
-    border-radius: 20px;
-
+    border-radius: 6px;
+    width: 180px;
     border: none;
     color: white !important;
-    padding: 3.5px 13.5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    /*margin: 4px 2px;*/
     cursor: pointer;
 
 }
@@ -67,28 +63,23 @@
 
 /*BUTTON BURGER*/
 
- .container-burger {
-     display: inline-block;
-     cursor: pointer;
-     background-color: #fee378;
-     border-radius: 50%;
-     width: 4rem;
-     max-width: 4rem;
- }
+.burger-color{
+    color: #059b30;
+}
 
- .bar1,
- .bar2,
- .bar3 {
-     width: 33%;
-     height: 5px;
-     background-color: #059b30;
-     margin: 2px 0;
-     transition: 0.4s;
- }
+.burger-container{
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    width: 38px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .yellowLine{
     width: 100%;
-    height: 14px;
+    height: 28px;
     background-color: #fee378;
 }
 
@@ -358,7 +349,7 @@ p{
     word-wrap: break-word;
 }
 .img-plateforme{
-    width: 30%;
+    width: 35%;
 }
 
 section .pour-qui ul{
@@ -426,8 +417,8 @@ section .pour-qui ul{
      white-space: nowrap;
      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
      cursor: pointer;
-     width: 417px;
-     height: 46px;
+/*     width: 417px;
+     height: 46px;*/
  }
 
  .text-prd-1 p {
@@ -537,6 +528,44 @@ section .pour-qui ul{
      font-family: Signika;
      font-weight: bold;
      color: #FFFFFF;
+
+ }
+
+ /*Responsive*/
+
+ @media (min-width: 576px) {
+
+     /*Bouton connexion*/
+
+     .btn-connect{
+         background-color: #de4317;
+         /*    width: 165px;
+             height: 27px;*/
+         border-radius: 20px;
+
+         border: none;
+         color: white !important;
+         padding: 3.5px 13.5px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         /*margin: 4px 2px;*/
+         cursor: pointer;
+
+     }
+
+     /*bouton inscription producteur*/
+     .btn-inscriptionPrd{
+         border: 0;
+         border-radius: 1rem;
+         background: #de4317;
+         white-space: nowrap;
+         padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+         cursor: pointer;
+         width: 417px;
+         height: 46px;
+     }
 
  }
 

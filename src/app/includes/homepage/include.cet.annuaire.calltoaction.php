@@ -1,7 +1,7 @@
 <section class="call-to-action-prd pt-4 pb-4">
     <div class="row d-flex flex-column-reverse flex-xl-row pt-1 pb-1">
         <div class="col-12 col-xl-7 d-flex flex-column flex-xl-row justify-content-xl-around">
-                <p class="mw-100 ml-0 ml-sm-4 ml-md-0 ml-lg-4 ml-xl-4 mr-4">
+                <p class="mw-100 ml-0 ml-sm-4 ml-md-0 ml-lg-4 ml-xl-4 mr-xl-4">
                     Castillonnais En Transition porte un
                     projet de développement des Circuits
                     Alimentaires Locaux de produits bio
@@ -13,7 +13,7 @@
                     productions alimentaires.
                 </p>
 
-                <p class="mw-100 ml-1 mr-3">
+                <p class="mw-100 ml-1 mr-xl-3">
                     Le but de cet annuaire est de
                     favoriser le rapprochement entre les
                     consommateurs et les producteurs
@@ -39,7 +39,7 @@
                     version papier.
                 </p>
         </div>
-        <div class="col-12 col-xl-5 d-flex flex-column pb-3 ">
+        <div class="col-12 col-xl-5 d-flex align-items-center justify-content-center flex-column pb-3">
             <div class="pb-4">
                 <div class="text-prd-1 text-center d-flex flex-column align-items-center w-100">
                     <p class="w-100">Si vous êtes producteur</p>

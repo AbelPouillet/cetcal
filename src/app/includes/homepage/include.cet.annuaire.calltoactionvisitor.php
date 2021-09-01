@@ -1,5 +1,5 @@
 <section class="call-to-action-visitor pt-4">
-    <div class="row pb-5">
+    <div class="row pb-4">
         <div class="col-12 col-xl-5 d-flex justify-content-center align-items-center flex-column">
             <p class="text-soutien text-center pb-4">decidelabiolocale.org <br> a besoin de votre soutien !</p>
             <div class="btn-cta-visitor text-center">
@@ -20,7 +20,7 @@
             </p>
         </div>
         <div class="col-12 col-xl-2 d-flex align-items-center">
-            <p class="ctav-text-2 text-xl-center">
+            <p class="ctav-text-2 text-center">
                 Cet annuaire garantit la confidentialité
                 de vos données numériques.
                 Prendre connaissance de notre politique
