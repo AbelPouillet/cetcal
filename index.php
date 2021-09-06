@@ -42,9 +42,9 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""></script>
     <!-- end -->
-      <!--start js homepage-->
-      <script src="/src/scripts/js/cetcal/cet.homepage.js" defer></script>
-      <!--end js homepage-->
+    <!--start js homepage-->
+    <script src="/src/scripts/js/cetcal/cet.homepage.js" defer></script>
+    <!--end js homepage-->
     <script src="/src/scripts/js/cetcal/cetcal.annuaire.geoloc.min.js"></script>
     <script src="/src/scripts/js/jquery/jquery-3.4.1.min.js"></script>
     <script src="/src/scripts/js/popper.min.js"></script>
@@ -70,6 +70,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
           include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.calltoactionvisitor.php';
           include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
           include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.footer.php';
+          include $PHP_INCLUDES_PATH.'/recherche/include.cet.annuaire.recherche.avancee.php';
 
   /*        if (!$anr && in_array($statut, CetQstProdFilArianneHelper::$statesFilAriane)) include $PHP_INCLUDES_PATH.'include.cet.qstprod.filarianne.php';
           $module = $PHP_INCLUDES_PATH.'include.cet.'.$scope.'.'.$statut.'.php';

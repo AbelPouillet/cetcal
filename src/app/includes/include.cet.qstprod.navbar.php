@@ -39,6 +39,9 @@
                         <li><a class="navbar-link" href="">Livret de recettes</a></li>
                         <li><a class="navbar-link" href="">Qui sommes-nous ?</a></li>
                         <li><a class="navbar-link" href="">Partenaires et liens utiles</a></li>
+
+                        <!-- /!\ Attention a bien garder l'id de cet élément. Les events sont asspciés au startup et sur la base de l'id -->
+                        <li><a id="open-recherche-avancee-cetcal" class="navbar-link" href="">Recherche avancée</a></li>
                     </ul>
                 </nav>
             </div>
