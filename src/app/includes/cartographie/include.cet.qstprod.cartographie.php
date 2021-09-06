@@ -17,39 +17,10 @@ $loader->loadCommunes();
         <?php if ($CLIENT_CARTO_AVANCEE) include $PHP_INCLUDES_PATH.'cartographie/include.cet.annuaire.params.cartographie.php'; ?>
     </div>
     <div id="cet-annuaire-crt-main-container" class="row cet-module ">
-        <div id="cet-annuaire-crt-bootstrap-wrapper" class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="width: 100% !important; margin-left: 0px !important; margin-right: 0px !important; padding-right: 0px !important; padding-left: 0px !important;">
+            <div id="cet-annuaire-crt-bootstrap-wrapper" class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="width: 100% !important; margin-left: 0px !important; margin-right: 0px !important; padding-right: 0px !important; padding-left: 0px !important;">
             <div id="cet-annuaire-crt-main"></div>
-            <!--SEARCH BAR DEBUT-->
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 searchbar-wrapper d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                    <div class="d-flex w-100">
-                        <div class="input-wrapper w-100">
-                            <input class="search-input"type="text">
-                        </div>
-                        <div class="btn-wrapper d-flex">
-                            <button class="btn-search text-center">Rechercher</button>
-                            <button class="btn-filter">Filtrer</button>
-                        </div>
-                    </div>
-                </div>
-            <!--SEARCH BAR FIN-->
         </div>
     </div>
-    <div class="row mobile-searchbar d-block d-sm-none d-md-none d-lg-none d-xl-none">
-        <!--SEARCH BAR DEBUT-->
-        <div class="">
-            <div class="d-flex w-100">
-                <div class="input-wrapper w-100">
-                    <input class="search-input text-center" type="text" placeholder="Rechercher votre commune">
-                </div>
-                <div class="btn-wrapper d-flex">
-                    <button class="btn-search text-center">Rechercher</button>
-                    <button class="btn-filter">Filtrer</button>
-                </div>
-            </div>
-        </div>
-        <!--SEARCH BAR FIN-->
-    </div>
-
 </div>
 
 

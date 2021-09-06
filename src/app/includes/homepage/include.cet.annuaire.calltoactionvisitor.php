@@ -1,9 +1,9 @@
-<section class="call-to-action-visitor pt-5">
-    <div class="row">
-        <div class="col-12 col-xl-5">
-            <p class="text-soutien text-center">decidelabiolocale.org <br> a besoin de votre soutien !</p>
-            <div class="text-center pt-5">
-                <a class="btn-cta-visitor" href="">Inscrivez-vous</a>
+<section class="call-to-action-visitor pt-4">
+    <div class="row pb-4">
+        <div class="col-12 col-xl-5 d-flex justify-content-center align-items-center flex-column">
+            <p class="text-soutien text-center pb-4">decidelabiolocale.org <br> a besoin de votre soutien !</p>
+            <div class="btn-cta-visitor text-center">
+                <a class="" href="">Inscrivez-vous</a>
             </div>
         </div>
         <div class="col-12 col-xl-5 pt-5 pt-xl-0">
@@ -20,7 +20,7 @@
             </p>
         </div>
         <div class="col-12 col-xl-2 d-flex align-items-center">
-            <p class="ctav-text-2 text-xl-center">
+            <p class="ctav-text-2 text-center">
                 Cet annuaire garantit la confidentialité
                 de vos données numériques.
                 Prendre connaissance de notre politique
