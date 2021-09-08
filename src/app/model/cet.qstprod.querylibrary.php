@@ -117,6 +117,7 @@ class CETCALQueryLibrary
   const SELECT_PRODUIT_BY_FK_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_produit WHERE pk_produit IN (SELECT fk_produits_join FROM cetcal.producteur_join_produits WHERE fk_producteur_join=:pFk_producteur);";
   const SELECT_CATEGORIES_PRODUITS_BY_PK_PRODUCTEUR = "SELECT DISTINCT (categorie) FROM cetcal.producteur_join_produits, cetcal.cetcal_produit WHERE fk_produits_join=pk_produit AND fk_producteur_join=:pPk_producteur";
   const UPDATE_USER_SESSION = "UPDATE cetcal.cetcal_user SET session_id=:pSessionId, user_ip=:pUserIp WHERE user_id=:pUserId;";
+  const SELECT_ALL_LIEUX_DIST_PROD_BY_PK = "SELECT * FROM cetcal.cetcal_producteur_lieu_dist WHERE fk_producteur=:pPk_producteur;";
 
   // TODO check deprecated ??? :
   const SELECT_PRODUCTEUR_WITH_MARCHE = "SELECT * FROM cetcal.producteur_join_lieu JOIN cetcal_lieu WHERE cetcal_lieu.pk_lieu = producteur_join_lieu.fk_lieu AND cetcal_lieu.nom = 'mad1'";
