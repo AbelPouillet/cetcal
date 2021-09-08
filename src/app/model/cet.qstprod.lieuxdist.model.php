@@ -112,6 +112,24 @@ class QSTPRODLieuModel extends CETCALModel
     }
   }
 
+    public function selectAllLieuxDistByPkProducteur($pk)
+    {
+        try
+        {
+            $qLib = $this->getQuerylib();
+            $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_LIEUX_DIST_PROD_BY_PK );
+            $stmt->bindParam(":pPk_producteur", $pk, PDO::PARAM_INT);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            return $data;
+        }
+        catch (Exception $e)
+        {
+            error_log($e->getMessage());
+        }
+    }
+
   /* *************************************************************************************************
    * fonctions privées.
    */

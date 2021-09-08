@@ -39,6 +39,14 @@ class CETCALAnnuaireFicheDetailleController extends AnnuaireController
         return $result;
     }
 
+    public function fetchAllLieuDistByPkProducteur($pk)
+    {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.lieuxdist.model.php');
+        $model = new QSTPRODLieuModel();
+        $result = $model->selectAllLieuxDistByPkProducteur($pk);
+        return $result;
+    }
+
     public function fetchProducteursDerniersInscrit($limit)
     {
         require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.producteurs.model.php');
