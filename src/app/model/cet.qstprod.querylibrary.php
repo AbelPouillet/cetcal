@@ -14,8 +14,8 @@ class CETCALQueryLibrary
   const ACTIVER_PRODUCTEUR_BY_PK = "UPDATE cetcal.cetcal_producteur SET prod_active=1 WHERE pk_producteur=:pPk;";
   const UPDATE_CRITIQUE_PRODUCTEUR_MDPSHA = "UPDATE cetcal.cetcal_producteur SET mdpsha=:pNMdpsha WHERE pk_producteur=:pPk_producteur AND session_id=:pSessionId AND mdpsha=:pMdpsha;";
   const SELECT_ALL_ID_CET_PRODUCTEUR = "SELECT identifiant_cet FROM cetcal.cetcal_producteur;";
-  const SELECT_ALL_EMAIL_PRODUCTEUR = "SELECT email FROM cetcal.cetcal_producteur;";
-  const SELECT_ALL_EMAIL_AND_PK_PRODUCTEUR = "SELECT email, pk_producteur FROM cetcal.cetcal_producteur;";
+  const SELECT_ALL_EMAIL_PRODUCTEUR = "SELECT email FROM cetcal.cetcal_producteur WHERE prod_active=1;";
+  const SELECT_ALL_EMAIL_AND_PK_PRODUCTEUR = "SELECT email, pk_producteur FROM cetcal.cetcal_producteur WHERE prod_active=1;";
   const SELECT_ALL_CET_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_producteur WHERE prod_active=1 AND prod_inscrit='true';";
   const SELECT_ALL_CET_PRODUCTEUR_N0N_INSCRIT = "SELECT * FROM cetcal.cetcal_producteur WHERE prod_active=1 AND prod_inscrit='false' OR prod_inscrit='amdif';";
   const SELECT_ALL_CET_PRODUCTEUR_INSCRITS_LIMIT_N = "SELECT * FROM cetcal.cetcal_producteur WHERE prod_active=1 AND prod_inscrit='true' ORDER BY pk_producteur DESC LIMIT :pLimit;";

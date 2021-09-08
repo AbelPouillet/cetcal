@@ -25,11 +25,9 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         <link rel="stylesheet" href="/src/scripts/css/cet/cet.annuaire.custom.css">
         <link rel="stylesheet" href="/src/scripts/js/timepicker/jquery.timepicker.min.css">
         <!--fin-->
-
         <!-- start : charte-g Fanny -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&family=Signika:wght@400;700&display=swap">
         <!-- end -->
-
         <!-- start LeafletJS and Mapbox -->
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -65,9 +63,6 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
         include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.footer.php';
         ?>
-
-
-
     </div>
     </body>
     </html>
