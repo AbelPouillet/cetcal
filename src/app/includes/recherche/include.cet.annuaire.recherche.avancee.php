@@ -5,9 +5,15 @@
       <div class="modal-body">
 
         <div class="mb-3 row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <label for="rav-commune" class="col-sm-2 col-form-label">Commune</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword">
+            <input type="text" class="form-control" id="rav-commune" name="rav-commune" placeholder="autour de vous ou commune">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="rav-critere" class="col-sm-2 col-form-label">Critère</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="rav-critere" name="rav-critere" placeholder="nom, produit, adresse etc...">
           </div>
         </div>
         
