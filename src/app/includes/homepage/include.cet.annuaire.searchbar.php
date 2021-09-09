@@ -64,7 +64,7 @@
                                 <li><input class="checkbox-dropdown" id="checkbox-dropdown-5" type="checkbox"><label
                                             class="searchtxt-bleu"
                                             for="checkbox-dropdown-5">Associations</label></li>
-                                <li class="text-center"><a class="advanced-searchtxt">recherche avancée</a></li>
+                                <li class="text-center"><a class="advanced-searchtxt" onmousedown="$('#modal-cet-recherche-avancee-btn').click();">recherche avancée</a></li>
                             </ul>
                         </div>
                         <div>
