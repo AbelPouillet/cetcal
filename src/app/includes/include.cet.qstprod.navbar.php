@@ -19,7 +19,9 @@
                 </div>-->
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-6">
-                    <img class="img-fluid"  src="res/content/images-site/decidelabiolocale.png" alt="Responsive image">
+                    <a href="./">
+                      <img class="img-fluid"  src="res/content/images-site/decidelabiolocale.png" alt="Responsive image">
+                    </a>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-6">
@@ -48,13 +50,13 @@
                                 <div class="navbar-link dropdown">
                                     <span class="btn-dropdown">Je souhaite consommer BIO local</span>
                                     <ul class="menu">
-                                        <li><a href="">Lieux de vente</a></li>
+                                        <li><a href="/?statut=asso.vente&anr=true&type=">Lieux de vente</a></li>
                                         <li><a href="">Producteurs</a></li>
                                     </ul>
                                 </div>
                             </li>
                             <!--dropdown fin-->
-                            <li><a class="navbar-link" href="">Livret de recettes</a></li>
+                            <li><a class="navbar-link" href="/?statut=base.recettes&anr=true">Livret de recettes</a></li>
                             <li><a class="navbar-link" href="">Qui sommes-nous ?</a></li>
                             <li><a class="navbar-link" href="">Partenaires et liens utiles</a></li>
                         </ul>
