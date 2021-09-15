@@ -4,19 +4,63 @@
     <div class="modal-content">
       <div class="modal-body">
 
-        <div class="mb-3 row">
-          <label for="rav-commune" class="col-sm-2 col-form-label">Commune</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="rav-commune" name="rav-commune" placeholder="autour de vous ou commune">
-          </div>
+        Commune <input type="text" id="rav-commune" name="rav-commune" placeholder="autour de vous ou commune">
+
+        <br>
+        Dans un rayon de 
+        <select id="rav-rayon" name="rav-rayon">
+          <option value="5">5 km</option>
+          <option value="10" selected="selected">10 km</option>
+          <option value="20">20 km</option>
+          <option value="30">30 km</option>
+          <option value="40">40 km</option>
+        </select>
+
+        <br>
+        Catégories
+        <select id="rav-categorie" name="rav-categorie">
+          <option value="0" selected="selected">-- Aucune catégorie sélectionnée --</option>
+          <?php foreach ($listes_arrays->activites as $activite): ?>
+            <option value="<?= implode(';', $activite); ?>"><?= $activite[1]; ?></option>
+          <?php endforeach; ?>
+        </select>
+        <button type="button" class="btn btn-success btn-sm">ajouter</button>
+
+        <br>
+        Critère
+        <input type="text" id="rav-critere" name="rav-critere" placeholder="nom, produit, adresse etc...">
+
+        <br>
+        <button type="button" class="btn btn-light btn-sm" 
+        style="margin-left: 10px;"
+        onmousedown="$('#autres-criteres-rav').toggle();"><b>> </b> Autres critères</button>
+
+        <div id="autres-criteres-rav" style="display:none;">
+          Produits <input type="text" id="rav-produits" name="rav-produits" placeholder="">
+          <button type="button" class="btn btn-success btn-sm">ajouter</button>
+          
+          <br>
+          Certification
+          <select id="rav-certification" name="rav-certification">
+            <option value="0" selected="selected">-- Aucune certification sélectionnée --</option>
+            <option value="BIOAB">certifié Agriculture-Biologique</option>
+            <option value="YTENDANT">agriculture éthique (non certifié BIO/AB)</option>
+            <option value="ENCOURSBIOAB">en cours de certification AB</option>
+          </select>
+
+          <br>
+          Modes de vente
+          <select id="rav-modevente" name="rav-modevente">
+            <option value="0" selected="selected">-- Aucun mode de vente sélectionné --</option>
+          </select>
+          <button type="button" class="btn btn-success btn-sm">ajouter</button>
         </div>
-        <div class="mb-3 row">
-          <label for="rav-critere" class="col-sm-2 col-form-label">Critère</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="rav-critere" name="rav-critere" placeholder="nom, produit, adresse etc...">
-          </div>
-        </div>
-        
+
+        <br>
+        <input type="checkbox" id="inclure-entites-rav" name="inclure-entites-rav" value="oui" checked="true">
+        Inclure les éléments annexes dans la recherche (marchés, lieux de vente, magasins, associations etc)
+
+        <br>
         <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Rechercher</button> 
       </div>
     </div>
