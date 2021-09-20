@@ -43,6 +43,15 @@ $heading = strcmp($demande, 'jeconstateuneerreurdecarto') === 0 ? "Je constate u
         <input type="text" name="annuaire-contact-obj" id="annuaire-contact-obj" 
           value="<?= isset($demande) && !empty($demande) ? $demande : $neant; ?>" hidden="hidden">
       </div>
+
+      <div class="input-group mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="annuaire-contact-antispan"
+              name="annuaire-contact-antispan" value="ok">
+            <label><span style="color: red;">Je déclare que les informations renseignées sont exactes et que la demande est clairement formulée.</span></label>
+        </div>
+      </div>
+
       <div class="row cet-qstprod-btnnav">
         <div class="col text-center">
           <a class="btn cet-navbar-btn" href="./"
