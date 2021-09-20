@@ -4,7 +4,7 @@ $(function(){
     checkFormInput(10, 'annuaire-contact-ntel');
     if (document.querySelector('.is-invalid') !== null || 
         $('#annuaire-contact-problematique').val().length < 1 ||
-        $('#annuaire-contact-antispan').is(':checked')) {
+        !$('#annuaire-contact-antispan').is(':checked')) {
         e.preventDefault();
         var text = 'Le formulaire de contact est incomplet.';
         text += ' Pour traiter votre demande nous avons besoin des éléments suivant :';
