@@ -4,7 +4,13 @@
     <div class="modal-content">
       <div class="modal-body">
 
-        Commune <input type="text" id="rav-commune" name="rav-commune" placeholder="autour de vous ou commune">
+        <div id="cet-annuaire-recherche-communes-conatiner">
+          Commune
+          <input type="text" class="typeahead" placeholder="rechercher..." 
+            aria-label="" 
+            id="cet-annuaire-recherche-communes-value" 
+            name="cet-annuaire-recherche-communes-value">
+        </div>
 
         <br>
         Dans un rayon de 
@@ -24,11 +30,12 @@
             <option value="<?= implode(';', $activite); ?>"><?= $activite[1]; ?></option>
           <?php endforeach; ?>
         </select>
-        <button type="button" class="btn btn-success btn-sm">ajouter</button>
+        <button type="button" id="rav-categorie-ajouter" class="btn btn-success btn-sm">ajouter</button>
+        <div id="rav-categorie-selected"></div>
 
         <br>
         Critère
-        <input type="text" id="rav-critere" name="rav-critere" placeholder="nom, produit, adresse etc...">
+        <input type="text" id="rav-critere" name="rav-critere" placeholder="nom, produit, adresse etc..." disabled="disabled">
 
         <br>
         <button type="button" class="btn btn-light btn-sm" 
@@ -36,8 +43,15 @@
         onmousedown="$('#autres-criteres-rav').toggle();"><b>> </b> Autres critères</button>
 
         <div id="autres-criteres-rav" style="display:none;">
-          Produits <input type="text" id="rav-produits" name="rav-produits" placeholder="">
-          <button type="button" class="btn btn-success btn-sm">ajouter</button>
+          <div id="cet-annuaire-recherche-produits-conatiner">
+            Produits
+            <input type="text" class="typeahead" placeholder="rechercher..." 
+              aria-label="" 
+              id="cet-annuaire-recherche-produits-value" 
+              name="cet-annuaire-recherche-produits-value">
+              <button type="button" id="rav-produit-ajouter" class="btn btn-success btn-sm">ajouter</button>
+          </div>
+          <div id="rav-produits-selected"></div>
           
           <br>
           Certification
@@ -50,18 +64,18 @@
 
           <br>
           Modes de vente
-          <select id="rav-modevente" name="rav-modevente">
+          <select id="rav-modevente" name="rav-modevente" disabled="disabled">
             <option value="0" selected="selected">-- Aucun mode de vente sélectionné --</option>
           </select>
-          <button type="button" class="btn btn-success btn-sm">ajouter</button>
+          <button type="button" class="btn btn-success btn-sm" disabled="disabled">ajouter</button>
         </div>
 
         <br>
-        <input type="checkbox" id="inclure-entites-rav" name="inclure-entites-rav" value="oui" checked="true">
-        Inclure les éléments annexes dans la recherche (marchés, lieux de vente, magasins, associations etc)
+        <input type="checkbox" id="inclure-entites-rav" name="inclure-entites-rav" value="oui">
+        Inclure les éléments annexes à proximité dans votre recherche (marchés, lieux de vente, magasins, associations etc)
 
         <br>
-        <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Rechercher</button> 
+        <button id="rav-envoi-recherche-avancee" type="button" class="btn btn-success btn-sm" data-dismiss="modal">Rechercher</button> 
       </div>
     </div>
   </div>

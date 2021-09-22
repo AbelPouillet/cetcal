@@ -55,6 +55,7 @@ class CETCALQueryLibrary
   const INSERT_CETCAL_PRODUIT = "INSERT INTO cetcal.cetcal_produit (nom, categorie, clef_produit) VALUES (:pNom, :pCategorie, :pClef);";
   const INSERT_PRODUCTEUR_JOIN_PRODUITS = "INSERT INTO cetcal.producteur_join_produits (fk_producteur_join, fk_produits_join) VALUES (:pFkProducteur, :pFkProduit);";
   const SELECT_AUTRE_PRODUIT_INCONNU_BY_PK_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_produit WHERE categorie='autre' AND pk_produit IN (SELECT fk_produits_join FROM cetcal.producteur_join_produits WHERE fk_producteur_join=:pFk_producteur) LIMIT 1;";
+  const SELECT_DISTINCT_NOMS_PRODUITS = "SELECT DISTINCT nom FROM cetcal.cetcal_produit;";
 
   const INSERT_SONDAGE = "INSERT INTO cetcal.cetcal_sondage (fk_producteur_sondage, clef_question, reponse) VALUES (:pPkProducteur, :pClefQuestion, :pReponse);";
   const INSERT_SONDAGE_NBRS = "INSERT INTO cetcal.cetcal_sondage (fk_producteur_sondage, clef_question, val_question, reponse) VALUES (:pPkProducteur, :pClefQuestion, :pValQuestion, :pReponse);";

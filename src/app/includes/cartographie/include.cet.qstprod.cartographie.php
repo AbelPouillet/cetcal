@@ -23,7 +23,6 @@ $loader->loadCommunes();
     </div>
 </div>
 
-
 <div id="cetcal.producteur.xml" hidden="hidden">
     <producteurs hidden="hidden">
         <?php foreach ($data as $prdDto): ?>
@@ -88,5 +87,4 @@ $loader->loadCommunes();
 <script src="/src/scripts/js/leaflet-markercluster/leaflet.markercluster-src.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet'/>
-<script src="/src/scripts/js/typeahead.0.11.1.min.js"></script>
 <script src="/src/scripts/js/cetcal/cetcal.cartographie.min.js"></script>
