@@ -14,7 +14,8 @@
 
         <br>
         Dans un rayon de 
-        <select id="rav-rayon" name="rav-rayon">
+        <select id="rav-rayon" name="rav-rayon" style="display:none;">
+          <!-- <option value="0">-- aucun rayon --</option> -->
           <option value="5">5 km</option>
           <option value="10" selected="selected">10 km</option>
           <option value="20">20 km</option>
@@ -27,7 +28,9 @@
         <select id="rav-categorie" name="rav-categorie">
           <option value="0" selected="selected">-- Aucune catégorie sélectionnée --</option>
           <?php foreach ($listes_arrays->activites as $activite): ?>
-            <option value="<?= implode(';', $activite); ?>"><?= $activite[1]; ?></option>
+            <option value="<?= implode(';', $activite); ?>" data-type="producteur">
+              <?= $activite[1]; ?>
+            </option>
           <?php endforeach; ?>
         </select>
         <button type="button" id="rav-categorie-ajouter" class="btn btn-success btn-sm">ajouter</button>
@@ -35,7 +38,7 @@
 
         <br>
         Critère
-        <input type="text" id="rav-critere" name="rav-critere" placeholder="nom, produit, adresse etc..." disabled="disabled">
+        <input type="text" id="rav-critere" name="rav-critere" placeholder="nom, produit, adresse etc...">
 
         <br>
         <button type="button" class="btn btn-light btn-sm" 
@@ -62,12 +65,14 @@
             <option value="ENCOURSBIOAB">en cours de certification AB</option>
           </select>
 
-          <br>
-          Modes de vente
-          <select id="rav-modevente" name="rav-modevente" disabled="disabled">
-            <option value="0" selected="selected">-- Aucun mode de vente sélectionné --</option>
-          </select>
-          <button type="button" class="btn btn-success btn-sm" disabled="disabled">ajouter</button>
+          <div hidden="hidden">
+            <br>
+            Modes de vente
+            <select id="rav-modevente" name="rav-modevente">
+              <option value="0" selected="selected">-- Aucun mode de vente sélectionné --</option>
+            </select>
+            <button type="button" class="btn btn-success btn-sm">ajouter</button>
+          </div>
         </div>
 
         <br>
