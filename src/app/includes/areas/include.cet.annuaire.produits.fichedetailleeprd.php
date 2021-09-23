@@ -4,9 +4,6 @@ $controller = new CETCALAnnuaireFicheDetailleController();
 $produits = $controller->fetchProduitByPkProducteur($pk);
 $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 $lieux = $controller->fetchAllLieuDistByPkProducteur($pk);
-/*echo '<pre>';
-var_dump($lieux);
-echo '</pre>';*/
 ?>
 <div class="container">
   <div class="row d-flex justify-content-center">

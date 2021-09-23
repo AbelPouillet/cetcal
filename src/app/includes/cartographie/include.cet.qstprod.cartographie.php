@@ -23,6 +23,8 @@ $loader->loadCommunes();
     </div>
 </div>
 
+<div id="resultats-recherche-avancee" style="display:none;"></div>
+
 <div id="cetcal.producteur.xml" hidden="hidden">
     <producteurs hidden="hidden">
         <?php foreach ($data as $prdDto): ?>
