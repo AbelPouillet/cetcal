@@ -254,6 +254,16 @@ class CETCALEntitesModel extends CETCALModel
     return $data;
   }
 
+  public function selectDistinctTypes()
+  {
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_DISTINCT_TYPE_ENTITE);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+
+    return $data;
+  }
+
   public function selectByPk($pk) 
   {
     $qLib = $this->getQuerylib();
@@ -263,6 +273,7 @@ class CETCALEntitesModel extends CETCALModel
     $data = $stmt->fetch(PDO::FETCH_ASSOC); 
     return $data;
   }
+  
   /*
    * Retourne tous les types de marchés une fois
    */

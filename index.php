@@ -48,6 +48,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         <script src="/src/scripts/js/popper.min.js"></script>
         <script src="/src/scripts/js/bootstrap.min.js"></script>
         <script src="/src/scripts/js/cetcal/cetcal.min.js"></script>
+        <script src="/src/scripts/js/typeahead.0.11.1.min.js"></script>
     </head>
     <body id="">
     <div class="container-fluid p-0">
@@ -55,6 +56,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         include $PHP_INCLUDES_PATH.'include.cet.qstprod.navbar.php';
         include $PHP_CONTROLLER_PATH.'router/cet.annuaire.router.php';
         include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.footer.php';
+        include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
         ?>
     </div>
     </body>

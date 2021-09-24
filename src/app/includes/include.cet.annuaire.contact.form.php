@@ -10,7 +10,7 @@ $heading = strcmp($demande, 'jeconstateuneerreurdecarto') === 0 ? "Je constate u
 ?>
 
 <?php if ($etat === false): ?>
-<div class="cet-module row justify-content-lg-center" style="margin-bottom: 20px;">
+<div class="cet-module row justify-content-lg-center">
   <div class="col-lg-6">
     <form id="contact.form" class="form" method="post" action="/src/app/controller/cet.annuaire.controller.contact.form.php">
       <label class="cet-formgroup-container-label"><small class="form-text">Veuillez renseigner le formulaire de contact :</small></label>
@@ -42,6 +42,14 @@ $heading = strcmp($demande, 'jeconstateuneerreurdecarto') === 0 ? "Je constate u
         </div>
         <input type="text" name="annuaire-contact-obj" id="annuaire-contact-obj" 
           value="<?= isset($demande) && !empty($demande) ? $demande : $neant; ?>" hidden="hidden">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="annuaire-contact-antispan"
+              name="annuaire-contact-antispan" value="ok">
+            <label><span style="color: red;">Je déclare que les informations renseignées sont exactes et que la demande est clairement formulée.</span></label>
+        </div>
       </div>
 
       <div class="row cet-qstprod-btnnav">

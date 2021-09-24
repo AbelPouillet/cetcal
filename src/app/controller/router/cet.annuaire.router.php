@@ -38,8 +38,8 @@
    */
   if (strcmp($statut, 'accueil.cet') === 0)
   {
-    include $PHP_INCLUDES_PATH.'cartographie/include.cet.qstprod.cartographie.php';
     include $PHP_INCLUDES_PATH.'recherche/include.cet.annuaire.recherche.avancee.php';
+    include $PHP_INCLUDES_PATH.'cartographie/include.cet.qstprod.cartographie.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.searchbar.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.slogan.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.prd.a.lhonneur.php';

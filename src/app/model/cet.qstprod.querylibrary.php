@@ -55,6 +55,7 @@ class CETCALQueryLibrary
   const INSERT_CETCAL_PRODUIT = "INSERT INTO cetcal.cetcal_produit (nom, categorie, clef_produit) VALUES (:pNom, :pCategorie, :pClef);";
   const INSERT_PRODUCTEUR_JOIN_PRODUITS = "INSERT INTO cetcal.producteur_join_produits (fk_producteur_join, fk_produits_join) VALUES (:pFkProducteur, :pFkProduit);";
   const SELECT_AUTRE_PRODUIT_INCONNU_BY_PK_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_produit WHERE categorie='autre' AND pk_produit IN (SELECT fk_produits_join FROM cetcal.producteur_join_produits WHERE fk_producteur_join=:pFk_producteur) LIMIT 1;";
+  const SELECT_DISTINCT_NOMS_PRODUITS = "SELECT DISTINCT nom FROM cetcal.cetcal_produit;";
 
   const INSERT_SONDAGE = "INSERT INTO cetcal.cetcal_sondage (fk_producteur_sondage, clef_question, reponse) VALUES (:pPkProducteur, :pClefQuestion, :pReponse);";
   const INSERT_SONDAGE_NBRS = "INSERT INTO cetcal.cetcal_sondage (fk_producteur_sondage, clef_question, val_question, reponse) VALUES (:pPkProducteur, :pClefQuestion, :pValQuestion, :pReponse);";
@@ -73,6 +74,7 @@ class CETCALQueryLibrary
   const DELETE_CETCAL_PRODUCTEUR_CARTOGRAPHIE = "DELETE FROM cetcal.cetcal_cartographie WHERE fk_producteur=:pFkProducteur AND update_man != 'true';";
   const DELETE_CETCAL_PRODUCTEUR_CARTOGRAPHIE_FORCE = "DELETE FROM cetcal.cetcal_cartographie WHERE fk_producteur=:pFkProducteur;";
   const UPDATE_LAT_LNG_CETCAL_CARTOGRAPHIE_WHERE_PKFK = "UPDATE cetcal.cetcal_cartographie SET cetcal_prd_lat=:pLat, cetcal_prd_lng=:pLng, update_man=:pUpdateManuelle WHERE fk_producteur=:pFkProducteur;";
+  const SELECT_DISTINCT_TYPE_ENTITE = "SELECT DISTINCT type FROM cetcal.cetcal_entite;";
 
   const INSERT_INTO_CETCAL_ENTITES = "INSERT INTO cetcal.cetcal_entite (denomination, territoire, activite, adresse, tels, personne, email, urlwww, infoscmd, jourhoraire, specificites, type) VALUES (:pDenomination, :pTerritoire, :pActivite, :pAdrliterale, :pTels, :pContactPersonne, :pEmail, :pUrlwww, :pInfoCommande, :pJourHoraire, :pSpecificite, :pType);";
   const INSERT_INTO_CETCAL_ENTITES_MARCHE = "INSERT INTO cetcal.cetcal_entite (denomination, activite, adresse, infoscmd, jourhoraire, specificites, type) VALUES (:pDenomination, :pActivite, :pAdrliterale, :pInfoCommande, :pJourHoraire, :pSpecificite, :pType);";
