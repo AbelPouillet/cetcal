@@ -62,7 +62,7 @@
             <option value="0" selected="selected">-- Aucune certification sélectionnée --</option>
             <option value="BIOAB">certifié Agriculture-Biologique</option>
             <option value="YTENDANT">agriculture éthique (non certifié BIO/AB)</option>
-            <option value="ENCOURSBIOAB">en cours de certification AB</option>
+            <!--<option value="ENCOURSBIOAB">en cours de certification AB</option>-->
           </select>
 
           <div hidden="hidden">

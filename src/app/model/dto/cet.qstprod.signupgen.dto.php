@@ -5,9 +5,10 @@
 Class QstProdGeneraleDTO
 {
 
-  private $pk;
+  public $pk;
   private $lat;
   private $lng;
+  private $produits;
   
   public $nom;
   public $prenom;
@@ -177,6 +178,16 @@ Class QstProdGeneraleDTO
   public function getPk()
   {
     return $this->pk;
+  }
+
+  public function setProduits($prds) 
+  {
+    $this->produits = $prds;
+  }
+
+  public function getProduits()
+  {
+    return $this->produits;
   }
 
 }

@@ -10,4 +10,6 @@ class CETCALAdvancedQueryLibrary
 
   const SELECT_CETCAL_PRODUCTEUR_IN_PKS = "SELECT * from cetcal.cetcal_producteur WHERE pk_producteur IN ([pks]);";
 
+  const COUNT_PRODUITS_FOR_PK_PRODUCTEUR_NOMS_PRODUITS = "SELECT * FROM cetcal.cetcal_produit WHERE pk_produit IN (SELECT fk_produits_join FROM cetcal.producteur_join_produits WHERE fk_producteur_join=[PK_PRODUCTEUR]) AND nom IN ([IN_PRODUITS]);";
+
 }
