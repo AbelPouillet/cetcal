@@ -27,11 +27,11 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
           <a href="./">Retourner à l'accueil.</a>
         </p>
         <hr>
-        <label>
+        <div>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
             <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
-        </label>
+        </div>
       </div>
     </div>
   </div>
@@ -44,11 +44,11 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
         <p>Un email de confirmation vient d'être envoyé à <b><?= $email_user ?></b>.</p>
         <p>Vous pouver maintenant <a href="./">retourner à l'accueil et vous connecter.</a></p>
         <hr>
-        <label><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?>
+        <div><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
             <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
-        </label>
+        </div>
         <p class="mb-0"><?= CetQstprodConstLibelles::en_cas_de_doute; ?></p>
       </div>
     </div>
@@ -68,11 +68,11 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
           L'inscription vous permettra très bientôt de communiquer directement avec les producteur.e.s ainsi que les autres membres. Décidez la BIO Locale et soutenez notre démarche - <b>Inscrivez-vous !</b>
         </p>
         <hr>
-        <label>
+        <div>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
             <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
-        </label>
+        </div>
         <p>
           <a href="#" onmousedown="$('#cet-qstprod_intro').fadeIn('slow');scrollTowardsId('cet-qstprod_intro', -18);"><i class="fas fas fa-info fa-lg"></i>&#160;&#160;Si vous êtes producteur, veuillez utiliser le formulaire d'inscription et questionnaire qui vous est dédié. Cliquer ici.</a>
         </p>
@@ -238,7 +238,6 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
   </div>
 <?php endif; ?>
 
-<?php include $PHP_INCLUDES_PATH.'include.cet.qstprod.bienvenu.form.php'; ?>
 <script src="/src/scripts/js/typeahead.0.11.1.min.js"></script>
 <script src="/src/scripts/js/cetcal/cetcal.min.signup.user.js"></script>
 <script type="text/javascript">

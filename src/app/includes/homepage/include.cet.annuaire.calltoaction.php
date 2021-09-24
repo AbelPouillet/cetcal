@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center align-items-center pt-1 pb-4">
-                <div class="btn-inscriptionPrd d-flex justify-content-center justify-content-xl-center">
+                <div class="btn-inscriptionPrd d-flex justify-content-center align-items-center justify-content-xl-center">
                     <a class="" href="">s’inscrire sur l’annuaire des producteurs</a>
                 </div>
             </div>

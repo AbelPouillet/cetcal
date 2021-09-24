@@ -2,15 +2,15 @@
     <!--SEARCH BAR DEBUT VERSION DESKTOP-->
     <div class="d-none col-sm-12 col-md-12 col-lg-12 col-xl-12 searchbar-wrapper d-md-block d-lg-block d-xl-block p-xl-0">
         <div class="col-md-12 col-lg-12 col-xl-12 p-xl-0">
-            <div class="col-md-12 col-lg-12 col-xl-12 input-wrapper w-100 d-flex justify-content-center flex-row justify-content-xl-center flex-xl-row p-xl-0">
+            <div class="col-md-12 col-lg-12 col-xl-12 input-wrapper w-100 d-flex justify-content-center flex-row flex-xl-row p-xl-0">
 
-                <div class="d-flex">
+                <div class=" col-3 d-flex p-0">
                     <label class="label" for="search-input"></label>
                     <input class="search-input text-center searchtxt-bleu" type="text"
                            placeholder="Rechercher votre commune"/>
                 </div>
 
-                <div class="d-flex p-xl-0 perimeter-search justify-content-center align-items-center">
+                <div class="d-flex col-3 p-xl-0 perimeter-search justify-content-center align-items-center">
 
                     <div class="d-flex align-items-center ml-3 mr-3">
                         <span class="mt-0 searchtxt-rayon">rayon</span>
@@ -19,7 +19,6 @@
                         <p class="mb-0 searchtxt-blanc">10km</p>
                         <input type="radio" id="perim-10" class="align-self-center" name="perim" value="perim-10">
                         <label class="mb-0 searchtxt-blanc" for="perim-10"></label>
-
                     </div>
                     <div class="d-flex align-items-start flex-column ml-3">
                         <p class="mb-0 searchtxt-blanc">15km</p>
@@ -38,13 +37,13 @@
                     </div>
                 </div>
 
-                <div class="d-flex">
+                <div class="col-3 d-flex p-0">
                     <label class="label" for="search-input"></label>
                     <input class="search-input text-center searchtxt-bleu" type="text"
                            placeholder="Nom, adresse, mot-clé, etc"/>
                 </div>
 
-                <div class="p-xl-0">
+                <div class="col-2 p-xl-0">
                     <div class="btn-wrapper d-flex">
                         <div class="searchbar-inputs search-dropdown">
                             <button class="btn-filter">Catégories <i class="fas fa-caret-down"></i></button>
