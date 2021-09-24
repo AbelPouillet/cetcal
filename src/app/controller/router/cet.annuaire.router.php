@@ -21,7 +21,15 @@
   $module = $PHP_INCLUDES_PATH.'include.cet.'.$scope.'.'.$statut.'.php';
   if (file_exists($module)) include $module;
 
-  /**
+/*  if($anr && strcmp($statut, 'user.signup') === 0)*/
+
+  if($anr && strcmp($statut, 'aboutus') === 0){
+      include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
+  }
+
+
+
+/**
    * fin code au 15 sept 2021
    */
 
@@ -38,7 +46,6 @@
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.plateforme.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.calltoaction.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.calltoactionvisitor.php';
-    include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
   }
 
 ?>

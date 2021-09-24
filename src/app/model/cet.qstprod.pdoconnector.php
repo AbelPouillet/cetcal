@@ -16,7 +16,7 @@ class CETCALPDOConnector {
   function __construct() 
   {
     $this->DNS = 'mysql:host=127.0.0.1;dbname=cetcal;charset=utf8';
-    $this->LOG = 'root';
+    $this->LOG = 'paul';
     $this->PWD = 'root';
     $this->DNS_prod = 'mysql:host=localhost;dbname=cetcal;charset=utf8';
     $this->LOG_prod = '';

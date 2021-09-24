@@ -57,13 +57,13 @@
                             </li>
                             <!--dropdown fin-->
                             <li><a class="navbar-link" href="/?statut=base.recettes&anr=true">Livret de recettes</a></li>
-                            <li><a class="navbar-link" href="">Qui sommes-nous ?</a></li>
-                            <li><a class="navbar-link" href="">Partenaires et liens utiles</a></li>
+                            <li><a class="navbar-link" href="/?statut=aboutus&anr=true">Qui sommes-nous ?</a></li>
+                            <li><a class="navbar-link" href="/?statut=partenaires.liens&anr=true">Partenaires et liens utiles</a></li>
                         </ul>
                     </div>
 
                     <div class="col-3 d-flex justify-content-end align-items-center ml-auto pl-2">
-                        <a class="btn-connect" href="">connexion / inscription</a>
+                        <a class="btn-connect" href="/?statut=user.signup&anr=true">connexion / inscription</a>
                     </div>
                 </nav>
             </div>
