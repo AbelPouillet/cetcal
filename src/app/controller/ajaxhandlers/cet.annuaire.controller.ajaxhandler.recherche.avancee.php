@@ -104,4 +104,24 @@ if (count($categories) > 0)
   $producteurs = $result;
 }
 
+/** ************************************************************************
+ * Filtre critère de producteur.
+ */
+if (strlen($critere) > 4)
+{
+  $result = [];
+  for ($i = 0; $i < count($producteurs); ++$i) 
+  {
+    $string_data = json_encode($producteurs[$i]);
+    //$produits_string_data = json_encode($model_prd->findProduitByPkProducteur($producteurs[$i].getPk()));
+    if (strrpos(strtolower($string_data), strtolower($critere)) !== false) 
+      array_push($result, $producteurs[$i]);
+    //else if (isset($produits_string_data) && 
+    //  strrpos(strtolower($produits_string_data), strtolower($critere)) !== false) 
+    //  array_push($result, $producteurs[$i]);
+  }
+
+  $producteurs = $result;
+}
+
 echo json_encode($result);
