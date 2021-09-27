@@ -43,12 +43,12 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         <!--start js homepage-->
         <script src="/src/scripts/js/cetcal/cet.homepage.js" defer></script>
         <!--end js homepage-->
-        <script src="/src/scripts/js/cetcal/cetcal.annuaire.geoloc.min.js"></script>
         <script src="/src/scripts/js/jquery/jquery-3.4.1.min.js"></script>
         <script src="/src/scripts/js/popper.min.js"></script>
         <script src="/src/scripts/js/bootstrap.min.js"></script>
         <script src="/src/scripts/js/cetcal/cetcal.min.js"></script>
         <script src="/src/scripts/js/typeahead.0.11.1.min.js"></script>
+        <script src="/src/scripts/js/cetcal/cetcal.annuaire.geoloc.min.js"></script>
     </head>
     <body id="">
     <div class="container-fluid p-0">
