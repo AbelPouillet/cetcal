@@ -48,7 +48,6 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         <script src="/src/scripts/js/bootstrap.min.js"></script>
         <script src="/src/scripts/js/cetcal/cetcal.min.js"></script>
         <script src="/src/scripts/js/typeahead.0.11.1.min.js"></script>
-        <script src="/src/scripts/js/cetcal/cetcal.annuaire.geoloc.min.js"></script>
     </head>
     <body id="">
     <div class="container-fluid p-0">

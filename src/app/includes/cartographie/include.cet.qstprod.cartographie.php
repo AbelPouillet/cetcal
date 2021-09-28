@@ -16,7 +16,7 @@ $loader->loadCommunes();
     <div class="row">
         <?php if ($CLIENT_CARTO_AVANCEE) include $PHP_INCLUDES_PATH.'cartographie/include.cet.annuaire.params.cartographie.php'; ?>
     </div>
-    <div id="cet-annuaire-crt-main-container" class="row cet-module ">
+    <div id="cet-annuaire-crt-main-container" class="row cet-module">
             <div id="cet-annuaire-crt-bootstrap-wrapper" class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="width: 100% !important; margin-left: 0px !important; margin-right: 0px !important; padding-right: 0px !important; padding-left: 0px !important;">
             <div id="cet-annuaire-crt-main"></div>
         </div>
@@ -85,8 +85,9 @@ $loader->loadCommunes();
     </entites>
 </div>
 <?php include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.gestion.cartographie.php'; ?>
+<script src="/src/scripts/js/cetcal/cetcal.annuaire.geoloc.min.js"></script>
 <script src="/src/scripts/js/leaflet-markercluster/leaflet.markercluster.js"></script>
 <script src="/src/scripts/js/leaflet-markercluster/leaflet.markercluster-src.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet'/>
-<script src="/src/scripts/js/cetcal/cetcal.cartographie.min.js" defer></script>
+<script type="text/javascript" src="/src/scripts/js/cetcal/cetcal.cartographie.min.js"></script>
