@@ -161,3 +161,8 @@ span#dropdown-filtres-count {
   padding-top: 4px;
   font-size: 16px;
 }
+
+p.rav-element-resultat:hover {
+  background-color: lightyellow !important;
+  cursor: pointer;
+}
