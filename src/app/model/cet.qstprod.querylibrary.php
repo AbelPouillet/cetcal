@@ -102,6 +102,7 @@ class CETCALQueryLibrary
   const UPDATE_COMMUNES_BY_LIBELLE = "UPDATE cetcal.cetcal_communes SET lat=:pLat, lng=:pLng WHERE libelle=:pLibelle AND id=:pId;";
   const SELECT_ALL_CETCAL_COMMUNES = "SELECT * FROM cetcal.cetcal_communes;";
   const SELECT_ALL_CETCAL_COMMUNES_GEOLOC_SET = "SELECT * FROM cetcal.cetcal_communes WHERE lat <> 'NULL' AND lng <> 'NULL' AND lat <> '' AND lng <> '';";
+  const SELECT_COMMUNES_GEOLOC_BY_LIB = "SELECT lat, lng FROM cetcal.cetcal_communes WHERE libelle=:pLibelle;";
   const SELECT_ALL_CETCAL_COMMUNES_GEOLOC_SET_BY_CODEDEPT = "SELECT * FROM cetcal.cetcal_communes WHERE lat <> 'NULL' AND lng <> 'NULL' AND lat <> '' AND lng <> '' AND code_dept IN ([codes_dept]);";
   const SELECT_CETCAL_COMMUNES_BY_ID_LATLNG_EXISTS = "SELECT * FROM cetcal.cetcal_communes WHERE id=:pId AND lat <> 'NULL' AND lng <> 'NULL';";
   const SELECT_COMMUNE_BY_PK = "SELECT * FROM cetcal.cetcal_communes WHERE id=:pId;";

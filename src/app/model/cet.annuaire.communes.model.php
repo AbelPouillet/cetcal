@@ -58,6 +58,17 @@ class CETCALCommunesModel extends CETCALModel
     return $data;
   }
 
+  public function selectLatLngByLibelle($libelle)
+  {
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::SELECT_COMMUNES_GEOLOC_BY_LIB);
+    $stmt->bindParam(":pLibelle", $libelle, PDO::PARAM_STR);
+    $stmt->execute();
+    $data = $stmt->fetch();
+
+    return isset($data['lat']) && isset($data['lng']) ? $data['lat'].";".$data['lng'] : false;
+  }
+
   public function selectAllGeolocSetByCodeDept($values_code_dept)
   {
     try 

@@ -170,6 +170,17 @@ Class QstProdGeneraleDTO
     return $this->lat.'/'.$this->lng;
   }
 
+  public function getLat()
+  {
+    return $this->lat;
+  }
+
+  public function getLng()
+  {
+    return $this->lng;
+  }
+
+
   public function setPk($pPk) 
   {
     $this->pk = $pPk;
