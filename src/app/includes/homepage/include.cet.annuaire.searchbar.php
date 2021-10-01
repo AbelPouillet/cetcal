@@ -63,7 +63,7 @@
                                 <li><input class="checkbox-dropdown" id="checkbox-dropdown-5" type="checkbox"><label
                                             class="searchtxt-bleu"
                                             for="checkbox-dropdown-5">Associations</label></li>
-                                <li class="text-center"><a class="advanced-searchtxt" onmousedown="$('#modal-cet-recherche-avancee').modal('show');">recherche avancée</a></li>
+                                <li class="text-center"><a class="advanced-searchtxt" onmousedown="lancerRechercheAvancee(); scrollTowardsId('zone-homepage-recherche-avancee', -52);">recherche avancée</a></li>
                             </ul>
                         </div>
                         <div>
