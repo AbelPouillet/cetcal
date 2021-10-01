@@ -166,3 +166,7 @@ div.bloc-rav-element-resultat:hover {
   background-color: lightyellow !important;
   cursor: pointer;
 }
+
+div.bloc-rav-element-resultat {
+  margin: 18px;
+}
