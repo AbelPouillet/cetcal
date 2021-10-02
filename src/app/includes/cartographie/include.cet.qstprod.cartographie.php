@@ -17,13 +17,14 @@ $loader->loadCommunes();
         <?php if ($CLIENT_CARTO_AVANCEE) include $PHP_INCLUDES_PATH.'cartographie/include.cet.annuaire.params.cartographie.php'; ?>
     </div>
     <div id="cet-annuaire-crt-main-container" class="row cet-module">
-            <div id="cet-annuaire-crt-bootstrap-wrapper" class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="width: 100% !important; margin-left: 0px !important; margin-right: 0px !important; padding-right: 0px !important; padding-left: 0px !important;">
+            <div id="resultats-recherche-avancee" class="col-sm-6 col-md-6 col-lg-6 col-xl-6" 
+              style="display: none; overflow-y: scroll; background-color: #bdddea;"></div>
+            <div id="cet-annuaire-crt-bootstrap-wrapper" class="col-sm-12 col-md-12 col-lg-12 col-xl-12" 
+            style="float: right !important; margin-left: 0px !important; margin-right: 0px !important; padding-right: 0px !important; padding-left: 0px !important;">
             <div id="cet-annuaire-crt-main"></div>
         </div>
     </div>
 </div>
-
-<div id="resultats-recherche-avancee" style="display:none;"></div>
 
 <div id="cetcal.producteur.xml" hidden="hidden">
     <producteurs hidden="hidden">

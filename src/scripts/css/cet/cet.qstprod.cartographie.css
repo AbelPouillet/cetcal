@@ -163,10 +163,22 @@ span#dropdown-filtres-count {
 }
 
 div.bloc-rav-element-resultat:hover {
-  background-color: lightyellow !important;
+  /*background-color: lightyellow !important;*/
+  font-weight: bold;
   cursor: pointer;
 }
 
 div.bloc-rav-element-resultat {
   margin: 18px;
+}
+
+div.rav-element-resultat {
+  font-family: Signika 12pt;
+  color: #059b30;
+  padding: 12px;
+}
+div.rav-element-resultat-type {
+  font-family: Courgette 12pt;
+  color: #059b30;
+  padding: 12px;
 }
