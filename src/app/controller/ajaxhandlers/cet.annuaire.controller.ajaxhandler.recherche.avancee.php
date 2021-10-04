@@ -15,8 +15,10 @@ $dataProcessor = new HTTPDataProcessor();
 $geo_helper = new GeoCoordinateHelper();
 
 $json = json_decode($_GET['json']);
+$recherche_avancee = $json->rav;
 $commune_cp = $json->commune;
 $rayon = $json->rayon;
+$types = $json->types;
 $categories = $json->categories;
 $critere = $json->criteresplus;
 $produits = $json->produits;
@@ -27,38 +29,6 @@ $result = [];
 $result_inscrits = $model_prd->fetchAllFrontEndDTOArray();
 $result_preinscrits = $model_prd->fetchAllFrontEndDTOArrayPreInscrits();
 $producteurs = array_merge($result_preinscrits, $result_inscrits);
-
-/** ************************************************************************
- * Deprecated
- * Filtre commune. Code postal.
- *
-if (strlen($commune_cp) > 0)
-{
-  $cp = substr($commune_cp, -5);
-  $commune = substr($commune_cp, 0, -6);
-  for ($i = 0; $i < count($producteurs); ++$i)
-  {
-    /**
-     * Anciennement utiliser pour strpos et cmp le code postal. 
-     * Si présence du Code postal alors ajout dans ce code commenté.
-     * Le problème étant que de multiples communes possèdent le même code postal.
-     * 
-     * if (strcmp($producteurs[$i]->adrCodePostal, $cp) === 0 || 
-        stripos($producteurs[$i]->adrCommune, $commune) != false ||
-        stripos($producteurs[$i]->adrfermeLtrl, $cp) != false ||
-        stripos($producteurs[$i]->adrfermeLtrl, $commune) != false) 
-    {*
-    if (stripos(str_replace("-", " ", $producteurs[$i]->adrCommune), $commune) != false ||
-        strcmp(str_replace("-", " ", $producteurs[$i]->adrCommune), $commune) === 0 ||
-        stripos(str_replace("-", " ", $producteurs[$i]->adrfermeLtrl), $commune) != false ||
-        strcmp(str_replace("-", " ", $producteurs[$i]->adrfermeLtrl), $commune) === 0) 
-    {
-      array_push($result, $producteurs[$i]);
-    }
-  }
-  $producteurs = $result;
-}
- */
 
 /** ************************************************************************
  * Filtre commune et rayon.

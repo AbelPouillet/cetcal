@@ -19,7 +19,7 @@
           </div>
           <div class="d-flex align-items-start flex-column">
             <p class="mb-0 searchtxt-blanc">10km</p>
-            <input type="radio" id="perim-10" class="align-self-center rav-hp-perim" name="perim" value="10">
+            <input type="radio" id="perim-10" class="align-self-center rav-hp-perim" name="perim" value="10" checked="checked" />
             <label class="mb-0 searchtxt-blanc" for="perim-10"></label>
           </div>
           <div class="d-flex align-items-start flex-column ml-3">
@@ -51,19 +51,24 @@
             <div class="searchbar-inputs search-dropdown">
               <button class="btn-filter">Catégories <i class="fas fa-caret-down"></i></button>
               <ul class="menu search-links">
-                <li><input class="checkbox-dropdown" id="checkbox-dropdown-1" type="checkbox"><label
+                <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-1" type="checkbox"
+                  value="producteurs"><label
                   class="searchtxt-bleu"
                   for="checkbox-dropdown-1">Producteurs</label></li>
-                  <li><input class="checkbox-dropdown" id="checkbox-dropdown-2" type="checkbox"><label
+                  <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-2" type="checkbox"
+                    value="marche"><label
                     class="searchtxt-bleu"
                     for="checkbox-dropdown-2">Marchés</label></li>
-                    <li><input class="checkbox-dropdown" id="checkbox-dropdown-3" type="checkbox"><label
+                    <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-3" type="checkbox"
+                      value="amap"><label
                       class="searchtxt-bleu"
                       for="checkbox-dropdown-3">AMAP</label></li>
-                      <li><input class="checkbox-dropdown" id="checkbox-dropdown-4" type="checkbox"><label
+                      <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-4" type="checkbox"
+                        value="mbio"><label
                         class="searchtxt-bleu"
                         for="checkbox-dropdown-4">Magasins BIO</label></li>
-                        <li><input class="checkbox-dropdown" id="checkbox-dropdown-5" type="checkbox"><label
+                        <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-5" type="checkbox"
+                          value="associations"><label
                           class="searchtxt-bleu"
                           for="checkbox-dropdown-5">Associations</label></li>
                           <li class="text-center"><a class="advanced-searchtxt" onmousedown="lancerRechercheAvancee(); scrollTowardsId('zone-homepage-recherche-avancee', -52);">recherche avancée</a></li>
