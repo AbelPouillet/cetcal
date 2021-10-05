@@ -182,3 +182,14 @@ div.rav-element-resultat-type {
   color: #059b30;
   padding: 12px;
 }
+a.cet-crt-rav-resultat-link {
+  color: #059b30;
+  font-weight: bold;
+}
+p.detail-rav-resultats {
+  margin-top: 12px;
+  margin-left: 18px;
+  font-family: Courgette 12pt;
+  color: #059b30;
+  font-weight: bold;
+}
