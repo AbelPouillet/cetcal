@@ -13,9 +13,9 @@ $certif_bioab = $certif_controller->getCertificationProducteur($pk);
 $produits = $controller->fetchProduitByPkProducteur($pk);
 $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 $lieux = $controller->fetchAllLieuDistByPkProducteur($pk);
-/*echo '<pre>';
-print_r($data);
-echo '</pre>';*/
+echo '<pre>';
+var_dump($lieux);
+echo '</pre>';
 ?>
 <div class="container-fluid ficheprd__wrapper">
 
@@ -40,7 +40,7 @@ echo '</pre>';*/
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center p-0">
                         <div class="card__producteur d-flex justify-content-center align-items-center">
-                            <h2 class=""><?= $data['nom_ferme'] ?></h2>
+                            <h2 class="text-center"><?= $data['nom_ferme'] ?></h2>
                         </div>
                         <div class="card__producteur">
                             <?php $media_data = $media_controller->selectMediasProducteur($pk); $counter = 0; ?>
@@ -96,12 +96,12 @@ echo '</pre>';*/
                                     <?=  (isset($data["email"]))  ?  "<p class='card_mail'>".$data['email'] . "</p>" : "" ?>
                                 </address>
                                 <div>
-                                    <?=  (strlen($data["url_web"]) > 0)  ?  "<p class='cst-pills'>".$data['url_web'] . "</p>" : "" ?>
+                                    <?=  (strlen($data["url_web"]) > 0)  ?  "<a class='cst-pills' href=".$data["url_web"].">"."site web" . "</a>" : "" ?>
                                     <?=  (strlen($data["pageurl_fb"]) > 0)  ?  "<a class='cst-pills' href=".$data["pageurl_fb"].">"."facebook" . "</a>" : "" ?>
 
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 card__production">
                                 <!--production-->
                                 <h3>Production</h3>
                                 <div>
@@ -114,10 +114,10 @@ echo '</pre>';*/
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex">
-                            <div class="col-6">
+                            <div class="col-6 card__autre">
                                 <!--ouverture au public-->
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 card__lieuxvente">
                                 <!--Lieux de vente-->
                                 <h3>Lieux de vente</h3>
                                 <div>
@@ -135,20 +135,22 @@ echo '</pre>';*/
 
                 </div>
             </section>
-            <section>
-                <div class="row">
-                    <div class="col-12 p-0">
-                        <div class="wrapper__certif ">
-                            <!--logos AB-->
-                            <div class="d-flex align-items-center">
-                                <img src="/res/content/icons/logos-verts-europe-ab.png">
-                                <a href="<?= $certif_bioab['url_org_certif']; ?>">consulter la certification bio AB</a>
+            <?php if($certif_bioab != false): ?>
+                <section>
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <div class="wrapper__certif ">
+                                <!--logos AB-->
+                                <div class="d-flex align-items-center">
+                                    <img src="/res/content/icons/logos-verts-europe-ab.png">
+                                    <a href="<?= $certif_bioab['url_org_certif']; ?>">consulter la certification bio AB</a>
+                                </div>
                             </div>
                         </div>
+                        <!--end of row-->
                     </div>
-                    <!--end of row-->
-                </div>
-            </section>
+                </section>
+            <?php endif;?>
         </div>
         </div>
         <!--Fin wrapper-->
