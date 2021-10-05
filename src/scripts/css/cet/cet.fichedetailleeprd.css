@@ -3,6 +3,7 @@
     margin-bottom: 42px;
 
 }
+
 p {
     padding: 0;
     margin-bottom: 7px;
@@ -119,6 +120,14 @@ address > p{
     padding: 6px;
     display: inline-block;
     text-align: center;
+}
+
+.card__coordonnees,
+.card__production,
+.card__lieuxvente,
+.card__autre
+{
+    margin-top: 14px;
 }
 .card__coordonnees p {
     font-family: Signika;
