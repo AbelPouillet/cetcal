@@ -86,7 +86,7 @@ $data = $datas[0];
                                     <?=  (strlen($data->urlwww) > 0)  ?  "<a class='cst-pills' href=".$data->urlwww.">"."site web" . "</a>" : "" ?>
                                 </div>
                             </div>
-                            <div class="col-6 card__production">
+                            <div class="col-6 card__horaires">
                                 <!--Jour/horaires-->
                                 <h3>Jours / Horaires</h3>
                                 <div>
