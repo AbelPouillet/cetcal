@@ -198,3 +198,6 @@ p.detail-rav-resultats {
   display:none; 
   padding: 12px;
 }
+div.rav-categories-checkbox-div {
+  margin-left: 12px;
+}
