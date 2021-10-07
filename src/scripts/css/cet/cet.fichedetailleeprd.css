@@ -121,7 +121,7 @@ address > p{
     display: inline-block;
     text-align: center;
 }
-
+.card__horaires,
 .card__coordonnees,
 .card__production,
 .card__lieuxvente,
@@ -129,7 +129,9 @@ address > p{
 {
     margin-top: 14px;
 }
-.card__coordonnees p {
+.card__coordonnees p,
+.card__horaires p
+{
     font-family: Signika;
     font-size: 18px;
     color: #804a3f;

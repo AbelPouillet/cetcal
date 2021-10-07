@@ -20,13 +20,14 @@ if (isset($_GET['q']) && !empty($_GET['q']))
   $filtre = $dataProcessor->processHttpFormData($_GET['q']);
   $data = $ctrl->loadQuery($filtre, $type);
 }
+
 ?>
 <!--<div class="container">-->
 <div class="row justify-content-center">
   <div class="col-lg-9">
     <p class="form-text text-muted">
       Les lieux de vente connues de CETCAL.<br>
-      Filtrer par mot type de lieu de vente (<b><?= count($data); ?></b> résultats pour la sélection &#171; 
+      Filtrer par mot type de lieu de vente (<b><?= count($data); ?></b> résultats pour la sélection &#171;
         <b><?= CetAnnuaireConstTypes::TYPE_ENTITE[$type]; ?></b> &#187;) :
     </p>
   </div>
@@ -37,7 +38,7 @@ if (isset($_GET['q']) && !empty($_GET['q']))
       <select id="cet-annuaire-select-filter" class="form-control" aria-label="Default select example">
         <option value="">Tous les lieux</option>
         <?php foreach ($typesDeLieux as $typeLieu): ?>
-          <option value="<?= $typeLieu->type; ?>" 
+          <option value="<?= $typeLieu->type; ?>"
             <?= strcmp($type, $typeLieu->type) === 0 ? 'selected' : ''; ?>>
             <?= CetAnnuaireConstTypes::TYPE_ENTITE[$typeLieu->type]; ?>
           </option>
@@ -90,7 +91,7 @@ if (isset($_GET['q']) && !empty($_GET['q']))
           <div class="card-body">
             <h4 class="card-text"><?= $row['denomination']; ?></h4>
             <?php $logo_entite = $media_controller->selectSrcLogoEntite($row['pk_entite']); ?>
-            <?php if (isset($logo_entite) && strlen($logo_entite) > 1): ?> 
+            <?php if (isset($logo_entite) && strlen($logo_entite) > 1): ?>
               <p class="lieuxdevente-logo-entite-container">
                 <img class="lieuxdevente-logo-entite img-fluid" src="<?= $logo_entite; ?>"/>
               </p>
