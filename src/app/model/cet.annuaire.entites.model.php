@@ -219,7 +219,7 @@ class CETCALEntitesModel extends CETCALModel
       $qLib::SELECT_ALL_CETCAL_ENTITE_BY_TYPE);
     if (strlen($type) > 0) $stmt->bindParam(":pType", $type, PDO::PARAM_STR);
     $stmt->execute();
-    $data = $stmt->fetchAll();
+    $data = $stmt->fetchAll(PDO::FETCH_OBJ);;
 
     return $data;
   }
@@ -270,7 +270,7 @@ class CETCALEntitesModel extends CETCALModel
     $stmt = $this->getCnxdb()->prepare($qLib::SELECT_CETCAL_ENTITE_BY_PK);
     $stmt->bindParam(":pPk_entite", $pk, PDO::PARAM_INT);
     $stmt->execute();
-    $data = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $data = $stmt->fetchAll(PDO::FETCH_OBJ);;
     return $data;
   }
   
