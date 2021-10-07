@@ -193,3 +193,8 @@ p.detail-rav-resultats {
   color: #059b30;
   font-weight: bold;
 }
+#zone-homepage-recherche-avancee {
+  background-color: #bdddea !important;
+  display:none; 
+  padding: 12px;
+}
