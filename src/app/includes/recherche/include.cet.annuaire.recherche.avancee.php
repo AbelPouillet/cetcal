@@ -1,4 +1,4 @@
-<div id="zone-homepage-recherche-avancee"> 
+<div id="zone-homepage-recherche-avancee" style="display:none;"> 
   <div class="row">
     <div class="col">
 
