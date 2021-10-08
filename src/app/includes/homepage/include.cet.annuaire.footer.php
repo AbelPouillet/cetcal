@@ -21,7 +21,7 @@
                 </p>
             </div>
             <div class="col-3 col-xl-2 d-flex justify-content-center align-items-center ">
-                <p>Crédits</p>
+                <p><a href="/?statut=administration&anr=true" style="color: black;">Administrateurs CETCAL</a></p>
             </div>
         </div>
     </div>

@@ -49,7 +49,7 @@
             </div>
             <div class="d-flex justify-content-center align-items-center pt-1 pb-4">
                 <div class="btn-inscriptionPrd d-flex justify-content-center align-items-center justify-content-xl-center">
-                    <a class="" href="">s’inscrire sur l’annuaire des producteurs</a>
+                    <a href="/src/app/controller/cet.qstprod.controller.login.form.php">s’inscrire sur l’annuaire des producteurs</a>
                 </div>
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center text-prd-2 w-100 pt-3">
