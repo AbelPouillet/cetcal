@@ -1,8 +1,8 @@
 <section class="bg-slogan">
   <!--SEARCH BAR DEBUT VERSION DESKTOP-->
-  <div class="d-none col-sm-12 col-md-12 col-lg-12 col-xl-12 searchbar-wrapper d-md-block d-lg-block d-xl-block p-xl-0">
-    <div class="col-md-12 col-lg-12 col-xl-12 p-xl-0">
-      <div class="col-md-12 col-lg-12 col-xl-12 input-wrapper w-100 d-flex justify-content-center flex-row flex-xl-row p-xl-0">
+  <div class="d-none col-sm-12 col-md-12 col-lg-12 col-xl-12 searchbar-wrapper d-md-block d-lg-block d-xl-block p-0">
+    <div class=" col-12 col-md-12 col-lg-12 col-xl-12 p-0">
+      <div class="col-12 col-md-12 col-lg-12 col-xl-12 input-wrapper w-100 d-flex justify-content-center flex-row flex-xl-row p-0">
 
         <div class="col-3 d-flex p-0" id="cet-annuaire-recherche-communes-homepage-container">
           <input class="search-input text-center searchtxt-bleu typeahead"
@@ -12,7 +12,7 @@
             name="cet-annuaire-recherche-communes-homepage-value" />
         </div>
 
-        <div class="d-flex col-3 p-xl-0 perimeter-search justify-content-center align-items-center">
+        <div class="d-flex col-3 p-0 perimeter-search justify-content-center align-items-center">
 
           <div class="d-flex align-items-center ml-3 mr-3">
             <span class="mt-0 searchtxt-rayon">rayon</span>
@@ -46,10 +46,46 @@
             id="rav-homepage-critere" name="rav-homepage-critere" />
         </div>
 
-        <div class="col-2 p-xl-0">
+        <div class="col-2 p-0">
           <div class="btn-wrapper d-flex">
+<<<<<<< HEAD
             <div>
               <button class="btn-search text-center" id="rav-homepage-envoyer">Rechercher</button>
+=======
+            <div class="searchbar-inputs search-dropdown">
+              <button class="btn-filter">Catégories <i class="fas fa-caret-down"></i></button>
+              <ul class="menu search-links">
+                <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-1" type="checkbox"
+                  value="producteurs"><label
+                  class="searchtxt-bleu"
+                  for="checkbox-dropdown-1">Producteurs</label></li>
+                  <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-2" type="checkbox"
+                    value="marche"><label
+                    class="searchtxt-bleu"
+                    for="checkbox-dropdown-2">Marchés</label></li>
+                    <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-3" type="checkbox"
+                      value="amap"><label
+                      class="searchtxt-bleu"
+                      for="checkbox-dropdown-3">AMAP</label></li>
+                      <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-4" type="checkbox"
+                        value="mbio"><label
+                        class="searchtxt-bleu"
+                        for="checkbox-dropdown-4">Magasins BIO</label></li>
+                        <li><input class="checkbox-dropdown rav-hp-categories" id="checkbox-dropdown-5" type="checkbox"
+                          value="associations"><label
+                          class="searchtxt-bleu"
+                          for="checkbox-dropdown-5">Associations</label></li>
+                          <li class="text-center"><a class="advanced-searchtxt" onmousedown="lancerRechercheAvancee(); scrollTowardsId('zone-homepage-recherche-avancee', -52);">recherche avancée</a></li>
+                        </ul>
+                      </div>
+                      <div class="btn-recherche-wrapper">
+                        <button class="btn-search text-center" id="rav-homepage-envoyer">Rechercher</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+>>>>>>> branch 'cetcal_phase3' of https://github.com/j-fish/cetcal.git
             </div>
             <div>
               <button class="btn-search text-center" onmousedown="lancerRechercheAvancee(); scrollTowardsId('zone-homepage-recherche-avancee', -52);" style="font-size: 14px;">Recherche avancée</button>
@@ -69,7 +105,7 @@
                   <div class="col-6 d-flex p-0">
                     <label class="label" for="search-input"></label>
                     <input class="search-input text-center searchtxt-bleu" type="text"
-                    placeholder="Rechercher votre commune"/>
+                    placeholder="Rechercher votre commune" autocomplete="false"/>
                   </div>
 
                   <div class="col-6 p-0 d-flex perimeter-search justify-content-center align-items-center">
@@ -129,7 +165,7 @@
                                     <li class="text-center"><a class="advanced-searchtxt">recherche avancée</a></li>
                                   </ul>
                                 </div>
-                                <div>
+                                <div class="btn-recherche-wrapper">
                                   <button class="btn-search text-center">Rechercher</button>
                                 </div>
                               </div>
