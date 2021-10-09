@@ -204,9 +204,10 @@ div.rav-categories-checkbox-div {
 }
 div.cet-rav-input-group-text {
   min-width: 136px !important;
-  color: #059b30 !important;
+  color: white; /* #059b30 !important; */
   font-family: Signika 12pt !important; 
   font-weight: bold !important;
+  background-color: #79b9d4;
 }
 span.rav-produit-critere {
   padding: 12px;

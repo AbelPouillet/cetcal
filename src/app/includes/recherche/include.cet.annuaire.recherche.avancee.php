@@ -100,7 +100,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text cet-rav-input-group-text" id="rav-certification">Certification : </div>
           </div>
-          <select class="form-select" id="rav-certification" name="rav-certification" style="padding: 8px;">
+          <select class="form-select" id="rav-certification" name="rav-certification" style="padding: 12px;">
             <option value="0" selected="selected">-- Aucune certification sélectionnée --</option>
             <option value="BIOAB">certifié Agriculture-Biologique</option>
             <option value="YTENDANT">agriculture éthique (non certifié BIO/AB)</option>
