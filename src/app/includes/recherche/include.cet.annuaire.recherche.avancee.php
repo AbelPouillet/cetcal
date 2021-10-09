@@ -4,7 +4,7 @@
 
       <div class="input-group">
         <div class="input-group-prepend">
-          <div class="input-group-text" id="cet-annuaire-recherche-communes-value">Commune : </div>
+          <div class="input-group-text cet-rav-input-group-text" id="cet-annuaire-recherche-communes-value">Commune : </div>
         </div>
         <div id="cet-annuaire-recherche-communes-conatiner">
           <input type="text" class="typeahead" placeholder="Rechercher votre commune" 
@@ -14,7 +14,7 @@
             style="padding: 8px;" />
         </div>
         <div class="input-group-append">
-          <div class="input-group-text" id="rav-rayon-text">dans un rayon de : </div>
+          <div class="input-group-text cet-rav-input-group-text" id="rav-rayon-text">dans un rayon de : </div>
         </div>
         <div class="input-group-append">
           <select class="form-select" id="rav-rayon" name="rav-rayon" style="padding: 8px;">
@@ -30,7 +30,7 @@
       <br>
       <div class="input-group">
         <div class="input-group-prepend">
-          <div class="input-group-text" for="categories-rav-dropdown-container">Catégories : </div>
+          <div class="input-group-text cet-rav-input-group-text" for="categories-rav-dropdown-container">Catégories : </div>
         </div>
         <div class="dropdown categories-rav-dropdown" id="categories-rav-dropdown-container">
           <button class="btn btn-small btn-success dropdown-toggle" type="button" id="rav-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmousedown="$('#categories-rav-dropdown-container').dropdown('toggle');" style="border-radius: 0px; padding: 8px;">
@@ -62,7 +62,7 @@
       <br>
       <div class="input-group">
         <div class="input-group-prepend">
-          <div class="input-group-text" id="rav-critere">Critère : </div>
+          <div class="input-group-text cet-rav-input-group-text" id="rav-critere">Critère : </div>
         </div>
         <input class="form-select" type="text" id="rav-critere" name="rav-critere" 
           placeholder="nom, produit, adresse etc..." style="padding: 8px;">        
@@ -80,7 +80,7 @@
 
         <div class="input-group">
           <div class="input-group-prepend">
-            <div class="input-group-text" id="cet-annuaire-recherche-produits-conatiner">Produits : </div>
+            <div class="input-group-text cet-rav-input-group-text" id="cet-annuaire-recherche-produits-conatiner">Produits : </div>
           </div>
           <div id="cet-annuaire-recherche-produits-conatiner">
             <input type="text" class="typeahead" placeholder="rechercher..." 
@@ -98,9 +98,9 @@
         <br>
         <div class="input-group">
           <div class="input-group-prepend">
-            <div class="input-group-text" id="rav-certification">Certification : </div>
+            <div class="input-group-text cet-rav-input-group-text" id="rav-certification">Certification : </div>
           </div>
-          <select class="form-select" id="rav-certification" name="rav-certification">
+          <select class="form-select" id="rav-certification" name="rav-certification" style="padding: 8px;">
             <option value="0" selected="selected">-- Aucune certification sélectionnée --</option>
             <option value="BIOAB">certifié Agriculture-Biologique</option>
             <option value="YTENDANT">agriculture éthique (non certifié BIO/AB)</option>
