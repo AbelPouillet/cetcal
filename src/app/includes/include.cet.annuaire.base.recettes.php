@@ -22,7 +22,7 @@ $data = $ctrl->fetchRecettes();
                 data-target="#cetcal-recette-detail-<?= $recette['pk_recette'] ?>"
                 aria-controls="cetcal-recette-detail-<?= $recette['pk_recette'] ?>"
                 style="color: #6C3012; text-decoration: none !important; font-size: 24px !important;">  
-                <i><?= strlen($recette['titre']) > 0 ? $recette['titre'] : "Recette n°".$recette['pk_recette']; ?></i>
+                <i><?= strlen($recette['titre']) > 0 ? $recette['titre'] : "Recette"; ?></i>
               </a>
               <span><i>(<?= $util->separatorToComaSpace(';', $recette['mots_cles_produits']); ?>)</i></span>
             </p>

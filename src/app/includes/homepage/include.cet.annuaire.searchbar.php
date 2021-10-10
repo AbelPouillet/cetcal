@@ -1,4 +1,5 @@
-<section class="bg-slogan">
+<div id="homepage-seachbar-container">
+  <section class="bg-slogan">
   <!--SEARCH BAR DEBUT VERSION DESKTOP-->
   <div class="d-none col-sm-12 col-md-12 col-lg-12 col-xl-12 searchbar-wrapper d-md-block d-lg-block d-xl-block p-0">
     <div class=" col-12 col-md-12 col-lg-12 col-xl-12 p-0">
@@ -134,3 +135,5 @@
                         </div>
                         <!--SEARCH BAR FIN VERSION MOBILE-->
                       </section>
+
+</div>
