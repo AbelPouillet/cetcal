@@ -56,6 +56,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         include $PHP_CONTROLLER_PATH.'router/cet.annuaire.router.php';
         include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.footer.php';
         include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
+        include $PHP_INCLUDES_PATH.'modals/include.cet.qstprod.modal.donnes.numeriques.php';
         ?>
     </div>
     </body>

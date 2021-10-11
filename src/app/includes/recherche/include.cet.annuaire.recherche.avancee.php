@@ -1,7 +1,7 @@
 <div id="zone-homepage-recherche-avancee" style="display:none;"> 
-  <div class="row">
-    <div class="col">
-
+  
+  <div class="row align-items-start no-gutters">
+    <div class="col-md-auto">
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text cet-rav-input-group-text" id="cet-annuaire-recherche-communes-value">Commune : </div>
@@ -14,7 +14,7 @@
             style="padding: 8px;" />
         </div>
         <div class="input-group-append">
-          <div class="input-group-text cet-rav-input-group-text" id="rav-rayon-text">dans un rayon de : </div>
+          <div class="input-group-text cet-rav-input-group-text" id="rav-rayon-text">dans un rayon de</div>
         </div>
         <div class="input-group-append">
           <select class="form-select" id="rav-rayon" name="rav-rayon" style="padding: 8px;">
@@ -26,15 +26,16 @@
           </select>
         </div>
       </div>
+    </div>
 
-      <br>
+    <div class="col-md-auto">
       <div class="input-group">
-        <div class="input-group-prepend">
+        <!--<div class="input-group-prepend">
           <div class="input-group-text cet-rav-input-group-text" for="categories-rav-dropdown-container">Catégories : </div>
-        </div>
+        </div>-->
         <div class="dropdown categories-rav-dropdown" id="categories-rav-dropdown-container">
           <button class="btn btn-small btn-success dropdown-toggle" type="button" id="rav-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmousedown="$('#categories-rav-dropdown-container').dropdown('toggle');" style="border-radius: 0px; padding: 8px;">
-            <span style="font-size: 14px;">Sélectionner des catégories</span>
+            Catégories
           </button>
           <div class="dropdown-menu" aria-labelledby="rav-categories">
             <?php $categoriesCount = 0; ?>
@@ -58,26 +59,28 @@
           </div>
         </div>
       </div>
-
-      <br>
+    </div>
+    <div class="col-md-auto">
       <div class="input-group">
         <div class="input-group-prepend">
-          <div class="input-group-text cet-rav-input-group-text" id="rav-critere">Critère : </div>
+          <div class="input-group-text cet-rav-input-group-text">Critère : </div>
         </div>
         <input class="form-select" type="text" id="rav-critere" name="rav-critere" 
-          placeholder="nom, produit, adresse etc..." style="padding: 8px;">        
+          placeholder="nom, produit, adresse etc..." style="padding: 8px;">    
+        <div class="input-group-append">
+          <button type="button" class="btn btn-small btn-success" 
+            onmousedown="$('#autres-criteres-rav').toggle('slow');"
+            style="background-color: #de4317;">
+            <i class="fas fa-angle-double-right"></i>Autres critères de recherches
+          </button>
+        </div>    
       </div>
+    </div>
+  </div>
 
-      <div class="form-group mb-3" style="margin: 4px; margin-top: 8px;">
-        <button type="button" class="btn btn-link btn-sm" 
-          style="margin-left: 10px;"
-          onmousedown="$('#autres-criteres-rav').toggle('slow');"><i class="fas fa-angle-double-right"></i> Autres critères de recherches :
-        </button>
-      </div>
-
-
-      <div id="autres-criteres-rav" style="display:none;">
-
+  <div id="autres-criteres-rav" style="display:none;">
+    <div class="row align-items-start no-gutters">
+      <div class="col-md-auto">
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text cet-rav-input-group-text" id="cet-annuaire-recherche-produits-conatiner">Produits : </div>
@@ -94,8 +97,8 @@
           </div>
         </div>
         <div id="rav-produits-selected"></div>
-
-        <br>
+      </div>
+      <div class="col-md-auto">
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text cet-rav-input-group-text" id="rav-certification">Certification : </div>
@@ -107,24 +110,30 @@
             <!--<option value="ENCOURSBIOAB">en cours de certification AB</option>-->
           </select>
         </div>
-        <br>
-
-        <div hidden="hidden">
-          <br>
-          Modes de vente
-          <select id="rav-modevente" name="rav-modevente">
-            <option value="0" selected="selected">-- Aucun mode de vente sélectionné --</option>
-          </select>
-          <button type="button" class="btn btn-success btn-sm">ajouter</button>
-        </div>
-
       </div>
-
-      <div class="form-group mb-3">
-        <button id="rav-envoi-recherche-avancee" 
-          type="button" class="btn btn-success">Rechercher</button>
-      </div>
-
     </div>
   </div>
+
+  <div class="row">
+    <div hidden="hidden">
+      <br>
+      Modes de vente
+      <select id="rav-modevente" name="rav-modevente">
+        <option value="0" selected="selected">-- Aucun mode de vente sélectionné --</option>
+      </select>
+      <button type="button" class="btn btn-success btn-sm">ajouter</button>
+    </div>
+  </div>
+
+  <div class="row align-items-start no-gutters">
+    <div class="col-md-auto">
+      <div class="form-group mb-3">
+        <button id="rav-envoi-recherche-avancee" 
+          type="button" class="btn btn-success" style="border-radius: 0px; margin-top: 4px;">
+          <i class="fas fa-search"></i>&#160;&#160;Rechercher
+        </button>
+      </div>
+    </div>
+  </div>
+
 </div>

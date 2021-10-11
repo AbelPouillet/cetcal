@@ -5,7 +5,7 @@ $utils = new FormatUtils();
 $controller = new CETCALAnnuaireFicheDetailleController();
 $data = $controller->fetchProducteursDerniersInscrit(5);
 ?>
-<section>
+<section hidden="hidden">
     <div class="container-fluid pt-3 pb-5">
         <div class="row">
             <div class="col-12 d-flex justify-content-center pb-3">

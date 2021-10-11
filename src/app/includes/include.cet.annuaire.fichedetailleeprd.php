@@ -13,9 +13,6 @@ $certif_bioab = $certif_controller->getCertificationProducteur($pk);
 $produits = $controller->fetchProduitByPkProducteur($pk);
 $productsCategories = $controller->fetchCategorieProduitByPkProducteur($pk);
 $lieux = $controller->fetchAllLieuDistByPkProducteur($pk);
-echo '<pre>';
-var_dump($lieux);
-echo '</pre>';
 ?>
 <div class="container-fluid ficheprd__wrapper">
 
@@ -62,7 +59,7 @@ echo '</pre>';
                             </div>
                         </div>
             </section>
-            <section>
+            <section hidden="hidden">
                 <div class="row">
                     <div class="col-12 d-flex align-items-center justify-content-center p-0">
                         <!--texte-->

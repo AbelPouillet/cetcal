@@ -1,8 +1,7 @@
-<div class="row justify-content-lg-center" id="cet-qstprod_seconnecter" style="display: none; margin-bottom: 36px;">
+<div class="row justify-content-lg-center" id="cet-qstprod_seconnecter" style="display: none; background-color: #bdddea;">
   <div class="col-lg-9"> 
-    <div class="alert alert-success cet-bloc" role="alert">
-      <form action="/src/app/controller/cet.qstprod.controller.login.form.php" method="post"
-        style="margin-bottom: 18px;">
+    <div class="alert" role="alert">
+      <form action="/src/app/controller/cet.qstprod.controller.login.form.php" method="post">
         <div class="row">
           <div class="col-sm" style="padding-top: 18px;"> 
             <h5>Veuillez renseigner votre identifiant et mot de passe.</h5>
@@ -16,8 +15,8 @@
               onclick="return false;">
              - J'ai oublié mon mot de passe et/ou mon identifiant.
             </a>
-            <!--<a href="#" onmousedown="$('#login-nav').val('prd'); $('#cet-qstprod_seconnecter').find('form').submit();"> - Producteur, je souhaite m'inscrire et être référencé.</a>-->
-            
+            <br>
+            <a href="/?statut=user.signup&anr=true">- Je suis un particulier et je souhaite m'inscrire.</a>
             <div id="zone-oubli-login" style="display: none; margin-bottom: 12px;">
               <small class="form-text text-muted" style="margin-left: 6px; margin-top: 6px;">Si vous avez effectué votre inscription avec votre adresse email, une solution vous sera envoyée.<b>Si vous êtes producteur.e et vous n'avez renseigné aucune information de contact (email, ou n° de téléphone mobil) alors l'équipe de cetcal prendra rapidement contact avec vous.</b> Dans ce cas, <b>veuillez cocher la case, <u>je suis producteur.e référencé et souhaite être contacté.</u></b> et renseigner votre adresse email <b>ainsi que votre numéro</b> de téléphone.</small>
               <br>

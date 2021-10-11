@@ -7,13 +7,14 @@
           <i class="fa fa-book" aria-hidden="true"></i>&#160;&#160;Lieux de vente
         </a>
       </li>
-      <!-- listing prd complet -->
+      <!-- listing prd complet 
       <li class="nav-item" style="margin-right: 4px;">
         <a class="nav-link cet-p-20" id="cet-annuaire-crt-recherche-btn" 
           href="/?statut=listing.producteurs&anr=true">
           <i class="fas fa-seedling"></i>&#160;&#160;Je souhaite consommer BIO local 
         </a>
       </li>
+      -->
       <?php if ($OPEN_PAGE_RECETTES): ?>
         <li class="nav-item" style="margin-right: 4px;">
           <a class="nav-link cet-p-20" href="/?statut=base.recettes&anr=true">

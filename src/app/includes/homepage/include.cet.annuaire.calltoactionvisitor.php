@@ -3,7 +3,7 @@
         <div class="col-12 col-xl-5 d-flex justify-content-center align-items-center flex-column">
             <p class="text-soutien text-center pb-4">decidelabiolocale.org <br> a besoin de votre soutien !</p>
             <div class="btn-cta-visitor text-center">
-                <a class="" href="">Inscrivez-vous</a>
+                <a class="" href="/?statut=user.signup&anr=true"">Inscrivez-vous</a>
             </div>
         </div>
         <div class="col-12 col-xl-5 pt-5 pt-xl-0">

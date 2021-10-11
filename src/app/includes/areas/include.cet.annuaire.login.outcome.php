@@ -30,7 +30,7 @@ $data_carto = NULL;
               intval($cnx) !== CetConnectionConst::CONNECTION_UTSR_REUSSIE): ?>
   <div class="row justify-content-lg-center" id="cetcal-cnx-not-done">
     <div class="col-lg-9">
-      <div class="alert alert-danger" role="alert">
+      <div class="alert" role="alert">
         <h4 class="alert-heading">Les informations renseignées ne permettent pas de vous connecter.</h4>
         <p>Votre saisie, email et/ou mot de passe, ne permet pas de vous connecter. Veuillez essayer à nouveau.</p>
         <ul>
@@ -48,4 +48,3 @@ $data_carto = NULL;
     </div>
   </div>
 <?php endif; ?>
-<div style="margin-top: 36px;"></div>

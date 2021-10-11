@@ -54,6 +54,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
     </div>
   </div>
 <?php elseif (!isset($_GET['usrs'])): ?>
+  <br>
   <div class="row justify-content-lg-center">
     <div class="col-lg-6">
       <div class="alert alert-success cet-bloc" role="alert">
