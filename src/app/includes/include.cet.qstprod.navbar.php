@@ -26,7 +26,10 @@
             <nav class="col-12 d-flex p-0">
                 <div class="col-9 d-flex p-0">
                     <ul class="d-flex align-items-center h-100">
-                        <li><a class="navbar-link" href="./">Notre projet decidelabiolocale.org</a></li>
+                        <li><a class="navbar-link" href="./">Accueil</a></li>
+                        <!--
+                          <li><a class="navbar-link" href="./">Notre projet decidelabiolocale.org</a></li>
+                        -->
                         <li><a class="navbar-link" href="/?statut=base.recettes&anr=true">Livret de recettes</a></li>
                         <li><a class="navbar-link" href="/?statut=aboutus&anr=true">Qui sommes-nous ?</a></li>
                         <li><a class="navbar-link" href="/?statut=partenaires.liens&anr=true">Partenaires et liens utiles</a></li>
