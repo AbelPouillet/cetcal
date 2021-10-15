@@ -10,6 +10,7 @@ $dataProcessor = new HTTPDataProcessor();
 $user_model = new CETCALUserModel();
 $producteur_model = new QSTPRODProducteurModel();
 $loginctrl = new LoginController();
+error_log("{{{LOGIN CONNEXION CAL:".$dataProcessor->processHttpFormData($_POST['login-email'])."}}}");
 
 /**
  * les cas de navigation possibles pour nav : 
