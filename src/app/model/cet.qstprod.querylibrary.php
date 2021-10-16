@@ -17,7 +17,6 @@ class CETCALQueryLibrary
   const SELECT_ALL_EMAIL_PRODUCTEUR = "SELECT email FROM cetcal.cetcal_producteur WHERE prod_active=1;";
   const SELECT_ALL_EMAIL_AND_PK_PRODUCTEUR = "SELECT email, pk_producteur FROM cetcal.cetcal_producteur WHERE prod_active=1;";
   const SELECT_ALL_CET_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_producteur WHERE prod_active=1 AND prod_inscrit='true';";
-  const SELECT_CETCAL_PRODUCTEUR_BY_EMAIL_OR_IDWWWWCET = "DELETE FROM cetcal.cetcal_producteur;";
   const SELECT_ALL_CET_PRODUCTEUR_N0N_INSCRIT = "SELECT * FROM cetcal.cetcal_producteur WHERE prod_active=1 AND prod_inscrit='false' OR prod_inscrit='amdif';";
   const SELECT_ALL_CET_PRODUCTEUR_INSCRITS_LIMIT_N = "SELECT * FROM cetcal.cetcal_producteur WHERE prod_active=1 AND prod_inscrit='true' ORDER BY pk_producteur DESC LIMIT :pLimit;";
   const SELECT_ALL_CET_PRODUCTEUR_INSCRIT_N0N_INSCRIT_ASC = "SELECT * FROM cetcal.cetcal_producteur WHERE prod_active=1 ORDER BY nom_ferme ASC;";
