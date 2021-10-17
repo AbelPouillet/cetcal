@@ -24,13 +24,13 @@
             <label class="mb-0 searchtxt-blanc" for="perim-10"></label>
           </div>
           <div class="d-flex align-items-start flex-column ml-3">
-            <p class="mb-0 searchtxt-blanc">15km</p>
-            <input type="radio" id="perim-15" class="align-self-center rav-hp-perim" name="perim" value="15">
+            <p class="mb-0 searchtxt-blanc">20km</p>
+            <input type="radio" id="perim-15" class="align-self-center rav-hp-perim" name="perim" value="20">
             <label class="mb-0 searchtxt-blanc" for="perim-15"></label>
           </div>
           <div class="d-flex align-items-start flex-column ml-3">
-            <p class="mb-0 searchtxt-blanc">20km</p>
-            <input type="radio" id="perim-20" class="align-self-center rav-hp-perim" name="perim" value="20">
+            <p class="mb-0 searchtxt-blanc">30km</p>
+            <input type="radio" id="perim-20" class="align-self-center rav-hp-perim" name="perim" value="30">
             <label class="mb-0 searchtxt-blanc" for="perim-20"></label>
           </div>
           <div class="d-flex align-items-start flex-column ml-3 mr-3">

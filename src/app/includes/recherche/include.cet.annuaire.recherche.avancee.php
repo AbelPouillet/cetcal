@@ -30,9 +30,6 @@
 
     <div class="col-md-auto">
       <div class="input-group">
-        <!--<div class="input-group-prepend">
-          <div class="input-group-text cet-rav-input-group-text" for="categories-rav-dropdown-container">Catégories : </div>
-        </div>-->
         <div class="dropdown categories-rav-dropdown" id="categories-rav-dropdown-container">
           <button class="btn btn-small btn-success dropdown-toggle" type="button" id="rav-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmousedown="$('#categories-rav-dropdown-container').dropdown('toggle');" style="border-radius: 0px; padding: 8px;">
             Catégories
