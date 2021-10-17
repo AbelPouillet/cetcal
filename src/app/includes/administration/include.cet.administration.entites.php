@@ -29,7 +29,7 @@
           <!-- contenu du formulaire, reflet de la table cetcal_entite pour les entites -->
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Dénomination :</small></label>
-            <input class="form-control" name="entite-entite-denomination" type="text" value="" maxlength="128">
+            <input class="form-control" name="entite-entite-denomination" id="entite-entite-denomination" type="text" value="" maxlength="128">
           </div>
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Territoire :</small></label>

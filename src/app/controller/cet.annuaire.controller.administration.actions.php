@@ -70,6 +70,55 @@ try
     $prdmodel = new QSTPRODProducteurModel();
     $prdmodel->desactiverProducteurByPk($pk);
   }
+  else if (strcmp($nav, 'admin-geoloc-prd') === 0)
+  {
+    $pk = $dataProcessor->processHttpFormData($_POST['producteur-geoloc-pkproducteur']);
+    $geoloc = $dataProcessor->processHttpFormData($_POST['producteur-geoloc-coordonnees']);
+
+    $latlng_array = null;
+    try 
+    {
+      $latlng = trim($geoloc);
+      $latlng = str_replace(" ", "", $latlng);
+      $latlng = str_replace(",", ";", $latlng);
+      $latlng_array = explode(';', $latlng);
+
+      error_log("[UPDATE admin latlng ferme producteur] pk producteur=".$pk);
+      error_log("[UPDATE admin latlng ferme producteur] coordonnees=".$geoloc);
+      require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.cartographie.model.php');
+      $crt_model = new CETCALCartographieModel();
+      $crt_model->updateManuelLatLng($pk, $latlng_array);
+    } 
+    catch (Exception $e) 
+    {
+      error_log("[Administration UPDATE Error] pour mise a jour de geoloc. pk producteur=".$pk. " err=".$e->getMessage());
+    }
+  }
+  else if (strcmp($nav, 'admin-geoloc-entite') === 0)
+  {
+    $pk = $dataProcessor->processHttpFormData($_POST['entite-geoloc-pkentite']);
+    $geoloc = $dataProcessor->processHttpFormData($_POST['entite-geoloc-coordonnees']);
+    error_log("admin geoloc entite: pk=".$pk." coordonnes=".$geoloc);
+
+    $latlng_array = null;
+    try 
+    {
+      $latlng = trim($geoloc);
+      $latlng = str_replace(" ", "", $latlng);
+      $latlng = str_replace(",", ";", $latlng);
+      $latlng_array = explode(';', $latlng);
+
+      error_log("[UPDATE admin latlng entite] pk entite=".$pk);
+      error_log("[UPDATE admin latlng entite] coordonnees entite=".$geoloc);
+      require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.cartographie.model.php');
+      $crt_model = new CETCALCartographieModel();
+      $crt_model->updateManuelLatLngEntite($pk, $latlng_array);
+    } 
+    catch (Exception $e) 
+    {
+      error_log("[Administration UPDATE Error] pour mise a jour de geoloc. pk producteur=".$pk. " err=".$e->getMessage());
+    }
+  }
   /* FIN traitement cetcal.cetcal_entite.
   ** ***********************************************************************/
 

@@ -31,6 +31,18 @@ class CETCALCartographieModel extends CETCALModel
     $stmt->execute();
   }
 
+  public function updateManuelLatLngEntite($pFk, $latLng)
+  {
+    $update_man = 'true';
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::UPDATE_LAT_LNG_ENTITE_CETCAL_CARTOGRAPHIE_WHERE_PKFK);
+    $stmt->bindParam(":pFkEntite", $pFk, PDO::PARAM_INT);
+    $stmt->bindParam(":pLat", $latLng[1], PDO::PARAM_STR);
+    $stmt->bindParam(":pLng", $latLng[0], PDO::PARAM_STR);
+    $stmt->bindParam(":pUpdateManuelle", $update_man, PDO::PARAM_STR);
+    $stmt->execute();
+  }
+
   public function exists($pFk)
   {
     $qLib = $this->getQuerylib();

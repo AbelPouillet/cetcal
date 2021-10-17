@@ -118,7 +118,7 @@ $(document).ready(function() {
             		pkid : pk
 		        },
 		        success: function (json) {
-							var entite = JSON.parse(json);	        	
+							var entite = JSON.parse(json)[0];	        	
 		        	// Ajouter les données au formaulaire 
 		        	// Relancer la zone de création marchés en update.
 		        	$('input[name ="admin-pk-entite"]').val(entite.pk_entite);

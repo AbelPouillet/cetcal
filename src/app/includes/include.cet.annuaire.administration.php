@@ -1,4 +1,4 @@
-<div class="cet-module row justify-content-lg-center" id="cet-qstprod_seconnecter" style="margin-bottom: 56px;">
+<div class="cet-module row justify-content-lg-center" id="cet-qstprod_seconnecter" style="margin-bottom: 56px; margin-top: 32px;">
   <div class="col-lg-5"> 
     <div class="alert cet-bloc" role="alert">
       <h5 class="alert-heading">Bienvenue Administrateur cetcal !</h5>

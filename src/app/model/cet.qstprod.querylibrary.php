@@ -74,6 +74,7 @@ class CETCALQueryLibrary
   const DELETE_CETCAL_PRODUCTEUR_CARTOGRAPHIE = "DELETE FROM cetcal.cetcal_cartographie WHERE fk_producteur=:pFkProducteur AND update_man != 'true';";
   const DELETE_CETCAL_PRODUCTEUR_CARTOGRAPHIE_FORCE = "DELETE FROM cetcal.cetcal_cartographie WHERE fk_producteur=:pFkProducteur;";
   const UPDATE_LAT_LNG_CETCAL_CARTOGRAPHIE_WHERE_PKFK = "UPDATE cetcal.cetcal_cartographie SET cetcal_prd_lat=:pLat, cetcal_prd_lng=:pLng, update_man=:pUpdateManuelle WHERE fk_producteur=:pFkProducteur;";
+  const UPDATE_LAT_LNG_ENTITE_CETCAL_CARTOGRAPHIE_WHERE_PKFK = "UPDATE cetcal.cetcal_cartographie SET cetcal_prd_lat=:pLat, cetcal_prd_lng=:pLng, update_man=:pUpdateManuelle WHERE fk_entite=:pFkEntite;";
   const SELECT_DISTINCT_TYPE_ENTITE = "SELECT DISTINCT type FROM cetcal.cetcal_entite;";
 
   const INSERT_INTO_CETCAL_ENTITES = "INSERT INTO cetcal.cetcal_entite (denomination, territoire, activite, adresse, tels, personne, email, urlwww, infoscmd, jourhoraire, specificites, type) VALUES (:pDenomination, :pTerritoire, :pActivite, :pAdrliterale, :pTels, :pContactPersonne, :pEmail, :pUrlwww, :pInfoCommande, :pJourHoraire, :pSpecificite, :pType);";
