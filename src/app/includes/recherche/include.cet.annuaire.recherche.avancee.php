@@ -89,9 +89,6 @@
               name="cet-annuaire-recherche-produits-value"
               style="padding: 8px;">
           </div>
-          <div class="input-group-append">
-            <button type="button" id="rav-produit-ajouter" class="btn btn-success btn-sm">ajouter ce produit</button>
-          </div>
         </div>
         <div id="rav-produits-selected"></div>
       </div>

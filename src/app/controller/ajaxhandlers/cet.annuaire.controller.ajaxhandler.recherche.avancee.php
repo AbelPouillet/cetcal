@@ -30,13 +30,18 @@ $result_inscrits = $model_prd->fetchAllFrontEndDTOArray();
 $result_preinscrits = $model_prd->fetchAllFrontEndDTOArrayPreInscrits();
 $producteurs = array_merge($result_preinscrits, $result_inscrits);
 
+error_log("[[[ RECHERCHE AVANCEE - criteres recus  controller :]]]");
+error_log("[commune, rayon] ".$commune_cp. ", ".$rayon);
+error_log("[critere(s)] ".$critere);
+error_log("[produits(s)] ".implode(' / ', $produits));
+error_log("[[[ RECHERCHE AVANCEE - debut filtrage :]]]");
+
 /** ************************************************************************
  * Filtre commune et rayon.
  */
-if (strlen($commune_cp) > 0 && isset($rayon) && $rayon > -1)
+if (strlen($commune_cp) > 2 && isset($rayon) && $rayon > 0)
 {
-  error_log("rayon:".$rayon);
-  error_log("commune_cp:".$commune_cp);
+  error_log("[[ RECHERCHE AVANCEE - commune_cp + rayon]]");
   $latlng = explode(";", $model_communes->selectLatLngByLibelle($commune_cp));
   error_log($latlng[0]."/".$latlng[1]);
   
@@ -56,6 +61,7 @@ if (strlen($commune_cp) > 0 && isset($rayon) && $rayon > -1)
  */
 if (count($produits) > 0)
 {
+  error_log("[[ RECHERCHE AVANCEE - produits]]");
   $result = [];
   for ($i = 0; $i < count($producteurs); ++$i) 
   {
@@ -82,8 +88,9 @@ if (count($produits) > 0)
 /** ************************************************************************
  * Filtre sur BIO / y tendant.
  */
-if (strlen($certification) > 0 && $certification !== "0")
+if (strlen($certification) > 0 && $certification != "0")
 {
+  error_log("[[ RECHERCHE AVANCEE - BIOAB]]");
   $result = [];
   for ($i = 0; $i < count($producteurs); ++$i) 
   {
@@ -102,6 +109,7 @@ if (strlen($certification) > 0 && $certification !== "0")
  */
 if (count($categories) > 0)
 {
+  error_log("[[ RECHERCHE AVANCEE - categories]]");
   $result = [];
   for ($i = 0; $i < count($producteurs); ++$i) 
   { 
@@ -125,6 +133,7 @@ if (count($categories) > 0)
  */
 if (strlen($critere) > 4)
 {
+  error_log("[[ RECHERCHE AVANCEE - critere]]");
   $result = [];
   for ($i = 0; $i < count($producteurs); ++$i) 
   {
