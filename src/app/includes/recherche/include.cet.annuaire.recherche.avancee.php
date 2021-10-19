@@ -47,6 +47,20 @@
                 </label>
               </div>
             <?php endforeach; ?>
+            <!-- Ajouter les catégories de type cetcal.cetcal_entite -->
+            <!-- TODO
+            <?php foreach ($listes_arrays->activites as $activite): ?>
+              <div class="form-check dropdown-item rav-categories-checkbox-div">
+                <input class="form-check-input rav-categories-checkbox" type="checkbox" 
+                  value="<?= implode(';', $activite); ?>" data-type="producteur"
+                  id="<?= ++$categoriesCount; ?>" onmousedown="$(this).prop('checked', !$(this).is(':checked'));">
+                <label for="<?= $categoriesCount; ?>"
+                  onmousedown="$('#' + '<?= $categoriesCount; ?>').prop('checked', !$('#' + '<?= $categoriesCount; ?>').is(':checked'));">
+                  <?= $activite[1]; ?>
+                </label>
+              </div>
+            <?php endforeach; ?>
+            -->
             <div class="form-check dropdown-item">
               <button class="btn btn-small btn-success" type="button" 
                 onmousedown="$('#categories-rav-dropdown-container').dropdown('hide');">

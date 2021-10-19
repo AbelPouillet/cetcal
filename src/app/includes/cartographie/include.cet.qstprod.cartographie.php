@@ -92,3 +92,4 @@ $loader->loadCommunes();
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet'/>
 <script type="text/javascript" src="/src/scripts/js/cetcal/cetcal.cartographie.min.js"></script>
+<script type="text/javascript" src="/src/scripts/js/cetcal/cetcal.min.recherche.avancee.js"></script>

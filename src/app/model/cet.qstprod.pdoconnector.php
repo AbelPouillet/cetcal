@@ -19,8 +19,8 @@ class CETCALPDOConnector {
     $this->LOG = 'root';
     $this->PWD = 'root';
     $this->DNS_prod = 'mysql:host=localhost;dbname=cetcal;charset=utf8';
-    $this->LOG_prod = 'webdev';
-    $this->PWD_prod = 'CET_3324_gironde_dordogne';
+    $this->LOG_prod = '';
+    $this->PWD_prod = '';
   }
 
   function getPdoConnexion() 
