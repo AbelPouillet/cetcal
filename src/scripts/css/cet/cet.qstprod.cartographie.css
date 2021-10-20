@@ -200,10 +200,10 @@ p.detail-rav-resultats {
   padding: 12px;
 }
 div.rav-categories-checkbox-div {
-  margin-left: 12px;
+  padding-left: 32px;
 }
 div.cet-rav-input-group-text {
-  min-width: 136px !important;
+  min-width: 156px !important;
   color: white; /* #059b30 !important; */
   font-family: Signika 12pt !important; 
   font-weight: bold !important;
@@ -220,4 +220,31 @@ i.rav-produit-critere-supprimer {
 }
 i.rav-produit-critere-supprimer:hover {
   cursor: pointer;
+}
+#categories-rav-dropdown-container {
+  padding-top: 4px;
+  margin-top: -3px;
+}
+div.rav-categories-desc:hover {
+  cursor: alias;
+  background-color: white;
+  margin: 0px !important;
+  color: #059b30;
+  font-weight: bold;
+  margin-bottom: 12px !important;
+}
+div.rav-categories-desc {
+  cursor: alias;
+  background-color: white;
+  margin: 0px !important;
+  color: #059b30;
+  font-weight: bold;
+  margin-bottom: 12px !important;
+}
+div#rav-dropdown-envoyer:hover {
+  background-color: white;
+}
+#rav-dropdown-envoyer-button {
+  width: 100% !important;
+  font-weight: bold;
 }

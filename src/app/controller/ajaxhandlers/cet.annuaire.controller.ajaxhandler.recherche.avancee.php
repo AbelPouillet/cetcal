@@ -18,18 +18,18 @@ $json = json_decode($_GET['json']);
 $recherche_avancee = $json->rav;
 $commune_cp = $json->commune;
 $rayon = $json->rayon;
-$types = $json->types;
 $categories = $json->categories;
+$categories_entite = $json->entite_types;
 $critere = $json->criteresplus;
 $produits = $json->produits;
 $certification = $json->certification;
-$inclureentites = $json->inclureentites;
 
 $result = [];
 $result_inscrits = $model_prd->fetchAllFrontEndDTOArray();
 $result_preinscrits = $model_prd->fetchAllFrontEndDTOArrayPreInscrits();
 $producteurs = array_merge($result_preinscrits, $result_inscrits);
 
+error_log("[entite(s) types/categories] ".implode(',', $categories_entite));
 error_log("[[[ RECHERCHE AVANCEE - criteres recus  controller :]]]");
 error_log("[commune, rayon] ".$commune_cp. ", ".$rayon);
 error_log("[critere(s)] ".$critere);
@@ -109,7 +109,7 @@ if (strlen($certification) > 0 && $certification != "0")
  */
 if (count($categories) > 0)
 {
-  error_log("[[ RECHERCHE AVANCEE - categories]]");
+  error_log("[[ RECHERCHE AVANCEE - categories producteur]]");
   $result = [];
   for ($i = 0; $i < count($producteurs); ++$i) 
   { 

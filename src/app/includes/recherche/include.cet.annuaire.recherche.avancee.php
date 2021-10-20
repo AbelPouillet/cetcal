@@ -1,3 +1,9 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.annuaire.controller.entite.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.annuaire.const.types.php');
+$entite_types_ctrl = new EntiteController();
+$types_entites = $entite_types_ctrl->getDistinctTypesEntites();
+?>
 <div id="zone-homepage-recherche-avancee" style="display:none;"> 
   
   <div class="row align-items-start no-gutters">
@@ -36,7 +42,11 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="rav-categories">
             <?php $categoriesCount = 0; ?>
+            <div class="dropdown-item rav-categories-desc" onmousedown="return;" onclick="return;">Catégories producteur : </div>
             <?php foreach ($listes_arrays->activites as $activite): ?>
+              <?php if(strcmp($activite[1], 'autre') === 0): ?>
+                <?php continue; ?>
+              <?php endif; ?>
               <div class="form-check dropdown-item rav-categories-checkbox-div">
                 <input class="form-check-input rav-categories-checkbox" type="checkbox" 
                   value="<?= implode(';', $activite); ?>" data-type="producteur"
@@ -48,23 +58,27 @@
               </div>
             <?php endforeach; ?>
             <!-- Ajouter les catégories de type cetcal.cetcal_entite -->
-            <!-- TODO
-            <?php foreach ($listes_arrays->activites as $activite): ?>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item rav-categories-desc" onmousedown="return;" onclick="return;">Autres catégories : </div>
+            <?php foreach ($types_entites as $type_entite): ?>
+              <?php if(strlen($type_entite['type']) <= 0 || strcmp($type_entite['type'], 'autre') === 0): ?>
+                <?php continue; ?>
+              <?php endif; ?>
               <div class="form-check dropdown-item rav-categories-checkbox-div">
                 <input class="form-check-input rav-categories-checkbox" type="checkbox" 
-                  value="<?= implode(';', $activite); ?>" data-type="producteur"
+                  value="<?= $type_entite['type']; ?>" data-type="entite"
                   id="<?= ++$categoriesCount; ?>" onmousedown="$(this).prop('checked', !$(this).is(':checked'));">
                 <label for="<?= $categoriesCount; ?>"
                   onmousedown="$('#' + '<?= $categoriesCount; ?>').prop('checked', !$('#' + '<?= $categoriesCount; ?>').is(':checked'));">
-                  <?= $activite[1]; ?>
+                  <?= CetAnnuaireConstTypes::TYPE_ENTITE[$type_entite['type']]; ?>
                 </label>
               </div>
             <?php endforeach; ?>
-            -->
-            <div class="form-check dropdown-item">
-              <button class="btn btn-small btn-success" type="button" 
+            <div class="dropdown-divider"></div>
+            <div class="form-check dropdown-item" id="rav-dropdown-envoyer">
+              <button class="btn btn-small btn-success" id="rav-dropdown-envoyer-button" type="button" 
                 onmousedown="$('#categories-rav-dropdown-container').dropdown('hide');">
-                <span style="font-size: 14px;">Valider la sélection</span>
+                <span style="font-size: 14px; font-weight: bold;">Valider la sélection</span>
               </button>
             </div>
           </div>
