@@ -192,6 +192,9 @@ class CETCALEntitesModel extends CETCALModel
   public function selectAllDataToDTOArray()
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/dto/cet.annuaire.entite.dto.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.cartographie.model.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.annuaire.const.types.php');
+    $modelCarto = new CETCALCartographieModel();
     $dataDto = array();
     $qLib = $this->getQuerylib();
     $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_CETCAL_ENTITE);
@@ -205,6 +208,10 @@ class CETCALEntitesModel extends CETCALModel
         $row['jourhoraire'], $row['specificites'], $row['type'], $row['etat']);
 
       $dto->setPk($row['pk_entite']);
+      $latLng = $modelCarto->getLatLngEntite($row['pk_entite']);
+      if (is_array($latLng)) $dto->setLatLng($latLng['cetcal_prd_lat'], $latLng['cetcal_prd_lng']);
+      $dto->typeLibelle = CetAnnuaireConstTypes::TYPE_ENTITE[$dto->type];
+
       array_push($dataDto, $dto);
     }
 

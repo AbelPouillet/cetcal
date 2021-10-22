@@ -5,9 +5,9 @@
 Class AnnuaireEntiteDTO
 {
 
-  private $lat;
-  private $lng;
-  private $pk;
+  public $lat;
+  public $lng;
+  public $pk;
   
   public $fkProducteur;
   public $fkLieu;
@@ -25,6 +25,7 @@ Class AnnuaireEntiteDTO
   public $jourhoraire;
   public $specificites;
   public $type;
+  public $typeLibelle;
   public $etat;
 
   function __construct($p_denomination = "", $p_territoire = "", $p_activite = "", $p_adresse = "", 
@@ -55,6 +56,16 @@ Class AnnuaireEntiteDTO
   public function getLatLng()
   {
     return $this->lat.'/'.$this->lng;
+  }
+
+  public function getLat()
+  {
+    return $this->lat;
+  }
+
+  public function getLng()
+  {
+    return $this->lng;
   }
 
   public function setPk($pPk) 

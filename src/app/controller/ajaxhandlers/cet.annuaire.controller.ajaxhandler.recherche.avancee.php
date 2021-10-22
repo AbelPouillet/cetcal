@@ -3,12 +3,14 @@ $DOC_ROOT = $_SERVER['DOCUMENT_ROOT'];
 require_once($DOC_ROOT.'/src/app/utils/cet.qstprod.utils.httpdataprocessor.php');
 require_once($DOC_ROOT.'/src/app/model/cet.qstprod.producteurs.model.php');
 require_once($DOC_ROOT.'/src/app/model/cet.annuaire.produits.model.php');
+require_once($DOC_ROOT.'/src/app/model/cet.annuaire.entites.model.php');
 require_once($DOC_ROOT.'/src/app/utils/cet.annuaire.geocoordinate.helper.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.certification.bioab.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.communes.model.php');
 
 $certif_controller = new CertificationBioABProducteurController();
 $model_prd = new QSTPRODProducteurModel();
+$model_entite = new CETCALEntitesModel();
 $model_produits = new AnnuaireProduitsModel();
 $model_communes = new CETCALCommunesModel();
 $dataProcessor = new HTTPDataProcessor();
@@ -25,15 +27,18 @@ $produits = $json->produits;
 $certification = $json->certification;
 
 $result = [];
+$result_entites = [];
 $result_inscrits = $model_prd->fetchAllFrontEndDTOArray();
 $result_preinscrits = $model_prd->fetchAllFrontEndDTOArrayPreInscrits();
 $producteurs = array_merge($result_preinscrits, $result_inscrits);
+$entites = $model_entite->selectAllDataToDTOArray();
 
-error_log("[entite(s) types/categories] ".implode(',', $categories_entite));
 error_log("[[[ RECHERCHE AVANCEE - criteres recus  controller :]]]");
 error_log("[commune, rayon] ".$commune_cp. ", ".$rayon);
 error_log("[critere(s)] ".$critere);
 error_log("[produits(s)] ".implode(' / ', $produits));
+error_log("[producteurs(s) categories] ".implode(',', $categories));
+error_log("[entite(s) types/categories] ".implode(',', $categories_entite));
 error_log("[[[ RECHERCHE AVANCEE - debut filtrage :]]]");
 
 /** ************************************************************************
@@ -41,7 +46,7 @@ error_log("[[[ RECHERCHE AVANCEE - debut filtrage :]]]");
  */
 if (strlen($commune_cp) > 2 && isset($rayon) && $rayon > 0)
 {
-  error_log("[[ RECHERCHE AVANCEE - commune_cp + rayon]]");
+  error_log("[[ RECHERCHE AVANCEE - PRODUCTEURS commune_cp + rayon]]");
   $latlng = explode(";", $model_communes->selectLatLngByLibelle($commune_cp));
   error_log($latlng[0]."/".$latlng[1]);
   
@@ -149,4 +154,51 @@ if (strlen($critere) > 4)
   $producteurs = $result;
 }
 
-echo json_encode($result);
+/** ************************************************************************
+ * Filtre commune et rayon pour entites.
+ */
+if (strlen($commune_cp) > 2 && isset($rayon) && $rayon > 0)
+{
+  error_log("[[ RECHERCHE AVANCEE - ENTITES commune_cp + rayon]]");
+  $latlng = explode(";", $model_communes->selectLatLngByLibelle($commune_cp));
+
+  for ($i = 0; $i < count($entites); ++$i) 
+  {
+    $distance_km = $geo_helper->haversineGreatCircleDistance(
+      $latlng[1], $latlng[0], $entites[$i]->getLat(), $entites[$i]->getLng()) / 1000;
+    if ($distance_km <= $rayon) array_push($result_entites, $entites[$i]);
+  }
+
+  $entites = $result_entites;
+}
+
+/** ************************************************************************
+ * Filtre catégorie d'entités.
+ */
+if (count($categories_entite) > 0)
+{
+  error_log("[[ RECHERCHE AVANCEE - categories entites]]");
+  $result_entites = [];
+  for ($i = 0; $i < count($entites); ++$i) 
+  { 
+    $cat = $entites[$i]->type;
+    if (strlen($cat) <= 0) continue;
+    foreach ($categories_entite as $selected_cat)
+    {
+      if (strcmp($cat, $selected_cat) === 0)
+      {
+        array_push($result_entites, $entites[$i]);
+        break;
+      }
+    }
+  }
+
+  $entites = $result_entites;
+}
+
+/**
+ * Finallement, retourner l'array au format JSON.
+ */ 
+error_log("[[[ RECHERCHE AVANCEE - count producteurs:]]] ".count($result));
+error_log("[[[ RECHERCHE AVANCEE - count entites:]]] ".count($result_entites));
+echo json_encode(array("producteurs" => $result, "entites" => $result_entites));

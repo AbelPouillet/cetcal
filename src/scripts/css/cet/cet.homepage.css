@@ -397,6 +397,13 @@ section .pour-qui ul{
 
 }
 
+.card-last-entite {
+    border: 1px solid #059b30;
+    border-radius: 5px;
+    background-color: white;
+    flex: 0 1 calc(20% - 0.875rem);
+}
+
 /*
     CALL-TO-ACTION SECTION
  */
