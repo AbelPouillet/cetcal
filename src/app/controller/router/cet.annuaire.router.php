@@ -24,7 +24,7 @@
 /*  if($anr && strcmp($statut, 'user.signup') === 0)*/
 
   if($anr && strcmp($statut, 'aboutus') === 0){
-      include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
+      include $PHP_INCLUDES_PATH . '/homepage/include.cet.annuaire.aboutus.php';
   }
 
 
