@@ -1,7 +1,7 @@
 <div class="row justify-content-lg-center" id="cetcal-cnx-done" style="background-color: #bdddea; margin-bottom: -36px !important;">
   <div class="col-lg-9">
 
-        <div class="alert" role="alert" style="color: rgb(50,70,50);"
+    <div class="alert" role="alert" style="color: rgb(50,70,50);"
       id="espace-prd-header-area">   
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_UTSR_REUSSIE): ?>
         <h3 class="alert-heading">Bienvenu.</h3>
@@ -39,6 +39,7 @@
       <?php endif; ?>
 
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE): ?>
+        <script type="text/javascript">$('#cet-qstprod_seconnecter').hide();</script>
         <div class="alert alert-light" role="alert" 
           style="color: rgb(50,70,50); background-color: rgba(255,255,255, 0.2);"
           id="espace-prd-mdif-global-container">   

@@ -195,7 +195,6 @@ p.detail-rav-resultats {
 }
 #zone-homepage-recherche-avancee {
   background-color: #bdddea !important;
-  display:none; 
   padding: 12px;
 }
 div.rav-categories-checkbox-div {
@@ -246,4 +245,12 @@ div#rav-dropdown-envoyer:hover {
 #rav-dropdown-envoyer-button {
   width: 100% !important;
   font-weight: bold;
+}
+#afficher-recherche-avancee {
+  style="font-size: 14px;"
+  text-decoration: none;
+}
+#afficher-recherche-avancee:hover {
+  text-decoration: none;
+  color: white;
 }

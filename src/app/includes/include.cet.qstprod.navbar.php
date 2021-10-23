@@ -37,13 +37,7 @@
                 </div>
 
                 <div class="col-3 d-flex justify-content-end align-items-center ml-auto pl-2">
-                    <a id="cet-annuaire-user-login" class="btn-connect" href="#" 
-                      onmousedown="$('#cet-qstprod_seconnecter').show('slow', function(){ 
-                        scrollTowardsId('cet-qstprod_seconnecter', -10);
-                        $('#cetcal-cnx-not-done').hide('slow'); 
-                        $('#cetcal-obl-done').hide('slow'); 
-                        $('#cetcal-obl-not-done').hide('slow'); });">connexion / inscription</a>
-
+                    <a id="cet-annuaire-user-login" class="btn-connect" href="/?statut=login.form">connexion / inscription</a>
                 </div>
             </nav>
         </div>
