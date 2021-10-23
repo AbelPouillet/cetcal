@@ -1,4 +1,5 @@
-<div class="row justify-content-lg-center" id="cet-qstprod_seconnecter" style="display: none; background-color: #bdddea;">
+<div class="row justify-content-lg-center" id="cet-qstprod_seconnecter" 
+  style="background-color: #bdddea; padding-bottom: 128px; padding-top: 32px;">
   <div class="col-lg-9"> 
     <div class="alert" role="alert">
       <form action="/src/app/controller/cet.qstprod.controller.login.form.php" method="post">
