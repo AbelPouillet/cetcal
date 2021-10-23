@@ -50,7 +50,8 @@
         <div class="col-2 p-0">
           <div class="btn-wrapper d-flex">
             <button class="btn-search text-center" id="rav-homepage-envoyer">Rechercher</button>
-            <button class="btn-search text-center" onmousedown="lancerRechercheAvancee(); scrollTowardsId('zone-homepage-recherche-avancee', -52);" style="font-size: 14px;">Recherche avancée</button>
+            <a class="btn-search text-center" href="/?statut=recherche.avancee&anr=true" 
+              id="afficher-recherche-avancee">Recherche avancée</a>
           </div>
         </div>
       </div>

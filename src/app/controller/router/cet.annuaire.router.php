@@ -18,7 +18,7 @@
   if (file_exists($module)) include $module;
 
   if ($anr && strcmp($statut, 'aboutus') === 0) {
-      include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
+    include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.aboutus.php';
   }
 
   /**
@@ -26,7 +26,6 @@
    */
   if (strcmp($statut, 'accueil.cet') === 0)
   {
-    include $PHP_INCLUDES_PATH.'recherche/include.cet.annuaire.recherche.avancee.php';
     include $PHP_INCLUDES_PATH.'cartographie/include.cet.qstprod.cartographie.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.searchbar.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.slogan.php';
