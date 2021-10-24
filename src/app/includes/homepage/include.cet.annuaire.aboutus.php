@@ -4,7 +4,7 @@
             <img class="w-75 w-xl-auto mw-100" src="res/content/images-site/a-propos.png" alt="Max-width 100%" >
         </div>
     </div>
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center mb-5">
         <div class="col-5 col-xl-3 d-flex align-items-center">
             <img class="mw-100" src="res/documentation/images-site/castillon-la-bataille.png" alt="">
         </div>
@@ -14,8 +14,6 @@
                 L’association Castillonnais en transition est composée de girondins et<br>
                 périgourdins engagés. Elle travaille au développement de la BIO Locale.<br>
             </p>
-            <br>
-            <br>
             <h6>Nos priorités sont de :</h6>
             <p>▸ Remettre l'agriculture, l'alimentation, le vivant, à une place centrale.</p>
             <p>▸ Renforcer la résilience alimentaire de nos territoires.</p>
@@ -48,13 +46,13 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="col-8">
-            <p class="text-center">Contact et crédits</p>
+        <div class="col-8 mt-5 mb-5">
+            <h6 class="text-center">Contact et crédits</h6>
         </div>
     </div>
 
     <div class="row d-flex justify-content-center">
-        <div class="col-3">
+        <div class="col-12 col-xs-12 col-md-12 col-lg-3 col-xl-3">
             <div class=" w-100 address-wrapper d-flex justify-content-center flex-column">
                 <address class="text-center pt-2">
                     <p class="text-center address-card-title">Castillonnais en transition</p>
@@ -72,14 +70,14 @@
                 </address>
             </div>
         </div>
-        <div class="col-2 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-xs-12 col-md-12 col-lg-2 col-xl-2 d-flex justify-content-center align-items-center">
             <!--image-->
             <img class="logo-dcdl mw-100" src="res/content/images-site/decidela_CET.png" alt="">
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="col-5">
-            <div class="d-flex flex-column justify-content-center">
+        <div class="col-12 col-xs-12 col-md-12 col-lg-5 col-xl-5">
+            <div class="d-flex flex-column justify-content-center text-aboutus">
                 <p>Conception éditoriale : Castillonnais En Transition</p>
                 <p>Graphisme : Bon Pour 1 Tour</p>
             </div>
@@ -88,16 +86,16 @@
     </div>
     <div class="row">
         <!--Trait 725px-->
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center mt-5 mb-5">
             <div class="col-6">
                 <div class="trait--green"></div>
             </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="col-8">
+        <div class="col-12 col-xs-12 col-md-12 col-lg-8 col-xl-8">
             <div class="d-flex flex-column justify-content-center">
-                <p class="text-center">Mention légales</p>
+                <h6 class="text-center">Mention légales</h6>
             </div>
         </div>
 

@@ -1,14 +1,25 @@
+.text-aboutus{
+    margin-top: 24px;
+}
 .text-aboutus p{
     padding: 0;
     margin: 0;
     font-family: Signika;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 14px;
     color: #059b30;
 }
 
+h6{
+    color: #059b30;
+    font-family: Signika;
+    font-weight: 900;
+    padding: 0;
+    margin: 14px 0 0 0;
+}
+
 .address-wrapper{
-    background-color: #7cbcd7;
+    background-color: #bdddea;
     border-radius: 0.70rem;
 }
 
