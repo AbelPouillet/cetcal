@@ -14,12 +14,14 @@
             <br>
             <a class="cet-green-link" href="#" style="margin-top: 12px;" onmousedown="$('#zone-oubli-login').toggle('slow');"
               onclick="return false;">
-             - J'ai oublié mon mot de passe et/ou mon identifiant.
+             <i class="far fa-dot-circle"></i> J'ai oublié mon mot de passe et/ou mon identifiant.
             </a>
             <br>
-            <a class="cet-green-link" href="/?statut=user.signup&anr=true">- Je suis un particulier et je souhaite m'inscrire.</a>
+            <a class="cet-green-link" href="/?statut=user.signup&anr=true">
+              <i class="far fa-dot-circle"></i> Je suis un particulier et je souhaite m'inscrire.</a>
             <br>
-            <a class="cet-green-link" href="/src/app/controller/cet.qstprod.controller.login.form.php">- Je suis producteur.e et je souhaite m'inscrire sur l'annuaire des Producteurs.</a>
+            <a class="cet-green-link" href="/src/app/controller/cet.qstprod.controller.login.form.php">
+              <i class="far fa-dot-circle"></i> Je suis producteur.e et je souhaite m'inscrire sur l'annuaire des Producteurs.</a>
             <div id="zone-oubli-login" style="display: none; margin-bottom: 12px;">
               <small class="form-text text-muted" style="margin-left: 6px; margin-top: 6px;">Si vous avez effectué votre inscription avec votre adresse email, une solution vous sera envoyée.<b>Si vous êtes producteur.e et vous n'avez renseigné aucune information de contact (email, ou n° de téléphone mobil) alors l'équipe de cetcal prendra rapidement contact avec vous.</b> Dans ce cas, <b>veuillez cocher la case, <u>je suis producteur.e référencé et souhaite être contacté.</u></b> et renseigner votre adresse email <b>ainsi que votre numéro</b> de téléphone.</small>
               <br>
