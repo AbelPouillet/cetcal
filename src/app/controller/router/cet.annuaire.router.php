@@ -10,12 +10,17 @@
    * $statut, $anr, $obl, $scope).
    */
 
+<<<<<<< HEAD
   if (isset($cnx) && $cnx !== false) 
   {
     include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.login.outcome.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.slogan.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.plateforme.php';
   }
+=======
+  if (strcmp($statut, 'accueil.cet') === 0) include $PHP_INCLUDES_PATH.'include.cet.qstprod.login.form.php';    
+  if (isset($cnx) && $cnx !== false) include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.login.outcome.php';  
+>>>>>>> branch 'cetcal_phase3' of https://github.com/j-fish/cetcal.git
   if (isset($obl) && $obl !== false) include $PHP_INCLUDES_PATH.'/areas/include.cet.annuaire.renouvellement.outcome.php';  
 
   if (!$anr && in_array($statut, CetQstProdFilArianneHelper::$statesFilAriane)) include $PHP_INCLUDES_PATH.'include.cet.qstprod.filarianne.php';

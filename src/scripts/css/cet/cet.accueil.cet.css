@@ -520,7 +520,7 @@ section .pour-qui ul{
      font-size: 21px;
  }
 
- .text-aboutus p{
+/* .text-aboutus p{
      padding: 0;
      margin: 0;
      font-family: Signika;
@@ -532,8 +532,8 @@ section .pour-qui ul{
  .address-wrapper{
      background-color: #7cbcd7;
      border-radius: 0.70rem;
-     height: 16.875rem;
-     max-height: 16.875rem;
+     height: 13.4375rem;
+     max-height: 13.4375rem;
 
  }
 
@@ -542,14 +542,50 @@ section .pour-qui ul{
  a{
      color: #FFFFFF;
      font-weight: 350;
-
  }
  .address-card-title{
      font-family: Signika;
      font-weight: bold;
      color: #FFFFFF;
-
  }
+
+ address > h6,
+ address {
+     color: #059b30;
+ }
+
+ .cst-pills__green{
+     text-decoration: none;
+     line-height: 1;
+     border-color: #059b30;
+     color: #ffff;
+     background: #059b30;
+     font-size: 16px;
+     border-radius: 10rem;
+     margin: 5px 1px 5px;
+     padding: .25em .6em .4em .6em;
+     display: inline-block;
+     text-align: center;
+     white-space: nowrap;
+     vertical-align: baseline;
+ }
+
+ .logo-dcdl{
+     height: 13.4375rem;
+ }
+
+ !*ABOUTUS SECTION*!
+
+ .aboutus--bg{
+     background-color: #bdddea;
+ }
+
+ !*trait*!
+
+ .trait--green{
+     width: 100%;
+     border: 1px solid #219130;
+ }*/
 
  /*Responsive*/
 
