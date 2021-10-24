@@ -12,8 +12,8 @@
       <?php endif; ?>
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE): ?>
         <?php $nomFerme = $ctrl->fetchDonneeProducteur($usrpk, 'nom_ferme'); ?>
-        <h3 class="alert-heading" style="color: #059b30;">
-          Votre espace Producteur.e dédié à <span style="font-family: 'Courgette', cursive; color: #059b30;">&#171;&#160;<?= $nomFerme; ?>&#160;&#187;</span>
+        <h3 class="alert-heading">
+          Votre espace Producteur.e dédié à &#171;&#160;<?= $nomFerme; ?>&#160;&#187;</span>
         </h3>
         <hr>
         <?php if ($cnxmessage !== false): ?>

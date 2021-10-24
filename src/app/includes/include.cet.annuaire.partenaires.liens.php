@@ -6,6 +6,7 @@ $ctrl = new AnnuaireController();
 $data = $ctrl->fetchPartenairesLiens();
 ?>
 
+<br>
 <div class="row justify-content-lg-center" style="margin-bottom: 24px;">
   <div class="col-md-6">
     <p class="cet-p" style="margin-bottom: 2px;"> Liens utils :</p> 
