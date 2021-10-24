@@ -28,6 +28,7 @@ $data_carto = NULL;
 
 <?php elseif (isset($cnx) && intval($cnx) !== CetConnectionConst::CONNECTION_PRD_REUSSIE && 
               intval($cnx) !== CetConnectionConst::CONNECTION_UTSR_REUSSIE): ?>
+  <br>
   <div class="row justify-content-lg-center" id="cetcal-cnx-not-done">
     <div class="col-lg-9">
       <div class="alert" role="alert">
@@ -41,7 +42,7 @@ $data_carto = NULL;
         <hr>
         <label>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
-            <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
+            <a href="#" class=" cet-green-link cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </label>
       </div>

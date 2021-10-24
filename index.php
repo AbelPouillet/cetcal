@@ -23,6 +23,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
         <link rel="stylesheet" href="/src/scripts/css/cet/cet.qstprod.cartographie.css">
         <link rel="stylesheet" href="/src/scripts/css/cet/cet.fichedetailleeprd.css">
         <link rel="stylesheet" href="/src/scripts/css/cet/cet.annuaire.custom.css">
+        <link rel="stylesheet" href="/src/scripts/css/cet/cet.annuaire.post.redesign.bp1t.css">
         <link rel="stylesheet" href="/src/scripts/js/timepicker/jquery.timepicker.min.css">
         <!--fin-->
         <!-- start : charte-g Fanny -->

@@ -18,18 +18,20 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
 ?>
 
 <?php if (isset($_GET['usrs']) && $email_does_exist): ?>
+  <br><br>
   <div class="row justify-content-lg-center">
     <div class="col-lg-9">
-      <div class="alert alert-danger" role="alert">
+      <div class="alert" role="alert">
         <h4 class="alert-heading">L'email <b><?= $email_user ?></b> est déjà utilisé.</h4>
         <p>
           L'email renseigné est déjà présent dans notre liste d'inscrits et est associé à compte existant.<br>Veuillez renouveller l'inscription avec une autre adresse de messagerie.<br>
-          <a href="./">Retourner à l'accueil.</a>
+          <a class="cet-green-link" href="./">Retourner à l'accueil.</a>
         </p>
         <hr>
         <div>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
-            <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
+            <a class="cet-green-link" href="#" class="cet-conditions-donnees-numerique"
+              onmousedown="$('#modal-cet-vos-donnees-btn').click();"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </div>
       </div>
@@ -37,19 +39,20 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
   </div>
 <?php elseif (isset($_GET['usrs']) && strcmp($email_exists, 'true') === 0 
   && isset($email_user) && !empty($email_user)): ?>
+  <br><br>
   <div class="row justify-content-lg-center">
     <div class="col-lg-9">
-      <div class="alert alert-success" role="alert">
+      <div class="alert" role="alert">
         <h4 class="alert-heading">Votre inscription est finalisé.</h4>
         <p>Un email de confirmation vient d'être envoyé à <b><?= $email_user ?></b>.</p>
-        <p>Vous pouver maintenant <a href="./">retourner à l'accueil et vous connecter.</a></p>
+        <p>Vous pouver maintenant <a class="cet-green-link" href="./">retourner à l'accueil et vous connecter.</a></p>
         <hr>
-        <div><?= CetQstprodConstLibelles::lib_general_entete_veuillez_renseigner; ?>
+        <div>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
-            <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
+            <a class="cet-green-link" href="#" class="cet-conditions-donnees-numerique" 
+              onmousedown="$('#modal-cet-vos-donnees-btn').click();"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </div>
-        <p class="mb-0"><?= CetQstprodConstLibelles::en_cas_de_doute; ?></p>
       </div>
     </div>
   </div>
@@ -60,7 +63,7 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
       <div class="alert alert-success cet-bloc" role="alert">
         <h3 class="alert-heading">
           décidelabiolocale.org a besoin de votre soutien<br>Inscrivez-vous !
-          <span style="font-size: 16px;">&#160;<a href="#" onclick="return false;" onmousedown="lireLaSuite('intro-inscription-lire-plus');">Lire la suite...</a></span>
+          <span style="font-size: 16px;">&#160;<a class="cet-green-link" href="#" onclick="return false;" onmousedown="lireLaSuite('intro-inscription-lire-plus');">Lire la suite...</a></span>
         </h3>
         <p class="intro-inscription-lire-plus">
           L'inscription à l'annuaire décidelabiolocale.org vous permet de recevoir des informations sur les producteur.e.s, sur les événements de votre région et de la Bio Locale, sur des opportunités liées aux circuits courts (collectivités, cantines, restaurateurs concernés).
@@ -71,12 +74,15 @@ if (isset($_GET['usrs']) && isset($_GET['email']))
         <hr>
         <div>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
-            <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
+            <a class="cet-green-link" href="#" class="cet-conditions-donnees-numerique"
+             onmousedown="$('#modal-cet-vos-donnees-btn').click();"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </div>
+        <!--
         <p>
-          <a href="#" onmousedown="$('#cet-qstprod_intro').fadeIn('slow');scrollTowardsId('cet-qstprod_intro', -18);"><i class="fas fas fa-info fa-lg"></i>&#160;&#160;Si vous êtes producteur, veuillez utiliser le formulaire d'inscription et questionnaire qui vous est dédié. Cliquer ici.</a>
+          <a class="cet-green-link" href="#" onmousedown="$('#cet-qstprod_intro').fadeIn('slow');scrollTowardsId('cet-qstprod_intro', -18);"><i class="fas fas fa-info fa-lg"></i>&#160;&#160;Si vous êtes producteur, veuillez utiliser le formulaire d'inscription et questionnaire qui vous est dédié. Cliquer ici.</a>
         </p>
+        -->
       </div>
     </div>
   </div>

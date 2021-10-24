@@ -5,15 +5,16 @@
 <?php if (isset($obl) && 
          (intval($obl) === CetConnectionConst::RENOUVELLEMENT_MDP_UTSR_OK || 
           intval($obl) === CetConnectionConst::RENOUVELLEMENT_MDP_PRD_OK)): ?>
+  <br>
   <div class="row justify-content-lg-center" id="cetcal-obl-done">
     <div class="col-lg-9">
-      <div class="alert cet-bloc" role="alert">
+      <div class="alert" role="alert">
         <h4 class="alert-heading">Demande traitée avec succès.</h4>
         <p>Un mot de passe vient de vous être envoyé par email à l'adresse <b><?= $usr_identifiant; ?></b></p>
         <hr>
         <label>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
-            <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
+            <a href="#" class="cet-green-link cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </label>
       </div>
@@ -21,9 +22,10 @@
   </div>
 <?php elseif (isset($obl) && intval($obl) !== CetConnectionConst::RENOUVELLEMENT_MDP_PRD_OK && 
               intval($obl) !== CetConnectionConst::RENOUVELLEMENT_MDP_UTSR_OK): ?>
+  <br>
   <div class="row justify-content-lg-center" id="cetcal-obl-not-done">
     <div class="col-lg-9">
-      <div class="alert cet-bloc" role="alert">
+      <div class="alert" role="alert">
         <h4 class="alert-heading">Les informations renseignées ne permettent pas de traiter votre demande.</h4>
         <p>Votre email est inconnu. Demande de renouvellement de mot de passe refusée pour l'adresse <b><?= $usr_identifiant; ?></b></p>
         <ul>
@@ -36,7 +38,7 @@
         <hr>
         <label>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
-            <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
+            <a href="#" class="cet-green-link cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </label>
         <p class="mb-0"><?= CetQstprodConstLibelles::en_cas_de_doute; ?></p>

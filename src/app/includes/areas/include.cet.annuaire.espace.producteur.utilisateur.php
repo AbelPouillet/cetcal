@@ -1,13 +1,14 @@
 <div class="row justify-content-lg-center" id="cetcal-cnx-done" style="background-color: #bdddea; margin-bottom: -36px !important;">
   <div class="col-lg-9">
 
-    <div class="alert" role="alert" style="color: rgb(50,70,50);"
+    <div class="alert" role="alert" style="color: rgb(50,70,50); padding-top: 36px; padding-bottom: 56px;"
       id="espace-prd-header-area">   
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_UTSR_REUSSIE): ?>
         <h3 class="alert-heading">Bienvenu.</h3>
         <hr>
         <p>Des fonctionnalités vous seront proposées très prochainement</p>
         <p><b>Merci pour votre inscription et engagement</b>,<br>l'équipe decidelabiolocale.org</p>
+        <br><br>
       <?php endif; ?>
       <?php if (intval($cnx) === CetConnectionConst::CONNECTION_PRD_REUSSIE): ?>
         <?php $nomFerme = $ctrl->fetchDonneeProducteur($usrpk, 'nom_ferme'); ?>
@@ -32,7 +33,7 @@
         <br>
         <label>
           <small class="form-text cet-qstprod-label-text" style="margin-top: 2px;"><?= CetQstprodConstLibelles::lib_general_entete_garantit; ?><br>
-            <a href="#" class="cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
+            <a href="#" class="cet-green-link cet-conditions-donnees-numerique"><?= CetQstprodConstLibelles::lib_general_entete_donnees; ?></a>
           </small>
         </label>
         <hr>
