@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.annuaire.const.types.
 $ctrl = new AdminEntitesCastillonnaisController();
 ?>
 <div id="cet-admin-1-accordion">
-  <div class="card cet-accordion-admin cet-bloc">
+  <div class="card cet-accordion-admin">
   	<div class="card-header" id="cet-admin-1-heading">
   	  <label class="cet-formgroup-container-label"><small class="form-text">
   	  	Cette section vous aidera à administrer les marchés, les Associations, lieux de distribution, AMAPs etc.
@@ -22,10 +22,10 @@ $ctrl = new AdminEntitesCastillonnaisController();
     </div>
 
     <!-- Bloc collasable -->
-    <div id="cet-admin-1" class="collapse cet-bloc" aria-labelledby="cet-admin-1-heading" data-parent="#cet-admin-1-accordion">
+    <div id="cet-admin-1" class="collapse" aria-labelledby="cet-admin-1-heading" data-parent="#cet-admin-1-accordion">
       
       <!-- Formulaire d'ajout de marché -->
-      <div class="card-body cet-accordion-admin-critique cet-bloc">
+      <div class="card-body cet-accordion-admin-critique">
         <form class="form" id="admin-entite-form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
           <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="">

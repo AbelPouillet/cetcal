@@ -11,6 +11,11 @@
         <p id="cet-modal-alerte-paragraphe"></p>
         <p id="cet-modal-alerte-paragraphe-bis"></p>
         <p id="cet-modal-alerte-paragraphe-ter"></p>
+        <p id="cet-modal-alerte-paragraphe-quater"></p>
+        <p id="cet-modal-alerte-paragraphe-quinquies"></p>
+        <p id="cet-modal-alerte-paragraphe-sexies"></p>
+        <p id="cet-modal-alerte-paragraphe-septies"></p>
+        <!-- https://www.isouard-avocat.com/publications/adverbes-multiplicatifs -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-warning btn-sm" id="cet-modal-alerte-btn-annuler" data-dismiss="modal"></button>

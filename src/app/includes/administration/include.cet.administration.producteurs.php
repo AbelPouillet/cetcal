@@ -11,7 +11,7 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
 ?>
 
 <div id="cet-admin-prd-inscrits-accordion">
-  <div class="card cet-accordion-admin cet-bloc">
+  <div class="card cet-accordion-admin">
     <div class="card-header" id="cet-admin-prd-inscrits-heading">
       <label class="cet-formgroup-container-label"><small class="form-text">
         Cette section vous aidera à administrer les tous les producteur.e.s.

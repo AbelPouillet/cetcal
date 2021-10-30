@@ -251,3 +251,18 @@ function deleteMedia(id_media, pk_entite, urlr) {
     }
   });
 }
+
+function notifierAdministrateur() {
+  var text = 'Pour administrer en toute sérénité... :';
+  var text2 = ' - garder ouvert l\'onglet d\'administration. Votre session admin sera perdue si vous quittez la page. Dans ce cas, il faudra vous reconnecter à l\'administration.';
+  var text3 = ' - Gardez un onglet ouvert sur la page d\'acceuil de decidelabiolocale.org. Appliquer les modifications souhaitées depuis l\'onglet administration puis rechargez la page d\'acceuil à l\'aide du bouton de clavier F5 ou du bouton navigateur de rafraichissement de page.';
+  var text4 = ' - En cas de bug constaté, contatctez le support technique.'; 
+  $('#cet-modal-alerte-titre').text('Administration cetcal decidelabiolocale');
+  $('#cet-modal-alerte-paragraphe').text(text);
+  $('#cet-modal-alerte-paragraphe-bis').text(text2);
+  $('#cet-modal-alerte-paragraphe-ter').text(text3);
+  $('#cet-modal-alerte-paragraphe-quater').text(text4);
+  $('#cet-modal-alerte-btn-primary').text("J'ai compris");
+  $('#cet-modal-alerte-btn-annuler').hide();
+  $('#cet-modal-alerte-btn').click();
+}

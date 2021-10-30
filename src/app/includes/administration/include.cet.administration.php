@@ -25,12 +25,12 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     <script src="/src/scripts/js/cetcal/cetcal.min.js"></script>
     <div id="fb-root"></div>
   </head>
-  <body id="cet-annuaire-body">
+  <body id="cet-annuaire-body" onload="notifierAdministrateur();">
   	
     <div style="margin-top: 30px;"></div>
   	<div class="row justify-content-lg-center">
   	  <div class="col-lg-9">
-  	  	<div class="alert cet-bloc alert-dismissible" role="alert">
+  	  	<div class="alert alert-dismissible" role="alert">
   	  	  <h4 class="alert-heading">Bien le bonjour chère Administrateur du site CETCAL !</h4>
     		  <p>Pour le bien de tous, veuillez utiliser ces fonctionnalités avec soin car elles modifient cetcal.site.</p>
           <hr>

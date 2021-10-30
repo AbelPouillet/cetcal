@@ -1,6 +1,6 @@
 <div id="cet-admin-3-accordion">
   <div class="card cet-accordion-admin-critique">
-  	<div class="card-header cet-bloc" id="cet-admin-3-heading">
+  	<div class="card-header" id="cet-admin-3-heading">
   	  <label class="cet-formgroup-container-label"><small class="form-text">
   	  	Cette section permet de visualiser les administrateurs cetcal.site.
   	  </small></label>
@@ -17,7 +17,7 @@
     </div>
 
     <div id="cet-admin-3" class="collapse" aria-labelledby="cet-admin-3-heading" data-parent="#cet-admin-3-accordion">
-      <div class="card-body cet-bloc">
+      <div class="card-body">
         <?php
           require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/admin/cet.annuaire.controlleur.administration.admins.php');
           $ctrl = new AdminController();

@@ -1,5 +1,5 @@
 <div id="cet-admin-bioab-accordion">
-  <div class="card cet-accordion-admin cet-bloc">
+  <div class="card cet-accordion-admin">
     <div class="card-header" id="cet-admin-bioab-heading">
       <label class="cet-formgroup-container-label"><small class="form-text">
         Cette section vous aidera à valider la certification BIO/AB pour un producteur donné.
@@ -17,10 +17,10 @@
     </div>
 
     <!-- Bloc collasable -->
-    <div id="cet-admin-bioab" class="collapse cet-bloc" aria-labelledby="cet-admin-bioab-heading" 
+    <div id="cet-admin-bioab" class="collapse" aria-labelledby="cet-admin-bioab-heading" 
       data-parent="#cet-admin-bioab-accordion">
       <!-- Formulaire de certification BIO/AB -->
-      <div class="card-body cet-accordion-admin-critique cet-bloc">
+      <div class="card-body cet-accordion-admin-critique">
         <form class="form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
           <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="certif-bioab-prd">

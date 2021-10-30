@@ -1,5 +1,5 @@
 <div id="cet-admin-geoloc-accordion">
-  <div class="card cet-accordion-admin cet-bloc">
+  <div class="card cet-accordion-admin">
     <div class="card-header" id="cet-admin-geoloc-heading">
       <label class="cet-formgroup-container-label"><small class="form-text">
         Cette section vous aidera à forcer la géolocalisation des entités et producteurs.
@@ -17,10 +17,10 @@
     </div>
 
     <!-- Bloc collasable -->
-    <div id="cet-admin-geoloc" class="collapse cet-bloc" aria-labelledby="cet-admin-geoloc-heading" 
+    <div id="cet-admin-geoloc" class="collapse" aria-labelledby="cet-admin-geoloc-heading" 
       data-parent="#cet-admin-geoloc-accordion">
       <!-- Formulaire de certification BIO/AB -->
-      <div class="card-body cet-accordion-admin-critique cet-bloc">
+      <div class="card-body cet-accordion-admin-critique">
 
         <form class="form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
