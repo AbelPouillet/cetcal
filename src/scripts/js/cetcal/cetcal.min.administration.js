@@ -133,7 +133,10 @@ $(document).ready(function() {
 		        	$('textarea[name ="entite-entite-infoscmd"]').text(entite.infoscmd);
 		        	$('textarea[name ="entite-entite-jourhoraire"]').text(entite.jourhoraire);
 		        	$('textarea[name ="entite-entite-specificites"]').text(entite.specificites);
-		        	$('input[name ="entite-entite-type"]').val(entite.type);
+		        	$('select#entite-entite-type  > option').each(function() {
+                if (entite.type === $(this).val()) $(this).attr('selected', 'selected');
+                else $(this).removeAttr('selected');
+              });
 		        	// maintenant, déplacer vers l'ancre.
 							scrollTowardsId('admin-entite-form', -172);
 							// mise à jour du statut des boutons et visibilité de fonctionnalités.

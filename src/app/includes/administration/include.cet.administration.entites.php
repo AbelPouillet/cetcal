@@ -1,3 +1,8 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/admin/cet.annuaire.controlleur.administration.entites.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.annuaire.const.types.php');
+$ctrl = new AdminEntitesCastillonnaisController();
+?>
 <div id="cet-admin-1-accordion">
   <div class="card cet-accordion-admin cet-bloc">
   	<div class="card-header" id="cet-admin-1-heading">
@@ -73,7 +78,14 @@
           </div>
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Type d'entité sélectionné :</small></label>
-            <input class="form-control" name="entite-entite-type" type="text" value="" maxlength="256">
+            <?php $typesEntite = $ctrl->selectAllTypes(); ?>
+            <select class="form-control" name="entite-entite-type" id="entite-entite-type">
+              <option value="0" selected="selected">-- aucun type sélectionné --</option>
+              <?php foreach($typesEntite as $type): ?>
+                <?php if (strlen($type['type']) < 4) continue; ?>
+                <option value="<?= $type['type']; ?>"><?= CetAnnuaireConstTypes::TYPE_ENTITE[$type['type']]; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <!-- END contenu du formulaire -->
           <a class="btn cet-navbar-btn" id="btn-admin-ajout-entite" 
@@ -99,11 +111,7 @@
       <hr>
       <!-- Listing des entités pour mises à jour -->
       <div class="card-body">
-        <?php
-          require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/admin/cet.annuaire.controlleur.administration.entites.php');
-          $ctrl = new AdminEntitesCastillonnaisController();
-          $data_entites = $ctrl->selectAll();
-        ?>
+        <?php $data_entites = $ctrl->selectAll(); ?>
         <table class="table table-striped cetcal-admin-table cet-table">
           <thead>
             <tr>

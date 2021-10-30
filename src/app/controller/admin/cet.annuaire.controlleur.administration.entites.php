@@ -168,4 +168,19 @@ class AdminEntitesCastillonnaisController extends AnnuaireController
     return false;
   }
 
+  public function selectAllTypes()
+  {
+    try
+    {
+      require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.entites.model.php');
+      $model = new CETCALEntitesModel();
+      return $model->selectDistinctTypes(); 
+    }
+    catch (Exception $e) 
+    {
+      error_log($e->getMessage());
+    }
+    return false;
+  }
+
 }
