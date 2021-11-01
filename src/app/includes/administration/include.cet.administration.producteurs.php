@@ -38,7 +38,6 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
             <th>Nom Ferme</th>
             <th>Adresse</th>
             <th>Email</th>
-            <th>Identifiant CETCAL</th>
             <th>Nom Prénom</th>
             <th>Lat/lng</th>
             <th>Actions</th>
@@ -59,21 +58,55 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
             <tr id="row-admin-prd-pk-<?= $prd->getPk(); ?>">
               <td><?= $prd->getPk(); ?></td>
               <td class="admin-producteur-wordbreakable">
-                <a href="/src/app/controller/cet.qstprod.controller.demande.update.superadmin.php?sau_pk=<?= $sau_pk; ?>&sau_sitkn=<?= $sau_cetcal_session_id; ?>&sau_pkprd=<?= $prd->getPk(); ?>" target="_blank"><?= $prd->nomferme; ?></a>
-              </td>
-              <td class="admin-producteur-wordbreakable"><?= $adr; ?></td>
-              <td class="admin-producteur-wordbreakable"><?= $prd->email; ?></td>
-              <td class="admin-producteur-wordbreakable"><?= $prd->identifiant_cet; ?></td>
-              <td class="admin-producteur-wordbreakable"><?= $prd->nom.' '.$prd->prenom; ?></td>
-              <td class="admin-producteur-wordbreakable"><?= $prd->getLatLng(); ?></td>
-              <td class="admin-producteur-wordbreakable">
-                <button class="administration-desactiver-producteur btn-small btn btn-outline-danger" 
+                <span id="admin-modifier-producteur-link-<?= $prd->getPk(); ?>" 
+                  href="/src/app/controller/cet.qstprod.controller.demande.update.superadmin.php?sau_pk=<?= $sau_pk; ?>&sau_sitkn=<?= $sau_cetcal_session_id; ?>&sau_pkprd=<?= $prd->getPk(); ?>" target="_blank"
+                  row-cible="row-admin-prd-pk-<?= $prd->getPk(); ?>"
+                  prd-cible="[n°<?= $prd->getPk(); ?>] <?= $prd->nomferme; ?> (adresse: <?= $adr; ?>)."
+                  data="<?= $prd->getPk(); ?>" hidden="hidden"></span>
+                <button 
+                  class="administration-modifier-producteur btn-small btn btn-outline-warning cet-admin-borderless-button" 
+                  title="Modifier le producteur n°<?= $prd->getPk(); ?>"
                   row-cible="row-admin-prd-pk-<?= $prd->getPk(); ?>"
                   prd-cible="[n°<?= $prd->getPk(); ?>] <?= $prd->nomferme; ?> (adresse: <?= $adr; ?>)."
                   data="<?= $prd->getPk(); ?>"
-                  style="float: right; padding: 4px !important;">
-                  <i class="fas fa-user-times"></i>
+                  style="padding: 4px !important;">
+                  <?= $prd->nomferme; ?>
                 </button>
+              </td>
+              <td class="admin-producteur-wordbreakable"><?= $adr; ?></td>
+              <td class="admin-producteur-wordbreakable"><?= $prd->email; ?></td>
+              <td class="admin-producteur-wordbreakable"><?= $prd->nom.' '.$prd->prenom; ?></td>
+              <td class="admin-producteur-wordbreakable">
+                <?php $latlng_google = explode('/', $prd->getLatLng()); ?>
+                <a href="http://www.google.com/maps/place/<?= $latlng_google[1].','.$latlng_google[0]; ?>" target="_blank">
+                  <?= $latlng_google[1].','.$latlng_google[0]; ?>
+                </a>       
+              </td>
+              <td>
+                <div class="btn-group">
+                  <button class="administration-modifier-producteur btn-small btn btn-outline-warning" 
+                    title="Modifier le producteur n°<?= $prd->getPk(); ?>"
+                    row-cible="row-admin-prd-pk-<?= $prd->getPk(); ?>"
+                    prd-cible="[n°<?= $prd->getPk(); ?>] <?= $prd->nomferme; ?> (adresse: <?= $adr; ?>)."
+                    data="<?= $prd->getPk(); ?>"
+                    style="padding: 4px !important;">
+                    <i class="fas fa-user-edit"></i>
+                  </button>
+                  <?php $latlng_google = explode('/', $prd->getLatLng()); ?>
+                  <a class="btn-small btn btn-outline-primary" 
+                    title="Visualiser la géolocalisation du producteur n°<?= $prd->getPk(); ?> sur Google MAPS" 
+                    href="http://www.google.com/maps/place/<?= $latlng_google[1].','.$latlng_google[0]; ?>" target="_blank">
+                    <i class="fas fa-street-view"></i>
+                  </a> 
+                  <button class="administration-desactiver-producteur btn-small btn btn-outline-danger" 
+                    title="Désactiver le producteur n°<?= $prd->getPk(); ?>"
+                    row-cible="row-admin-prd-pk-<?= $prd->getPk(); ?>"
+                    prd-cible="[n°<?= $prd->getPk(); ?>] <?= $prd->nomferme; ?> (adresse: <?= $adr; ?>)."
+                    data="<?= $prd->getPk(); ?>"
+                    style="padding: 4px !important;">
+                    <i class="fas fa-user-times"></i>
+                  </button>                 
+                </div>                
               </td>
             </tr>
           <?php endforeach; ?>
@@ -85,21 +118,53 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
             <tr id="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>">
               <td><?= $prd_preinscrit->getPk(); ?></td>
               <td class="admin-producteur-wordbreakable">
-                <a href="/src/app/controller/cet.qstprod.controller.demande.update.superadmin.php?sau_pk=<?= $sau_pk; ?>&sau_sitkn=<?= $sau_cetcal_session_id; ?>&sau_pkprd=<?= $prd_preinscrit->getPk(); ?>" target="_blank"><?= $prd_preinscrit->nomferme; ?></a>
+                <span id="admin-modifier-producteur-link-<?= $prd_preinscrit->getPk(); ?>" 
+                  href="/src/app/controller/cet.qstprod.controller.demande.update.superadmin.php?sau_pk=<?= $sau_pk; ?>&sau_sitkn=<?= $sau_cetcal_session_id; ?>&sau_pkprd=<?= $prd_preinscrit->getPk(); ?>" target="_blank"
+                  row-cible="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>"
+                  prd-cible="[n°<?= $prd_preinscrit->getPk(); ?>] <?= $prd_preinscrit->nomferme; ?> (adresse: <?= $adr; ?>)."
+                  data="<?= $prd_preinscrit->getPk(); ?>" hidden="hidden"></span>
+                <button class="administration-modifier-producteur btn-small btn btn-outline-warning cet-admin-borderless-button" 
+                  title="Modifier le producteur n°<?= $prd_preinscrit->getPk(); ?>"
+                  row-cible="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>"
+                  prd-cible="[n°<?= $prd_preinscrit->getPk(); ?>] <?= $prd_preinscrit->nomferme; ?> (adresse: <?= $adr; ?>)."
+                  data="<?= $prd_preinscrit->getPk(); ?>"
+                  style="padding: 4px !important;">
+                  <?= $prd_preinscrit->nomferme; ?>
+                </button>
               </td>
               <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->adrfermeLtrl; ?></td>
               <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->email; ?></td>
-              <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->identifiant_cet; ?></td>
               <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->nom.' '.$prd_preinscrit->prenom; ?></td>
-              <td class="admin-producteur-wordbreakable"><?= $prd_preinscrit->getLatLng(); ?></td>
               <td class="admin-producteur-wordbreakable">
-                <button class="administration-desactiver-producteur btn-small btn btn-outline-danger" 
-                  row-cible="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>"
-                  prd-cible="[n°<?= $prd_preinscrit->getPk(); ?>] <?= $prd_preinscrit->nomferme; ?> (adresse: <?= $prd_preinscrit->adrfermeLtrl; ?>)."
-                  data="<?= $prd_preinscrit->getPk(); ?>"
-                  style="float: right; padding: 4px !important;">
-                  <i class="fas fa-user-times"></i>
-                </button>
+                <?php $latlng_google = explode('/', $prd_preinscrit->getLatLng()); ?>
+                <a href="http://www.google.com/maps/place/<?= $latlng_google[1].','.$latlng_google[0]; ?>" target="_blank">
+                  <?= $latlng_google[1].','.$latlng_google[0]; ?>
+                </a> 
+              </td>
+              <td>
+                <div class="btn-group">
+                  <button class="administration-modifier-producteur btn-small btn btn-outline-warning" title="Modifier le producteur n°<?= $prd_preinscrit->getPk(); ?>"
+                    row-cible="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>"
+                    prd-cible="[n°<?= $prd_preinscrit->getPk(); ?>] <?= $prd_preinscrit->nomferme; ?> (adresse: <?= $adr; ?>)."
+                    data="<?= $prd_preinscrit->getPk(); ?>"
+                    style="padding: 4px !important;">
+                    <i class="fas fa-user-edit"></i>
+                  </button>
+                  <?php $latlng_google = explode('/', $prd_preinscrit->getLatLng()); ?>
+                  <a class="btn-small btn btn-outline-primary" 
+                    title="Visualiser la géolocalisation du producteur n°<?= $prd_preinscrit->getPk(); ?> sur Google MAPS"
+                    href="http://www.google.com/maps/place/<?= $latlng_google[1].','.$latlng_google[0]; ?>" target="_blank">
+                    <i class="fas fa-street-view"></i>
+                  </a> 
+                  <button class="administration-desactiver-producteur btn-small btn btn-outline-danger" 
+                    title="Désactiver le producteur n°<?= $prd_preinscrit->getPk(); ?>"
+                    row-cible="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>"
+                    prd-cible="[n°<?= $prd_preinscrit->getPk(); ?>] <?= $prd_preinscrit->nomferme; ?> (adresse: <?= $prd_preinscrit->adrfermeLtrl; ?>)."
+                    data="<?= $prd_preinscrit->getPk(); ?>"
+                    style="padding: 4px !important;">
+                    <i class="fas fa-user-times"></i>
+                  </button>
+                </div>
               </td>
             </tr>
           <?php endforeach; ?>

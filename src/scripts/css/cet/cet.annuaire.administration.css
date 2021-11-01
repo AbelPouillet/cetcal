@@ -8,7 +8,7 @@ tr.admin-entite-administrer:hover {
 	background-color: white; 
 	border: 1px solid lightgrey; 
 	border-radius: 4px; 
-	margin-bottom: 20px; 
+	margin-bottom: 20px;
 }
 
 .cet-accordion-admin-critique { 
@@ -68,3 +68,11 @@ div.dz-message {
   text-align: left !important;
 }
 /******************************************************************/
+
+button.cet-admin-borderless-button {
+  border: 0px !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0px !important;
+  color: black;
+}

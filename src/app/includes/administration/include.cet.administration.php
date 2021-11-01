@@ -3,11 +3,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/cet.qstprod.startup.php';
 include $PHP_CONTROLLER_PATH.'cet.qstprod.controller.index.php';
 $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ? 
   $dataProcessor->processHttpFormData($_GET['statut']) : 'bienvenu.form';
+$admlog = $dataProcessor->processHttpFormData($_GET['admlog']);
+$admlog_ready = isset($admlog) && !empty($admlog) && strlen($admlog) > 3;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <!--<base href="http://http://82.65.74.33/"/>-->
     <title>Annuaire des producteurs bio de la région castillon</title>
     <meta name="description" content="............"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
@@ -29,10 +30,11 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
   	
     <div style="margin-top: 30px;"></div>
   	<div class="row justify-content-lg-center">
-  	  <div class="col-lg-9">
+  	  <div class="col-lg-12">
   	  	<div class="alert alert-dismissible" role="alert">
   	  	  <h4 class="alert-heading">Bien le bonjour chère Administrateur du site CETCAL !</h4>
-    		  <p>Pour le bien de tous, veuillez utiliser ces fonctionnalités avec soin car elles modifient cetcal.site.</p>
+          <hr>
+            <p>Utilisateur en cour d'administration : <b><?= $admlog; ?></b></p>
           <hr>
             <a href="/">Se déconnecter et retourner à l'accueil cetcal.site</a>
     		  <hr>
@@ -46,18 +48,19 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
 
   	<div id="container-modules-admind-cetcal" style="margin-bottom: 120px;">
   	  <div class="row justify-content-lg-center">
-    		<div class="col-lg-9">	
-    			<?php 
-    				// les modules d'administration ajoutés un par un :
-    				include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.producteurs.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.certification.producteurs.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.geoloc.php'; 
-    				//include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.cantines.structures.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
-            
-            include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
-          ?>
+    		<div class="col-lg-12">	
+          <?php if($admlog_ready): ?>
+      			<?php 
+      				// les modules d'administration ajoutés un par un :
+      				include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.producteurs.php';
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.certification.producteurs.php';
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.geoloc.php';
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
+              include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
+            ?>
+          <?php elseif(!$admlog): ?>
+          <?php endif; ?>
   		  </div>
   	  </div>
   	</div>

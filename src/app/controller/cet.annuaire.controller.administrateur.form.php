@@ -38,7 +38,7 @@ try
     $authModel->setTempSessionId($cetcal_session_id, $login_administrateur);
 
     // Apply navigation :
-    header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id);
+    header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id.'&admlog='.$login_administrateur);
     exit();
   } 
   else 

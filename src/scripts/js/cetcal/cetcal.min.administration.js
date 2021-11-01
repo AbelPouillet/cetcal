@@ -50,8 +50,10 @@ $('#cet-admin-3').on('shown.bs.collapse', function () {
 
 $(document).ready(function() {
   
+  // Bouton de suppression producteur.
   $('button.administration-desactiver-producteur').on('mousedown', function() {
 
+    clearModalAdmin();
     var pk = $(this).attr('data');
     const queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -74,6 +76,33 @@ $(document).ready(function() {
       });
       $('#cet-modal-alerte').modal('hide');
       $('#' + rowcible).hide('slow');
+    });
+    $('#cet-modal-alerte-btn-annuler').off();
+    $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
+      $('#cet-modal-alerte').modal('hide'); 
+    });
+    $('#cet-modal-alerte-btn').click();
+  });
+
+  // Bouton de modification admin producteur.
+  $('.administration-modifier-producteur').on('mousedown', function() {
+
+    clearModalAdmin();
+    var pk = $(this).attr('data');
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var rowcible = $(this).attr('row-cible');
+    $('#cet-modal-alerte-titre').text("Demande de modification producteur.e");
+    $('#cet-modal-alerte-paragraphe').text("Veuillez confirmer la prise en charge du producteur suivant : ");
+    $('#cet-modal-alerte-paragraphe-bis').text($(this).attr('prd-cible'));
+    $('#cet-modal-alerte-btn-annuler').text("Annuler");
+    $('#cet-modal-alerte-btn-annuler').show();
+    $('#cet-modal-alerte-btn-primary').text("Modifier le producteur.e n°" + pk);
+    $('#cet-modal-alerte-btn-primary').off();
+    $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
+      $('#cet-modal-alerte').modal('hide');
+      $('#admin-modifier-producteur-link-' + pk).attr('href');
+      window.open($('#admin-modifier-producteur-link-' + pk).attr('href'), '_blank');
     });
     $('#cet-modal-alerte-btn-annuler').off();
     $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
@@ -265,4 +294,17 @@ function notifierAdministrateur() {
   $('#cet-modal-alerte-btn-primary').text("J'ai compris");
   $('#cet-modal-alerte-btn-annuler').hide();
   $('#cet-modal-alerte-btn').click();
+}
+
+function clearModalAdmin() {
+  var text = '';
+  var text2 = '';
+  var text3 = '';
+  var text4 = ''; 
+  $('#cet-modal-alerte-titre').text('');
+  $('#cet-modal-alerte-paragraphe').text(text);
+  $('#cet-modal-alerte-paragraphe-bis').text(text2);
+  $('#cet-modal-alerte-paragraphe-ter').text(text3);
+  $('#cet-modal-alerte-paragraphe-quater').text(text4);
+  $('#cet-modal-alerte-btn-primary').text("J'ai compris");
 }
