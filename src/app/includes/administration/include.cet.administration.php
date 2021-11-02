@@ -5,7 +5,7 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
   $dataProcessor->processHttpFormData($_GET['statut']) : 'bienvenu.form';
 $admlog = $dataProcessor->processHttpFormData($_GET['admlog']);
 $admlog_ready = isset($admlog) && !empty($admlog) && strlen($admlog) > 3;
-$rechargement_update = $dataProcessor->processHttpFormData($_GET['refresh']);
+$rechargement_update = isset($_GET['refresh']) ? $dataProcessor->processHttpFormData($_GET['refresh']) : '';
 $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_update) && strcmp($rechargement_update, 'true') === 0;
 ?>
 <!DOCTYPE html>
