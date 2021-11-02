@@ -36,9 +36,10 @@ try
 
     // Mettre à jour cetcal.cetca.administration.
     $authModel->setTempSessionId($cetcal_session_id, $login_administrateur);
+    $admin_data = $authModel->getAdministrateurBySessionId($cetcal_session_id);
 
     // Apply navigation :
-    header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id.'&admlog='.$login_administrateur);
+    header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id.'&admlog='.$login_administrateur.'&admpk='.$admin_data['adm_id']);
     exit();
   } 
   else 

@@ -22,12 +22,16 @@
       <!-- Formulaire de certification BIO/AB -->
       <div class="card-body cet-accordion-admin-critique">
 
-        <form class="form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
+        <form class="form" 
+          id="admin-geoloc-form-prd"
+          action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
           <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="admin-geoloc-prd">
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text"><b><u>GEOLOCALISATION dédiée aux producteurs : </u></b><br>N° du producteur pour mise à jour de géolocalisation :</small></label>
-            <input class="form-control" name="producteur-geoloc-pkproducteur" type="text" value="" maxlength="8"
+            <input class="form-control" 
+              id="producteur-geoloc-pkproducteur" 
+              name="producteur-geoloc-pkproducteur" type="text" value="" maxlength="8"
               placeholder="Le numéro à saisir correspond au numéro producteur (exemple : 123)">
           </div>
           <div class="form-group mb-3">
@@ -42,12 +46,16 @@
           </button>
         </form>
 
-        <form class="form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
+        <form class="form" 
+          id="admin-geoloc-form-entite"
+          action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
           <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="admin-geoloc-entite">
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text"><b><u>GEOLOCALISATION dédiée aux entités (marchés, amaps, assos, magasins...) : </u></b><br>N° de l'entité pour mise à jour de géolocalisation (# dans le tableau admin) :</small></label>
-            <input class="form-control" name="entite-geoloc-pkentite" type="text" value="" maxlength="8"
+            <input class="form-control" 
+              id="entite-geoloc-pkentite"
+              name="entite-geoloc-pkentite" type="text" value="" maxlength="8"
               placeholder="Le numéro à saisir correspond au numéro de l'entité (exemple : 123, # dans le tableau admin)">
           </div>
           <div class="form-group mb-3">

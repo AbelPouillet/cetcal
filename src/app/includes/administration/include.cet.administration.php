@@ -5,6 +5,8 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
   $dataProcessor->processHttpFormData($_GET['statut']) : 'bienvenu.form';
 $admlog = $dataProcessor->processHttpFormData($_GET['admlog']);
 $admlog_ready = isset($admlog) && !empty($admlog) && strlen($admlog) > 3;
+$rechargement_update = $dataProcessor->processHttpFormData($_GET['refresh']);
+$is_rechargement_update = isset($rechargement_update) && !empty($rechargement_update) && strcmp($rechargement_update, 'true') === 0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -57,7 +59,7 @@ $admlog_ready = isset($admlog) && !empty($admlog) && strlen($admlog) > 3;
               include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.geoloc.php';
               include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
               include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
-              include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
+              include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.administration.php';
             ?>
           <?php elseif(!$admlog): ?>
           <?php endif; ?>
@@ -66,6 +68,7 @@ $admlog_ready = isset($admlog) && !empty($admlog) && strlen($admlog) > 3;
   	</div>
 
 	<!-- JS script -->
+  <script src="/src/scripts/js/cetcal/cetcal.min.administration.hist.action.js"></script>  
 	<script src="/src/scripts/js/cetcal/cetcal.min.administration.js"></script>
 
   </body>

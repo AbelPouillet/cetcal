@@ -25,6 +25,8 @@ try
     exit();
   }
 
+  $admin_data = $authModel->getAdministrateurBySessionId($cetcal_session_id);
+
   // Prepare traitement :
   $nav = $dataProcessor->processHttpFormData($_POST['admin_action_cible']);
 
@@ -123,7 +125,7 @@ try
   ** ***********************************************************************/
 
   // Apply navigation :
-  header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id);
+  header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id.'&admlog='.$admin_data['adm_email'].'&admpk='.$admin_data['adm_id'].'&refresh=true');
   exit();
 }
 catch (Exception $e) 

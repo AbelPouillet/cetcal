@@ -141,4 +141,8 @@ class CETCALQueryLibrary
   const DELETE_FROM_BIODATA_WHERE_PKPRD = "DELETE FROM cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
   const SELECT_BIODATA_BY_FK_PRODUCTEUR = "SELECT * from cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
 
+  const SELECT_ALL_FROM_HISTO_AMINISTRATION_ACTION = "SELECT * FROM cetcal.cetcal_administration_histo ORDER BY date_heure_action DESC;";
+  const INSERT_INTO_HISTO_AMINISTRATION_ACTION = "INSERT INTO cetcal.cetcal_administration_histo (adm_fk, adm_email, action_code, action_libelle_fonctionnel, date_heure_action, datetime_stamp, pk_element, type_element, denomination_element, commentaire) VALUES (:pAdmFk, :pAdmEmail, :pActionCode, :pActionLibFonc, :pDateHeureAction, :pDtStamp, :pPkElement, :pTypeElement, :pDenominationElement, :pCommentaire);";
+  
+
 }

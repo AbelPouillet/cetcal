@@ -58,6 +58,7 @@ $(document).ready(function() {
     const queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var rowcible = $(this).attr('row-cible');
+    var prdCible = $(this).attr('prd-cible');
     $('#cet-modal-alerte-titre').text("Demande de suppression producteur.e");
     $('#cet-modal-alerte-paragraphe').text("Veuillez confirmer la suppression du producteur.s suivant : ");
     $('#cet-modal-alerte-paragraphe-bis').text($(this).attr('prd-cible'));
@@ -65,22 +66,24 @@ $(document).ready(function() {
     $('#cet-modal-alerte-btn-annuler').text("Annuler");
     $('#cet-modal-alerte-btn-annuler').show();
     $('#cet-modal-alerte-btn-primary').text("Supprimer ce producteur.e");
-    $('#cet-modal-alerte-btn-primary').off();
     $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
       $.ajax({
         url: '../../../controller/cet.annuaire.controller.administration.actions.php?sitkn=' + urlParams.get('sitkn'),
         type: 'POST',
         data: { admin_action_cible : 'sup-producteur', pkid : pk },
-        success: function (json) { }, 
+        success: function (json) { 
+          admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), 'supprd', 'producteur', 
+            prdCible, pk, $('#commentaire-action-admin').val());
+        }, 
         error: function(jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); }
       });
       $('#cet-modal-alerte').modal('hide');
       $('#' + rowcible).hide('slow');
     });
-    $('#cet-modal-alerte-btn-annuler').off();
     $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
       $('#cet-modal-alerte').modal('hide'); 
     });
+    $('#commentaire-action-admin-container').show();
     $('#cet-modal-alerte-btn').click();
   });
 
@@ -92,27 +95,63 @@ $(document).ready(function() {
     const queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var rowcible = $(this).attr('row-cible');
+    var prdCible = $(this).attr('prd-cible');
     $('#cet-modal-alerte-titre').text("Demande de modification producteur.e");
     $('#cet-modal-alerte-paragraphe').text("Veuillez confirmer la prise en charge du producteur suivant : ");
     $('#cet-modal-alerte-paragraphe-bis').text($(this).attr('prd-cible'));
     $('#cet-modal-alerte-btn-annuler').text("Annuler");
     $('#cet-modal-alerte-btn-annuler').show();
     $('#cet-modal-alerte-btn-primary').text("Modifier le producteur.e n°" + pk);
-    $('#cet-modal-alerte-btn-primary').off();
     $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
       $('#cet-modal-alerte').modal('hide');
       $('#admin-modifier-producteur-link-' + pk).attr('href');
       window.open($('#admin-modifier-producteur-link-' + pk).attr('href'), '_blank');
+      admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), 'majprd', 'producteur', 
+        prdCible, pk, $('#commentaire-action-admin').val());
     });
-    $('#cet-modal-alerte-btn-annuler').off();
     $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
       $('#cet-modal-alerte').modal('hide'); 
     });
+    $('#commentaire-action-admin-container').show();
     $('#cet-modal-alerte-btn').click();
   });
 
+  // Log actions admin sur entités :
+  $('#admin-entite-form').on('submit', function() {
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var action = $('input#admin_action_cible').val();
+    var action_entite = '';
+    if (action === 'insert-entite') action_entite = 'creent'; 
+    else if (action === 'update-entite') action_entite = 'majent'; 
+    else if (action === 'delete-entite') action_entite = 'supent';
+    admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), action_entite, 
+      $('#entite-entite-type').find(":selected").text(), 
+      $('#entite-entite-denomination').val(), $('#admin-pk-entite').val(), $('#commentaire-action-admin').val());
+  });
+
+  // Log actions admin sur géolocalisation producteur :
+  $('#admin-geoloc-form-prd').on('submit', function() {
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var action = 'geoprd';
+    var type = 'producteur';
+    admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), action, 
+      type, '', $('#producteur-geoloc-pkproducteur').val(), $('#commentaire-action-admin').val());
+  });
+
+  // Log actions admin sur géolocalisation entités :
+  $('#admin-geoloc-form-entite').on('submit', function() {
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var action = 'geoent';
+    var type = 'entité';
+    admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), action, 
+      type, '', $('#entite-geoloc-pkentite').val(), $('#commentaire-action-admin').val());
+  });
+
 	/*********************************************************************
-	 * Actions liées aux marchés, leiux de distributions, Asso, AMAPS etc.
+	 * Actions liées aux marchés, lieux de distributions, Asso, AMAPS etc.
 	 */
 	$('#btn-admin-ajout-entite').click(function() {
 		$('input#admin_action_cible').val('insert-entite');
@@ -238,7 +277,6 @@ function appendAllMedia(images) {
     $('#cet-modal-alerte-paragraphe').text("La suppression de l'image est définitive. Vous pouvez cependant télécharger à nouveau une image supprimée par erreur. Veuillez confirmer la suppression de l'image " + urlr_delete);
     $('#cet-modal-alerte-btn-annuler').text("Annuler");
     $('#cet-modal-alerte-btn-primary').text("Je confirme");
-    $('#cet-modal-alerte-btn-primary').off();
     $('#cet-modal-alerte-btn-primary').on('mousedown', function() {
       $('#cet-modal-alerte').modal('hide');
       deleteMedia(id_media_delete, pkent_delete, urlr_delete);
@@ -282,6 +320,10 @@ function deleteMedia(id_media, pk_entite, urlr) {
 }
 
 function notifierAdministrateur() {
+  clearModalAdmin();
+  const queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  if (urlParams.get('refresh') !== undefined && urlParams.get('refresh') === 'true') return;
   var text = 'Pour administrer en toute sérénité... :';
   var text2 = ' - garder ouvert l\'onglet d\'administration. Votre session admin sera perdue si vous quittez la page. Dans ce cas, il faudra vous reconnecter à l\'administration.';
   var text3 = ' - Gardez un onglet ouvert sur la page d\'acceuil de decidelabiolocale.org. Appliquer les modifications souhaitées depuis l\'onglet administration puis rechargez la page d\'acceuil à l\'aide du bouton de clavier F5 ou du bouton navigateur de rafraichissement de page.';
@@ -297,6 +339,8 @@ function notifierAdministrateur() {
 }
 
 function clearModalAdmin() {
+  $('#cet-modal-alerte-btn-primary').off();
+  $('#cet-modal-alerte-btn-annuler').off();
   var text = '';
   var text2 = '';
   var text3 = '';
@@ -307,4 +351,6 @@ function clearModalAdmin() {
   $('#cet-modal-alerte-paragraphe-ter').text(text3);
   $('#cet-modal-alerte-paragraphe-quater').text(text4);
   $('#cet-modal-alerte-btn-primary').text("J'ai compris");
+  $('#commentaire-action-admin-container').hide();
+  $('#commentaire-action-admin').val('');
 }
