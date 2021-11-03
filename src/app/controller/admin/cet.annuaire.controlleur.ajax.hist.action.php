@@ -18,7 +18,10 @@ $commentaire = $dataProcessor->processHttpFormData($_POST['cmt']);
 
 try 
 {
-  if (1 == 1)
+  $authModel = new CETCALAdminModel();
+  $auth = $authModel->authTempSessionId($sitkn);
+
+  if ($auth === 1)
   {
     $adm_act_libfonc = CetAnnuaireConstCodeActionAdmin::CODE_FONC[$action_code];
     $histoAction = new CETCALAdminHistoriqueActionModel();
@@ -31,6 +34,7 @@ try
 }
 catch (Exception $e) 
 {
+  error_log("[ADMIN CETCAL] erreur : ".$e->getMessage." | acces refuse HTTP 403.");
   echo json_encode(array(
       'error' => array(
           'msg' => $e->getMessage(),

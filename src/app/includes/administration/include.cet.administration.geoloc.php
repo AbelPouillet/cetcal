@@ -32,11 +32,20 @@
             <input class="form-control" 
               id="producteur-geoloc-pkproducteur" 
               name="producteur-geoloc-pkproducteur" type="text" value="" maxlength="8"
-              placeholder="Le numéro à saisir correspond au numéro producteur (exemple : 123)">
+              placeholder="Le numéro à saisir correspond au numéro producteur (exemple : 123)"
+              onkeyup="updateNomFermePourGeoloc();">
+          </div>
+          <div class="form-group mb-3">
+            <label class="cet-input-label"><small class="cet-qstprod-label-text">Nom/descriptif ferme :</small></label>
+            <input class="form-control" name="producteur-geoloc-nomferme" id="producteur-geoloc-nomferme" 
+              type="text" value="" maxlength="512"
+              placeholder="Renseigné automatiquement sur la base du n° producteur"
+              disabled="disabled">
           </div>
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Coordonnées de géolocalisation du producteur :</small></label>
-            <input class="form-control" name="producteur-geoloc-coordonnees" type="text" value="" maxlength="256"
+            <input class="form-control" name="producteur-geoloc-coordonnees" type="text" 
+              value="" maxlength="256"
               placeholder="Les coordonnées copier depuis Google maps (autre) et avec séparateur 'point virgule' ou ' virgule'">
           </div>
           <!-- END contenu du formulaire -->
@@ -56,7 +65,15 @@
             <input class="form-control" 
               id="entite-geoloc-pkentite"
               name="entite-geoloc-pkentite" type="text" value="" maxlength="8"
-              placeholder="Le numéro à saisir correspond au numéro de l'entité (exemple : 123, # dans le tableau admin)">
+              placeholder="Le numéro à saisir correspond au numéro de l'entité (exemple : 123, # dans le tableau admin)"
+              onkeyup="updateDenominationEntitePourGeoloc();">
+          </div>
+          <div class="form-group mb-3">
+            <label class="cet-input-label"><small class="cet-qstprod-label-text">Dénomination/descriptif entité :</small></label>
+            <input class="form-control" name="entite-geoloc-denomination" id="entite-geoloc-denomination" 
+              type="text" value="" maxlength="512"
+              placeholder="Sera renseigné automatiquement sur la base du n° entité"
+              disabled="disabled">
           </div>
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Coordonnées de géolocalisation de l'entité :</small></label>

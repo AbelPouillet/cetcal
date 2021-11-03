@@ -24,7 +24,7 @@
           $data_admins = $ctrl->selectAll();
         ?>
 
-        <table class="table table-striped cetcal-admin-table cet-table">
+        <table class="table table-sm cetcal-admin-table">
           <thead>
             <tr>
               <th scope="col">#</th>

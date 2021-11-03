@@ -100,10 +100,15 @@ class AdminEntitesCastillonnaisController extends AnnuaireController
        * Si update n'a pas levée d'exception alors, vider la carto pour cette entite
        * afin de prendre en charge de manière transparente un changement d'adresse (si
        * changement d'adresse avéré ou non >> dans tous les cas).
+       * 
+       * Ne vider la carto QUE si l'entité est en cetcal_cartographie.update_man = false.
+       * Sans quoi, une administration de a géoloc va être perdue et l'entité sera de nouveau localisé
+       * sur la base de son adresse.
        */
       require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.qstprod.cartographie.model.php');
       $model = new CETCALCartographieModel();
-      $model->deleteEntite($data['admin-pk-entite']);
+      $data_entite = $model->getLatLngEntite($data['admin-pk-entite']);
+      if (strcmp($data_entite['update_man'], 'false') === 0) $model->deleteEntite($data['admin-pk-entite']);
     }
     catch (Exception $e) 
     {

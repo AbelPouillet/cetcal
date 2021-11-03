@@ -36,7 +36,7 @@ $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_up
   	  	<div class="alert alert-dismissible" role="alert">
   	  	  <h4 class="alert-heading">Bien le bonjour chère Administrateur du site CETCAL !</h4>
           <hr>
-            <p>Utilisateur en cour d'administration : <b><?= $admlog; ?></b></p>
+            <?php include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.hist.action.php'; ?>
           <hr>
             <a href="/">Se déconnecter et retourner à l'accueil cetcal.site</a>
     		  <hr>
@@ -68,8 +68,8 @@ $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_up
   	</div>
 
 	<!-- JS script -->
-  <script src="/src/scripts/js/cetcal/cetcal.min.administration.hist.action.js"></script>  
-	<script src="/src/scripts/js/cetcal/cetcal.min.administration.js"></script>
+  <script src="/src/scripts/js/cetcal/cetcal.min.administration.hist.action.js"></script>
+	<script src="/src/scripts/js/cetcal/cetcal.min.administration.js"></script> 
 
   </body>
 </html>

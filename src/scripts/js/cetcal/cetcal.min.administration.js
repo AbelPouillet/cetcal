@@ -49,6 +49,9 @@ $('#cet-admin-3').on('shown.bs.collapse', function () {
 });
 
 $(document).ready(function() {
+
+  // Initier l'historique administration:
+  initAdmLog();
   
   // Bouton de suppression producteur.
   $('button.administration-desactiver-producteur').on('mousedown', function() {
@@ -78,6 +81,7 @@ $(document).ready(function() {
         error: function(jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); }
       });
       $('#cet-modal-alerte').modal('hide');
+      clearModalAdmin();
       $('#' + rowcible).hide('slow');
     });
     $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
@@ -106,8 +110,10 @@ $(document).ready(function() {
       $('#cet-modal-alerte').modal('hide');
       $('#admin-modifier-producteur-link-' + pk).attr('href');
       window.open($('#admin-modifier-producteur-link-' + pk).attr('href'), '_blank');
+      alert(urlParams.get('sitkn'));
       admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), 'majprd', 'producteur', 
         prdCible, pk, $('#commentaire-action-admin').val());
+      clearModalAdmin();
     });
     $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
       $('#cet-modal-alerte').modal('hide'); 
@@ -116,38 +122,17 @@ $(document).ready(function() {
     $('#cet-modal-alerte-btn').click();
   });
 
-  // Log actions admin sur entités :
-  $('#admin-entite-form').on('submit', function() {
-    const queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var action = $('input#admin_action_cible').val();
-    var action_entite = '';
-    if (action === 'insert-entite') action_entite = 'creent'; 
-    else if (action === 'update-entite') action_entite = 'majent'; 
-    else if (action === 'delete-entite') action_entite = 'supent';
-    admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), action_entite, 
-      $('#entite-entite-type').find(":selected").text(), 
-      $('#entite-entite-denomination').val(), $('#admin-pk-entite').val(), $('#commentaire-action-admin').val());
+  /*********************************************************************
+   * Actions liées aux certification producteur.
+   */
+  $('#btn-admin-ajout-certif-bioab').click(function() {
+    $('input#admin_action_cible_certif').val('certif-bioab-prd');
+    $('#admin-certif-form').submit();
   });
 
-  // Log actions admin sur géolocalisation producteur :
-  $('#admin-geoloc-form-prd').on('submit', function() {
-    const queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var action = 'geoprd';
-    var type = 'producteur';
-    admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), action, 
-      type, '', $('#producteur-geoloc-pkproducteur').val(), $('#commentaire-action-admin').val());
-  });
-
-  // Log actions admin sur géolocalisation entités :
-  $('#admin-geoloc-form-entite').on('submit', function() {
-    const queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var action = 'geoent';
-    var type = 'entité';
-    admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), action, 
-      type, '', $('#entite-geoloc-pkentite').val(), $('#commentaire-action-admin').val());
+  $('#btn-admin-sup-certif-bioab').click(function() {
+    $('input#admin_action_cible_certif').val('certif-null-prd');
+    $('#admin-certif-form').submit();
   });
 
 	/*********************************************************************

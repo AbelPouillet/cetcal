@@ -10,7 +10,9 @@ Class CetAnnuaireConstCodeActionAdmin
     "supent" => "Supression d'entité",
     "creent" => "Création d'entité",
     "geoprd" => "Mise à jour géolocalisation producteur",
-    "geoent" => "Mise à jour géolocalisation entité"
+    "geoent" => "Mise à jour géolocalisation entité",
+    "crtfpr" => "Modification du niveau de certification producteur",
+    "uncrpr" => "Suppression des informations de certification producteur"
   ];
   
 }

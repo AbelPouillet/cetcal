@@ -32,7 +32,7 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
       data-parent="#cet-admin-prd-inscrits-accordion">
       <div class="card-body">
         <p>Liste administrable des Producteur.e.s insctits (producteur.e.s ayant reçu un identifiant cetcal) et pré-inscrits (pas d'identifiant cetcal) :</p>
-        <table class="table" id="cetcal-admin-producteurs">
+        <table class="table cetcal-admin-table-producteur" id="cetcal-admin-producteurs">
           <tr>
             <th>ID</th>
             <th>Nom Ferme</th>
@@ -42,19 +42,20 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
             <th>Lat/lng</th>
             <th>Actions</th>
           </tr>
-          <tr><td colspan="6"><b>Producteur.e.s inscrits (avec identifiant cetcal) : </b></td></tr>
-          <?php $count = 0; $count_preinscrits = 0; ?>
-          <?php foreach ($producteurs as $prd): ?>
-            <?php if ((strcmp($prd->identifiant_cet, '0') === 0 || 
-                       strcmp($prd->identifiant_cet, '') === 0) || 
-                       strcmp($prd->prodInscrit, 'false') === 0 ||
-                       strcmp($prd->prodInscrit, 'amdif') === 0) continue;
-                  else ++$count; ?>
-            <?php 
-              $adr = $prd->prodInscrit === 'false' ? $prd->adrfermeLtrl : 
-                str_replace("  ", " ", $prd->adrNumvoie.' '.$prd->adrRue.' '.$prd->adrLieudit.' '.
-                $prd->adrCommune.' '.$prd->adrCodePostal.' '.$prd->adrComplementAdr); 
-            ?>
+          <tr>
+            <td colspan="7"><b>Producteur.e.s inscrits (avec identifiant cetcal) : </b></td></tr>
+            <?php $count = 0; $count_preinscrits = 0; ?>
+            <?php foreach ($producteurs as $prd): ?>
+              <?php if ((strcmp($prd->identifiant_cet, '0') === 0 || 
+                         strcmp($prd->identifiant_cet, '') === 0) || 
+                         strcmp($prd->prodInscrit, 'false') === 0 ||
+                         strcmp($prd->prodInscrit, 'amdif') === 0) continue;
+                    else ++$count; ?>
+              <?php 
+                $adr = $prd->prodInscrit === 'false' ? $prd->adrfermeLtrl : 
+                  str_replace("  ", " ", $prd->adrNumvoie.' '.$prd->adrRue.' '.$prd->adrLieudit.' '.
+                  $prd->adrCommune.' '.$prd->adrCodePostal.' '.$prd->adrComplementAdr); 
+              ?>
             <tr id="row-admin-prd-pk-<?= $prd->getPk(); ?>">
               <td><?= $prd->getPk(); ?></td>
               <td class="admin-producteur-wordbreakable">
@@ -83,7 +84,7 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
                 </a>       
               </td>
               <td>
-                <div class="btn-group">
+                <div class="btn-group" style="padding: 6px;">
                   <button class="administration-modifier-producteur btn-small btn btn-outline-warning" 
                     title="Modifier le producteur n°<?= $prd->getPk(); ?>"
                     row-cible="row-admin-prd-pk-<?= $prd->getPk(); ?>"
@@ -110,11 +111,12 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
               </td>
             </tr>
           <?php endforeach; ?>
-          <tr><td colspan="6"><br><br><b>Producteur.e.s préinscrits : </b></td></tr>
-          <?php foreach ($producteurs as $prd_preinscrit): ?>
-            <?php if (strlen($prd_preinscrit->identifiant_cet) > 1 && 
-                      strcmp($prd_preinscrit->prodInscrit, 'true') === 0) continue;
-                  else ++$count_preinscrits; ?>
+          <tr>
+            <td colspan="7"><br><br><b>Producteur.e.s préinscrits : </b></td></tr>
+            <?php foreach ($producteurs as $prd_preinscrit): ?>
+              <?php if (strlen($prd_preinscrit->identifiant_cet) > 1 && 
+                        strcmp($prd_preinscrit->prodInscrit, 'true') === 0) continue;
+                    else ++$count_preinscrits; ?>
             <tr id="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>">
               <td><?= $prd_preinscrit->getPk(); ?></td>
               <td class="admin-producteur-wordbreakable">
@@ -141,8 +143,8 @@ $producteurs = $ctrl->fetchAllFrontEndDTOArray();
                   <?= $latlng_google[1].','.$latlng_google[0]; ?>
                 </a> 
               </td>
-              <td>
-                <div class="btn-group">
+              <td class="admin-producteur-wordbreakable">
+                <div class="btn-group" style="padding: 6px;">
                   <button class="administration-modifier-producteur btn-small btn btn-outline-warning" title="Modifier le producteur n°<?= $prd_preinscrit->getPk(); ?>"
                     row-cible="row-admin-prd-pk-<?= $prd_preinscrit->getPk(); ?>"
                     prd-cible="[n°<?= $prd_preinscrit->getPk(); ?>] <?= $prd_preinscrit->nomferme; ?> (adresse: <?= $adr; ?>)."

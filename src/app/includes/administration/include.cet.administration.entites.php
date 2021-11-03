@@ -112,7 +112,7 @@ $ctrl = new AdminEntitesCastillonnaisController();
       <!-- Listing des entités pour mises à jour -->
       <div class="card-body">
         <?php $data_entites = $ctrl->selectAll(); ?>
-        <table class="table table-striped cetcal-admin-table cet-table">
+        <table class="table table-sm cetcal-admin-table">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -124,17 +124,20 @@ $ctrl = new AdminEntitesCastillonnaisController();
           <tbody>
             <?php foreach ($data_entites as $data): ?>
               <tr class="admin-entite-administrer">
-                <td class="pk cetcal-admin-table-td" scope="row">
-                  <?=$data['pk_entite'];?>
+                <td class="pk cetcal-admin-table-td" scope="row" 
+                  id="admin-entite-link-<?= $data['pk_entite']; ?>" 
+                  data="<?= $data['pk_entite']; ?>" 
+                  ent-cible="[entité n°<?= $data['pk_entite']; ?>] <?= $data['denomination']; ?> (adresse: <?= $data['adresse']; ?>).">
+                  <?= $data['pk_entite']; ?>
                 </td>
                 <td class="cetcal-admin-table-td">
-                  <?=$data['denomination'];?>
+                  <?= $data['denomination']; ?>
                 </td>
                 <td class="cetcal-admin-table-td">
-                  <?=$data['adresse'];?> 
+                  <?= $data['adresse']; ?> 
                 </td>
                 <td class="cetcal-admin-table-td">
-                  <?=$data['activite'];?> 
+                  <?= $data['activite']; ?> 
                 </td>
               </tr>
             <?php endforeach; ?>

@@ -16,6 +16,13 @@ class CertificationBioABProducteurController extends AnnuaireController
     return $model->certifierProducteur($pk, $url, $num_certif);
   }
 
+  public function decertifierProducteur($pk)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.biodata.model.php');
+    $model = new BioDataModel();
+    return $model->decertifierProducteur($pk);
+  }
+
   public function getCertificationProducteur($pk)
   {
     require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.annuaire.biodata.model.php');

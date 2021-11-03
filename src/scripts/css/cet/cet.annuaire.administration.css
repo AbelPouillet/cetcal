@@ -1,7 +1,6 @@
 tr.admin-entite-administrer:hover {
 	cursor: pointer;
 	background-color: lightyellow !important;
-	font-weight: bold !important;
 }
 
 .cet-accordion-admin { 
@@ -16,7 +15,15 @@ tr.admin-entite-administrer:hover {
 }
 
 table.cetcal-admin-table {
-	table-layout: fixed;
+  table-layout: auto;
+}
+
+table.cetcal-admin-table th {
+  border: none !important;
+}
+
+table.cetcal-admin-table-producteur th {
+  border: none !important;
 }
 
 td.cetcal-admin-table-td {
@@ -75,4 +82,27 @@ button.cet-admin-borderless-button {
   height: 100% !important;
   border-radius: 0px !important;
   color: black;
+}
+div.custom-scrollbar {
+  position: relative;
+  height: 512px;
+  overflow: auto;
+}
+div.table-wrapper-scroll-y {
+  display: none;
+  border: 1px solid grey;
+}
+table#table-histo-admin-activites {
+  font-size: 14px;
+  background-color: rgb(240, 250, 252);
+}
+table#table-histo-admin-activites th, td {
+  padding-left: 6px !important;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+tr.admin-histo-action-row:hover {
+  cursor: pointer;
+  background-color: lightyellow !important;
 }

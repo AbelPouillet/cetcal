@@ -21,13 +21,22 @@
       data-parent="#cet-admin-bioab-accordion">
       <!-- Formulaire de certification BIO/AB -->
       <div class="card-body cet-accordion-admin-critique">
-        <form class="form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
+        <form class="form" id="admin-certif-form" 
+          action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
-          <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="certif-bioab-prd">
+          <input name="admin_action_cible" id="admin_action_cible_certif" type="text" hidden="hidden" value="">
           <!-- contenu du formulaire, reflet de la table cetcal_entite pour les entites -->
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Numéro producteur decidelabiolocale.ord : </small></label>
-            <input class="form-control" name="producteur-bioab-pk" type="number" value="" maxlength="8">
+            <input class="form-control" name="producteur-bioab-pk" id="producteur-bioab-pk" 
+              type="number" value="" maxlength="8" onkeyup="updateNomFermePourCertif();">
+          </div>
+          <div class="form-group mb-3">
+            <label class="cet-input-label"><small class="cet-qstprod-label-text">Nom/descriptif ferme :</small></label>
+            <input class="form-control" name="producteur-certif-nomferme" id="producteur-certif-nomferme" 
+              type="text" value="" maxlength="512"
+              placeholder="Renseigné automatiquement sur la base du n° producteur"
+              disabled="disabled">
           </div>
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">URL de la page de certification BIO/AB : </small></label>
@@ -38,10 +47,14 @@
             <input class="form-control" name="producteur-bioab-numcertif" type="text" value="" maxlength="128">
           </div>
           <!-- END contenu du formulaire -->
-          <button class="btn cet-navbar-btn" id="btn-admin-ajout-certif-bioab" type="submit" 
+          <a class="btn cet-navbar-btn" id="btn-admin-ajout-certif-bioab"
             style="float: right; margin-right: 4px;">
             Certifier ce producteur BIO/AB
-          </button>
+          </a>
+          <a class="btn cet-navbar-btn" id="btn-admin-sup-certif-bioab" 
+            style="float: right; margin-right: 4px;">
+            Supprimer les données de certification
+          </a>
         </form>
       </div>
     </div>

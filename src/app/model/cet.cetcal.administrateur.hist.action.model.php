@@ -14,7 +14,6 @@ class CETCALAdminHistoriqueActionModel extends CETCALModel
     $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_FROM_HISTO_AMINISTRATION_ACTION);
     $stmt->execute();
     $data = $stmt->fetchAll();
-
     return $data;
   }
 
