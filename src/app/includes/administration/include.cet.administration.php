@@ -3,11 +3,14 @@ include $_SERVER['DOCUMENT_ROOT'].'/cet.qstprod.startup.php';
 include $PHP_CONTROLLER_PATH.'cet.qstprod.controller.index.php';
 $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ? 
   $dataProcessor->processHttpFormData($_GET['statut']) : 'bienvenu.form';
+$admlog = $dataProcessor->processHttpFormData($_GET['admlog']);
+$admlog_ready = isset($admlog) && !empty($admlog) && strlen($admlog) > 3;
+$rechargement_update = isset($_GET['refresh']) ? $dataProcessor->processHttpFormData($_GET['refresh']) : '';
+$is_rechargement_update = isset($rechargement_update) && !empty($rechargement_update) && strcmp($rechargement_update, 'true') === 0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <!--<base href="http://http://82.65.74.33/"/>-->
     <title>Annuaire des producteurs bio de la région castillon</title>
     <meta name="description" content="............"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
@@ -25,45 +28,45 @@ $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ?
     <script src="/src/scripts/js/cetcal/cetcal.min.js"></script>
     <div id="fb-root"></div>
   </head>
-  <body id="cet-annuaire-body">
+  <body id="cet-annuaire-body" onload="notifierAdministrateur();">
   	
     <div style="margin-top: 30px;"></div>
   	<div class="row justify-content-lg-center">
-  	  <div class="col-lg-9">
-  	  	<div class="alert cet-bloc alert-dismissible" role="alert">
+  	  <div class="col-lg-12">
+  	  	<div class="alert" role="alert">
   	  	  <h4 class="alert-heading">Bien le bonjour chère Administrateur du site CETCAL !</h4>
-    		  <p>Pour le bien de tous, veuillez utiliser ces fonctionnalités avec soin car elles modifient cetcal.site.</p>
+          <hr>
+            <?php include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.hist.action.php'; ?>
           <hr>
             <a href="/">Se déconnecter et retourner à l'accueil cetcal.site</a>
     		  <hr>
     		  <p class="mb-0">En cas de doute sur une action, veuillez contacter votre support technique.</p>
-    		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    		    <span aria-hidden="true">&times;</span>
-    		  </button>
   		  </div>
   	  </div>
   	</div>
 
   	<div id="container-modules-admind-cetcal" style="margin-bottom: 120px;">
   	  <div class="row justify-content-lg-center">
-    		<div class="col-lg-9">	
-    			<?php 
-    				// les modules d'administration ajoutés un par un :
-    				include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.producteurs.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.certification.producteurs.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.geoloc.php'; 
-    				//include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.cantines.structures.php'; 
-            include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
-            
-            include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.php';
-          ?>
+    		<div class="col-lg-12">	
+          <?php if($admlog_ready): ?>
+      			<?php 
+      				// les modules d'administration ajoutés un par un :
+      				include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.producteurs.php';
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.certification.producteurs.php';
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.geoloc.php';
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
+              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
+              include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.administration.php';
+            ?>
+          <?php elseif(!$admlog): ?>
+          <?php endif; ?>
   		  </div>
   	  </div>
   	</div>
 
 	<!-- JS script -->
-	<script src="/src/scripts/js/cetcal/cetcal.min.administration.js"></script>
+  <script src="/src/scripts/js/cetcal/cetcal.min.administration.hist.action.js"></script>
+	<script src="/src/scripts/js/cetcal/cetcal.min.administration.js"></script> 
 
   </body>
 </html>

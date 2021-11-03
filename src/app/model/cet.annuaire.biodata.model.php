@@ -32,6 +32,24 @@ class BioDataModel extends CETCALModel
     }
   }
 
+  public function decertifierProducteur($pk_producteur)
+  {
+    try
+    {
+      $qLib = $this->getQuerylib();
+      $stmt = $this->getCnxdb()->prepare($qLib::DELETE_FROM_BIODATA_WHERE_PKPRD);
+      $stmt->bindParam(":pPk_producteur", $pk_producteur, PDO::PARAM_INT);
+      $stmt->execute();
+
+      return true;
+    }
+    catch (Exception $e)
+    {
+      error_log($e->getMessage());
+      return false;
+    }
+  }
+
   public function getCertificationProducteur($pk_producteur)
   {
     try

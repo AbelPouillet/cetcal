@@ -121,6 +121,7 @@ class CETCALQueryLibrary
   const SELECT_PRODUIT_BY_FK_PRODUCTEUR = "SELECT * FROM cetcal.cetcal_produit WHERE pk_produit IN (SELECT fk_produits_join FROM cetcal.producteur_join_produits WHERE fk_producteur_join=:pFk_producteur);";
   const SELECT_CATEGORIES_PRODUITS_BY_PK_PRODUCTEUR = "SELECT DISTINCT (categorie) FROM cetcal.producteur_join_produits, cetcal.cetcal_produit WHERE fk_produits_join=pk_produit AND fk_producteur_join=:pPk_producteur";
   const UPDATE_USER_SESSION = "UPDATE cetcal.cetcal_user SET session_id=:pSessionId, user_ip=:pUserIp WHERE user_id=:pUserId;";
+  const UPDATE_USER_EMAIL_SESSION = "DELETE FROM cetcal.cetcal_producteur;";
   const SELECT_ALL_LIEUX_DIST_PROD_BY_PK = "SELECT * FROM cetcal.cetcal_producteur_lieu_dist WHERE fk_producteur=:pPk_producteur;";
 
   // TODO check deprecated ??? :
@@ -139,5 +140,9 @@ class CETCALQueryLibrary
   const SELECT_BIODATA = "SELECT * from cetcal.cetcal_biodata;";
   const DELETE_FROM_BIODATA_WHERE_PKPRD = "DELETE FROM cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
   const SELECT_BIODATA_BY_FK_PRODUCTEUR = "SELECT * from cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
+
+  const SELECT_ALL_FROM_HISTO_AMINISTRATION_ACTION = "SELECT * FROM cetcal.cetcal_administration_histo ORDER BY date_heure_action DESC;";
+  const INSERT_INTO_HISTO_AMINISTRATION_ACTION = "INSERT INTO cetcal.cetcal_administration_histo (adm_fk, adm_email, action_code, action_libelle_fonctionnel, date_heure_action, datetime_stamp, pk_element, type_element, denomination_element, commentaire) VALUES (:pAdmFk, :pAdmEmail, :pActionCode, :pActionLibFonc, :pDateHeureAction, :pDtStamp, :pPkElement, :pTypeElement, :pDenominationElement, :pCommentaire);";
+  
 
 }

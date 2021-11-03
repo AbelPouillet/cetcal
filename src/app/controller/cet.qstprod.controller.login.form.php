@@ -120,7 +120,6 @@ else if (strcmp($nav, 'cnx') === 0)
    * A noter que les producteurŝ peuvent se connecter avec leurs identifiant_cet, les 
    * utilisateurs ne le peuvent pas (email uniquement).
    */
-
   $email = $dataProcessor->processHttpFormData($_POST['login-email']);
   $mdp = $dataProcessor->processHttpFormData($_POST['login-motdepasse']);
 

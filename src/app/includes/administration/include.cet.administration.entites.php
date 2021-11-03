@@ -1,5 +1,10 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/admin/cet.annuaire.controlleur.administration.entites.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/const/cet.annuaire.const.types.php');
+$ctrl = new AdminEntitesCastillonnaisController();
+?>
 <div id="cet-admin-1-accordion">
-  <div class="card cet-accordion-admin cet-bloc">
+  <div class="card cet-accordion-admin">
   	<div class="card-header" id="cet-admin-1-heading">
   	  <label class="cet-formgroup-container-label"><small class="form-text">
   	  	Cette section vous aidera à administrer les marchés, les Associations, lieux de distribution, AMAPs etc.
@@ -17,10 +22,10 @@
     </div>
 
     <!-- Bloc collasable -->
-    <div id="cet-admin-1" class="collapse cet-bloc" aria-labelledby="cet-admin-1-heading" data-parent="#cet-admin-1-accordion">
+    <div id="cet-admin-1" class="collapse" aria-labelledby="cet-admin-1-heading" data-parent="#cet-admin-1-accordion">
       
       <!-- Formulaire d'ajout de marché -->
-      <div class="card-body cet-accordion-admin-critique cet-bloc">
+      <div class="card-body cet-accordion-admin-critique">
         <form class="form" id="admin-entite-form" action="/src/app/controller/cet.annuaire.controller.administration.actions.php?sitkn=<?=$cetcal_session_id;?>" method="post">
           <!-- le premier input hidden déffini l'action, en dure. -->
           <input name="admin_action_cible" id="admin_action_cible" type="text" hidden="hidden" value="">
@@ -73,7 +78,14 @@
           </div>
           <div class="form-group mb-3">
             <label class="cet-input-label"><small class="cet-qstprod-label-text">Type d'entité sélectionné :</small></label>
-            <input class="form-control" name="entite-entite-type" type="text" value="" maxlength="256">
+            <?php $typesEntite = $ctrl->selectAllTypes(); ?>
+            <select class="form-control" name="entite-entite-type" id="entite-entite-type">
+              <option value="0" selected="selected">-- aucun type sélectionné --</option>
+              <?php foreach($typesEntite as $type): ?>
+                <?php if (strlen($type['type']) < 4) continue; ?>
+                <option value="<?= $type['type']; ?>"><?= CetAnnuaireConstTypes::TYPE_ENTITE[$type['type']]; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <!-- END contenu du formulaire -->
           <a class="btn cet-navbar-btn" id="btn-admin-ajout-entite" 
@@ -99,12 +111,8 @@
       <hr>
       <!-- Listing des entités pour mises à jour -->
       <div class="card-body">
-        <?php
-          require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/admin/cet.annuaire.controlleur.administration.entites.php');
-          $ctrl = new AdminEntitesCastillonnaisController();
-          $data_entites = $ctrl->selectAll();
-        ?>
-        <table class="table table-striped cetcal-admin-table cet-table">
+        <?php $data_entites = $ctrl->selectAll(); ?>
+        <table class="table table-sm cetcal-admin-table">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -116,17 +124,20 @@
           <tbody>
             <?php foreach ($data_entites as $data): ?>
               <tr class="admin-entite-administrer">
-                <td class="pk cetcal-admin-table-td" scope="row">
-                  <?=$data['pk_entite'];?>
+                <td class="pk cetcal-admin-table-td" scope="row" 
+                  id="admin-entite-link-<?= $data['pk_entite']; ?>" 
+                  data="<?= $data['pk_entite']; ?>" 
+                  ent-cible="[entité n°<?= $data['pk_entite']; ?>] <?= $data['denomination']; ?> (adresse: <?= $data['adresse']; ?>).">
+                  <?= $data['pk_entite']; ?>
                 </td>
                 <td class="cetcal-admin-table-td">
-                  <?=$data['denomination'];?>
+                  <?= $data['denomination']; ?>
                 </td>
                 <td class="cetcal-admin-table-td">
-                  <?=$data['adresse'];?> 
+                  <?= $data['adresse']; ?> 
                 </td>
                 <td class="cetcal-admin-table-td">
-                  <?=$data['activite'];?> 
+                  <?= $data['activite']; ?> 
                 </td>
               </tr>
             <?php endforeach; ?>

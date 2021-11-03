@@ -25,6 +25,8 @@ try
     exit();
   }
 
+  $admin_data = $authModel->getAdministrateurBySessionId($cetcal_session_id);
+
   // Prepare traitement :
   $nav = $dataProcessor->processHttpFormData($_POST['admin_action_cible']);
 
@@ -63,6 +65,13 @@ try
     $subControlleur = new CertificationBioABProducteurController();
     $subControlleur->certifierProducteur($pk_prd, $url, $num_certif);
   }
+  else if (strcmp($nav, 'certif-null-prd') === 0)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/controller/cet.qstprod.controller.certification.bioab.php');
+    $pk_prd = $dataProcessor->processHttpFormData($_POST['producteur-bioab-pk']);
+    $subControlleur = new CertificationBioABProducteurController();
+    $subControlleur->decertifierProducteur($pk_prd);
+  }
   else if (strcmp($nav, 'sup-producteur') === 0)
   {
     $pk = $dataProcessor->processHttpFormData($_POST['pkid']);
@@ -98,8 +107,6 @@ try
   {
     $pk = $dataProcessor->processHttpFormData($_POST['entite-geoloc-pkentite']);
     $geoloc = $dataProcessor->processHttpFormData($_POST['entite-geoloc-coordonnees']);
-    error_log("admin geoloc entite: pk=".$pk." coordonnes=".$geoloc);
-
     $latlng_array = null;
     try 
     {
@@ -123,7 +130,7 @@ try
   ** ***********************************************************************/
 
   // Apply navigation :
-  header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id);
+  header('Location: /src/app/includes/administration/include.cet.administration.php/?sitkn='.$cetcal_session_id.'&admlog='.$admin_data['adm_email'].'&admpk='.$admin_data['adm_id'].'&refresh=true');
   exit();
 }
 catch (Exception $e) 

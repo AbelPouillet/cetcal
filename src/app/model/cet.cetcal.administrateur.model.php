@@ -104,6 +104,7 @@ class CETCALAdminModel extends CETCALModel
   public function authTempSessionId($sessionId)
   {
     $session_hash = hash("sha512", $sessionId);
+    error_log("[AUTH ADMIN] sitkn= ".$session_hash);
     $qLib = $this->getQuerylib();
     $stmt = $this->getCnxdb()->prepare($qLib::SELECT_ALL_FROM_AMINISTRATION_SESSION);
     $stmt->bindParam(":pSessionId", $session_hash, PDO::PARAM_STR);

@@ -49,13 +49,19 @@ $('#cet-admin-3').on('shown.bs.collapse', function () {
 });
 
 $(document).ready(function() {
+
+  // Initier l'historique administration:
+  initAdmLog();
   
+  // Bouton de suppression producteur.
   $('button.administration-desactiver-producteur').on('mousedown', function() {
 
+    clearModalAdmin();
     var pk = $(this).attr('data');
     const queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var rowcible = $(this).attr('row-cible');
+    var prdCible = $(this).attr('prd-cible');
     $('#cet-modal-alerte-titre').text("Demande de suppression producteur.e");
     $('#cet-modal-alerte-paragraphe').text("Veuillez confirmer la suppression du producteur.s suivant : ");
     $('#cet-modal-alerte-paragraphe-bis').text($(this).attr('prd-cible'));
@@ -63,27 +69,73 @@ $(document).ready(function() {
     $('#cet-modal-alerte-btn-annuler').text("Annuler");
     $('#cet-modal-alerte-btn-annuler').show();
     $('#cet-modal-alerte-btn-primary').text("Supprimer ce producteur.e");
-    $('#cet-modal-alerte-btn-primary').off();
     $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
       $.ajax({
         url: '../../../controller/cet.annuaire.controller.administration.actions.php?sitkn=' + urlParams.get('sitkn'),
         type: 'POST',
         data: { admin_action_cible : 'sup-producteur', pkid : pk },
-        success: function (json) { }, 
+        success: function (json) { 
+          admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), 'supprd', 'producteur', 
+            prdCible, pk, $('#commentaire-action-admin').val());
+          clearModalAdmin();
+        }, 
         error: function(jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); }
       });
       $('#cet-modal-alerte').modal('hide');
       $('#' + rowcible).hide('slow');
     });
-    $('#cet-modal-alerte-btn-annuler').off();
     $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
       $('#cet-modal-alerte').modal('hide'); 
     });
+    $('#commentaire-action-admin-container').show();
     $('#cet-modal-alerte-btn').click();
   });
 
+  // Bouton de modification admin producteur.
+  $('.administration-modifier-producteur').on('mousedown', function() {
+
+    clearModalAdmin();
+    var pk = $(this).attr('data');
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var rowcible = $(this).attr('row-cible');
+    var prdCible = $(this).attr('prd-cible');
+    $('#cet-modal-alerte-titre').text("Demande de modification producteur.e");
+    $('#cet-modal-alerte-paragraphe').text("Veuillez confirmer la prise en charge du producteur suivant : ");
+    $('#cet-modal-alerte-paragraphe-bis').text($(this).attr('prd-cible'));
+    $('#cet-modal-alerte-btn-annuler').text("Annuler");
+    $('#cet-modal-alerte-btn-annuler').show();
+    $('#cet-modal-alerte-btn-primary').text("Modifier le producteur.e n°" + pk);
+    $('#cet-modal-alerte-btn-primary').on('mousedown', function() { 
+      $('#cet-modal-alerte').modal('hide');
+      $('#admin-modifier-producteur-link-' + pk).attr('href');
+      window.open($('#admin-modifier-producteur-link-' + pk).attr('href'), '_blank');
+      admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), 'majprd', 'producteur', 
+        prdCible, pk, $('#commentaire-action-admin').val());
+      clearModalAdmin();
+    });
+    $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
+      $('#cet-modal-alerte').modal('hide'); 
+    });
+    $('#commentaire-action-admin-container').show();
+    $('#cet-modal-alerte-btn').click();
+  });
+
+  /*********************************************************************
+   * Actions liées aux certification producteur.
+   */
+  $('#btn-admin-ajout-certif-bioab').click(function() {
+    $('input#admin_action_cible_certif').val('certif-bioab-prd');
+    $('#admin-certif-form').submit();
+  });
+
+  $('#btn-admin-sup-certif-bioab').click(function() {
+    $('input#admin_action_cible_certif').val('certif-null-prd');
+    $('#admin-certif-form').submit();
+  });
+
 	/*********************************************************************
-	 * Actions liées aux marchés, leiux de distributions, Asso, AMAPS etc.
+	 * Actions liées aux marchés, lieux de distributions, Asso, AMAPS etc.
 	 */
 	$('#btn-admin-ajout-entite').click(function() {
 		$('input#admin_action_cible').val('insert-entite');
@@ -133,7 +185,10 @@ $(document).ready(function() {
 		        	$('textarea[name ="entite-entite-infoscmd"]').text(entite.infoscmd);
 		        	$('textarea[name ="entite-entite-jourhoraire"]').text(entite.jourhoraire);
 		        	$('textarea[name ="entite-entite-specificites"]').text(entite.specificites);
-		        	$('input[name ="entite-entite-type"]').val(entite.type);
+		        	$('select#entite-entite-type  > option').each(function() {
+                if (entite.type === $(this).val()) $(this).attr('selected', 'selected');
+                else $(this).removeAttr('selected');
+              });
 		        	// maintenant, déplacer vers l'ancre.
 							scrollTowardsId('admin-entite-form', -172);
 							// mise à jour du statut des boutons et visibilité de fonctionnalités.
@@ -206,7 +261,6 @@ function appendAllMedia(images) {
     $('#cet-modal-alerte-paragraphe').text("La suppression de l'image est définitive. Vous pouvez cependant télécharger à nouveau une image supprimée par erreur. Veuillez confirmer la suppression de l'image " + urlr_delete);
     $('#cet-modal-alerte-btn-annuler').text("Annuler");
     $('#cet-modal-alerte-btn-primary').text("Je confirme");
-    $('#cet-modal-alerte-btn-primary').off();
     $('#cet-modal-alerte-btn-primary').on('mousedown', function() {
       $('#cet-modal-alerte').modal('hide');
       deleteMedia(id_media_delete, pkent_delete, urlr_delete);
@@ -247,4 +301,40 @@ function deleteMedia(id_media, pk_entite, urlr) {
       console.log(textStatus, errorThrown);
     }
   });
+}
+
+function notifierAdministrateur() {
+  clearModalAdmin();
+  const queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  if (urlParams.get('refresh') !== undefined && urlParams.get('refresh') === 'true') return;
+  var text = 'Pour administrer en toute sérénité... :';
+  var text2 = ' - garder ouvert l\'onglet d\'administration. Votre session admin sera perdue si vous quittez la page. Dans ce cas, il faudra vous reconnecter à l\'administration.';
+  var text3 = ' - Gardez un onglet ouvert sur la page d\'acceuil de decidelabiolocale.org. Appliquer les modifications souhaitées depuis l\'onglet administration puis rechargez la page d\'acceuil à l\'aide du bouton de clavier F5 ou du bouton navigateur de rafraichissement de page.';
+  var text4 = ' - En cas de bug constaté, contatctez le support technique.'; 
+  $('#cet-modal-alerte-titre').text('Administration cetcal decidelabiolocale');
+  $('#cet-modal-alerte-paragraphe').text(text);
+  $('#cet-modal-alerte-paragraphe-bis').text(text2);
+  $('#cet-modal-alerte-paragraphe-ter').text(text3);
+  $('#cet-modal-alerte-paragraphe-quater').text(text4);
+  $('#cet-modal-alerte-btn-primary').text("J'ai compris");
+  $('#cet-modal-alerte-btn-annuler').hide();
+  $('#cet-modal-alerte-btn').click();
+}
+
+function clearModalAdmin() {
+  $('#cet-modal-alerte-btn-primary').off();
+  $('#cet-modal-alerte-btn-annuler').off();
+  var text = '';
+  var text2 = '';
+  var text3 = '';
+  var text4 = ''; 
+  $('#cet-modal-alerte-titre').text('');
+  $('#cet-modal-alerte-paragraphe').text(text);
+  $('#cet-modal-alerte-paragraphe-bis').text(text2);
+  $('#cet-modal-alerte-paragraphe-ter').text(text3);
+  $('#cet-modal-alerte-paragraphe-quater').text(text4);
+  $('#cet-modal-alerte-btn-primary').text("J'ai compris");
+  $('#commentaire-action-admin-container').hide();
+  $('#commentaire-action-admin').val('');
 }
