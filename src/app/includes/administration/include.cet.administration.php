@@ -33,7 +33,7 @@ $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_up
     <div style="margin-top: 30px;"></div>
   	<div class="row justify-content-lg-center">
   	  <div class="col-lg-12">
-  	  	<div class="alert alert-dismissible" role="alert">
+  	  	<div class="alert" role="alert">
   	  	  <h4 class="alert-heading">Bien le bonjour chère Administrateur du site CETCAL !</h4>
           <hr>
             <?php include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.hist.action.php'; ?>
@@ -41,9 +41,6 @@ $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_up
             <a href="/">Se déconnecter et retourner à l'accueil cetcal.site</a>
     		  <hr>
     		  <p class="mb-0">En cas de doute sur une action, veuillez contacter votre support technique.</p>
-    		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    		    <span aria-hidden="true">&times;</span>
-    		  </button>
   		  </div>
   	  </div>
   	</div>

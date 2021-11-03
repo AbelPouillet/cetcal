@@ -77,11 +77,11 @@ $(document).ready(function() {
         success: function (json) { 
           admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), 'supprd', 'producteur', 
             prdCible, pk, $('#commentaire-action-admin').val());
+          clearModalAdmin();
         }, 
         error: function(jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); }
       });
       $('#cet-modal-alerte').modal('hide');
-      clearModalAdmin();
       $('#' + rowcible).hide('slow');
     });
     $('#cet-modal-alerte-btn-annuler').on('mousedown', function() { 
@@ -110,7 +110,6 @@ $(document).ready(function() {
       $('#cet-modal-alerte').modal('hide');
       $('#admin-modifier-producteur-link-' + pk).attr('href');
       window.open($('#admin-modifier-producteur-link-' + pk).attr('href'), '_blank');
-      alert(urlParams.get('sitkn'));
       admlog(urlParams.get('sitkn'), urlParams.get('admpk'), urlParams.get('admlog'), 'majprd', 'producteur', 
         prdCible, pk, $('#commentaire-action-admin').val());
       clearModalAdmin();
