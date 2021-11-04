@@ -83,13 +83,12 @@ button.cet-admin-borderless-button {
   border-radius: 0px !important;
   color: black;
 }
-div.custom-scrollbar {
+div#table-histo-admin-activites-container {
   position: relative;
-  height: 512px;
+  height: 128px;
   overflow: auto;
 }
 div.table-wrapper-scroll-y {
-  display: none;
   border: 1px solid grey;
 }
 table#table-histo-admin-activites {

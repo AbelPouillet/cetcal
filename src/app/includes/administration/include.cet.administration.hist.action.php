@@ -5,11 +5,11 @@ $data_adm = $ctrl->selectAllActivite();
 ?>
 <p>
   Utilisateur en cour d'administration : <b><?= $admlog; ?></b>
-  <button type="button" class="btn btn-link" onclick="$('#table-histo-admin-activites-container').toggle('slow');"
-    style="float: right;">
-    <i class="fas fa-search"></i>&#160;&#160;Visualiser l'historique des actions administrateur
-  </button>
 </p>
+<button type="button" class="btn btn-link" 
+  onclick="updateVisibiliteHistorique();">
+  <i class="fas fa-search"></i>&#160;&#160;Visualiser tout l'historique des actions administrateur
+</button>
 <div class="table-wrapper-scroll-y custom-scrollbar" id="table-histo-admin-activites-container">
   <table class="table table-sm cetcal-admin-table" id="table-histo-admin-activites">
     <thead>

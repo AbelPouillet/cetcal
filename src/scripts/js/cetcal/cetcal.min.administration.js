@@ -338,3 +338,9 @@ function clearModalAdmin() {
   $('#commentaire-action-admin-container').hide();
   $('#commentaire-action-admin').val('');
 }
+
+function updateVisibiliteHistorique() {
+  var height = $('#table-histo-admin-activites-container').height();
+  if (height < 624) $('#table-histo-admin-activites-container').height(624);
+  else $('#table-histo-admin-activites-container').height(128);
+}
