@@ -1,12 +1,16 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'].'/cet.qstprod.startup.php';
 include $PHP_CONTROLLER_PATH.'cet.qstprod.controller.index.php';
+include $PHP_CONTROLLER_PATH.'/admin/cet.annuaire.controlleur.administration.admins.php';
 $statut = (isset($_GET['statut']) && !empty($_GET['statut'])) ? 
   $dataProcessor->processHttpFormData($_GET['statut']) : 'bienvenu.form';
 $admlog = $dataProcessor->processHttpFormData($_GET['admlog']);
 $admlog_ready = isset($admlog) && !empty($admlog) && strlen($admlog) > 3;
 $rechargement_update = isset($_GET['refresh']) ? $dataProcessor->processHttpFormData($_GET['refresh']) : '';
 $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_update) && strcmp($rechargement_update, 'true') === 0;
+$ctrl_adm = new AdminController();
+$session_id = $dataProcessor->processHttpFormData($_GET['sitkn']);
+$admin_data = $ctrl_adm->selectBySessionId($session_id);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,8 +39,10 @@ $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_up
   	  <div class="col-lg-12">
   	  	<div class="alert" role="alert">
   	  	  <h4 class="alert-heading">Bien le bonjour chère Administrateur du site CETCAL !</h4>
-          <hr>
-            <?php include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.hist.action.php'; ?>
+          <?php if (strcmp($admin_data['hab_histo'], 'true') === 0): ?>
+            <hr>
+              <?php include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.hist.action.php'; ?>
+          <?php endif; ?>
           <hr>
             <a href="/">Se déconnecter et retourner à l'accueil cetcal.site</a>
     		  <hr>
@@ -51,11 +57,11 @@ $is_rechargement_update = isset($rechargement_update) && !empty($rechargement_up
           <?php if($admlog_ready): ?>
       			<?php 
       				// les modules d'administration ajoutés un par un :
-      				include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.producteurs.php';
-              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.certification.producteurs.php';
-              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.geoloc.php';
-              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
-              include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
+              if (strcmp($admin_data['hab_producteurs'], 'true') === 0) include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.producteurs.php';
+              if (strcmp($admin_data['hab_certif_bioab'], 'true') === 0) include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.certification.producteurs.php';
+              if (strcmp($admin_data['hab_geoloc'], 'true') === 0) include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.geoloc.php';
+              if (strcmp($admin_data['hab_entites'], 'true') === 0) include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.entites.php'; 
+              if (strcmp($admin_data['hab_admins'], 'true') === 0) include $PHP_INCLUDES_PATH.'administration/'.'include.cet.administration.admins.php';
               include $PHP_INCLUDES_PATH.'modals/include.cet.annuaire.modal.alerte.administration.php';
             ?>
           <?php elseif(!$admlog): ?>

@@ -24,6 +24,21 @@ class AdminController extends AnnuaireController
     return false;
   }
 
+  public function selectBySessionId($session_id)
+  {
+    try
+    {
+      require_once($_SERVER['DOCUMENT_ROOT'].'/src/app/model/cet.cetcal.administrateur.model.php');
+      $adminModel = new CETCALAdminModel();
+      return $adminModel->getAdministrateurBySessionId($session_id);
+    }
+    catch (Exception $e) 
+    {
+      var_dump($e);
+    }
+    return false;
+  }
+
   public function selectAllActivite()
   {
     try
