@@ -36,7 +36,7 @@
           </thead>
           <tbody>
             <?php foreach ($data_admins as $data): ?>
-              <tr>
+              <tr id="row-admin-cetcal-<?= $data['adm_id']; ?>">
                 <td class="cetcal-admin-table-td"><?= $data['adm_id']; ?></td>
                 <td class="cetcal-admin-table-td">
                   <?= $data['adm_email']; ?>

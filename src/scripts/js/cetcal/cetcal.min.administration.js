@@ -163,59 +163,104 @@ $(document).ready(function() {
 			const queryString = window.location.search;
 			var urlParams = new URLSearchParams(queryString);
 			$.ajax({
-		        url: '../../../controller/cet.annuaire.controller.administration.actions.php?sitkn=' + urlParams.get('sitkn'),
-		        type: 'POST',
-		        data: {
-		        	admin_action_cible : 'get-entite',
-            		pkid : pk
-		        },
-		        success: function (json) {
-							var entite = JSON.parse(json)[0];	        	
-		        	// Ajouter les données au formaulaire 
-		        	// Relancer la zone de création marchés en update.
-		        	$('input[name ="admin-pk-entite"]').val(entite.pk_entite);
-		        	$('input[name ="entite-entite-denomination"]').val(entite.denomination);
-		        	$('input[name ="entite-entite-territoire"]').val(entite.territoire);
-		        	$('textarea[name ="entite-entite-activite"]').text(entite.activite);
-		        	$('input[name ="entite-entite-adresse"]').val(entite.adresse);
-		        	$('input[name ="entite-entite-tel"]').val(entite.tels);
-		        	$('input[name ="entite-entite-personne"]').val(entite.personne);
-		        	$('input[name ="entite-entite-email"]').val(entite.email);
-		        	$('input[name ="entite-entite-urlwww"]').val(entite.urlwww);
-		        	$('textarea[name ="entite-entite-infoscmd"]').text(entite.infoscmd);
-		        	$('textarea[name ="entite-entite-jourhoraire"]').text(entite.jourhoraire);
-		        	$('textarea[name ="entite-entite-specificites"]').text(entite.specificites);
-		        	$('select#entite-entite-type  > option').each(function() {
-                if (entite.type === $(this).val()) $(this).attr('selected', 'selected');
-                else $(this).removeAttr('selected');
-              });
-		        	// maintenant, déplacer vers l'ancre.
-							scrollTowardsId('admin-entite-form', -172);
-							// mise à jour du statut des boutons et visibilité de fonctionnalités.
-							$('#btn-admin-ajout-entite').hide();
-							$('#btn-admin-modifier-entite').show();
-							$('#btn-admin-delete-entite').show();
-							$('#btn-admin-annuler-entite').show();
+        url: '../../../controller/cet.annuaire.controller.administration.actions.php?sitkn=' + urlParams.get('sitkn'),
+        type: 'POST',
+        data: {
+        	admin_action_cible : 'get-entite',
+        	pkid : pk
+        },
+        success: function (json) {
+					var entite = JSON.parse(json)[0];	        	
+        	// Ajouter les données au formaulaire 
+        	// Relancer la zone de création marchés en update.
+        	$('input[name ="admin-pk-entite"]').val(entite.pk_entite);
+        	$('input[name ="entite-entite-denomination"]').val(entite.denomination);
+        	$('input[name ="entite-entite-territoire"]').val(entite.territoire);
+        	$('textarea[name ="entite-entite-activite"]').text(entite.activite);
+        	$('input[name ="entite-entite-adresse"]').val(entite.adresse);
+        	$('input[name ="entite-entite-tel"]').val(entite.tels);
+        	$('input[name ="entite-entite-personne"]').val(entite.personne);
+        	$('input[name ="entite-entite-email"]').val(entite.email);
+        	$('input[name ="entite-entite-urlwww"]').val(entite.urlwww);
+        	$('textarea[name ="entite-entite-infoscmd"]').text(entite.infoscmd);
+        	$('textarea[name ="entite-entite-jourhoraire"]').text(entite.jourhoraire);
+        	$('textarea[name ="entite-entite-specificites"]').text(entite.specificites);
+        	$('select#entite-entite-type  > option').each(function() {
+            if (entite.type === $(this).val()) $(this).attr('selected', 'selected');
+            else $(this).removeAttr('selected');
+          });
+        	// maintenant, déplacer vers l'ancre.
+					scrollTowardsId('admin-entite-form', -172);
+					// mise à jour du statut des boutons et visibilité de fonctionnalités.
+					$('#btn-admin-ajout-entite').hide();
+					$('#btn-admin-modifier-entite').show();
+					$('#btn-admin-delete-entite').show();
+					$('#btn-admin-annuler-entite').show();
 
-              // START Lié administration des images et dropzone.
-              $('#data-media-admin-entite-container').show();
-              $('#entite-media-pkent-value').val(entite.pk_entite);
-              $('#cetFileDropzoneImgentite').attr('action', '/src/app/controller/media/cet.qstprod.controller.media.form.php?pkent=' + entite.pk_entite 
-                + '&sitkn=' + urlParams.get('sitkn') + '&cible=logo-entite');
-              // Initier la dropzone pour cette entite : 
-              Dropzone.forElement("#cetFileDropzoneImgentite").options.url = '/src/app/controller/media/cet.qstprod.controller.media.form.php?pkent=' + entite.pk_entite 
-                + '&sitkn=' + urlParams.get('sitkn') + '&cible=logo-entite';
-              clearAllFiles(1);
-              reloadMedia(entite.pk_entite, 'entite');
-              // END dropzone.
+          // START Lié administration des images et dropzone.
+          $('#data-media-admin-entite-container').show();
+          $('#entite-media-pkent-value').val(entite.pk_entite);
+          $('#cetFileDropzoneImgentite').attr('action', '/src/app/controller/media/cet.qstprod.controller.media.form.php?pkent=' + entite.pk_entite 
+            + '&sitkn=' + urlParams.get('sitkn') + '&cible=logo-entite');
+          // Initier la dropzone pour cette entite : 
+          Dropzone.forElement("#cetFileDropzoneImgentite").options.url = '/src/app/controller/media/cet.qstprod.controller.media.form.php?pkent=' + entite.pk_entite 
+            + '&sitkn=' + urlParams.get('sitkn') + '&cible=logo-entite';
+          clearAllFiles(1);
+          reloadMedia(entite.pk_entite, 'entite');
+          // END dropzone.
 
-		        }, error: function(jqXHR, textStatus, errorThrown) {
-		           console.log(textStatus, errorThrown);
-		        }
-		    });
+        }, error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+	    });
 		});
 	});
 	/*********************************************************************/
+
+  // administration des habilitations : update.
+  $('.administration-update-admin').on('click', function() {
+    var pkadm = $(this).attr('data');
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var hab_histo = $('#hab_histo_' + pkadm).is(':checked') ? 'true' : 'false';
+    var hab_admins = $('#hab_admins_' + pkadm).is(':checked') ? 'true' : 'false';
+    var hab_geoloc = $('#hab_geoloc_' + pkadm).is(':checked') ? 'true' : 'false';
+    var hab_entites = $('#hab_entites_' + pkadm).is(':checked') ? 'true' : 'false';
+    var hab_certif_bioab = $('#hab_certif_bioab_' + pkadm).is(':checked') ? 'true' : 'false';
+    var hab_producteurs = $('#hab_producteurs_' + pkadm).is(':checked') ? 'true' : 'false';
+    $.ajax({
+        url: '../../../controller/admin/cet.annuaire.controlleur.ajax.admin.habilitations.php?sitkn=' + urlParams.get('sitkn'),
+        type: 'POST',
+        data: { 
+          action : 'update', pkadm : pkadm, hab_producteurs : hab_producteurs, 
+          hab_certif_bioab : hab_certif_bioab, hab_entites : hab_entites, hab_geoloc : hab_geoloc, 
+          hab_admins : hab_admins, hab_histo : hab_histo
+        },
+        success: function (json) {
+          alert("Administrateur n°" + pkadm + " mis à jour avec succès.");
+        }, error: function(jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+        }
+      });
+  });
+
+  // administration des habilitations : désactiver admin.
+  $('.administration-desactiver-admin').on('click', function() {
+    var pkadm = $(this).attr('data');
+    const queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    $.ajax({
+        url: '../../../controller/admin/cet.annuaire.controlleur.ajax.admin.habilitations.php?sitkn=' + urlParams.get('sitkn'),
+        type: 'POST',
+        data: { action : 'desactiver', pkadm : pkadm },
+        success: function (json) {
+          alert("Administrateur n°" + pkadm + " supprimé.");
+          $('#row-admin-cetcal-' + pkadm).hide('slow');
+        }, error: function(jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+        }
+      });
+  });
 
 });
 

@@ -116,4 +116,26 @@ class CETCALAdminModel extends CETCALModel
     return -1;
   }
 
+  public function updateHabilitations($pk, $hab_producteurs, $hab_certif_bioab, $hab_entites, $hab_geoloc, $hab_admins, $hab_histo)
+  {
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::UPDATE_HABILITATIONS_ADMIN_BY_PK);
+    $stmt->bindParam(":pHab_producteurs", $hab_producteurs, PDO::PARAM_STR);
+    $stmt->bindParam(":pHab_certif_bioab", $hab_certif_bioab, PDO::PARAM_STR);
+    $stmt->bindParam(":pHab_entites", $hab_entites, PDO::PARAM_STR);
+    $stmt->bindParam(":pHab_geoloc", $hab_geoloc, PDO::PARAM_STR);
+    $stmt->bindParam(":pHab_admins", $hab_admins, PDO::PARAM_STR);
+    $stmt->bindParam(":pHab_histo", $hab_histo, PDO::PARAM_STR);
+    $stmt->bindParam(":pPkAdm", $pk, PDO::PARAM_INT);
+    $stmt->execute();
+  }
+
+  public function desactiverAdminByPk($pk)
+  {
+    $qLib = $this->getQuerylib();
+    $stmt = $this->getCnxdb()->prepare($qLib::DESACTIVATE_ADMIN_BY_PK);
+    $stmt->bindParam(":pPkAdm", $pk, PDO::PARAM_INT);
+    $stmt->execute();
+  }
+
 }

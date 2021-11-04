@@ -92,11 +92,15 @@ class CETCALQueryLibrary
   const SELECT_ALL_DENOMINATION_AMAP = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type = 'amap';";
   const SELECT_ALL_ENTITE_BY_TYPES = "SELECT pk_entite, adresse, denomination FROM cetcal.cetcal_entite WHERE type IN ([types]);";
 
-  const SELECT_ALL_FROM_AMINISTRATION = "SELECT * FROM cetcal.cetcal_administration;";
-  const SELECT_CETCAL_ADMIN_BY_SESSION_ID = "SELECT * FROM cetcal.cetcal_administration WHERE session_id=:pSessionId;";
+  const SELECT_ALL_FROM_AMINISTRATION = "SELECT * FROM cetcal.cetcal_administration WHERE adm_actif=1;";
+  const SELECT_CETCAL_ADMIN_BY_SESSION_ID = "SELECT * FROM cetcal.cetcal_administration WHERE session_id=:pSessionId AND adm_actif=1;";
   const UPDATE_AMINISTRATION_SESSION = "UPDATE cetcal.cetcal_administration SET session_id=:pSessionId WHERE adm_email=:pAdmLoginEmail OR adm_usr_name=:pAdmLogin;";
-  const SELECT_ALL_FROM_AMINISTRATION_SESSION = "SELECT * FROM cetcal.cetcal_administration WHERE session_id=:pSessionId;";
-  const SELECT_ALL_FROM_AMINISTRATION_EMAIL_OR_LOGIN = "SELECT * FROM cetcal.cetcal_administration WHERE adm_usr_mdp=:pAdmUsrMdp AND adm_email=:pAdmEmail OR adm_usr_name=:pAdmUsrName;";
+  const SELECT_ALL_FROM_AMINISTRATION_SESSION = "SELECT * FROM cetcal.cetcal_administration WHERE session_id=:pSessionId AND adm_actif=1;";
+  const SELECT_ALL_FROM_AMINISTRATION_EMAIL_OR_LOGIN = "SELECT * FROM cetcal.cetcal_administration WHERE adm_usr_mdp=:pAdmUsrMdp AND adm_actif=1 AND adm_email=:pAdmEmail OR adm_usr_name=:pAdmUsrName;";
+  const SELECT_ALL_FROM_HISTO_AMINISTRATION_ACTION = "SELECT * FROM cetcal.cetcal_administration_histo ORDER BY date_heure_action DESC;";
+  const INSERT_INTO_HISTO_AMINISTRATION_ACTION = "INSERT INTO cetcal.cetcal_administration_histo (adm_fk, adm_email, action_code, action_libelle_fonctionnel, date_heure_action, datetime_stamp, pk_element, type_element, denomination_element, commentaire) VALUES (:pAdmFk, :pAdmEmail, :pActionCode, :pActionLibFonc, :pDateHeureAction, :pDtStamp, :pPkElement, :pTypeElement, :pDenominationElement, :pCommentaire);";
+  const UPDATE_HABILITATIONS_ADMIN_BY_PK = "UPDATE cetcal.cetcal_administration SET hab_producteurs=:pHab_producteurs, hab_certif_bioab=:pHab_certif_bioab, hab_entites=:pHab_entites, hab_geoloc=:pHab_geoloc, hab_admins=:pHab_admins, hab_histo=:pHab_histo WHERE adm_id=:pPkAdm;";
+  const DESACTIVATE_ADMIN_BY_PK = "UPDATE cetcal.cetcal_administration SET adm_actif=0 WHERE adm_id=:pPkAdm;";
 
   const SELECT_ALL_PARTENAIRES_LIENS = "SELECT * FROM cetcal.cetcal_partenaires_liens ORDER BY denomination ASC;";
 
@@ -140,9 +144,5 @@ class CETCALQueryLibrary
   const SELECT_BIODATA = "SELECT * from cetcal.cetcal_biodata;";
   const DELETE_FROM_BIODATA_WHERE_PKPRD = "DELETE FROM cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
   const SELECT_BIODATA_BY_FK_PRODUCTEUR = "SELECT * from cetcal.cetcal_biodata WHERE fk_producteur=:pPk_producteur;";
-
-  const SELECT_ALL_FROM_HISTO_AMINISTRATION_ACTION = "SELECT * FROM cetcal.cetcal_administration_histo ORDER BY date_heure_action DESC;";
-  const INSERT_INTO_HISTO_AMINISTRATION_ACTION = "INSERT INTO cetcal.cetcal_administration_histo (adm_fk, adm_email, action_code, action_libelle_fonctionnel, date_heure_action, datetime_stamp, pk_element, type_element, denomination_element, commentaire) VALUES (:pAdmFk, :pAdmEmail, :pActionCode, :pActionLibFonc, :pDateHeureAction, :pDtStamp, :pPkElement, :pTypeElement, :pDenominationElement, :pCommentaire);";
   
-
 }
