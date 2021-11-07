@@ -20,7 +20,10 @@ if (isset($_GET['q']) && !empty($_GET['q']))
     $filtre = $dataProcessor->processHttpFormData($_GET['q']);
     $datas = $ctrl->loadQuery($filtre, $type);
 }
-$data = $datas[0];
+if (isset($datas[0])){
+    $data = $datas[0];
+}
+
 ?>
 
 <div class="container-fluid ficheprd__wrapper">
@@ -77,21 +80,22 @@ $data = $datas[0];
                                 <h3>Coordonnées</h3>
                                 <p></p>
                                 <address>
-                                    <p><?=$data->denomination?></p>
-                                    <p><?=$data->adresse?></p>
-                                    <?=(strlen($data->tels) > 0) ?  "<p>".$data->tels . "</p>" : " " ?>
-                                    <?= (strlen($data->email) > 0) ? "<p class='card_mail'>".$data->email . "</p>" : "" ?>
+                                    <p><?php if(isset($data))$data->denomination?></p>
+                                    <p><?php if(isset($data))$data->adresse?></p>
+                                    <?php if(isset($data))(strlen($data->tels) > 0) ?  "<p>".$data->tels . "</p>" : " " ?>
+                                     <?php if(isset($data))(strlen($data->email) > 0) ? "<p class='card_mail'>".$data->email . "</p>" : "" ?>
                                 </address>
                                 <div>
-                                    <?=  (strlen($data->urlwww) > 0)  ?  "<a class='cst-pills' href=".$data->urlwww.">"."site web" . "</a>" : "" ?>
+                                <?php if(isset($data))  (strlen($data->urlwww) > 0)  ?  "<a class='cst-pills' href=".$data->urlwww.">"."site web" . "</a>" : "" ?>
                                 </div>
                             </div>
                             <div class="col-6 card__horaires">
                                 <!--Jour/horaires-->
                                 <h3>Jours / Horaires</h3>
                                 <div>
-                                    <?= (strlen($data->infoscmd) > 0) ? "<p class=''>".$data->infoscmd . "</p>" : "" ?>
-                                    <?= (strlen($data->jourhoraire) > 0) ? "<p class=''>".$data->jourhoraire . "</p>" : "" ?>
+                                    <?php if(isset($data) && isset($data->infoscmd))(strlen($data->infoscmd) > 0) ? "<p class=''>".$data->infoscmd . "</p>" : "" ?>
+                                        <?php if(isset($data))    (strlen($data->jourhoraire) > 0) ? "<p class=''>".$data->jourhoraire . "</p>" : "" 
+                                    ?>
                                 </div>
                             </div>
                         </div>
