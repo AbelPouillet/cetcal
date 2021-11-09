@@ -65,7 +65,6 @@ $lieux = $controller->fetchAllLieuDistByPkProducteur($pk);
               <!--texte-->
               <div class="d-flex align-items-center text__presentation">
                 <p class="text-center">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda atque autem distinctio ea error, et eum fugit hic illo ipsam odio, provident quod rem repellat repellendus totam voluptates. Iste!
                 </p>
               </div>
 
