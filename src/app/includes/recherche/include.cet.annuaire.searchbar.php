@@ -37,9 +37,9 @@
           id="rav-homepage-critere" name="rav-homepage-critere" 
           placeholder="nom, produit, adresse etc..." style="padding: 8px;">
         <div class="input-group-append">
-          <button class="btn text-center" id="rav-homepage-envoyer" style="background-color: #de4317; color: white;"><i class="fas fa-search"></i>&#160;&#160;Rechercher</button>
+          <button class="btn text-center" id="rav-homepage-envoyer" style="background-color: transparent; color: #de4317;"><i class="fas fa-search"></i>&#160;&#160;Rechercher</button>
           <a class="btn" 
-            style="vertical-align: middle !important; background-color: #de4317; color: white; padding-top: 9px;" href="/?statut=recherche.avancee&anr=true" id="afficher-recherche-avancee"><i class="fas fa-search-plus"></i>&#160;&#160;Recherche avancée</a>
+            style="vertical-align: middle !important; background-color: transparent; color: #de4317; padding-top: 9px;" href="/?statut=recherche.avancee&anr=true" id="afficher-recherche-avancee"><i class="fas fa-search-plus"></i>&#160;&#160;Recherche avancée</a>
         </div>
       </div>
     </div>
