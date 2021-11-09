@@ -33,6 +33,11 @@
   {
     include $PHP_INCLUDES_PATH.'cartographie/include.cet.qstprod.cartographie.php';
     include $PHP_INCLUDES_PATH.'/recherche/include.cet.annuaire.searchbar.php';
+    /**
+     * Le 7/11/2021 : à décommenter (et commenter la searchbar temporaire ajouté ci-dessus), 
+     * suite à fin des dévelopemments du module /homepage/include.cet.annuaire.searchbar.php.
+     * include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.searchbar.php';
+     */
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.slogan.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.prd.a.lhonneur.php';
     include $PHP_INCLUDES_PATH.'/homepage/include.cet.annuaire.plateforme.php';
