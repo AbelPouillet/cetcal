@@ -49,7 +49,7 @@ if (isset($datas[0])){
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center p-0">
                         <div class="card__producteur d-flex justify-content-center align-items-center">
-                            <h2 class="text-center"><?= $data->denomination ?></h2>
+                            <h2 class="text-center"><?php if(isset($data)) $data->denomination ?></h2>
                         </div>
                         <div class="card__producteur">
                             <div id="fichedetailleeprd-carousel" class="carousel slide" data-ride="carousel">
@@ -61,14 +61,55 @@ if (isset($datas[0])){
             </section>
             <section>
                 <div class="row">
-                    <div class="col-12 d-flex align-items-center justify-content-center p-0">
-                        <!--texte-->
-                        <div class="d-flex align-items-center text__presentation">
-                            <p class="text-center">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda atque autem distinctio ea error, et eum fugit hic illo ipsam odio, provident quod rem repellat repellendus totam voluptates. Iste!
-                            </p>
+                <div class="col-12 d-flex justify-content-center p-0">
+                        <div class="card__producteur d-flex justify-content-center align-items-center">
+                            <h2 class="text-center"><?php if(isset($data)) $data->denomination ?></h2>
+                        </div>
+                </div>
+            </section>
+            <section class="d-flex justify-content-center">
+                <div class="wrapper_infoprd">
+                    <div class="row">
+                        <div class="col-12 d-flex">
+                            <div class="col-6 card__coordonnees">
+                                <!-- coordonnées-->
+                                <h3>Coordonnées</h3>
+                                <p><?php if(isset($data)) ucfirst($data->personne); ?> </p>
+                                <address>
+                                    <?php
+                                    if(isset($data)) $adr = str_replace("  ", " ", $data->adresse);
+                                    ?>
+                                    <p><?php if(isset($adr)) $adr?></p>
+                                    <?=  (isset($data->tels))  ?  "<p>".$data->tels . "</p>" : "" ?>
+                                    
+                                    <?=  (isset($data->email))  ?  "<p class='card_mail'>".$data->email . "</p>" : "" ?>
+                                </address>
+                                <div>
+                                    <?php if(isset($data))  (strlen($data->urlwww) > 0)  ?  "<a class='cst-pills' href=".$data->urlwww.">"."site web" . "</a>" : "" ?>
+
+                                </div>
+</div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12 d-flex">
+                            <div class="col-6 card__autre">
+                                <!--ouverture au public-->
+                            </div>
+                            <div class="col-6 card__lieuxvente">
+                                <!--Lieux de vente-->
+                                <h3>Territoire</h3>
+                                <div>
+                                        <div class="lieux-vente-producteur">
+                                            <p><?php if(isset($data->territoire)) $data->territoire?></p>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+
                 </div>
             </section>
             <section class="d-flex justify-content-center">
