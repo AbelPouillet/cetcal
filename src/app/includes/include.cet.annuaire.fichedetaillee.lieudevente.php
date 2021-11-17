@@ -49,7 +49,7 @@ if (isset($datas[0])){
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center p-0">
                         <div class="card__producteur d-flex justify-content-center align-items-center">
-                            <h2 class="text-center"><?php if(isset($data)) $data->denomination ?></h2>
+                            <h2 class="text-center"><?= (isset($data)) ? $data->denomination : "" ?></h2>
                         </div>
                         <div class="card__producteur">
                             <div id="fichedetailleeprd-carousel" class="carousel slide" data-ride="carousel">
@@ -59,59 +59,7 @@ if (isset($datas[0])){
                             </div>
                         </div>
             </section>
-            <section>
-                <div class="row">
-                <div class="col-12 d-flex justify-content-center p-0">
-                        <div class="card__producteur d-flex justify-content-center align-items-center">
-                            <h2 class="text-center"><?php if(isset($data)) $data->denomination ?></h2>
-                        </div>
-                </div>
-            </section>
-            <section class="d-flex justify-content-center">
-                <div class="wrapper_infoprd">
-                    <div class="row">
-                        <div class="col-12 d-flex">
-                            <div class="col-6 card__coordonnees">
-                                <!-- coordonnées-->
-                                <h3>Coordonnées</h3>
-                                <p><?php if(isset($data)) ucfirst($data->personne); ?> </p>
-                                <address>
-                                    <?php
-                                    if(isset($data)) $adr = str_replace("  ", " ", $data->adresse);
-                                    ?>
-                                    <p><?php if(isset($adr)) $adr?></p>
-                                    <?=  (isset($data->tels))  ?  "<p>".$data->tels . "</p>" : "" ?>
-                                    
-                                    <?=  (isset($data->email))  ?  "<p class='card_mail'>".$data->email . "</p>" : "" ?>
-                                </address>
-                                <div>
-                                    <?php if(isset($data))  (strlen($data->urlwww) > 0)  ?  "<a class='cst-pills' href=".$data->urlwww.">"."site web" . "</a>" : "" ?>
-
-                                </div>
-</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 d-flex">
-                            <div class="col-6 card__autre">
-                                <!--ouverture au public-->
-                            </div>
-                            <div class="col-6 card__lieuxvente">
-                                <!--Lieux de vente-->
-                                <h3>Territoire</h3>
-                                <div>
-                                        <div class="lieux-vente-producteur">
-                                            <p><?php if(isset($data->territoire)) $data->territoire?></p>
-                                        </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end of row-->
-
-                </div>
-            </section>
+            
             <section class="d-flex justify-content-center">
                 <div class="wrapper_infoprd">
                     <div class="row">
@@ -121,22 +69,30 @@ if (isset($datas[0])){
                                 <h3>Coordonnées</h3>
                                 <p></p>
                                 <address>
-                                    <p><?php if(isset($data))$data->denomination?></p>
-                                    <p><?php if(isset($data))$data->adresse?></p>
-                                    <?php if(isset($data))(strlen($data->tels) > 0) ?  "<p>".$data->tels . "</p>" : " " ?>
-                                     <?php if(isset($data))(strlen($data->email) > 0) ? "<p class='card_mail'>".$data->email . "</p>" : "" ?>
+                                    <p><?= (isset($data)) ? $data->denomination : "" ?></p>
+                                    <p><?= (isset($data)) ? ucfirst($data->personne) : "" ?> </p>
+                                    <p><?= (isset($data)) ? $data->adresse : "" ?></p>
+                                    <?= ((isset($data)) && (strlen($data->tels) > 0)) ?  "<p>".$data->tels . "</p>" : " " ?>
+                                     <?= (isset($data)) && (strlen($data->email) > 0) ? "<p class='card_mail'>".$data->email . "</p>" : "" ?>
                                 </address>
                                 <div>
-                                <?php if(isset($data))  (strlen($data->urlwww) > 0)  ?  "<a class='cst-pills' href=".$data->urlwww.">"."site web" . "</a>" : "" ?>
+                                <?= (isset($data)) && (strlen($data->urlwww) > 0)  ?  "<a class='cst-pills' href=".$data->urlwww.">"."site web" . "</a>" : "" ?>
                                 </div>
                             </div>
                             <div class="col-6 card__horaires">
                                 <!--Jour/horaires-->
                                 <h3>Jours / Horaires</h3>
                                 <div>
-                                    <?php if(isset($data) && isset($data->infoscmd))(strlen($data->infoscmd) > 0) ? "<p class=''>".$data->infoscmd . "</p>" : "" ?>
-                                        <?php if(isset($data))    (strlen($data->jourhoraire) > 0) ? "<p class=''>".$data->jourhoraire . "</p>" : "" 
+                                    <?= (isset($data) && isset($data->infoscmd) && (strlen($data->infoscmd) > 0)) ? "<p class=''>".$data->infoscmd . "</p>" : "" ?>
+                                        <?= (isset($data)) && (strlen($data->jourhoraire) > 0) ? "<p class=''>".$data->jourhoraire . "</p>" : "" 
                                     ?>
+                                </div>
+                                <h3>Territoire</h3>
+                                <div>
+                                        <div class="lieux-vente-producteur">
+                                            <p><?= (isset($data->territoire)) ? $data->territoire : "" ?></p>
+                                        </div>
+                                    
                                 </div>
                             </div>
                         </div>
